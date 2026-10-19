@@ -1,0 +1,26 @@
+{
+  "name": "sathenna-mern-monorepo",
+  "version": "1.0.0",
+  "description": "Production-grade MERN public profile website and Admin CMS for Gandra Satyanarayana Rao (Sathenna), MLA Bhupalpalle",
+  "scripts": {
+    "install:server": "npm --prefix server install",
+    "install:client": "npm --prefix client install",
+    "install:all": "npm run install:server && npm run install:client",
+    "server": "npm --prefix server run dev",
+    "client": "npm --prefix client run dev",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "build:client": "npm --prefix client run build",
+    "build:server": "npm --prefix server run build",
+    "build": "npm run build:client",
+    "test:server": "npm --prefix server test",
+    "test:client": "npm --prefix client test",
+    "test": "npm run test:server && npm run test:client",
+    "seed": "npm --prefix server run seed",
+    "admin:setup": "npm --prefix server run admin:setup"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.5"
+  },
+  "author": "Antigravity Engineering",
+  "license": "ISC"
+}
