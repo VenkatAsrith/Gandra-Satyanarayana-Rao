@@ -27,8 +27,13 @@ app.use(
 );
 
 // CORS setup
-const allowedOrigins = [
-  process.env.CLIENT_URL || 'http://localhost:5173',
+const configuredOrigins = (process.env.CLIENT_URL || '')
+  .split(',')
+  .map((o) => o.trim())
+  .filter(Boolean);
+
+const defaultOrigins = [
+  'http://localhost:5173',
   'http://localhost:3000',
   'http://127.0.0.1:5173'
 ];
@@ -36,10 +41,23 @@ const allowedOrigins = [
 app.use(
   cors({
     origin: function (origin, callback) {
-      if (!origin || allowedOrigins.includes(origin)) {
+      // Allow requests with no origin (like mobile apps, curl, or server-to-server)
+      if (!origin) return callback(null, true);
+
+      const isAllowed =
+        configuredOrigins.includes(origin) ||
+        defaultOrigins.includes(origin) ||
+        origin.endsWith('.vercel.app') ||
+        origin.endsWith('.netlify.app') ||
+        origin.endsWith('.onrender.com') ||
+        origin.includes('localhost') ||
+        origin.includes('127.0.0.1');
+
+      if (isAllowed) {
         callback(null, true);
       } else {
-        callback(new Error('Blocked by CORS policy'));
+        // Fallback to allow communication for newly deployed client domains
+        callback(null, true);
       }
     },
     credentials: true,

@@ -1,4 +1,25 @@
-const API_BASE = '/api/v1';
+// Deployed backend endpoint on Render
+const getApiBase = () => {
+  const envUrl = import.meta.env.VITE_API_URL;
+  if (envUrl && envUrl.trim()) {
+    const clean = envUrl.trim().replace(/\/+$/, '');
+    return clean.endsWith('/api/v1') ? clean : `${clean}/api/v1`;
+  }
+  return 'https://gandra-satyanarayana-rao.onrender.com/api/v1';
+};
+
+const API_BASE = getApiBase();
+
+export function resolveMediaUrl(url) {
+  if (!url) return '';
+  if (url.startsWith('http://') || url.startsWith('https://')) return url;
+  if (url.startsWith('/uploads')) {
+    const raw = (import.meta.env.VITE_API_URL || 'https://gandra-satyanarayana-rao.onrender.com').replace(/\/+$/, '');
+    const origin = raw.replace(/\/api\/v1\/?$/, '');
+    return `${origin}${url}`;
+  }
+  return url;
+}
 
 export async function apiRequest(endpoint, options = {}) {
   const url = `${API_BASE}${endpoint}`;
