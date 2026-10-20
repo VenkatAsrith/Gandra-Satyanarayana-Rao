@@ -120,25 +120,25 @@ export default function AboutPage() {
               </p>
             </div>
 
-            <div className="admin-stats-grid" style={{ maxWidth: '900px', margin: '0 auto' }}>
-              <div className="admin-stat-card">
-                <span className="admin-stat-label">Total Votes Polled</span>
-                <span className="admin-stat-val" style={{ color: 'var(--orange-dark)' }}>
+            <div className="electoral-stats-grid" style={{ maxWidth: '900px', margin: '0 auto' }}>
+              <div className="electoral-stat-card">
+                <span className="electoral-stat-label">Total Votes Polled</span>
+                <span className="electoral-stat-val" style={{ color: 'var(--orange-dark)' }}>
                   {profile?.electoralStats?.votesSecured ? profile.electoralStats.votesSecured.toLocaleString() : '123,116'}
                 </span>
-                <span className="admin-stat-meta">54.55% of total valid votes</span>
+                <span className="electoral-stat-meta">54.55% of total valid votes</span>
               </div>
-              <div className="admin-stat-card">
-                <span className="admin-stat-label">Winning Margin</span>
-                <span className="admin-stat-val" style={{ color: 'var(--green-dark)' }}>
+              <div className="electoral-stat-card">
+                <span className="electoral-stat-label">Winning Margin</span>
+                <span className="electoral-stat-val" style={{ color: 'var(--green-dark)' }}>
                   {profile?.electoralStats?.voteMargin ? profile.electoralStats.voteMargin.toLocaleString() : '52,699'}
                 </span>
-                <span className="admin-stat-meta">Decisive historical record</span>
+                <span className="electoral-stat-meta">Decisive historical record</span>
               </div>
-              <div className="admin-stat-card">
-                <span className="admin-stat-label">Tenure & Assembly</span>
-                <span className="admin-stat-val">2023–2028</span>
-                <span className="admin-stat-meta">3rd Telangana Legislature</span>
+              <div className="electoral-stat-card">
+                <span className="electoral-stat-label">Tenure & Assembly</span>
+                <span className="electoral-stat-val">2023–2028</span>
+                <span className="electoral-stat-meta">3rd Telangana Legislature</span>
               </div>
             </div>
           </div>

@@ -50,7 +50,7 @@ npm run install:all
 npm run seed
 
 # 3. (Optional) Provision or reset administrator credentials
-npm run admin:setup -- "Constituency Administrator" "admin@sathenna.in" "Sathenna@Admin2026!"
+npm run admin:setup -- "Constituency Administrator" "admin@gmail.com" "admin"
 ```
 
 ### Starting the Applications
@@ -62,8 +62,8 @@ npm run dev
 
 - **Public Website**: [http://localhost:5173/](http://localhost:5173/)
 - **Admin CMS Dashboard**: [http://localhost:5173/admin/login](http://localhost:5173/admin/login)
-  - Default Email: `admin@sathenna.in`
-  - Default Password: `Sathenna@Admin2026!`
+  - Default Email: `admin@gmail.com`
+  - Default Password: `admin`
 - **Backend API Health Check**: [http://localhost:5000/api/v1/health](http://localhost:5000/api/v1/health)
 
 ---

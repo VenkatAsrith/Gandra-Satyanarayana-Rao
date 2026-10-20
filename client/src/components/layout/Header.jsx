@@ -25,6 +25,11 @@ export default function Header({ settings }) {
     document.body.classList.remove('menu-open');
   }, [location.pathname, location.hash]);
 
+  const closeMenu = () => {
+    setMenuOpen(false);
+    document.body.classList.remove('menu-open');
+  };
+
   const toggleMenu = () => {
     const nextState = !menuOpen;
     setMenuOpen(nextState);
@@ -38,8 +43,7 @@ export default function Header({ settings }) {
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === 'Escape' && menuOpen) {
-        setMenuOpen(false);
-        document.body.classList.remove('menu-open');
+        closeMenu();
       }
     };
     document.addEventListener('keydown', handleKeyDown);
@@ -53,7 +57,7 @@ export default function Header({ settings }) {
     <>
       <header className={`site-header ${scrolled ? 'scrolled' : ''}`}>
         <div className="container header-container">
-          <Link to="/" className="brand-identity" aria-label="Gandra Satyanarayana Rao Public Profile Home">
+          <Link to="/" className="brand-identity" aria-label="Gandra Satyanarayana Rao Public Profile Home" onClick={closeMenu}>
             <div className="brand-badge">
               <img src={emblem} alt="Indian National Congress Affiliation Emblem" />
             </div>
@@ -119,31 +123,44 @@ export default function Header({ settings }) {
         aria-modal="true"
         onClick={(e) => {
           if (e.target.classList.contains('mobile-nav-drawer')) {
-            toggleMenu();
+            closeMenu();
           }
         }}
       >
         <div className="mobile-nav-content">
           <div className="mobile-nav-links">
-            <Link to="/" className={`mobile-nav-link ${location.pathname === '/' ? 'active' : ''}`}>
+            <Link to="/" className={`mobile-nav-link ${location.pathname === '/' && !location.hash ? 'active' : ''}`} onClick={closeMenu}>
               Home
             </Link>
-            <Link to="/about" className={`mobile-nav-link ${location.pathname === '/about' ? 'active' : ''}`}>
+            <Link to="/about" className={`mobile-nav-link ${location.pathname === '/about' ? 'active' : ''}`} onClick={closeMenu}>
               About
             </Link>
-            <a href="/#journey" className="mobile-nav-link">
+            <a href="/#journey" className="mobile-nav-link" onClick={closeMenu}>
               Journey
             </a>
-            <Link to="/work" className={`mobile-nav-link ${location.pathname === '/work' ? 'active' : ''}`}>
+            <Link to="/work" className={`mobile-nav-link ${location.pathname === '/work' ? 'active' : ''}`} onClick={closeMenu}>
               Public Work
             </Link>
-            <Link to="/gallery" className={`mobile-nav-link ${location.pathname === '/gallery' ? 'active' : ''}`}>
+            <Link to="/gallery" className={`mobile-nav-link ${location.pathname === '/gallery' ? 'active' : ''}`} onClick={closeMenu}>
               Gallery
             </Link>
-            <Link to="/contact" className={`mobile-nav-link ${location.pathname === '/contact' ? 'active' : ''}`}>
+            <Link to="/contact" className={`mobile-nav-link ${location.pathname === '/contact' ? 'active' : ''}`} onClick={closeMenu}>
               Contact
             </Link>
+
+            <Link
+              to="/contact"
+              className="btn-pill btn-primary"
+              style={{ width: '100%', marginTop: '1rem', justifyContent: 'center' }}
+              onClick={closeMenu}
+            >
+              Constituency Office
+              <svg viewBox="0 0 20 20" fill="currentColor">
+                <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
+              </svg>
+            </Link>
           </div>
+
           <div className="mobile-nav-footer">
             <p><strong>{settings?.constituencyName || 'Bhupalpalle'} Constituency ({settings?.constituencyNo || 108})</strong></p>
             <p>{settings?.district || 'Jayashankar Bhupalpally District'}, {settings?.state || 'Telangana'}</p>

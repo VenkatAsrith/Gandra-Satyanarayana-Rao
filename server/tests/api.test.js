@@ -103,7 +103,7 @@ describe('Sathenna Public Profile API Test Suite', () => {
   describe('3. Admin Authentication & Protected Authorization', () => {
     it('POST /api/v1/auth/login rejects invalid password', async () => {
       const res = await request(app).post('/api/v1/auth/login').send({
-        email: 'admin@sathenna.in',
+        email: 'admin@gmail.com',
         password: 'IncorrectPassword123!'
       });
       expect(res.status).toBe(401);
@@ -112,13 +112,13 @@ describe('Sathenna Public Profile API Test Suite', () => {
 
     it('POST /api/v1/auth/login succeeds with valid administrator credentials', async () => {
       const res = await request(app).post('/api/v1/auth/login').send({
-        email: 'admin@sathenna.in',
-        password: 'Sathenna@Admin2026!'
+        email: 'admin@gmail.com',
+        password: 'admin'
       });
       expect(res.status).toBe(200);
       expect(res.body.success).toBe(true);
       expect(res.body.token).toBeDefined();
-      expect(res.body.user.email).toBe('admin@sathenna.in');
+      expect(res.body.user.email).toBe('admin@gmail.com');
       authToken = res.body.token;
     });
 
@@ -127,7 +127,7 @@ describe('Sathenna Public Profile API Test Suite', () => {
         .get('/api/v1/auth/me')
         .set('Authorization', `Bearer ${authToken}`);
       expect(res.status).toBe(200);
-      expect(res.body.user.email).toBe('admin@sathenna.in');
+      expect(res.body.user.email).toBe('admin@gmail.com');
     });
 
     it('GET /api/v1/admin/dashboard rejects unauthenticated requests', async () => {

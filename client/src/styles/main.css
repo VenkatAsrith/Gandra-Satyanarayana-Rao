@@ -1922,153 +1922,640 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* --------------------------------------------------------------------------
-   20. RESPONSIVE BREAKPOINTS (EDITORIAL ADAPTATION)
+   19. COMPONENT UTILITIES (HERO BADGES, ELECTORAL STATS & FORMS)
    -------------------------------------------------------------------------- */
+.hero-title-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+
+.hero-telugu-pill {
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--orange-dark);
+  background: rgba(243, 107, 33, 0.1);
+  padding: 4px 12px;
+  border-radius: var(--radius-pill);
+  border: 1px solid rgba(243, 107, 33, 0.2);
+}
+
+.hero-verified-text {
+  font-size: 0.75rem;
+  color: var(--gray);
+  font-weight: 600;
+}
+
+/* Electoral Stats (Public Profile) */
+.electoral-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.25rem;
+  width: 100%;
+}
+
+.electoral-stat-card {
+  background: #FFFFFF;
+  padding: 1.5rem 1.75rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  transition: var(--transition-smooth);
+}
+
+.electoral-stat-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-card);
+  border-color: var(--gray-light);
+}
+
+.electoral-stat-label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--gray);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-family: var(--font-display);
+}
+
+.electoral-stat-val {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+  font-weight: 800;
+  color: var(--black);
+  line-height: 1.1;
+}
+
+.electoral-stat-meta {
+  font-size: 0.78rem;
+  color: var(--gray);
+}
+
+/* Contact Form Responsive Utilities */
+.contact-form-card {
+  background: #FFFFFF;
+  padding: clamp(1.5rem, 3.5vw, 2.5rem);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-card);
+}
+
+.contact-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+/* --------------------------------------------------------------------------
+   20. RESPONSIVE BREAKPOINTS (ALL-DEVICE ADAPTATION SYSTEM)
+   -------------------------------------------------------------------------- */
+
+/* Large Desktops & Small Laptops (<= 1200px) */
 @media (max-width: 1200px) {
   .hero-title-line {
-    font-size: clamp(3.4rem, 8vw, 6.5rem);
+    font-size: clamp(3.2rem, 7.5vw, 6rem);
   }
+
   .hero-portrait-stage {
-    width: clamp(300px, 34vw, 420px);
-    height: clamp(380px, 45vh, 520px);
+    width: clamp(280px, 30vw, 380px);
+    height: clamp(380px, 44vh, 480px);
     right: 2%;
+  }
+
+  .intro-grid {
+    grid-template-columns: 200px 1.1fr 1fr;
+    gap: 2rem;
   }
 }
 
+/* Tablets Landscape & Hybrid Devices (<= 1024px) */
 @media (max-width: 1024px) {
-  /* Tablet hybrid layout */
   .hero-editorial-canvas {
     min-height: auto;
     padding: 2.5rem 2rem;
   }
+
   .hero-editorial-stage {
     display: flex;
     flex-direction: column;
     gap: 2rem;
-    padding-block: 2rem;
+    padding-block: 1.5rem;
+    min-height: auto;
   }
+
   .hero-title-group {
     position: static;
   }
+
   .hero-portrait-stage {
     position: relative;
     right: auto;
     top: auto;
     transform: none;
     width: 100%;
-    max-width: 480px;
-    height: 480px;
+    max-width: 440px;
+    height: 420px;
     margin-inline: auto;
   }
+
   .hero-portrait-stage:hover {
     transform: none;
   }
+
   .hero-title-line.line-2,
   .hero-title-line.line-3 {
     padding-left: 0;
   }
+
+  /* Ensure footer takes full width on tablets/mobile */
   .hero-editorial-footer {
+    max-width: 100%;
     grid-template-columns: 1fr;
-    gap: 2rem;
+    gap: 1.5rem;
   }
-  .hero-cta-block {
-    align-items: flex-start;
+
+  .hero-meta-actions-group {
+    margin-top: 1rem;
+    padding-top: 1rem;
   }
-  .hero-stat-item {
-    align-items: flex-start;
+
+  .intro-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
   }
-  .hero-actions-row {
-    justify-content: flex-start;
-  }
+
   .constituency-editorial-grid {
     grid-template-columns: 1fr;
+    gap: 2.5rem;
   }
-  .work-feature-row, .work-feature-row.reverse {
+
+  .work-feature-row,
+  .work-feature-row.reverse {
     grid-template-columns: 1fr;
+    gap: 0;
   }
+
   .work-feature-row.reverse .work-feature-media {
     order: 1;
   }
+
   .work-feature-row.reverse .work-feature-content {
     order: 2;
   }
+
   .featured-grid {
     grid-template-columns: 1fr;
+    gap: 2rem;
   }
+
   .gallery-card.span-8,
   .gallery-card.span-4,
   .gallery-card.span-6 {
     grid-column: span 6;
   }
+
   .editorial-timeline-row {
     grid-template-columns: 1fr;
-    gap: 1rem;
+    gap: 0.75rem;
   }
 }
 
+/* Tablets Portrait (<= 900px) */
 @media (max-width: 900px) {
-  .intro-grid {
-    grid-template-columns: 1fr;
-    gap: 1.75rem;
-  }
-  .story-card-large, .story-card-medium, .story-card-tri {
+  .story-card-large,
+  .story-card-medium,
+  .story-card-tri {
     grid-column: span 12;
   }
+
   .contact-grid {
     grid-template-columns: 1fr;
+    gap: 2.5rem;
   }
+
   .footer-top {
     grid-template-columns: 1fr;
+    gap: 2.5rem;
   }
 }
 
+/* Standard Mobile & Phablets (<= 768px) */
 @media (max-width: 768px) {
-  .nav-links, .header-cta {
+  .site-header {
+    height: 72px;
+  }
+
+  .nav-links,
+  .header-cta {
     display: none;
   }
-  .mobile-toggle, .mobile-nav-drawer {
+
+  .mobile-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    padding: 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--black);
+    z-index: 1002;
+  }
+
+  .mobile-nav-drawer {
     display: block;
   }
+
+  .brand-badge {
+    width: 38px;
+    height: 38px;
+  }
+
+  .brand-name {
+    font-size: 0.95rem;
+  }
+
+  .brand-meta {
+    font-size: 0.68rem;
+  }
+
+  .hero-wrapper {
+    padding-block: 1rem;
+  }
+
   .hero-editorial-canvas {
     padding: 1.75rem 1.25rem;
     border-radius: var(--radius-lg);
   }
+
   .hero-title-line {
-    font-size: clamp(2.8rem, 11vw, 4rem);
-    line-height: 0.95;
+    font-size: clamp(2.3rem, 10.5vw, 3.6rem);
+    line-height: 0.96;
+    letter-spacing: -0.04em;
   }
+
   .hero-portrait-stage {
-    height: 380px;
+    height: 340px;
     border-radius: var(--radius-md);
+    max-width: 100%;
   }
+
+  .hero-portrait-tag {
+    bottom: 12px;
+    left: 12px;
+    right: 12px;
+    padding: 10px 14px;
+  }
+
   .activity-item {
     grid-template-columns: 1fr;
-    gap: 0.5rem;
+    gap: 0.4rem;
+    padding-block: 1.15rem;
   }
+
   .activity-btn {
     display: none;
   }
+
   .journey-section {
     margin-inline: 0;
     border-radius: 0;
-    padding-inline: 1.25rem;
+    padding: 3rem 1.25rem;
   }
+
+  .editorial-year-huge {
+    font-size: clamp(2.2rem, 12vw, 3.5rem);
+  }
+
+  .work-feature-media {
+    min-height: 240px;
+    height: 240px;
+  }
+
   .work-cards-grid {
     grid-template-columns: 1fr;
+    gap: 1.5rem;
   }
+
   .gallery-card.span-8,
   .gallery-card.span-4,
   .gallery-card.span-6 {
     grid-column: span 12;
   }
+
   .demo-facts-row {
     grid-template-columns: 1fr;
     gap: 1rem;
   }
-  .lightbox-prev {
-    left: 10px;
+
+  /* Lightbox on mobile */
+  .lightbox-modal {
+    padding: 1rem;
   }
+
+  .lightbox-close-btn {
+    position: fixed;
+    top: 14px;
+    right: 14px;
+    font-size: 1.85rem;
+    width: 44px;
+    height: 44px;
+    background: rgba(0, 0, 0, 0.65);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2020;
+    line-height: 1;
+  }
+
+  .lightbox-nav-btn {
+    width: 42px;
+    height: 42px;
+    font-size: 1rem;
+    background: rgba(0, 0, 0, 0.55);
+  }
+
+  .lightbox-prev {
+    left: 8px;
+  }
+
   .lightbox-next {
-    right: 10px;
+    right: 8px;
+  }
+
+  .lightbox-img-wrap img {
+    max-height: 60vh;
+  }
+
+  .page-header-section {
+    padding-block: 3rem 2rem;
+  }
+}
+
+/* Large Smartphones (<= 640px) */
+@media (max-width: 640px) {
+  .contact-form-row {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .constituency-floating-stats {
+    position: static;
+    margin-top: 12px;
+    padding: 12px 16px;
+    border-radius: var(--radius-sm);
+  }
+
+  .constituency-stat-label {
+    font-size: 0.68rem;
+  }
+
+  .constituency-stat-value {
+    font-size: 1rem;
+  }
+
+  .hero-top-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+
+  .hero-meta-nav {
+    gap: 0.6rem 1.25rem;
+  }
+
+  .hero-actions-row {
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+  }
+
+  .hero-actions-row .btn-pill {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .gallery-filter-bar {
+    gap: 6px;
+    margin-block: 1.25rem 1.75rem;
+  }
+
+  .filter-pill {
+    padding: 8px 16px;
+    font-size: 0.78rem;
+  }
+
+  .featured-banner {
+    padding: 1.75rem 1.25rem;
+  }
+}
+
+/* Standard Smartphones (<= 480px: iPhone, Galaxy, Pixel) */
+@media (max-width: 480px) {
+  .container {
+    padding-inline: 1rem;
+  }
+
+  .section {
+    padding-block: 3.5rem;
+  }
+
+  .section-sm {
+    padding-block: 2rem;
+  }
+
+  .hero-editorial-canvas {
+    padding: 1.25rem 1rem;
+  }
+
+  .hero-title-line {
+    font-size: clamp(1.95rem, 9.8vw, 2.75rem);
+    letter-spacing: -0.045em;
+  }
+
+  .hero-title-badge {
+    margin-bottom: 8px;
+  }
+
+  .hero-telugu-pill {
+    font-size: 0.76rem;
+    padding: 3px 10px;
+  }
+
+  .hero-verified-text {
+    font-size: 0.7rem;
+  }
+
+  .hero-portrait-stage {
+    height: clamp(250px, 68vw, 310px);
+  }
+
+  .hero-portrait-tag {
+    bottom: 8px;
+    left: 8px;
+    right: 8px;
+    padding: 8px 10px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+  }
+
+  .hero-portrait-tag-text {
+    font-size: 0.72rem;
+  }
+
+  .hero-portrait-tag-meta {
+    font-size: 0.65rem;
+  }
+
+  .hero-role-block {
+    gap: 0.75rem;
+  }
+
+  .hero-role-line {
+    width: 3px;
+    min-height: 48px;
+  }
+
+  .hero-role-heading {
+    font-size: 1.12rem;
+  }
+
+  .hero-role-sub {
+    font-size: 0.82rem;
+  }
+
+  .hero-role-desc {
+    font-size: 0.82rem;
+    line-height: 1.55;
+  }
+
+  .hero-stats-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+  }
+
+  .hero-stat-val {
+    font-size: 1.12rem;
+  }
+
+  .hero-stat-lbl {
+    font-size: 0.62rem;
+    letter-spacing: 0.04em;
+  }
+
+  .story-body {
+    padding: 1.25rem 1rem;
+    gap: 8px;
+  }
+
+  .story-title {
+    font-size: 1.15rem;
+  }
+
+  .story-text {
+    font-size: 0.85rem;
+  }
+
+  .featured-banner {
+    padding: 1.5rem 1rem;
+  }
+
+  .featured-title {
+    font-size: 1.35rem;
+  }
+
+  .featured-desc {
+    font-size: 0.88rem;
+    line-height: 1.6;
+  }
+
+  .featured-meta-pill {
+    font-size: 0.74rem;
+    padding: 4px 12px;
+  }
+
+  .work-feature-content {
+    padding: 1.25rem 1rem;
+  }
+
+  .work-feature-title {
+    font-size: 1.25rem;
+  }
+
+  .work-feature-desc {
+    font-size: 0.88rem;
+    line-height: 1.6;
+  }
+
+  .work-card-content {
+    padding: 1.25rem 1rem;
+  }
+
+  .work-title {
+    font-size: 1.1rem;
+  }
+
+  .contact-card-box {
+    padding: 1.25rem 1rem;
+    gap: 1.25rem;
+  }
+
+  .contact-detail-val {
+    font-size: 1.05rem;
+    word-break: break-word;
+  }
+
+  .contact-form-card {
+    padding: 1.25rem 1rem;
+  }
+
+  .electoral-stat-card {
+    padding: 1.25rem 1rem;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    text-align: center;
+    gap: 8px;
+  }
+
+  .site-footer {
+    padding-block: 2.5rem 2rem;
+  }
+}
+
+/* Compact Mobile Devices (<= 360px: iPhone SE, Galaxy Fold cover) */
+@media (max-width: 360px) {
+  .hero-title-line {
+    font-size: 1.85rem;
+    letter-spacing: -0.05em;
+  }
+
+  .hero-stats-row {
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+  }
+
+  .brand-meta {
+    display: none;
+  }
+
+  .btn-pill {
+    padding: 11px 18px;
+    font-size: 0.82rem;
   }
 }

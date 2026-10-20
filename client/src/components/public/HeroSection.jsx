@@ -48,23 +48,11 @@ export default function HeroSection({ profile, settings }) {
           {/* Centerpiece: Typography + Intersecting Portrait Layer */}
           <div className="hero-editorial-stage">
             <div className="hero-title-group">
-              <div className="hero-title-badge" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', marginBottom: '12px' }}>
-                <span
-                  style={{
-                    fontFamily: 'var(--font-display)',
-                    fontSize: '0.85rem',
-                    fontWeight: 700,
-                    letterSpacing: '0.04em',
-                    color: 'var(--orange-dark)',
-                    background: 'rgba(243, 107, 33, 0.1)',
-                    padding: '4px 12px',
-                    borderRadius: 'var(--radius-pill)',
-                    border: '1px solid rgba(243, 107, 33, 0.2)'
-                  }}
-                >
+              <div className="hero-title-badge">
+                <span className="hero-telugu-pill">
                   {teluguName}
                 </span>
-                <span style={{ fontSize: '0.75rem', color: 'var(--gray)', fontWeight: 600 }}>
+                <span className="hero-verified-text">
                   · Verified Public Representative
                 </span>
               </div>

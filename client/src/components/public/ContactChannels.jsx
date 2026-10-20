@@ -113,9 +113,9 @@ export default function ContactChannels({ settings, showForm = true }) {
                     <polyline points="22,6 12,13 2,6"></polyline>
                   </svg>
                 </div>
-                <div>
+                <div style={{ minWidth: 0 }}>
                   <div className="contact-detail-title">Documented Public Email</div>
-                  <div className="contact-detail-val" style={{ fontSize: '1rem' }}>
+                  <div className="contact-detail-val" style={{ fontSize: '1rem', wordBreak: 'break-word' }}>
                     {email}
                   </div>
                 </div>
@@ -125,7 +125,7 @@ export default function ContactChannels({ settings, showForm = true }) {
 
           {/* Citizen Representation Intake Form */}
           {showForm && (
-            <div id="grievances" style={{ background: '#FFFFFF', padding: '2rem', borderRadius: '16px', border: '1px solid var(--border)' }}>
+            <div id="grievances" className="contact-form-card">
               <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.25rem', fontWeight: 700, marginBottom: '0.5rem' }}>
                 Submit Citizen Representation
               </h3>
@@ -146,7 +146,7 @@ export default function ContactChannels({ settings, showForm = true }) {
               )}
 
               <form onSubmit={handleSubmit}>
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', marginBottom: '1rem' }}>
+                <div className="contact-form-row">
                   <div>
                     <label style={{ display: 'block', fontSize: '0.8rem', fontWeight: 600, marginBottom: '4px' }}>
                       Full Name *
@@ -158,7 +158,7 @@ export default function ContactChannels({ settings, showForm = true }) {
                       value={formData.name}
                       onChange={handleChange}
                       placeholder="Your name"
-                      style={{ width: '100%', padding: '8px 12px', border: '1px solid var(--border)', borderRadius: '6px' }}
+                      style={{ width: '100%', padding: '9px 12px', border: '1px solid var(--border)', borderRadius: '8px' }}
                     />
                   </div>
                   <div>
@@ -172,12 +172,12 @@ export default function ContactChannels({ settings, showForm = true }) {
                       value={formData.phone}
                       onChange={handleChange}
                       placeholder="10-digit phone"
-                      style={{ width: '100%', padding: '8px 12px', border: '1px solid var(--border)', borderRadius: '6px' }}
+                      style={{ width: '100%', padding: '9px 12px', border: '1px solid var(--border)', borderRadius: '8px' }}
                     />
                   </div>
                 </div>
 
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', marginBottom: '1rem' }}>
+                <div className="contact-form-row">
                   <div>
                     <label style={{ display: 'block', fontSize: '0.8rem', fontWeight: 600, marginBottom: '4px' }}>
                       Mandal
@@ -186,7 +186,7 @@ export default function ContactChannels({ settings, showForm = true }) {
                       name="mandal"
                       value={formData.mandal}
                       onChange={handleChange}
-                      style={{ width: '100%', padding: '8px 12px', border: '1px solid var(--border)', borderRadius: '6px', background: '#FFFFFF' }}
+                      style={{ width: '100%', padding: '9px 12px', border: '1px solid var(--border)', borderRadius: '8px', background: '#FFFFFF' }}
                     >
                       <option value="Bhupalpalle">Bhupalpalle</option>
                       <option value="Ghanpur (Mulug)">Ghanpur (Mulug)</option>
@@ -206,7 +206,7 @@ export default function ContactChannels({ settings, showForm = true }) {
                       value={formData.village}
                       onChange={handleChange}
                       placeholder="e.g. Buddharam"
-                      style={{ width: '100%', padding: '8px 12px', border: '1px solid var(--border)', borderRadius: '6px' }}
+                      style={{ width: '100%', padding: '9px 12px', border: '1px solid var(--border)', borderRadius: '8px' }}
                     />
                   </div>
                 </div>

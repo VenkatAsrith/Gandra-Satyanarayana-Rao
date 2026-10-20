@@ -14,18 +14,23 @@ const seedDatabase = async () => {
     await mongoose.connect(mongoUri);
     console.log('[Seed] Connected to MongoDB for content migration.');
 
-    // 1. Seed Admin User if none exists
-    const adminCount = await AdminUser.countDocuments();
-    if (adminCount === 0) {
-      const passwordHash = await AdminUser.hashPassword('Sathenna@Admin2026!');
+    // 1. Seed or Update Admin User
+    const existingAdmin = await AdminUser.findOne({ email: 'admin@gmail.com' });
+    if (!existingAdmin) {
+      const passwordHash = await AdminUser.hashPassword('admin');
       await AdminUser.create({
         name: 'Constituency Administrator',
-        email: 'admin@sathenna.in',
+        email: 'admin@gmail.com',
         passwordHash,
         role: 'admin',
         isActive: true
       });
-      console.log('[Seed] Created default administrator: admin@sathenna.in');
+      console.log('[Seed] Created default administrator: admin@gmail.com (password: admin)');
+    } else {
+      existingAdmin.passwordHash = await AdminUser.hashPassword('admin');
+      existingAdmin.isActive = true;
+      await existingAdmin.save();
+      console.log('[Seed] Updated administrator credentials: admin@gmail.com (password: admin)');
     }
 
     // 2. Seed SiteSettings

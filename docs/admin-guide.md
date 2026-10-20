@@ -4,12 +4,12 @@
 
 - **URL**: `http://localhost:5173/admin/login` (or `/admin` when deployed)
 - **Initial Credentials**:
-  - Email: `admin@sathenna.in`
-  - Password: `Sathenna@Admin2026!`
+  - Email: `admin@gmail.com`
+  - Password: `admin`
 
 To provision or reset the administrator password from the command line:
 ```bash
-npm run admin:setup -- "Constituency Administrator" "admin@sathenna.in" "YourNewSecurePassword123!"
+npm run admin:setup -- "Constituency Administrator" "admin@gmail.com" "admin"
 ```
 
 ---

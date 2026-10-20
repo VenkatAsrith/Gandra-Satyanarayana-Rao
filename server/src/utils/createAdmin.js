@@ -5,8 +5,8 @@ const AdminUser = require('../models/AdminUser');
 const createAdmin = async () => {
   const args = process.argv.slice(2);
   const name = args[0] || 'Constituency Administrator';
-  const email = args[1] || 'admin@sathenna.in';
-  const password = args[2] || 'Sathenna@Admin2026!';
+  const email = args[1] || 'admin@gmail.com';
+  const password = args[2] || 'admin';
 
   try {
     const mongoUri = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/sathenna_profile';

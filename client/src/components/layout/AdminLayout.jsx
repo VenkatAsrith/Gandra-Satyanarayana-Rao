@@ -60,7 +60,7 @@ export default function AdminLayout() {
             </div>
             <div className="admin-user-info">
               <span className="admin-user-name">{user?.name || 'Administrator'}</span>
-              <span className="admin-user-email">{user?.email || 'admin@sathenna.in'}</span>
+              <span className="admin-user-email">{user?.email || 'admin@gmail.com'}</span>
             </div>
           </div>
 
