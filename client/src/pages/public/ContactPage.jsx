@@ -3,8 +3,10 @@ import Header from '../../components/layout/Header';
 import Footer from '../../components/layout/Footer';
 import ContactChannels from '../../components/public/ContactChannels';
 import { api } from '../../services/api';
+import { useLanguage } from '../../i18n/LanguageContext';
 
 export default function ContactPage() {
+  const { isTelugu, t } = useLanguage();
   const [settings, setSettings] = useState(null);
 
   useEffect(() => {
@@ -29,11 +31,11 @@ export default function ContactPage() {
         <section className="page-header-section">
           <div className="container">
             <div className="page-header-content">
-              <div className="tag-label">Official Directory</div>
-              <h1 className="page-header-title">Constituency Office & Contact</h1>
-              <p className="page-header-subtitle">
-                Official contact channels, Camp Office location in Buddharam, and direct citizen grievance representation submission.
-              </p>
+              <div className="tag-label">
+                {isTelugu ? 'అధికారిక సంప్రదింపులు' : 'Official Directory'}
+              </div>
+              <h1 className="page-header-title">{t('contact.pageTitle')}</h1>
+              <p className="page-header-subtitle">{t('contact.pageSubtitle')}</p>
             </div>
           </div>
         </section>

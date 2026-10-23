@@ -85,6 +85,9 @@ export default function AdminDashboardPage() {
             </p>
           </div>
           <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+            <Link to="/admin/sections" className="admin-btn admin-btn-primary admin-btn-sm">
+              ⚡ Dynamic Section Builder
+            </Link>
             <Link to="/admin/projects" className="admin-btn admin-btn-secondary admin-btn-sm">
               + Manage Projects
             </Link>
@@ -94,7 +97,7 @@ export default function AdminDashboardPage() {
             <Link to="/admin/gallery" className="admin-btn admin-btn-secondary admin-btn-sm">
               + Upload Media
             </Link>
-            <Link to="/admin/submissions" className="admin-btn admin-btn-primary admin-btn-sm">
+            <Link to="/admin/submissions" className="admin-btn admin-btn-secondary admin-btn-sm">
               Review Submissions ({stats.newSubmissionsCount ?? 0})
             </Link>
           </div>

@@ -1,7 +1,12 @@
 import React, { useState } from 'react';
 import { api } from '../../services/api';
+import { useLanguage } from '../../i18n/LanguageContext';
+import { useToast } from '../../context/ToastContext';
 
 export default function ContactChannels({ settings, showForm = true }) {
+  const { isTelugu, t } = useLanguage();
+  const toast = useToast();
+
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
@@ -40,7 +45,9 @@ export default function ContactChannels({ settings, showForm = true }) {
 
     try {
       const res = await api.submitRepresentation(formData);
-      setSuccessMsg(res.message || 'Representation successfully submitted to the MLA Camp Office.');
+      const msg = res.message || t('contact.successMsg');
+      setSuccessMsg(msg);
+      toast.success(msg, t('contact.successTitle'));
       setFormData({
         name: '',
         phone: '',
@@ -52,7 +59,9 @@ export default function ContactChannels({ settings, showForm = true }) {
         message: ''
       });
     } catch (err) {
-      setErrorMsg(err.message || 'Failed to submit representation. Please check your inputs.');
+      const msg = err.message || t('contact.errorMsg');
+      setErrorMsg(msg);
+      toast.error(msg, t('contact.errorTitle'));
     } finally {
       setSubmitting(false);
     }
@@ -63,10 +72,16 @@ export default function ContactChannels({ settings, showForm = true }) {
       <div className="container">
         <div className="contact-grid">
           <div>
-            <div className="tag-label">Official Information</div>
-            <h2 className="section-title">Constituency & Office Channels</h2>
+            <div className="tag-label">
+              {isTelugu ? 'అధికారిక సంప్రదింపులు' : 'Official Information'}
+            </div>
+            <h2 className="section-title">
+              {isTelugu ? 'క్యాంపు కార్యాలయం & సంప్రదింపు మార్గాలు' : 'Constituency & Office Channels'}
+            </h2>
             <p className="section-subtitle" style={{ marginTop: '1rem' }}>
-              Public representative directory listing and official constituency office location for grievance representations and constituent interaction.
+              {isTelugu
+                ? 'తెలంగాణ శాసనసభ డైరెక్టరీ వివరాలు మరియు బుద్ధారం క్యాంపు కార్యాలయంలో ప్రజా దర్బార్ ద్వారా సంప్రదించే మార్గాలు.'
+                : 'Public representative directory listing and official constituency office location for grievance representations and constituent interaction.'}
             </p>
 
             <div className="contact-card-box" style={{ marginTop: '2rem' }}>
@@ -78,12 +93,12 @@ export default function ContactChannels({ settings, showForm = true }) {
                   </svg>
                 </div>
                 <div>
-                  <div className="contact-detail-title">Public Directory Telephone</div>
+                  <div className="contact-detail-title">{t('contact.phoneTitle')}</div>
                   <div className="contact-detail-val" style={{ fontSize: '1.35rem', color: 'var(--orange-dark)' }}>
                     {phone}
                   </div>
-                  <div style={{ fontSize: '0.76rem', color: 'var(--gray)', marginTop: '2px' }}>
-                    Listed in Telangana State MLA Directory (2023–2028)
+                  <div style={{ fontSize: '0.8rem', color: 'var(--gray)', marginTop: '2px' }}>
+                    {isTelugu ? 'తెలంగాణ శాసనసభ అధికారిక డైరెక్టరీ (2023–2028)' : 'Listed in Telangana State MLA Directory (2023–2028)'}
                   </div>
                 </div>
               </div>
@@ -97,10 +112,13 @@ export default function ContactChannels({ settings, showForm = true }) {
                   </svg>
                 </div>
                 <div>
-                  <div className="contact-detail-title">Office & Residence Location</div>
+                  <div className="contact-detail-title">{t('contact.officeTitle')}</div>
                   <div className="contact-detail-val">{address.line1}, {address.village}</div>
                   <div style={{ fontSize: '0.88rem', color: 'var(--gray-dark)', marginTop: '2px' }}>
                     {address.mandal}, {address.district}, {address.state}
+                  </div>
+                  <div style={{ fontSize: '0.8rem', color: 'var(--green-dark)', marginTop: '4px', fontWeight: 600 }}>
+                    {t('contact.officeNote')}
                   </div>
                 </div>
               </div>
@@ -114,7 +132,7 @@ export default function ContactChannels({ settings, showForm = true }) {
                   </svg>
                 </div>
                 <div style={{ minWidth: 0 }}>
-                  <div className="contact-detail-title">Documented Public Email</div>
+                  <div className="contact-detail-title">{t('contact.emailTitle')}</div>
                   <div className="contact-detail-val" style={{ fontSize: '1rem', wordBreak: 'break-word' }}>
                     {email}
                   </div>
@@ -127,29 +145,29 @@ export default function ContactChannels({ settings, showForm = true }) {
           {showForm && (
             <div id="grievances" className="contact-form-card">
               <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.25rem', fontWeight: 700, marginBottom: '0.5rem' }}>
-                Submit Citizen Representation
+                {t('contact.formHeading')}
               </h3>
-              <p style={{ fontSize: '0.85rem', color: 'var(--gray)', marginBottom: '1.5rem', lineHeight: 1.5 }}>
-                Directly communicate developmental requests, local civic requirements, or grievances to the MLA Camp Office constituent desk.
+              <p style={{ fontSize: '0.88rem', color: 'var(--gray)', marginBottom: '1.5rem', lineHeight: 1.5 }}>
+                {t('contact.formDescription')}
               </p>
 
               {successMsg && (
-                <div style={{ background: '#DCFCE7', color: '#166534', padding: '0.85rem', borderRadius: '8px', fontSize: '0.85rem', marginBottom: '1.25rem' }}>
-                  {successMsg}
+                <div style={{ background: '#DCFCE7', color: '#166534', padding: '0.85rem', borderRadius: '8px', fontSize: '0.88rem', marginBottom: '1.25rem' }}>
+                  ✓ {successMsg}
                 </div>
               )}
 
               {errorMsg && (
-                <div style={{ background: '#FEE2E2', color: '#991B1B', padding: '0.85rem', borderRadius: '8px', fontSize: '0.85rem', marginBottom: '1.25rem' }}>
-                  {errorMsg}
+                <div style={{ background: '#FEE2E2', color: '#991B1B', padding: '0.85rem', borderRadius: '8px', fontSize: '0.88rem', marginBottom: '1.25rem' }}>
+                  ✕ {errorMsg}
                 </div>
               )}
 
               <form onSubmit={handleSubmit}>
                 <div className="contact-form-row">
                   <div>
-                    <label style={{ display: 'block', fontSize: '0.8rem', fontWeight: 600, marginBottom: '4px' }}>
-                      Full Name *
+                    <label style={{ display: 'block', fontSize: '0.82rem', fontWeight: 600, marginBottom: '4px' }}>
+                      {t('contact.nameLabel')}
                     </label>
                     <input
                       type="text"
@@ -157,13 +175,13 @@ export default function ContactChannels({ settings, showForm = true }) {
                       required
                       value={formData.name}
                       onChange={handleChange}
-                      placeholder="Your name"
+                      placeholder={t('contact.namePlaceholder')}
                       style={{ width: '100%', padding: '9px 12px', border: '1px solid var(--border)', borderRadius: '8px' }}
                     />
                   </div>
                   <div>
-                    <label style={{ display: 'block', fontSize: '0.8rem', fontWeight: 600, marginBottom: '4px' }}>
-                      Telephone / Mobile *
+                    <label style={{ display: 'block', fontSize: '0.82rem', fontWeight: 600, marginBottom: '4px' }}>
+                      {t('contact.phoneLabel')}
                     </label>
                     <input
                       type="tel"
@@ -171,7 +189,7 @@ export default function ContactChannels({ settings, showForm = true }) {
                       required
                       value={formData.phone}
                       onChange={handleChange}
-                      placeholder="10-digit phone"
+                      placeholder={t('contact.phonePlaceholder')}
                       style={{ width: '100%', padding: '9px 12px', border: '1px solid var(--border)', borderRadius: '8px' }}
                     />
                   </div>
@@ -179,8 +197,8 @@ export default function ContactChannels({ settings, showForm = true }) {
 
                 <div className="contact-form-row">
                   <div>
-                    <label style={{ display: 'block', fontSize: '0.8rem', fontWeight: 600, marginBottom: '4px' }}>
-                      Mandal
+                    <label style={{ display: 'block', fontSize: '0.82rem', fontWeight: 600, marginBottom: '4px' }}>
+                      {t('contact.mandalLabel')}
                     </label>
                     <select
                       name="mandal"
@@ -188,32 +206,32 @@ export default function ContactChannels({ settings, showForm = true }) {
                       onChange={handleChange}
                       style={{ width: '100%', padding: '9px 12px', border: '1px solid var(--border)', borderRadius: '8px', background: '#FFFFFF' }}
                     >
-                      <option value="Bhupalpalle">Bhupalpalle</option>
-                      <option value="Ghanpur (Mulug)">Ghanpur (Mulug)</option>
-                      <option value="Regonda">Regonda</option>
-                      <option value="Shayampet">Shayampet</option>
-                      <option value="Chityal">Chityal</option>
-                      <option value="Mogullapalle">Mogullapalle</option>
+                      <option value="Bhupalpalle">Bhupalpalle (భూపాలపల్లి)</option>
+                      <option value="Ghanpur (Mulug)">Ghanpur (Mulug) (ఘనపూర్)</option>
+                      <option value="Regonda">Regonda (రేగొండ)</option>
+                      <option value="Shayampet">Shayampet (శాయంపేట)</option>
+                      <option value="Chityal">Chityal (చిట్యాల)</option>
+                      <option value="Mogullapalle">Mogullapalle (మొగుళ్లపల్లి)</option>
                     </select>
                   </div>
                   <div>
-                    <label style={{ display: 'block', fontSize: '0.8rem', fontWeight: 600, marginBottom: '4px' }}>
-                      Village / Habitation
+                    <label style={{ display: 'block', fontSize: '0.82rem', fontWeight: 600, marginBottom: '4px' }}>
+                      {isTelugu ? 'గ్రామం / ఆవాసం' : 'Village / Habitation'}
                     </label>
                     <input
                       type="text"
                       name="village"
                       value={formData.village}
                       onChange={handleChange}
-                      placeholder="e.g. Buddharam"
+                      placeholder={isTelugu ? 'ఉదా: బుద్ధారం' : 'e.g. Buddharam'}
                       style={{ width: '100%', padding: '9px 12px', border: '1px solid var(--border)', borderRadius: '8px' }}
                     />
                   </div>
                 </div>
 
                 <div style={{ marginBottom: '1rem' }}>
-                  <label style={{ display: 'block', fontSize: '0.8rem', fontWeight: 600, marginBottom: '4px' }}>
-                    Representation Subject *
+                  <label style={{ display: 'block', fontSize: '0.82rem', fontWeight: 600, marginBottom: '4px' }}>
+                    {t('contact.subjectLabel')}
                   </label>
                   <input
                     type="text"
@@ -221,14 +239,14 @@ export default function ContactChannels({ settings, showForm = true }) {
                     required
                     value={formData.subject}
                     onChange={handleChange}
-                    placeholder="Brief subject of grievance or proposal"
-                    style={{ width: '100%', padding: '8px 12px', border: '1px solid var(--border)', borderRadius: '6px' }}
+                    placeholder={t('contact.subjectPlaceholder')}
+                    style={{ width: '100%', padding: '9px 12px', border: '1px solid var(--border)', borderRadius: '8px' }}
                   />
                 </div>
 
                 <div style={{ marginBottom: '1.25rem' }}>
-                  <label style={{ display: 'block', fontSize: '0.8rem', fontWeight: 600, marginBottom: '4px' }}>
-                    Representation Details *
+                  <label style={{ display: 'block', fontSize: '0.82rem', fontWeight: 600, marginBottom: '4px' }}>
+                    {t('contact.messageLabel')}
                   </label>
                   <textarea
                     name="message"
@@ -236,8 +254,8 @@ export default function ContactChannels({ settings, showForm = true }) {
                     rows="4"
                     value={formData.message}
                     onChange={handleChange}
-                    placeholder="Provide specific details regarding location, problem, or developmental initiative..."
-                    style={{ width: '100%', padding: '8px 12px', border: '1px solid var(--border)', borderRadius: '6px', resize: 'vertical' }}
+                    placeholder={t('contact.messagePlaceholder')}
+                    style={{ width: '100%', padding: '9px 12px', border: '1px solid var(--border)', borderRadius: '8px', resize: 'vertical' }}
                   ></textarea>
                 </div>
 
@@ -247,7 +265,7 @@ export default function ContactChannels({ settings, showForm = true }) {
                   className="btn-pill btn-primary"
                   style={{ width: '100%', justifyContent: 'center', cursor: submitting ? 'not-allowed' : 'pointer' }}
                 >
-                  {submitting ? 'Submitting...' : 'Submit Representation'}
+                  {submitting ? t('contact.submittingBtn') : t('contact.submitBtn')}
                 </button>
               </form>
             </div>

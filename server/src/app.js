@@ -13,6 +13,7 @@ const publicActivityRoutes = require('./routes/publicActivityRoutes');
 const galleryRoutes = require('./routes/galleryRoutes');
 const constituencyRoutes = require('./routes/constituencyRoutes');
 const contactRoutes = require('./routes/contactRoutes');
+const sectionRoutes = require('./routes/sectionRoutes');
 const adminRoutes = require('./routes/adminRoutes');
 
 const errorHandler = require('./middleware/errorHandler');
@@ -98,6 +99,7 @@ app.use('/api/v1/activities', publicActivityRoutes);
 app.use('/api/v1/gallery', galleryRoutes);
 app.use('/api/v1/constituency', constituencyRoutes);
 app.use('/api/v1/contact', contactRoutes);
+app.use('/api/v1/sections', sectionRoutes);
 app.use('/api/v1/admin', adminRoutes);
 
 // Catch 404 for API routes

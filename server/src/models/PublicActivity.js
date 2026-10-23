@@ -66,6 +66,10 @@ const publicActivitySchema = new mongoose.Schema(
       type: Number,
       default: 0
     },
+    translations: {
+      type: mongoose.Schema.Types.Mixed,
+      default: {}
+    },
     internalNotes: {
       type: String,
       default: '',

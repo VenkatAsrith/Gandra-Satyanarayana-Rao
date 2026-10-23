@@ -72,6 +72,10 @@ const galleryMediaSchema = new mongoose.Schema(
     displayOrder: {
       type: Number,
       default: 0
+    },
+    translations: {
+      type: mongoose.Schema.Types.Mixed,
+      default: {}
     }
   },
   {

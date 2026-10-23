@@ -63,6 +63,7 @@ export const api = {
   getActivities: (params = '') => apiRequest(`/activities${params ? '?' + params : ''}`),
   getGallery: (params = '') => apiRequest(`/gallery${params ? '?' + params : ''}`),
   getConstituency: () => apiRequest('/constituency'),
+  getSections: (page = 'home') => apiRequest(`/sections?page=${page}`),
   submitRepresentation: (payload) =>
     apiRequest('/contact', {
       method: 'POST',
@@ -161,6 +162,33 @@ export const api = {
     }),
   adminDeleteSubmission: (id) =>
     apiRequest(`/contact/admin/${id}`, {
+      method: 'DELETE'
+    }),
+
+  // Admin Dynamic Section Builder
+  adminGetSections: (page = '') => apiRequest(`/sections/admin${page ? '?page=' + page : ''}`),
+  adminGetSectionById: (id) => apiRequest(`/sections/admin/${id}`),
+  adminCreateSection: (payload) =>
+    apiRequest('/sections/admin', {
+      method: 'POST',
+      body: JSON.stringify(payload)
+    }),
+  adminUpdateSection: (id, payload) =>
+    apiRequest(`/sections/admin/${id}`, {
+      method: 'PUT',
+      body: JSON.stringify(payload)
+    }),
+  adminReorderSections: (items) =>
+    apiRequest('/sections/admin/reorder', {
+      method: 'PATCH',
+      body: JSON.stringify({ items })
+    }),
+  adminToggleSection: (id) =>
+    apiRequest(`/sections/admin/${id}/toggle`, {
+      method: 'PATCH'
+    }),
+  adminDeleteSection: (id) =>
+    apiRequest(`/sections/admin/${id}`, {
       method: 'DELETE'
     })
 };

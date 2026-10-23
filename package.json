@@ -10,7 +10,7 @@
     "client": "npm --prefix client run dev",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "build:client": "npm --prefix client run build",
-    "build:server": "npm --prefix server run build",
+    "build:server": "node -e \"console.log('Server is native Node.js; no build step required')\"",
     "build": "npm run build:client",
     "test:server": "npm --prefix server test",
     "test:client": "npm --prefix client test",

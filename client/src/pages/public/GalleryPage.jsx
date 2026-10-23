@@ -3,8 +3,10 @@ import Header from '../../components/layout/Header';
 import Footer from '../../components/layout/Footer';
 import GalleryGrid from '../../components/public/GalleryGrid';
 import { api } from '../../services/api';
+import { useLanguage } from '../../i18n/LanguageContext';
 
 export default function GalleryPage() {
+  const { isTelugu, t } = useLanguage();
   const [settings, setSettings] = useState(null);
   const [mediaItems, setMediaItems] = useState([]);
 
@@ -34,11 +36,11 @@ export default function GalleryPage() {
         <section className="page-header-section">
           <div className="container">
             <div className="page-header-content">
-              <div className="tag-label">Photographic Archive</div>
-              <h1 className="page-header-title">Media & Photographic Archive</h1>
-              <p className="page-header-subtitle">
-                Comprehensive documented photography of public events, legislative proceedings, and constituent engagements across Jayashankar Bhupalpally.
-              </p>
+              <div className="tag-label">
+                {isTelugu ? 'అధికారిక చిత్రమాలిక' : 'Photographic Archive'}
+              </div>
+              <h1 className="page-header-title">{t('gallery.pageTitle')}</h1>
+              <p className="page-header-subtitle">{t('gallery.pageSubtitle')}</p>
             </div>
           </div>
         </section>

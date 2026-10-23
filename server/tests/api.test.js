@@ -184,4 +184,83 @@ describe('Sathenna Public Profile API Test Suite', () => {
       expect(deleteRes.body.success).toBe(true);
     });
   });
+
+  describe('4. Dynamic Section Builder & Multilingual Endpoints', () => {
+    let testSectionId = '';
+
+    it('POST /api/v1/sections/admin creates a section with Telugu translations', async () => {
+      const res = await request(app)
+        .post('/api/v1/sections/admin')
+        .set('Authorization', `Bearer ${authToken}`)
+        .send({
+          key: 'test-farmers-support',
+          page: 'home',
+          type: 'feature',
+          layout: 'split_media',
+          title: 'Automated Test Farmers Section',
+          subtitle: 'Empowering local farmers across Bhupalpalle',
+          badge: 'Test Priority',
+          content: 'Detailed initiatives supporting agrarian communities.',
+          order: 99,
+          isEnabled: true,
+          status: 'published',
+          translations: {
+            te: {
+              title: 'రైతు సంక్షేమ ప్రత్యేక విభాగం',
+              subtitle: 'భూపాలపల్లి నియోజకవర్గ రైతుల అభివృద్ధి',
+              badge: 'రైతాంగ ప్రాధాన్యత'
+            }
+          }
+        });
+
+      expect(res.status).toBe(201);
+      expect(res.body.success).toBe(true);
+      expect(res.body.data.key).toBe('test-farmers-support');
+      expect(res.body.data.translations.te.title).toBe('రైతు సంక్షేమ ప్రత్యేక విభాగం');
+      testSectionId = res.body.data._id;
+    });
+
+    it('GET /api/v1/sections returns published dynamic sections to public visitors', async () => {
+      const res = await request(app).get('/api/v1/sections?page=home');
+      expect(res.status).toBe(200);
+      expect(res.body.success).toBe(true);
+      expect(Array.isArray(res.body.data)).toBe(true);
+      expect(res.body.data.length).toBeGreaterThan(0);
+      const found = res.body.data.find((s) => s.key === 'test-farmers-support');
+      expect(found).toBeDefined();
+      expect(found.translations.te.title).toBe('రైతు సంక్షేమ ప్రత్యేక విభాగం');
+    });
+
+    it('PUT /api/v1/sections/admin/:id updates the section', async () => {
+      const res = await request(app)
+        .put(`/api/v1/sections/admin/${testSectionId}`)
+        .set('Authorization', `Bearer ${authToken}`)
+        .send({
+          subtitle: 'Updated subtitle description'
+        });
+
+      expect(res.status).toBe(200);
+      expect(res.body.success).toBe(true);
+      expect(res.body.data.subtitle).toBe('Updated subtitle description');
+    });
+
+    it('PATCH /api/v1/sections/admin/:id/toggle toggles section visibility', async () => {
+      const res = await request(app)
+        .patch(`/api/v1/sections/admin/${testSectionId}/toggle`)
+        .set('Authorization', `Bearer ${authToken}`);
+
+      expect(res.status).toBe(200);
+      expect(res.body.success).toBe(true);
+      expect(res.body.data.isEnabled).toBe(false);
+    });
+
+    it('DELETE /api/v1/sections/admin/:id removes the section', async () => {
+      const res = await request(app)
+        .delete(`/api/v1/sections/admin/${testSectionId}`)
+        .set('Authorization', `Bearer ${authToken}`);
+
+      expect(res.status).toBe(200);
+      expect(res.body.success).toBe(true);
+    });
+  });
 });

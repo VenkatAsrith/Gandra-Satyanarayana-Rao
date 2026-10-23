@@ -76,6 +76,10 @@ const publicWorkSchema = new mongoose.Schema(
       type: Date,
       default: Date.now
     },
+    translations: {
+      type: mongoose.Schema.Types.Mixed,
+      default: {}
+    },
     internalNotes: {
       type: String,
       default: '',

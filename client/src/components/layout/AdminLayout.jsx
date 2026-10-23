@@ -15,6 +15,7 @@ export default function AdminLayout() {
 
   const navLinks = [
     { label: 'Overview Dashboard', path: '/admin' },
+    { label: 'Dynamic Sections', path: '/admin/sections' },
     { label: 'Site & Brand Settings', path: '/admin/settings' },
     { label: 'Biography & Journey', path: '/admin/profile' },
     { label: 'Public Works & Projects', path: '/admin/projects' },

@@ -1,0 +1,125 @@
+name: CD Deployment Pipeline
+
+on:
+  workflow_dispatch:
+    inputs:
+      target_env:
+        description: 'Target Deployment Environment'
+        required: true
+        default: 'production'
+        type: choice
+        options:
+          - production
+          - staging
+  release:
+    types: [ published ]
+
+concurrency:
+  group: deploy-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  # --------------------------------------------------------------------------
+  # 1. BUILD PRODUCTION ASSETS
+  # --------------------------------------------------------------------------
+  build-production:
+    name: Build & Package Production Bundle
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js 22.x
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22.x
+          cache: 'npm'
+          cache-dependency-path: 'client/package-lock.json'
+
+      - name: Install Client Dependencies
+        run: |
+          npm --prefix client ci || npm --prefix client install
+
+      - name: Build Production Client
+        run: |
+          npm --prefix client run build
+        env:
+          NODE_ENV: production
+          VITE_API_URL: ${{ secrets.PRODUCTION_API_URL || '/api/v1' }}
+
+      - name: Upload Production Dist Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: production-build-dist
+          path: client/dist/
+          retention-days: 14
+
+  # --------------------------------------------------------------------------
+  # 2. DEPLOY BACKEND API SERVICE
+  # --------------------------------------------------------------------------
+  deploy-backend:
+    name: Deploy Backend API Service
+    needs: [build-production]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Trigger Render / Cloud Deploy Hook
+        if: ${{ secrets.RENDER_DEPLOY_HOOK_URL != '' }}
+        run: |
+          echo "Triggering backend deployment via Render Webhook..."
+          curl -s -X POST "${{ secrets.RENDER_DEPLOY_HOOK_URL }}"
+          echo "Deploy hook triggered successfully."
+
+      - name: Skip Backend Webhook if Not Configured
+        if: ${{ secrets.RENDER_DEPLOY_HOOK_URL == '' }}
+        run: |
+          echo "Notice: RENDER_DEPLOY_HOOK_URL secret not configured in repository."
+          echo "To automate backend deployment, add RENDER_DEPLOY_HOOK_URL or RAILWAY_TOKEN to GitHub Secrets."
+
+  # --------------------------------------------------------------------------
+  # 3. DEPLOY FRONTEND SPA
+  # --------------------------------------------------------------------------
+  deploy-frontend:
+    name: Deploy Frontend Client
+    needs: [build-production]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download Build Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: production-build-dist
+          path: dist/
+
+      - name: Trigger Frontend Webhook / Vercel Deploy Hook
+        if: ${{ secrets.FRONTEND_DEPLOY_HOOK_URL != '' }}
+        run: |
+          echo "Triggering frontend deployment via Webhook..."
+          curl -s -X POST "${{ secrets.FRONTEND_DEPLOY_HOOK_URL }}"
+          echo "Frontend deploy hook triggered."
+
+      - name: Skip Frontend Webhook if Not Configured
+        if: ${{ secrets.FRONTEND_DEPLOY_HOOK_URL == '' }}
+        run: |
+          echo "Notice: FRONTEND_DEPLOY_HOOK_URL secret not configured in repository."
+          echo "To automate frontend deployment, add FRONTEND_DEPLOY_HOOK_URL (or VERCEL_TOKEN) to GitHub Secrets."
+
+  # --------------------------------------------------------------------------
+  # 4. POST-DEPLOYMENT HEALTH VERIFICATION
+  # --------------------------------------------------------------------------
+  verify-deployment:
+    name: Post-Deploy Health Check
+    needs: [deploy-backend, deploy-frontend]
+    runs-on: ubuntu-latest
+    if: ${{ secrets.PRODUCTION_HEALTH_URL != '' }}
+    steps:
+      - name: Check Production Health Endpoint
+        run: |
+          echo "Pinging production health check at ${{ secrets.PRODUCTION_HEALTH_URL }}..."
+          response=$(curl -s -o /dev/null -w "%{http_code}" "${{ secrets.PRODUCTION_HEALTH_URL }}")
+          if [ "$response" -eq 200 ]; then
+            echo "Health check PASSED with HTTP 200 OK."
+          else
+            echo "Warning: Health check returned HTTP $response."
+          fi

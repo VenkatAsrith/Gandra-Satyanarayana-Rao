@@ -7,7 +7,11 @@ const timelineItemSchema = new mongoose.Schema({
   description: { type: String, required: true },
   citation: { type: String, default: '' },
   accentColor: { type: String, default: '' },
-  displayOrder: { type: Number, default: 0 }
+  displayOrder: { type: Number, default: 0 },
+  translations: {
+    type: mongoose.Schema.Types.Mixed,
+    default: {}
+  }
 });
 
 const profileContentSchema = new mongoose.Schema(
@@ -74,7 +78,11 @@ const profileContentSchema = new mongoose.Schema(
       tenureYears: { type: String, default: '2023–2028' },
       verifiedSources: { type: String, default: 'Election Commission of India / PRS Legislative Research' }
     },
-    timeline: [timelineItemSchema]
+    timeline: [timelineItemSchema],
+    translations: {
+      type: mongoose.Schema.Types.Mixed,
+      default: {}
+    }
   },
   {
     timestamps: true
