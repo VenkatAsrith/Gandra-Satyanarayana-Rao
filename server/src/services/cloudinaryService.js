@@ -25,31 +25,36 @@ if (isCloudinaryConfigured) {
  */
 const uploadMedia = async (fileBuffer, originalFilename, folder = 'sathenna_profile') => {
   if (isCloudinaryConfigured) {
-    return new Promise((resolve, reject) => {
-      const uploadStream = cloudinary.uploader.upload_stream(
-        {
-          folder,
-          resource_type: 'auto',
-          allowed_formats: ['jpg', 'png', 'jpeg', 'webp', 'avif'],
-          transformation: [{ quality: 'auto', fetch_format: 'auto' }]
-        },
-        (error, result) => {
-          if (error) {
-            console.error('[Cloudinary Upload Error]', error);
-            return reject(new Error('Cloudinary upload failed: ' + error.message));
+    try {
+      const result = await new Promise((resolve, reject) => {
+        const uploadStream = cloudinary.uploader.upload_stream(
+          {
+            folder,
+            resource_type: 'auto',
+            allowed_formats: ['jpg', 'png', 'jpeg', 'webp', 'avif'],
+            transformation: [{ quality: 'auto', fetch_format: 'auto' }]
+          },
+          (error, res) => {
+            if (error) {
+              console.error('[Cloudinary Upload Error]', error);
+              return reject(new Error('Cloudinary upload failed: ' + error.message));
+            }
+            resolve({
+              publicId: res.public_id,
+              secureUrl: res.secure_url,
+              width: res.width,
+              height: res.height,
+              format: res.format,
+              bytes: res.bytes
+            });
           }
-          resolve({
-            publicId: result.public_id,
-            secureUrl: result.secure_url,
-            width: result.width,
-            height: result.height,
-            format: result.format,
-            bytes: result.bytes
-          });
-        }
-      );
-      uploadStream.end(fileBuffer);
-    });
+        );
+        uploadStream.end(fileBuffer);
+      });
+      return result;
+    } catch (err) {
+      console.warn('[Cloudinary Error, falling back to local storage]:', err.message);
+    }
   }
 
   // Local filesystem fallback

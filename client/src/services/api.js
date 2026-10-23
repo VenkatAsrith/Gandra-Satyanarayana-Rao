@@ -1,6 +1,15 @@
-// Deployed backend endpoint on Render
+// Deployed backend endpoint vs local backend
 const getApiBase = () => {
   const envUrl = import.meta.env.VITE_API_URL;
+  const isLocalHost =
+    typeof window !== 'undefined' &&
+    (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1');
+
+  // When developing locally on localhost, use local server (unless explicitly configured otherwise)
+  if (isLocalHost && (!envUrl || envUrl.includes('onrender.com'))) {
+    return 'http://localhost:5000/api/v1';
+  }
+
   if (envUrl && envUrl.trim()) {
     const clean = envUrl.trim().replace(/\/+$/, '');
     return clean.endsWith('/api/v1') ? clean : `${clean}/api/v1`;
@@ -14,6 +23,12 @@ export function resolveMediaUrl(url) {
   if (!url) return '';
   if (url.startsWith('http://') || url.startsWith('https://')) return url;
   if (url.startsWith('/uploads')) {
+    const isLocalHost =
+      typeof window !== 'undefined' &&
+      (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1');
+    if (isLocalHost) {
+      return `http://localhost:5000${url}`;
+    }
     const raw = (import.meta.env.VITE_API_URL || 'https://gandra-satyanarayana-rao.onrender.com').replace(/\/+$/, '');
     const origin = raw.replace(/\/api\/v1\/?$/, '');
     return `${origin}${url}`;
