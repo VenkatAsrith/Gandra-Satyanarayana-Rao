@@ -77,8 +77,9 @@ if (process.env.NODE_ENV !== 'test') {
   app.use(morgan('dev'));
 }
 
-// Serve public uploads
+// Serve public uploads and media
 app.use('/uploads', express.static(path.join(__dirname, '../public/uploads')));
+app.use('/media', express.static(path.join(__dirname, '../../client/public/media')));
 
 // Health Check
 app.get('/api/v1/health', (req, res) => {

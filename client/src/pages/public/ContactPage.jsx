@@ -40,7 +40,7 @@ export default function ContactPage() {
           </div>
         </section>
 
-        <ContactChannels settings={settings} showForm={true} />
+        <ContactChannels settings={settings} />
       </main>
       <Footer settings={settings} />
     </>

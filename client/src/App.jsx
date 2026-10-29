@@ -28,14 +28,17 @@ import AdminGalleryPage from './pages/admin/AdminGalleryPage';
 import AdminConstituencyPage from './pages/admin/AdminConstituencyPage';
 import AdminSubmissionsPage from './pages/admin/AdminSubmissionsPage';
 
+import SmoothScrollProvider from './components/common/SmoothScrollProvider';
+
 export default function App() {
   return (
     <ErrorBoundary>
       <LanguageProvider>
         <ToastProvider>
           <AuthProvider>
-            <BrowserRouter>
-              <Routes>
+            <SmoothScrollProvider>
+              <BrowserRouter>
+                <Routes>
                 {/* Public Routes */}
                 <Route path="/" element={<HomePage />} />
                 <Route path="/about" element={<AboutPage />} />
@@ -72,7 +75,8 @@ export default function App() {
                 <Route path="*" element={<NotFoundPage />} />
               </Routes>
             </BrowserRouter>
-          </AuthProvider>
+          </SmoothScrollProvider>
+        </AuthProvider>
         </ToastProvider>
       </LanguageProvider>
     </ErrorBoundary>

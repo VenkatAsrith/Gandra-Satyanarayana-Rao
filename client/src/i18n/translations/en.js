@@ -111,14 +111,38 @@ export const en = {
 
   // Gallery
   gallery: {
-    pageTitle: 'Curated Photographic Archive',
-    pageSubtitle: 'Visual documentation of legislative duties, Praja Darbar interactions, public works inspections, and mass community meetings.',
-    filterAll: 'All Photographs',
-    filterPortraits: 'Official Portraits',
-    filterEvents: 'Public Events & Rallies',
-    filterWork: 'Public Works & Inspections',
-    filterConstituency: 'State & Constituency Coordination',
+    pageTitle: 'Official Media Archive & Field Records',
+    pageSubtitle: 'Comprehensive video and photographic records of constituency development, agricultural innovation, youth employment drives, and community welfare.',
+    tabAll: 'All Media',
+    tabVideos: 'Official Videos (18)',
+    tabPhotos: 'Photo Archive (10)',
+    filterAll: 'All Categories',
+    filterAgriculture: 'Agriculture & Tech',
+    filterWelfare: 'Youth & Welfare',
+    filterEducation: 'Education & Students',
+    filterCulture: 'Culture & Festivals',
+    filterConstituency: 'Constituency & Field',
+    filterWork: 'Public Works',
+    filterPortraits: 'Portraits',
+    filterEvents: 'Public Events',
+    searchPlaceholder: 'Search media records by title or keyword...',
+    videoBadge: 'VIDEO',
+    photoBadge: 'PHOTO',
+    watchVideo: 'Watch Video',
+    viewPhoto: 'View Photo',
+    downloadVideo: 'Download / Full Res',
     lightboxHelp: 'Use Left and Right arrow keys to navigate, Esc to close.'
+  },
+
+  // Video Reel
+  videoReel: {
+    tagLabel: 'Field Video Records',
+    sectionTitle: 'Constituency Service in Action: Official Video Documentation',
+    sectionSubtitle: 'Watch verified on-the-ground video records documenting MLA Sathenna’s developmental interventions, smart agricultural drone initiatives, and welfare drives across Bhupalpalle.',
+    exploreAll: 'Explore All 18 Field Videos & Archives',
+    playingNow: 'Now Playing',
+    duration: 'Duration',
+    category: 'Category'
   },
 
   // Constituency

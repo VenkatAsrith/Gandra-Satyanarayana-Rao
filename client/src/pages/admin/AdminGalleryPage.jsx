@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { api } from '../../services/api';
+import { api, resolveMediaUrl } from '../../services/api';
 
 export default function AdminGalleryPage() {
   const [mediaList, setMediaList] = useState([]);
@@ -141,17 +141,27 @@ export default function AdminGalleryPage() {
                   flexDirection: 'column'
                 }}
               >
-                <div style={{ height: '170px', background: '#F0EFEA', overflow: 'hidden' }}>
+                <div style={{ height: '170px', background: '#F0EFEA', overflow: 'hidden', position: 'relative' }}>
                   <img
-                    src={m.secureUrl}
+                    src={resolveMediaUrl(m.thumbnailUrl || m.secureUrl)}
                     alt={m.altText || m.title}
                     style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                   />
+                  {m.mediaType === 'video' && (
+                    <span style={{ position: 'absolute', top: '8px', left: '8px', background: 'rgba(0,0,0,0.8)', color: '#fff', fontSize: '0.7rem', fontWeight: 700, padding: '3px 8px', borderRadius: '4px' }}>
+                      ▶ {m.duration || 'VIDEO'}
+                    </span>
+                  )}
                 </div>
                 <div style={{ padding: '1rem', flex: 1, display: 'flex', flexDirection: 'column', gap: '6px' }}>
-                  <span className="admin-badge" style={{ alignSelf: 'flex-start' }}>
-                    {m.category}
-                  </span>
+                  <div style={{ display: 'flex', gap: '6px', alignItems: 'center' }}>
+                    <span className="admin-badge" style={{ alignSelf: 'flex-start' }}>
+                      {m.category}
+                    </span>
+                    <span style={{ fontSize: '0.7rem', color: 'var(--gray)', textTransform: 'uppercase' }}>
+                      {m.mediaType === 'video' ? 'Video' : 'Photo'}
+                    </span>
+                  </div>
                   <h4 style={{ fontSize: '0.92rem', fontWeight: 700, margin: '2px 0', lineHeight: 1.3 }}>
                     {m.title}
                   </h4>

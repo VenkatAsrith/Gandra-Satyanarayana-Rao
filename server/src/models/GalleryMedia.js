@@ -28,9 +28,24 @@ const galleryMediaSchema = new mongoose.Schema(
       required: [true, 'Alt text is required for accessibility'],
       trim: true
     },
+    mediaType: {
+      type: String,
+      enum: ['image', 'video'],
+      default: 'image'
+    },
+    thumbnailUrl: {
+      type: String,
+      default: '',
+      trim: true
+    },
+    duration: {
+      type: String,
+      default: '',
+      trim: true
+    },
     category: {
       type: String,
-      enum: ['portraits', 'events', 'constituency', 'work', 'general'],
+      enum: ['portraits', 'events', 'constituency', 'work', 'agriculture', 'welfare', 'education', 'culture', 'general'],
       default: 'general'
     },
     categoryLabel: {

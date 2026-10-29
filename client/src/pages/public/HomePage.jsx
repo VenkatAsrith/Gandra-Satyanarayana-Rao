@@ -9,6 +9,7 @@ import WorkSpreads from '../../components/public/WorkSpreads';
 import FeaturedAdvocacy from '../../components/public/FeaturedAdvocacy';
 import RecentActivities from '../../components/public/RecentActivities';
 import GalleryGrid from '../../components/public/GalleryGrid';
+import VideoReelShowcase from '../../components/public/VideoReelShowcase';
 import ContactChannels from '../../components/public/ContactChannels';
 import DynamicSectionRenderer from '../../components/public/DynamicSectionRenderer';
 import ErrorBoundary from '../../components/common/ErrorBoundary';
@@ -88,6 +89,10 @@ export default function HomePage() {
           <WorkSpreads projects={projects} />
         </ErrorBoundary>
 
+        <ErrorBoundary>
+          <VideoReelShowcase />
+        </ErrorBoundary>
+
         {/* Dynamic Sections (Order > 2) */}
         {laterSections.map((sec) => (
           <ErrorBoundary key={sec._id || sec.key}>
@@ -108,7 +113,7 @@ export default function HomePage() {
         </ErrorBoundary>
 
         <ErrorBoundary>
-          <ContactChannels settings={settings} showForm={true} />
+          <ContactChannels settings={settings} />
         </ErrorBoundary>
       </main>
       <Footer settings={settings} />
