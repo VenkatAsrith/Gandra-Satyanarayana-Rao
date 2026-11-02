@@ -8,6 +8,16 @@ export function AuthProvider({ children }) {
   const [loading, setLoading] = useState(true);
 
   const checkAuth = async () => {
+    const token = localStorage.getItem('sathenna_admin_token');
+    const isDevAuth = localStorage.getItem('developer_session_active') === 'true';
+
+    // Do not call /auth/me for unauthenticated public visitors (avoids 401 console error)
+    if (!token && !isDevAuth) {
+      setUser(null);
+      setLoading(false);
+      return;
+    }
+
     try {
       const res = await api.getMe();
       if (res && res.user) {

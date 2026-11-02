@@ -5,7 +5,10 @@ const { uploadMedia, deleteMedia } = require('../services/cloudinaryService');
 const getGalleryMedia = async (req, res, next) => {
   try {
     const { category, limit = 100, page = 1 } = req.query;
-    const query = { isPublished: true };
+    const query = {
+      isPublished: true,
+      title: { $not: /^sathenna[\s_#-]*\d*$/i }
+    };
 
     if (category && category !== 'all') {
       query.category = category;

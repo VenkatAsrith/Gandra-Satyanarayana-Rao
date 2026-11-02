@@ -20,7 +20,7 @@ export default function FeaturedAdvocacy({ activity }) {
     ? 'ప్రధాన శాసనసభ ప్రసంగం · సెప్టెంబర్ 18, 2026'
     : (activity?.categoryLabel || 'Assembly Intervention · September 18, 2026');
 
-  const mediaUrl = resolveMediaUrl(activity?.mediaUrl || '/images/events/public-address.png');
+  const mediaUrl = resolveMediaUrl(activity?.mediaUrl || '/images/about/profile-formal.png');
 
   return (
     <section className="section">
@@ -56,7 +56,7 @@ export default function FeaturedAdvocacy({ activity }) {
                   alt={title}
                   loading="lazy"
                   onError={(e) => {
-                    e.target.src = '/images/events/public-address.png';
+                    e.target.src = '/images/about/profile-formal.png';
                   }}
                 />
               </div>

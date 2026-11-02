@@ -89,26 +89,65 @@ export default function GalleryGrid({ mediaItems, showFilter = true, isTeaser = 
     }
   ];
 
-  // Merge items: prioritize live API items if present and rich, plus ensure all catalog videos/photos are present
-  const allCatalogMedia = [
+  // Helper to extract clean image/video filename for strict deduplication
+  const getMediaFileKey = (item) => {
+    const rawUrl = (item.secureUrl || item.mediaUrl || item.thumbnailUrl || '').toLowerCase();
+    if (!rawUrl) return item.publicId || item.slug || item._id || '';
+    if (rawUrl.includes('public-address')) return 'public-address.png';
+    if (rawUrl.includes('portrait-namaste')) return 'portrait-namaste.png';
+    if (rawUrl.includes('profile-formal')) return 'profile-formal.png';
+    if (rawUrl.includes('family-revanth')) return 'family-revanth.png';
+    if (rawUrl.includes('hero-portrait')) return 'hero-portrait.png';
+    const cleanUrl = rawUrl.split('?')[0].split('#')[0];
+    const filename = cleanUrl.split('/').pop().toLowerCase();
+    return filename || item.publicId || item.slug || item._id;
+  };
+
+  // Merge items and deduplicate strictly by media file, discarding dummy duplicate titles like "sathenna 1, 2, 3"
+  const rawList = [
+    ...defaultPortraits,
     ...(MEDIA_CATALOG?.photos || []),
     ...(MEDIA_CATALOG?.videos || []),
-    ...defaultPortraits
+    ...(mediaItems || [])
   ];
 
-  // If backend returns mediaItems, merge them uniquely
-  let itemsPool = allCatalogMedia;
-  if (mediaItems && mediaItems.length > 5) {
-    const seen = new Set();
-    const merged = [];
-    for (const item of [...mediaItems, ...allCatalogMedia]) {
-      const idKey = item.publicId || item.slug || item._id;
-      if (!seen.has(idKey)) {
-        seen.add(idKey);
-        merged.push(item);
-      }
+  const seenMediaKeys = new Set();
+  const itemsPool = [];
+
+  for (const item of rawList) {
+    if (!item) continue;
+    const titleLower = (item.title || '').trim().toLowerCase();
+    const capLower = (item.caption || '').trim().toLowerCase();
+
+    // Skip dummy duplicate seeded titles like "sathenna 1", "sathenna 2", "sathenna 01", "sathenna 3"
+    const isDummy =
+      /^sathenna[\s_#-]*\d*$/i.test(titleLower) ||
+      /^img[_-]?\d+$/i.test(titleLower) ||
+      /^photo[_-]?\d+$/i.test(titleLower) ||
+      titleLower === 'sathenna' ||
+      titleLower.startsWith('sathenna 0') ||
+      titleLower.startsWith('sathenna 1') ||
+      titleLower.startsWith('sathenna 2') ||
+      titleLower.startsWith('sathenna 3') ||
+      /^sathenna[\s_#-]*\d*$/i.test(capLower);
+
+    if (isDummy) {
+      continue;
     }
-    itemsPool = merged;
+
+    // Ensure stage address photo is only represented once by the official card
+    const rawUrl = (item.secureUrl || item.mediaUrl || item.thumbnailUrl || '').toLowerCase();
+    if (rawUrl.includes('public-address') && item.publicId !== 'local_public-address') {
+      continue;
+    }
+
+    const fileKey = getMediaFileKey(item);
+    if (!fileKey || seenMediaKeys.has(fileKey)) {
+      continue;
+    }
+
+    seenMediaKeys.add(fileKey);
+    itemsPool.push(item);
   }
 
   // Count items by format
@@ -365,7 +404,7 @@ export default function GalleryGrid({ mediaItems, showFilter = true, isTeaser = 
                     alt={item.altText || itemTitle}
                     loading="lazy"
                     onError={(e) => {
-                      e.target.src = '/images/events/public-address.png';
+                      e.target.src = item.mediaType === 'video' ? '/images/work/landscape.jpg' : '/images/about/portrait-namaste.png';
                     }}
                   />
 

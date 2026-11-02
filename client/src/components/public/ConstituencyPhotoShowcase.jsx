@@ -347,16 +347,36 @@ export default function ConstituencyPhotoShowcase() {
                 ref={(el) => (slideRefs.current[idx] = el)}
                 className={`album-scroll-slide ${idx === activePhotoIndex ? 'is-active-slide' : ''}`}
               >
-                <div className="album-slide-photo-wrapper">
+                <div
+                  className="album-slide-photo-wrapper"
+                  onClick={() => setShowStudyNotes(!showStudyNotes)}
+                  style={{ cursor: 'pointer' }}
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      e.preventDefault();
+                      setShowStudyNotes(!showStudyNotes);
+                    }
+                  }}
+                  title={showStudyNotes ? (isTelugu ? 'వివరాలు దాచు' : 'Click to hide study matter') : (isTelugu ? 'వివరాలు అధ్యయనం చేయండి' : 'Click photo to study matter')}
+                >
                   <img
                     src={resolveMediaUrl(photo.secureUrl)}
                     alt={isTelugu ? photo.titleTe : photo.title}
                     className="album-elevated-photo"
+                    onError={(e) => {
+                      e.target.src = '/images/work/landscape.jpg';
+                    }}
                   />
                   <div className="album-slide-badge">
                     <span>{photo.part} / 04</span>
                     <span>•</span>
                     <span>{isTelugu ? photo.categoryTe : photo.category}</span>
+                    <span>•</span>
+                    <span style={{ color: 'var(--saffron, #F36B21)' }}>
+                      {showStudyNotes ? (isTelugu ? 'వివరాలు మూసివేయి ✕' : 'Hide Notes ✕') : (isTelugu ? 'అధ్యయనం 📖' : 'Study Notes 📖')}
+                    </span>
                   </div>
                 </div>
               </div>

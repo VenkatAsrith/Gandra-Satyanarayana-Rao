@@ -121,6 +121,9 @@ export default function HeroSection({ profile, settings }) {
                     alt="Gandra Satyanarayana Rao, Member of Legislative Assembly for Bhupalpalle"
                     className="hero-portrait-image"
                     loading="eager"
+                    onError={(e) => {
+                      e.target.src = '/images/hero/hero-portrait.png';
+                    }}
                   />
                   <div className="hero-portrait-gradient-overlay" aria-hidden="true"></div>
                 </div>

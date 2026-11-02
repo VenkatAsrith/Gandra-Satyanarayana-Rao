@@ -7455,3 +7455,286 @@ html[lang="te"] .bento-link {
     will-change: transform;
   }
 }
+
+
+/* ==========================================================================
+   26. SUPREME MOBILE RESPONSIVENESS & IMAGE ELEVATION ENHANCEMENTS
+   ========================================================================== */
+
+/* Universal Mobile Header & 3-Dots Quick Navigation Visibility */
+@media (max-width: 991px) {
+  .site-header {
+    height: 72px !important;
+  }
+
+  .header-container {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 8px !important;
+    width: 100% !important;
+    padding-inline: 1rem !important;
+  }
+
+  .brand-identity {
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+    min-width: 0 !important;
+    flex: 1 1 auto !important;
+  }
+
+  .brand-badge {
+    width: 40px !important;
+    height: 40px !important;
+    flex-shrink: 0 !important;
+  }
+
+  .brand-info {
+    min-width: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    overflow: hidden !important;
+  }
+
+  .brand-name {
+    font-size: 0.92rem !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    display: block !important;
+  }
+
+  .brand-meta {
+    font-size: 0.72rem !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    display: block !important;
+  }
+
+  /* Keep 3-Dots Quick Nav Button Always Visible on Mobile */
+  .mobile-header-triggers {
+    display: flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    flex-shrink: 0 !important;
+    z-index: 1003 !important;
+  }
+
+  .mobile-dots-nav-btn {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    padding: 7px 12px !important;
+    background: #FFFFFF !important;
+    border: 1.5px solid rgba(243, 107, 33, 0.4) !important;
+    border-radius: var(--radius-pill) !important;
+    color: var(--text-primary) !important;
+    cursor: pointer !important;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08) !important;
+    flex-shrink: 0 !important;
+  }
+
+  .dots-icon-composite {
+    display: flex !important;
+    align-items: center !important;
+    gap: 3.5px !important;
+  }
+
+  .dot-circle {
+    width: 5.5px !important;
+    height: 5.5px !important;
+    border-radius: 50% !important;
+    background: var(--saffron, #F36B21) !important;
+    display: inline-block !important;
+  }
+
+  /* Floating 3-Dots Quick Navigation FAB (High Priority Z-Index) */
+  .mobile-floating-quick-dock {
+    display: block !important;
+    position: fixed !important;
+    bottom: 22px !important;
+    right: 18px !important;
+    z-index: 99999 !important;
+  }
+
+  .floating-dots-fab {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    background: #0F172A !important;
+    color: #FFFFFF !important;
+    border: 1.5px solid rgba(243, 107, 33, 0.6) !important;
+    border-radius: var(--radius-pill) !important;
+    padding: 10px 18px !important;
+    font-size: 0.85rem !important;
+    font-weight: 700 !important;
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.5) !important;
+  }
+
+  .floating-quick-panel {
+    z-index: 100000 !important;
+  }
+}
+
+@media (max-width: 576px) {
+  /* On very small phones, let the drawer hold the full language switcher */
+  .header-actions-group .lang-switcher-pill {
+    display: none !important;
+  }
+
+  .dots-btn-label {
+    font-size: 0.74rem !important;
+  }
+}
+
+/* Gallery Grid Mobile Fixes (Strict 1-Column, Pure Aspect Ratios) */
+@media (max-width: 768px) {
+  .gallery-grid {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 1.25rem !important;
+  }
+
+  .gallery-card,
+  .gallery-card.span-8,
+  .gallery-card.span-6,
+  .gallery-card.span-4 {
+    grid-column: span 1 !important;
+    width: 100% !important;
+  }
+
+  .gallery-thumb {
+    width: 100% !important;
+    aspect-ratio: 16 / 10 !important;
+    max-height: 250px !important;
+    border-radius: var(--radius-md) var(--radius-md) 0 0 !important;
+    overflow: hidden !important;
+  }
+
+  .gallery-thumb img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    object-position: center 20% !important;
+  }
+
+  .gallery-card-info {
+    padding: 1rem 1.15rem !important;
+  }
+
+  .gallery-card-title {
+    font-size: 1rem !important;
+    line-height: 1.4 !important;
+  }
+
+  /* Story Grid Mobile 1-Column */
+  .story-grid {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 1.25rem !important;
+  }
+
+  .story-card-large,
+  .story-card-medium,
+  .story-card-tri,
+  .story-card-full {
+    grid-column: span 1 !important;
+    width: 100% !important;
+  }
+
+  .story-card .story-img-wrap {
+    width: 100% !important;
+    aspect-ratio: 16 / 10 !important;
+    max-height: 240px !important;
+  }
+
+  .story-card .story-img-wrap img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+  }
+
+  /* Featured Advocacy Banner Mobile */
+  .featured-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem !important;
+  }
+
+  .featured-img-frame {
+    width: 100% !important;
+    aspect-ratio: 16 / 10 !important;
+    max-height: 260px !important;
+  }
+
+  .featured-img-frame img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+  }
+
+  /* Hero Section Mobile Framing */
+  .hero-main-grid {
+    grid-template-columns: 1fr !important;
+    gap: 2rem !important;
+  }
+
+  .hero-portrait-card {
+    max-width: 320px !important;
+    margin: 0 auto !important;
+  }
+
+  /* Photo Series Showcase & Study Matter Mobile Elevation */
+  .photo-master-img {
+    max-height: 240px !important;
+    object-fit: cover !important;
+  }
+
+  .album-scroll-slide {
+    padding: 0 0.5rem !important;
+  }
+
+  .album-slide-photo-wrapper {
+    max-height: 52vh !important;
+  }
+
+  .album-elevated-photo {
+    max-height: 48vh !important;
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.75), 0 0 0 1px rgba(255, 255, 255, 0.15) !important;
+  }
+
+  /* Study Matter Drawer Mobile: Fitted and Reduced Matter */
+  .study-matter-drawer {
+    width: 95vw !important;
+    bottom: 74px !important;
+    max-height: 48vh !important;
+    overflow-y: auto !important;
+    border-radius: 14px !important;
+    padding: 0 !important;
+  }
+
+  .study-matter-inner {
+    padding: 1rem 1.15rem !important;
+  }
+
+  .study-matter-title {
+    font-size: 0.98rem !important;
+    line-height: 1.35 !important;
+  }
+
+  .study-matter-caption {
+    font-size: 0.8rem !important;
+    line-height: 1.4 !important;
+    margin-bottom: 8px !important;
+  }
+
+  .study-matter-box {
+    padding: 8px 10px !important;
+  }
+
+  .study-matter-box p {
+    font-size: 0.76rem !important;
+    line-height: 1.35 !important;
+  }
+}
