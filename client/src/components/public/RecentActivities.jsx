@@ -1,10 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../../i18n/LanguageContext';
 
 export default function RecentActivities({ activities }) {
-  const { isTelugu, t, formatDate } = useLanguage();
+  const { isTelugu, formatDate } = useLanguage();
   const [selectedCategory, setSelectedCategory] = useState('all');
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [scrollProgress, setScrollProgress] = useState(0);
+  const trackRef = useRef(null);
+  const cardRefs = useRef([]);
 
   const defaultActivities = [
     {
@@ -16,8 +20,8 @@ export default function RecentActivities({ activities }) {
       title: isTelugu ? 'ఆచార్య కొండా లక్ష్మణ్ బాపూజీ జయంతి సంస్మరణ సభ' : 'Konda Laxman Bapuji Memorial Commemoration',
       location: isTelugu ? 'భూపాలపల్లి అర్బన్ · ముఖ్య అతిథిగా సంస్మరణ ప్రసంగం' : 'Bhupalpally Urban · Chief Guest & Memorial Address',
       summary: isTelugu
-        ? 'తెలంగాణ తొలితరం విముక్తి యోధుడు, స్వాతంత్ర్య సమరయోధుడు ఆచార్య కొండా లక్ష్మణ్ బాపూజీ జయంతి సందర్భంగా ముఖ్య అతిథిగా పాల్గొని ఘనంగా నివాళులర్పించారు.'
-        : 'Participated as Chief Guest paying tribute to freedom fighter and Telangana stalwart Acharya Konda Laxman Bapuji, emphasizing rural empowerment.',
+        ? 'తెలంగాణ తొలితరం విముక్తి యోధుడు ఆచార్య కొండా లక్ష్మణ్ బాపూజీ జయంతి సందర్భంగా ముఖ్య అతిథిగా పాల్గొని ఘనంగా నివాళులర్పించారు.'
+        : 'Participated as Chief Guest paying tribute to freedom fighter Acharya Konda Laxman Bapuji, emphasizing rural empowerment.',
       sourceLabel: isTelugu ? 'జిల్లా సమాచార పౌరసంబంధాల శాఖ' : 'District Information Office'
     },
     {
@@ -29,8 +33,8 @@ export default function RecentActivities({ activities }) {
       title: isTelugu ? 'నియోజకవర్గ ఉపాధ్యాయులు & విద్యావేత్తల సన్మానం' : 'Constituency Educators & Teachers Recognition',
       location: isTelugu ? 'భూపాలపల్లి · గ్రామీణ విద్యా వికాసంలో ఉపాధ్యాయుల పాత్ర' : 'Bhupalpally · Role of teachers in civic foundation',
       summary: isTelugu
-        ? 'గ్రామీణ విద్యాభివృద్ధిలో ఉపాధ్యాయుల పాత్ర అత్యంత కీలకమని కొనియాడుతూ, నియోజకవర్గ ఉత్తమ ఉపాధ్యాయులను శాలువాలతో ఘనంగా సత్కరించారు.'
-        : 'Addressed local school teachers and educational leaders on the indispensable role of primary and secondary schooling in rural transformation.',
+        ? 'గ్రామీణ విద్యాభివృద్ధిలో ఉపాధ్యాయుల పాత్రను కొనియాడుతూ ఉత్తమ ఉపాధ్యాయులను ఘనంగా సత్కరించారు.'
+        : 'Addressed local school teachers and educational leaders on the indispensable role of schooling in rural transformation.',
       sourceLabel: isTelugu ? 'ఎమ్మెల్యే మీడియా విభాగం' : 'Constituency Media Desk'
     },
     {
@@ -42,7 +46,7 @@ export default function RecentActivities({ activities }) {
       title: isTelugu ? 'సింగరేణి బొగ్గు గని కార్మికులు & భూ నిర్వాసిత కుటుంబాలకై శాసనసభలో పోరాటం' : 'Advocacy for Singareni Coal Miners & Displaced Families',
       location: isTelugu ? 'తెలంగాణ శాసనసభ వేదిక · జీరో అవర్ చర్చ' : 'Telangana Legislative Assembly · Zero Hour',
       summary: isTelugu
-        ? 'తెలంగాణ శాసనసభ సమావేశాల్లో గండ్ర సత్యనారాయణ రావు గారు సింగరేణి కార్మికుల దీర్ఘకాలిక సమస్యలను లేవనెత్తారు. భూ నిర్వాసితులకు మెరుగైన పునరావాస ప్యాకేజీలు, రిటైర్డ్ ఉద్యోగులకు కార్పొరేట్ వైద్య భద్రతకై డిమాండ్ చేశారు.'
+        ? 'తెలంగాణ శాసనసభలో సింగరేణి కార్మికుల సమస్యలు, భూ నిర్వాసితులకు మెరుగైన పునరావాస ప్యాకేజీలు, రిటైర్డ్ ఉద్యోగుల వైద్య భద్రతకై డిమాండ్ చేశారు.'
         : 'During the Telangana Legislative Assembly session, forcefully raised the long-standing welfare concerns of Singareni Collieries workers and displaced families.',
       sourceLabel: isTelugu ? 'అసెంబ్లీ హన్సార్డ్ రికార్డు & ఆంధ్రప్రభ' : 'Assembly Hansard & Andhra Prabha'
     },
@@ -55,7 +59,7 @@ export default function RecentActivities({ activities }) {
       title: isTelugu ? 'రైతాంగానికి కోల్డ్ స్టోరేజ్ & ఆయిల్ పామ్ సబ్సిడీలకై అసెంబ్లీలో డిమాండ్' : 'Legislative Assembly Demand for Agricultural Cold Storage',
       location: isTelugu ? 'తెలంగాణ శాసనసభ · వ్యవసాయ శాఖ డిమాండ్లు' : 'Telangana Assembly · Agriculture Demands',
       summary: isTelugu
-        ? 'కూరగాయల రైతులు దళారుల బారిన పడకుండా భూపాలపల్లిలో కోల్డ్ స్టోరేజ్ యూనిట్లు ఏర్పాటు చేయాలని, అలాగే ఆయిల్ పామ్ రైతులకు సబ్సిడీలను పెంచాలని శాసనసభలో డిమాండ్ చేశారు.'
+        ? 'కూరగాయల రైతులు దళారుల బారిన పడకుండా భూపాలపల్లిలో కోల్డ్ స్టోరేజ్ యూనిట్లు, ఆయిల్ పామ్ రైతులకు సబ్సిడీలను శాసనసభలో డిమాండ్ చేశారు.'
         : 'Advocated on the floor of the Assembly for cold storage facilities in Bhupalpalle to protect vegetable farmers from distress sales, while requesting government subsidies.',
       sourceLabel: isTelugu ? 'శాసనసభ ప్రొసీడింగ్స్' : 'Assembly Hansard'
     },
@@ -68,7 +72,7 @@ export default function RecentActivities({ activities }) {
       title: isTelugu ? 'చలివాగు ప్రాజెక్టు నీటిమట్టాల పరిశీలన & అక్రమ నీటి తరలింపు నిరోధం' : 'Chalivagu Project Water Level Inspection & Stand',
       location: isTelugu ? 'చలివాగు ప్రాజెక్ట్ ఆయకట్టు · ఘనపూర్' : 'Chalivagu Project · Ghanapur',
       summary: isTelugu
-        ? 'చలివాగు రిజర్వాయర్ నీటిమట్టాలను స్వయంగా పరిశీలించి, స్థానిక ఆయకట్టు రైతుల ప్రయోజనాలను కాపాడేందుకు అక్రమ నీటి మళ్లింపులను అడ్డుకోవాలని అధికారులను హెచ్చరించారు.'
+        ? 'చలివాగు రిజర్వాయర్ నీటిమట్టాలను స్వయంగా పరిశీలించి, స్థానిక రైతుల సాగునీటి రక్షణకై అక్రమ నీటి మళ్లింపులను అడ్డుకోవాలని అధికారులను ఆదేశించారు.'
         : 'Monitored water retention levels at Chalivagu project and warned against unauthorized water diversion to safeguard irrigation for farmers across local command areas.',
       sourceLabel: isTelugu ? 'నమస్తే తెలంగాణ & సాక్షి' : 'Namasthe Telangana & Sakshi'
     }
@@ -79,7 +83,7 @@ export default function RecentActivities({ activities }) {
   const categories = [
     { key: 'all', label: isTelugu ? 'అన్ని కార్యక్రమాలు' : 'All Activities' },
     { key: 'legislative', label: isTelugu ? 'శాసనసభ వేదిక' : 'Legislative Floor' },
-    { key: 'agriculture', label: isTelugu ? 'రైతు & వ్యవసాయం' : 'Agriculture & Irrigation' },
+    { key: 'agriculture', label: isTelugu ? 'రైతు & సాగునీరు' : 'Agriculture & Irrigation' },
     { key: 'civic', label: isTelugu ? 'ప్రజా సమ్మేళనాలు' : 'Civic Engagements' },
     { key: 'infrastructure', label: isTelugu ? 'క్షేత్ర పరిశీలనలు' : 'Field Inspections' }
   ];
@@ -89,26 +93,152 @@ export default function RecentActivities({ activities }) {
     return act.category === selectedCategory;
   });
 
+  // Calculate scroll position and active item
+  const updateScrollState = () => {
+    const el = trackRef.current;
+    if (!el) return;
+
+    const maxScroll = el.scrollWidth - el.clientWidth;
+    const currentScroll = el.scrollLeft;
+
+    if (maxScroll > 0) {
+      setScrollProgress(Math.min(100, Math.max(0, (currentScroll / maxScroll) * 100)));
+    } else {
+      setScrollProgress(0);
+    }
+
+    // Determine which card is most centered/visible in track
+    const trackRect = el.getBoundingClientRect();
+    const trackCenter = trackRect.left + trackRect.width / 2;
+
+    let closestIndex = 0;
+    let closestDistance = Infinity;
+
+    cardRefs.current.forEach((card, idx) => {
+      if (!card) return;
+      const rect = card.getBoundingClientRect();
+      const cardCenter = rect.left + rect.width / 2;
+      const dist = Math.abs(cardCenter - trackCenter);
+      if (dist < closestDistance) {
+        closestDistance = dist;
+        closestIndex = idx;
+      }
+    });
+
+    setActiveIndex(closestIndex);
+  };
+
+  // Smooth scroll trigger to specific card
+  const scrollToCard = (index) => {
+    const targetCard = cardRefs.current[index];
+    if (targetCard && trackRef.current) {
+      targetCard.scrollIntoView({
+        behavior: 'smooth',
+        inline: 'center',
+        block: 'nearest'
+      });
+      setActiveIndex(index);
+    }
+  };
+
+  const handlePrev = () => {
+    const nextIdx = Math.max(0, activeIndex - 1);
+    scrollToCard(nextIdx);
+  };
+
+  const handleNext = () => {
+    const nextIdx = Math.min(filteredItems.length - 1, activeIndex + 1);
+    scrollToCard(nextIdx);
+  };
+
+  // Listen to horizontal scroll events
+  useEffect(() => {
+    const el = trackRef.current;
+    if (!el) return;
+
+    let rafId = null;
+    const onScroll = () => {
+      if (rafId) cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(updateScrollState);
+    };
+
+    el.addEventListener('scroll', onScroll, { passive: true });
+    updateScrollState();
+
+    return () => {
+      el.removeEventListener('scroll', onScroll);
+      if (rafId) cancelAnimationFrame(rafId);
+    };
+  }, [filteredItems]);
+
+  // Reset active card on category switch
+  useEffect(() => {
+    setActiveIndex(0);
+    if (trackRef.current) {
+      trackRef.current.scrollTo({ left: 0, behavior: 'smooth' });
+    }
+  }, [selectedCategory]);
+
   return (
-    <section className="section bg-off-white activities-chronology-section">
+    <section id="activities" className="section bg-off-white activities-chronology-section" aria-label="Public Activities Timeline">
       <div className="container">
-        {/* Section Header */}
-        <div className="activities-header-group">
-          <div className="tag-label green">
-            <span className="live-pulse-dot" aria-hidden="true"></span>
-            {isTelugu ? 'కార్యక్రమాల కాలక్రమం' : 'Documented Chronology'}
+        {/* Section Header with Horizontal Trigger Control Deck */}
+        <div className="activities-header-horizontal-deck">
+          <div className="activities-header-meta">
+            <div className="tag-label green">
+              <span className="live-pulse-dot" aria-hidden="true"></span>
+              {isTelugu ? 'నియోజకవర్గ ప్రస్థానం' : 'Constituency Engagements'}
+            </div>
+            <h2 className="section-title">
+              {isTelugu ? 'ప్రజా కార్యక్రమాలు & అభివృద్ధి ప్రస్థానం' : 'Public Activities & Community Engagement'}
+            </h2>
+            <p className="section-subtitle">
+              {isTelugu
+                ? 'నియోజకవర్గ సమీక్షలు, శంకుస్థాపనలు, శాసనసభ ప్రశ్నలు మరియు ప్రజా సమావేశాల కాలక్రమ దృశ్యం.'
+                : 'Chronological overview of constituency reviews, legislative interventions, and grassroots public meetings.'}
+            </p>
           </div>
-          <h2 className="section-title">
-            {isTelugu ? 'ధృవీకరించబడిన ప్రజా కార్యక్రమాలు' : 'Documented Public Activities'}
-          </h2>
-          <p className="section-subtitle">
-            {isTelugu
-              ? 'నియోజకవర్గ సమీక్షలు, శంకుస్థాపనలు, శాసనసభ ప్రశ్నలు మరియు ప్రజా సమావేశాల కాలక్రమ రికార్డు.'
-              : 'Verified chronological ledger of legislative interventions, constituency reviews, and grassroots assemblies.'}
-          </p>
+
+          {/* Premium Horizontal Scroll Trigger Controls */}
+          <div className="h-trigger-dock" aria-label="Horizontal Carousel Controls">
+            <div className="h-trigger-info">
+              <span className="h-trigger-badge">
+                <span className="h-trigger-dot" aria-hidden="true"></span>
+                {isTelugu ? 'హారిజాంటల్ క్రోనాలజీ' : 'Horizontal Chronicle'}
+              </span>
+              <div className="h-trigger-counter">
+                <span className="h-trigger-current">{String(activeIndex + 1).padStart(2, '0')}</span>
+                <span className="h-trigger-sep">/</span>
+                <span className="h-trigger-total">{String(filteredItems.length).padStart(2, '0')}</span>
+              </div>
+            </div>
+
+            <div className="h-trigger-nav-buttons">
+              <button
+                type="button"
+                className="h-trigger-btn prev"
+                onClick={handlePrev}
+                disabled={activeIndex === 0}
+                aria-label="Previous Activity"
+                title="Scroll Left"
+              >
+                &#10094;
+              </button>
+              <button
+                type="button"
+                className="h-trigger-btn next"
+                onClick={handleNext}
+                disabled={activeIndex >= filteredItems.length - 1}
+                aria-label="Next Activity"
+                title="Scroll Right"
+              >
+                &#10095;
+              </button>
+            </div>
+          </div>
         </div>
 
-        {/* Time-Based Category Filter Bar */}
+        {/* Category Filter Pills Bar */}
         <div className="activity-filter-bar" role="tablist" aria-label="Filter activities by category">
           {categories.map((cat) => (
             <button
@@ -124,109 +254,105 @@ export default function RecentActivities({ activities }) {
           ))}
         </div>
 
-        {/* Animated Chronological Timeline Container */}
-        <div className="activity-timeline-wrapper">
-          {/* Central animated vertical line */}
-          <div className="activity-timeline-line" aria-hidden="true">
-            <div className="activity-timeline-line-glow"></div>
-          </div>
-
-          <div className="activity-timeline-items">
-            {filteredItems.map((act, index) => {
-              const dateStr = act.activityDate
-                ? formatDate(act.activityDate)
-                : act.formattedDate || (isTelugu ? 'ఇటీవల' : 'Recent');
-
-              const title = (isTelugu && act.translations?.te?.title) ? act.translations.te.title : act.title;
-              const location = (isTelugu && act.translations?.te?.location) ? act.translations.te.location : act.location;
-              const summary = (isTelugu && act.translations?.te?.summary) ? act.translations.te.summary : (act.summary || '');
-              const categoryLabel = (isTelugu && act.translations?.te?.categoryLabel) ? act.translations.te.categoryLabel : (act.categoryLabel || act.category);
-              const sourceLabel = (isTelugu && act.translations?.te?.sourceLabel) ? act.translations.te.sourceLabel : (act.sourceLabel || 'Official Record');
-
-              const isLatest = index === 0;
-
-              return (
-                <div
-                  key={act._id || index}
-                  className={`activity-timeline-row ${isLatest ? 'is-latest' : ''}`}
-                  style={{ animationDelay: `${index * 0.12}s` }}
-                >
-                  {/* Left Column: Animated Time Node & Date Pill */}
-                  <div className="activity-time-column">
-                    <div className="activity-time-badge">
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                        <circle cx="12" cy="12" r="10"></circle>
-                        <polyline points="12 6 12 12 16 14"></polyline>
-                      </svg>
-                      <span>{dateStr}</span>
-                    </div>
-
-                    {isLatest && (
-                      <span className="activity-latest-pill">
-                        {isTelugu ? 'ఇటీవలి కార్యక్రమం' : 'Latest Entry'}
-                      </span>
-                    )}
-
-                    {/* Timeline Node Point with Glowing Rings */}
-                    <div className="activity-timeline-node" aria-hidden="true">
-                      <div className="activity-node-core"></div>
-                      <div className="activity-node-halo"></div>
-                    </div>
-                  </div>
-
-                  {/* Right Column: Editorial Activity Card */}
-                  <div className="activity-card-editorial">
-                    <div className="activity-card-top">
-                      <span className="activity-cat-tag">
-                        {categoryLabel}
-                      </span>
-                      <span className="activity-location-tag">
-                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                          <circle cx="12" cy="10" r="3"></circle>
-                        </svg>
-                        {location}
-                      </span>
-                    </div>
-
-                    <h3 className="activity-card-title">{title}</h3>
-
-                    {summary && (
-                      <p className="activity-card-desc">{summary}</p>
-                    )}
-
-                    <div className="activity-card-footer">
-                      <span className="activity-source-cite">
-                        <strong>{isTelugu ? 'ఆధార మూలం:' : 'Source:'}</strong> {sourceLabel}
-                      </span>
-
-                      <Link
-                        to="/work"
-                        className="activity-action-btn"
-                        aria-label={`View documentation for ${title}`}
-                      >
-                        <span>{isTelugu ? 'వివరాలు చూడండి' : 'View Hansard Record'}</span>
-                        <svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                          <path
-                            fillRule="evenodd"
-                            d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
-                            clipRule="evenodd"
-                          />
-                        </svg>
-                      </Link>
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
+        {/* Animated Horizontal Progress Track Indicator */}
+        <div className="h-scroll-progress-line" aria-hidden="true">
+          <div
+            className="h-scroll-progress-fill"
+            style={{ width: `${Math.max(12, scrollProgress)}%` }}
+          ></div>
         </div>
 
-        {filteredItems.length === 0 && (
-          <div className="activity-empty-state">
-            <p>{t('common.emptyList')}</p>
-          </div>
-        )}
+        {/* High-Class Smooth Horizontal Scroll Track */}
+        <div
+          className="activity-horizontal-track"
+          ref={trackRef}
+          role="region"
+          aria-label="Chronological Activities Horizontal Track"
+        >
+          {filteredItems.map((act, index) => {
+            const dateStr = act.activityDate
+              ? formatDate(act.activityDate)
+              : act.formattedDate || (isTelugu ? 'ఇటీవల' : 'Recent');
+
+            const title = (isTelugu && act.translations?.te?.title) ? act.translations.te.title : act.title;
+            const location = (isTelugu && act.translations?.te?.location) ? act.translations.te.location : act.location;
+            const summary = (isTelugu && act.translations?.te?.summary) ? act.translations.te.summary : (act.summary || '');
+            const categoryLabel = (isTelugu && act.translations?.te?.categoryLabel) ? act.translations.te.categoryLabel : (act.categoryLabel || act.category);
+            const sourceLabel = (isTelugu && act.translations?.te?.sourceLabel) ? act.translations.te.sourceLabel : (act.sourceLabel || 'Official Record');
+
+            const isLatest = index === 0;
+            const isActive = index === activeIndex;
+
+            return (
+              <article
+                key={act._id || index}
+                ref={(el) => (cardRefs.current[index] = el)}
+                data-index={index}
+                className={`activity-h-card ${isActive ? 'is-active-trigger' : ''} ${isLatest ? 'is-latest' : ''}`}
+                onClick={() => scrollToCard(index)}
+              >
+                {/* Top Badge & Time Header */}
+                <div className="activity-h-top">
+                  <div className="activity-h-date-chip">
+                    <svg viewBox="0 0 20 20" fill="currentColor" width="14" height="14">
+                      <path
+                        fillRule="evenodd"
+                        d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                    <span>{dateStr}</span>
+                  </div>
+
+                  {isLatest && (
+                    <span className="activity-latest-badge">
+                      <span className="live-pulse-dot" aria-hidden="true"></span>
+                      {isTelugu ? 'తాజా నమోదు' : 'Latest Entry'}
+                    </span>
+                  )}
+                </div>
+
+                {/* Category & Location */}
+                <div className="activity-h-meta">
+                  <span className="activity-cat-tag">{categoryLabel}</span>
+                  <span className="activity-h-loc" title={location}>{location}</span>
+                </div>
+
+                {/* Title */}
+                <h3 className="activity-h-title">{title}</h3>
+
+                {/* Fitted, Concise Summary (Matter optimized for clean mobile/desktop reading) */}
+                <p className="activity-h-summary">{summary}</p>
+
+                {/* Bottom Source & Hansard Link */}
+                <div className="activity-h-footer">
+                  <div className="activity-h-source">
+                    <span className="source-label-txt">{isTelugu ? 'ఆధారం:' : 'Source:'}</span>
+                    <span className="source-value-txt">{sourceLabel}</span>
+                  </div>
+
+                  <Link to="/work" className="activity-h-link" onClick={(e) => e.stopPropagation()}>
+                    <span>{isTelugu ? 'హన్సార్డ్ రికార్డు' : 'View Record'}</span>
+                    <svg viewBox="0 0 20 20" fill="currentColor" width="14" height="14">
+                      <path
+                        fillRule="evenodd"
+                        d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                  </Link>
+                </div>
+              </article>
+            );
+          })}
+        </div>
+
+        {/* Mobile Swipe Guidance Hint */}
+        <div className="activity-h-swipe-hint" aria-hidden="true">
+          <span>&larr;</span>
+          <span>{isTelugu ? 'కార్యక్రమాలను చూడడానికి పక్కకు స్క్రోల్ చేయండి' : 'Swipe or scroll horizontally to explore activities'}</span>
+          <span>&rarr;</span>
+        </div>
       </div>
     </section>
   );

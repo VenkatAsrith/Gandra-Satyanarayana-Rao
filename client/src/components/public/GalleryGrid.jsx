@@ -17,6 +17,8 @@ export default function GalleryGrid({ mediaItems, showFilter = true, isTeaser = 
   const [searchQuery, setSearchQuery] = useState('');
   const [activeItem, setActiveItem] = useState(null);
   const [currentIndex, setCurrentIndex] = useState(-1);
+  const [showPhotoInfo, setShowPhotoInfo] = useState(false);
+  const [touchStart, setTouchStart] = useState(0);
 
   // Core fallback official media
   const defaultPortraits = [
@@ -151,13 +153,32 @@ export default function GalleryGrid({ mediaItems, showFilter = true, isTeaser = 
   const openLightbox = (item, index) => {
     setActiveItem(item);
     setCurrentIndex(index);
+    setShowPhotoInfo(false); // Text hidden for photos by default for clean full-screen viewing
     document.body.classList.add('menu-open');
   };
 
   const closeLightbox = () => {
     setActiveItem(null);
     setCurrentIndex(-1);
+    setShowPhotoInfo(false);
     document.body.classList.remove('menu-open');
+  };
+
+  const handleTouchStart = (e) => {
+    if (e.targetTouches?.[0]) {
+      setTouchStart(e.targetTouches[0].clientX);
+    }
+  };
+
+  const handleTouchEnd = (e) => {
+    if (!touchStart || !e.changedTouches?.[0]) return;
+    const touchEnd = e.changedTouches[0].clientX;
+    const diff = touchStart - touchEnd;
+    if (diff > 50) {
+      nextItem();
+    } else if (diff < -50) {
+      prevItem();
+    }
   };
 
   const prevItem = (e) => {
@@ -426,11 +447,37 @@ export default function GalleryGrid({ mediaItems, showFilter = true, isTeaser = 
                 closeLightbox();
               }
             }}
+            onTouchStart={handleTouchStart}
+            onTouchEnd={handleTouchEnd}
           >
             <div className="lightbox-container">
-              <button className="lightbox-close-btn" aria-label="Close Lightbox" onClick={closeLightbox}>
-                &times;
-              </button>
+              <div className="lightbox-top-actions">
+                <span className="lightbox-item-counter">
+                  {currentIndex + 1} / {displayItems.length}
+                </span>
+
+                {activeItem.mediaType !== 'video' && (
+                  <button
+                    type="button"
+                    className="clean-info-toggle-btn"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setShowPhotoInfo(!showPhotoInfo);
+                    }}
+                    aria-label="Toggle details"
+                  >
+                    <svg viewBox="0 0 20 20" fill="currentColor" width="14" height="14">
+                      <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
+                    </svg>
+                    <span>{showPhotoInfo ? (isTelugu ? 'వివరాలు దాచు' : 'Hide Details') : (isTelugu ? 'వివరాలు చూపు' : 'Show Details')}</span>
+                  </button>
+                )}
+
+                <button className="lightbox-close-btn" aria-label="Close Lightbox" onClick={closeLightbox}>
+                  &times;
+                </button>
+              </div>
+
               <button className="lightbox-nav-btn lightbox-prev" aria-label="Previous Media" onClick={prevItem}>
                 &#10094;
               </button>
@@ -463,61 +510,63 @@ export default function GalleryGrid({ mediaItems, showFilter = true, isTeaser = 
                 </div>
               )}
 
-              {/* Caption and Action Row */}
-              <div className="lightbox-caption">
-                <div style={{ display: 'inline-flex', gap: '8px', marginBottom: '8px', alignItems: 'center' }}>
-                  <span
-                    style={{
-                      background: 'rgba(243, 107, 33, 0.85)',
-                      color: '#FFFFFF',
-                      fontSize: '0.72rem',
-                      fontWeight: 800,
-                      padding: '3px 10px',
-                      borderRadius: 'var(--radius-pill)',
-                      textTransform: 'uppercase',
-                      letterSpacing: '0.08em'
-                    }}
-                  >
-                    {activeItem.mediaType === 'video' ? (isTelugu ? 'వీడియో రికార్డు' : 'Video Record') : (isTelugu ? 'ఛాయాచిత్రం' : 'Photograph')}
-                  </span>
-                  {activeItem.duration && (
-                    <span style={{ background: 'rgba(255, 255, 255, 0.2)', color: '#FFFFFF', fontSize: '0.75rem', fontWeight: 700, padding: '3px 8px', borderRadius: 'var(--radius-pill)' }}>
-                      ▶ {activeItem.duration}
+              {/* Caption and Action Row (Hidden for photos by default for clean view) */}
+              {(activeItem.mediaType === 'video' || showPhotoInfo) && (
+                <div className="lightbox-caption">
+                  <div style={{ display: 'inline-flex', gap: '8px', marginBottom: '8px', alignItems: 'center' }}>
+                    <span
+                      style={{
+                        background: 'rgba(243, 107, 33, 0.85)',
+                        color: '#FFFFFF',
+                        fontSize: '0.72rem',
+                        fontWeight: 800,
+                        padding: '3px 10px',
+                        borderRadius: 'var(--radius-pill)',
+                        textTransform: 'uppercase',
+                        letterSpacing: '0.08em'
+                      }}
+                    >
+                      {activeItem.mediaType === 'video' ? (isTelugu ? 'వీడియో రికార్డు' : 'Video Record') : (isTelugu ? 'ఛాయాచిత్రం' : 'Photograph')}
                     </span>
-                  )}
-                  <span style={{ color: 'rgba(255, 255, 255, 0.75)', fontSize: '0.8rem' }}>
-                    {isTelugu && activeItem.categoryLabelTe ? activeItem.categoryLabelTe : (activeItem.categoryLabel || activeItem.category)}
-                  </span>
+                    {activeItem.duration && (
+                      <span style={{ background: 'rgba(255, 255, 255, 0.2)', color: '#FFFFFF', fontSize: '0.75rem', fontWeight: 700, padding: '3px 8px', borderRadius: 'var(--radius-pill)' }}>
+                        ▶ {activeItem.duration}
+                      </span>
+                    )}
+                    <span style={{ color: 'rgba(255, 255, 255, 0.75)', fontSize: '0.8rem' }}>
+                      {isTelugu && activeItem.categoryLabelTe ? activeItem.categoryLabelTe : (activeItem.categoryLabel || activeItem.category)}
+                    </span>
+                  </div>
+
+                  <h4 className="lightbox-title">
+                    {isTelugu && activeItem.titleTe ? activeItem.titleTe : activeItem.title}
+                  </h4>
+                  <p className="lightbox-desc">
+                    {isTelugu && activeItem.captionTe
+                      ? activeItem.captionTe
+                      : (activeItem.caption || (isTelugu && activeItem.categoryLabelTe ? activeItem.categoryLabelTe : activeItem.categoryLabel))}
+                  </p>
+
+                  {/* Direct Action Link */}
+                  <div className="lightbox-action-row">
+                    <a
+                      href={resolveMediaUrl(activeItem.videoUrl || activeItem.secureUrl)}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="lightbox-action-btn"
+                    >
+                      <svg viewBox="0 0 20 20" fill="currentColor" style={{ width: '15px', height: '15px' }}>
+                        <path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd" />
+                      </svg>
+                      {t('gallery.downloadVideo', isTelugu ? 'పూర్తి ఫైల్ చూడండి / డౌన్‌లోడ్' : 'View Full Media / Download')}
+                    </a>
+                  </div>
+
+                  <small style={{ color: 'rgba(255,255,255,0.5)', marginTop: '8px', display: 'block' }}>
+                    {t('gallery.lightboxHelp')}
+                  </small>
                 </div>
-
-                <h4 className="lightbox-title">
-                  {isTelugu && activeItem.titleTe ? activeItem.titleTe : activeItem.title}
-                </h4>
-                <p className="lightbox-desc">
-                  {isTelugu && activeItem.captionTe
-                    ? activeItem.captionTe
-                    : (activeItem.caption || (isTelugu && activeItem.categoryLabelTe ? activeItem.categoryLabelTe : activeItem.categoryLabel))}
-                </p>
-
-                {/* Direct Action Link */}
-                <div className="lightbox-action-row">
-                  <a
-                    href={resolveMediaUrl(activeItem.videoUrl || activeItem.secureUrl)}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="lightbox-action-btn"
-                  >
-                    <svg viewBox="0 0 20 20" fill="currentColor" style={{ width: '15px', height: '15px' }}>
-                      <path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd" />
-                    </svg>
-                    {t('gallery.downloadVideo', isTelugu ? 'పూర్తి ఫైల్ చూడండి / డౌన్‌లోడ్' : 'View Full Media / Download')}
-                  </a>
-                </div>
-
-                <small style={{ color: 'rgba(255,255,255,0.5)', marginTop: '8px', display: 'block' }}>
-                  {t('gallery.lightboxHelp')}
-                </small>
-              </div>
+              )}
             </div>
           </div>
         )}

@@ -16,7 +16,7 @@ export const en = {
   common: {
     mlaTitle: 'Member of the Legislative Assembly',
     constituencyBadge: 'Bhupalpalle (108)',
-    verifiedNotice: 'Documented strictly from verifiable public records & legislative filings.',
+    verifiedNotice: 'Official public portal of MLA Gandra Satyanarayana Rao.',
     viewDetails: 'View Details',
     learnMore: 'Read Full Record',
     readMore: 'Read More',
@@ -197,7 +197,7 @@ export const en = {
 
   // Footer
   footer: {
-    disclaimer: 'Official public profile maintained strictly from documented public records, assembly proceedings, and news archives.',
+    disclaimer: 'Official public portal of Sri Gandra Satyanarayana Rao, MLA Bhupalpalle (No. 108), Telangana.',
     quickLinks: 'Quick Navigation',
     legislativeOffice: 'Legislative Office',
     rightsReserved: 'All rights reserved.'

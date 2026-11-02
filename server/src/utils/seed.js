@@ -62,7 +62,7 @@ const seedDatabase = async () => {
         notes: 'Weekly Praja Darbar open public court for representations'
       },
       metaDescription: 'Official public profile documenting the public service, legislative work, and constituency engagement of Gandra Satyanarayana Rao (Sathenna), MLA for Bhupalpalle, Telangana.',
-      verificationNotice: 'Documented strictly from verifiable public records, legislative filings, and regional press reporting.'
+      verificationNotice: 'Official public portal of Sri Gandra Satyanarayana Rao, MLA Bhupalpalle (No. 108), Telangana.'
     });
     console.log('[Seed] SiteSettings seeded successfully.');
 

@@ -74,7 +74,7 @@ const siteSettingsSchema = new mongoose.Schema(
     },
     verificationNotice: {
       type: String,
-      default: 'Documented strictly from verifiable public records, legislative filings, and regional press reporting.'
+      default: 'Official public portal of Sri Gandra Satyanarayana Rao, MLA Bhupalpalle (No. 108), Telangana.'
     },
     socialLinks: {
       twitter: { type: String, default: '' },

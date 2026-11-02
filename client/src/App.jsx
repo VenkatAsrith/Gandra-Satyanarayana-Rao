@@ -13,10 +13,13 @@ import WorkPage from './pages/public/WorkPage';
 import GalleryPage from './pages/public/GalleryPage';
 import ContactPage from './pages/public/ContactPage';
 import ConstituencyPage from './pages/public/ConstituencyPage';
+import CopyrightPage from './pages/public/CopyrightPage';
+import DevelopersPage from './pages/public/DevelopersPage';
 import NotFoundPage from './pages/public/NotFoundPage';
 
 // Admin Pages
 import AdminLoginPage from './pages/admin/AdminLoginPage';
+import DeveloperLoginPage from './pages/admin/DeveloperLoginPage';
 import AdminLayout from './components/layout/AdminLayout';
 import AdminDashboardPage from './pages/admin/AdminDashboardPage';
 import AdminSectionsPage from './pages/admin/AdminSectionsPage';
@@ -46,8 +49,11 @@ export default function App() {
                 <Route path="/gallery" element={<GalleryPage />} />
                 <Route path="/constituency" element={<ConstituencyPage />} />
                 <Route path="/contact" element={<ContactPage />} />
+                <Route path="/copyright" element={<CopyrightPage />} />
+                <Route path="/developers" element={<DevelopersPage />} />
 
-                {/* Admin Authentication */}
+                {/* Developer Direct Gateway & Admin Auth */}
+                <Route path="/logindeveloper" element={<DeveloperLoginPage />} />
                 <Route path="/admin/login" element={<AdminLoginPage />} />
 
                 {/* Protected Admin CMS Routes */}

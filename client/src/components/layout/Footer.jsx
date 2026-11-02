@@ -39,18 +39,17 @@ export default function Footer({ settings }) {
             <Link to="/contact" className="footer-nav-link">{t('nav.contact')}</Link>
             <Link to="/contact#grievances" className="footer-nav-link">{isTelugu ? 'ప్రజా సమస్యల నమోదు' : 'Public Grievance Intake'}</Link>
             <Link to="/work" className="footer-nav-link">{isTelugu ? 'శాసనసభ అభివృద్ధి పనులు' : 'Sanctioned Works Tracker'}</Link>
-            <Link to="/admin/login" className="footer-nav-link" style={{ opacity: 0.7 }}>{t('nav.adminLogin')}</Link>
+            <Link to="/developers" className="footer-nav-link">{isTelugu ? 'డెవలపర్స్ (Pendela Sunny & VenkatAsrith)' : 'Developers (Sunny & VenkatAsrith)'}</Link>
           </div>
         </div>
 
         <div className="footer-bottom">
-          <div>
-            &copy; {currentYear} {brandName} · {t('footer.rightsReserved')}
-          </div>
-          <div style={{ fontSize: '0.8rem', color: 'var(--gray)' }}>
-            {isTelugu
-              ? 'ధృవీకరించబడిన ప్రజా రికార్డులు, శాసనసభ నివేదికలు మరియు పత్రికా ఆధారాలతో మాత్రమే ఈ వెబ్‌సైట్ నిర్వహించబడుతుంది.'
-              : (settings?.verificationNotice || 'Documented strictly from verifiable public records, legislative filings, and regional press reporting.')}
+          <div className="footer-copyright-wrap">
+            <span>&copy; {currentYear} {brandName} · {t('footer.rightsReserved')}</span>
+            <span className="footer-sep" aria-hidden="true"> | </span>
+            <Link to="/copyright" className="footer-legal-link">
+              {isTelugu ? 'కాపీరైట్ & సమాచార నిరాకరణ' : 'Copyright & Information Disclaimer'}
+            </Link>
           </div>
         </div>
       </div>

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Header from '../../components/layout/Header';
 import Footer from '../../components/layout/Footer';
 import GalleryGrid from '../../components/public/GalleryGrid';
+import ConstituencyPhotoShowcase from '../../components/public/ConstituencyPhotoShowcase';
 import { api } from '../../services/api';
 import { useLanguage } from '../../i18n/LanguageContext';
 
@@ -104,6 +105,8 @@ export default function GalleryPage() {
             </div>
           </div>
         </section>
+
+        <ConstituencyPhotoShowcase />
 
         <GalleryGrid mediaItems={mediaItems} showFilter={true} isTeaser={false} />
       </main>

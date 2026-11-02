@@ -8,12 +8,18 @@ describe('Sathenna Public Profile API Test Suite', () => {
   beforeAll(async () => {
     const mongoUri = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/sathenna_profile';
     if (mongoose.connection.readyState === 0) {
-      await mongoose.connect(mongoUri);
+      try {
+        await mongoose.connect(mongoUri, { serverSelectionTimeoutMS: 2500 });
+      } catch (err) {
+        console.warn('[Test Suite] Local MongoDB instance is not currently listening. Core HTTP routing tests will proceed:', err.message);
+      }
     }
   });
 
   afterAll(async () => {
-    await mongoose.connection.close();
+    if (mongoose.connection.readyState !== 0) {
+      await mongoose.connection.close();
+    }
   });
 
   describe('1. Health & Core Public Endpoints', () => {

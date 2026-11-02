@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import Header from '../../components/layout/Header';
 import Footer from '../../components/layout/Footer';
 import { api, resolveMediaUrl } from '../../services/api';
 import { useLanguage } from '../../i18n/LanguageContext';
+import { DEFAULT_PROJECTS } from '../../components/public/WorkSpreads';
 
 export default function WorkPage() {
   const { isTelugu, t, formatDate } = useLanguage();
@@ -32,19 +33,34 @@ export default function WorkPage() {
     loadData();
   }, []);
 
-  const filteredProjects = projects.filter((p) => {
-    if (categoryFilter === 'all') return true;
-    return p.category === categoryFilter;
-  });
-
-  const categories = [
+  const categories = useMemo(() => [
     { key: 'all', label: isTelugu ? 'అన్ని ప్రాజెక్టులు' : 'All Projects' },
     { key: 'irrigation', label: isTelugu ? 'సాగునీరు & కాలువలు' : 'Irrigation & Canals' },
     { key: 'heritage', label: isTelugu ? 'ఆలయాలు & ఆధ్యాత్మికం' : 'Heritage & Temples' },
     { key: 'housing', label: isTelugu ? 'ఇందిరమ్మ ఇళ్ళు & సంక్షేమం' : 'Housing & Welfare' },
     { key: 'transit', label: isTelugu ? 'రవాణా & రోడ్లు' : 'Transit & Roads' },
     { key: 'energy', label: isTelugu ? 'విద్యుత్ & సబ్‌స్టేషన్లు' : 'Power & Sub-stations' }
-  ];
+  ], [isTelugu]);
+
+  // Only display projects directly from the live database
+  const combinedProjects = useMemo(() => {
+    return projects || [];
+  }, [projects]);
+
+  // Delete/hide categories that do not have related projects
+  const availableCategories = useMemo(() => {
+    return categories.filter((cat) => {
+      if (cat.key === 'all') return true;
+      return combinedProjects.some((p) => p.category === cat.key);
+    });
+  }, [categories, combinedProjects]);
+
+  const filteredProjects = useMemo(() => {
+    return combinedProjects.filter((p) => {
+      if (categoryFilter === 'all') return true;
+      return p.category === categoryFilter;
+    });
+  }, [combinedProjects, categoryFilter]);
 
   return (
     <>
@@ -54,94 +70,18 @@ export default function WorkPage() {
         <section className="page-header-section">
           <div className="container">
             <div className="page-header-content">
-              <div className="tag-label">
-                {isTelugu ? 'మంజూరైన నిధులు & అభివృద్ధి' : 'Documented Initiatives'}
+              <div className="tag-label green">
+                {isTelugu ? 'తెలంగాణ శాసనసభ వేదిక' : 'Telangana Legislative Assembly'}
               </div>
-              <h1 className="page-header-title">{t('works.pageTitle')}</h1>
-              <p className="page-header-subtitle">{t('works.pageSubtitle')}</p>
+              <h1 className="page-header-title">
+                {isTelugu ? 'శాసనసభ ప్రసంగాలు & ప్రజా సమస్యల ప్రాతినిధ్యం' : 'Legislative Interventions & Floor Record'}
+              </h1>
+              <p className="page-header-subtitle">
+                {isTelugu
+                  ? 'భూపాలపల్లి నియోజకవర్గ రైతాంగం, సింగరేణి కార్మికులు మరియు ప్రజా సమస్యలపై తెలంగాణ శాసనసభలో లేవనెత్తిన అధికారిక ప్రశ్నలు మరియు ప్రసంగాలు.'
+                  : 'Official Hansard record of legislative questions, zero-hour interventions, and floor demands representing the people of Bhupalpalle in the Telangana Legislative Assembly.'}
+              </p>
             </div>
-          </div>
-        </section>
-
-        {/* Filter Pills */}
-        <section className="section-sm" style={{ background: 'var(--surface-alt)', borderBottom: '1px solid var(--border)' }}>
-          <div className="container">
-            <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
-              {categories.map((cat) => (
-                <button
-                  key={cat.key}
-                  type="button"
-                  onClick={() => setCategoryFilter(cat.key)}
-                  style={{
-                    padding: '8px 18px',
-                    borderRadius: 'var(--radius-pill)',
-                    fontSize: '0.88rem',
-                    fontWeight: 600,
-                    cursor: 'pointer',
-                    border: '1px solid',
-                    borderColor: categoryFilter === cat.key ? 'var(--orange)' : 'var(--border)',
-                    background: categoryFilter === cat.key ? 'var(--orange-dark)' : '#FFFFFF',
-                    color: categoryFilter === cat.key ? '#FFFFFF' : 'var(--charcoal)',
-                    transition: 'var(--transition-fast)'
-                  }}
-                >
-                  {cat.label}
-                </button>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Projects Grid */}
-        <section className="section">
-          <div className="container">
-            <div className="work-cards-grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))' }}>
-              {filteredProjects.map((proj) => {
-                const title = (isTelugu && proj.translations?.te?.title) ? proj.translations.te.title : proj.title;
-                const summary = (isTelugu && proj.translations?.te?.summary) ? proj.translations.te.summary : proj.summary;
-                const categoryLabel = (isTelugu && proj.translations?.te?.categoryLabel) ? proj.translations.te.categoryLabel : (proj.categoryLabel || proj.category);
-
-                return (
-                  <article key={proj._id} className="work-card">
-                    <div className="work-card-media" style={{ height: '220px' }}>
-                      <img
-                        src={resolveMediaUrl(proj.mediaUrl || '/images/work/irrigation.jpg')}
-                        alt={title}
-                        loading="lazy"
-                        onError={(e) => {
-                          e.target.src = '/images/work/landscape.jpg';
-                        }}
-                      />
-                      <span className="work-card-pill">{categoryLabel}</span>
-                    </div>
-                    <div className="work-card-content">
-                      <div className="work-meta-row">
-                        <span style={{ fontWeight: 700, color: 'var(--green-dark)' }}>
-                          {proj.amountFormatted || (isTelugu ? 'ప్రభుత్వ మంజూరు' : 'Government Sanction')}
-                        </span>
-                        <span>{proj.mandal}</span>
-                      </div>
-                      <h3 className="work-title">{title}</h3>
-                      <p className="work-text">{summary}</p>
-                      <div style={{ marginTop: '1rem', fontSize: '0.82rem', color: 'var(--gray)', borderTop: '1px solid var(--border-light)', paddingTop: '8px' }}>
-                        <div>
-                          <strong>{t('common.status')}:</strong> {proj.statusNote || (isTelugu ? 'రికార్డులలో నమోదైనది' : 'Documented on record')}
-                        </div>
-                        <div style={{ marginTop: '4px' }}>
-                          <strong>{t('works.actionTaken')}:</strong> {proj.representativeAction} {proj.sourceLabel && `· ${proj.sourceLabel}`}
-                        </div>
-                      </div>
-                    </div>
-                  </article>
-                );
-              })}
-            </div>
-
-            {filteredProjects.length === 0 && (
-              <div style={{ textAlign: 'center', padding: '3rem 1rem', color: 'var(--gray)' }}>
-                {t('common.emptyList')}
-              </div>
-            )}
           </div>
         </section>
 
@@ -150,10 +90,16 @@ export default function WorkPage() {
           <div className="container">
             <div style={{ maxWidth: '850px', marginBottom: '2.5rem' }}>
               <div className="tag-label">
-                {isTelugu ? 'తెలంగాణ శాసనసభ వేదిక' : 'Legislative Assembly Floor'}
+                {isTelugu ? 'అధికారిక హన్సార్డ్ రికార్డు' : 'Official Hansard Proceedings'}
               </div>
-              <h2 className="section-title">{t('activities.pageTitle')}</h2>
-              <p className="section-subtitle">{t('activities.pageSubtitle')}</p>
+              <h2 className="section-title">
+                {isTelugu ? 'ప్రజా సమస్యలకై శాసనసభలో గళం' : 'Documented Assembly Interventions'}
+              </h2>
+              <p className="section-subtitle">
+                {isTelugu
+                  ? 'శాసనసభ రికార్డుల ద్వారా నమోదైన ముఖ్యమైన ప్రసంగాలు మరియు విధానపరమైన డిమాండ్లు.'
+                  : 'Chronological proceedings and policy interventions delivered on the floor of the House.'}
+              </p>
             </div>
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>

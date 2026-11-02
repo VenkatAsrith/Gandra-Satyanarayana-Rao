@@ -1,36 +1,38 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useLanguage } from '../../i18n/LanguageContext';
+import { api } from '../../services/api';
 
-export default function Header({ settings }) {
+export default function Header({ settings: propSettings }) {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const location = useLocation();
+  const [quickNavOpen, setQuickNavOpen] = useState(false);
+  const [localSettings, setLocalSettings] = useState(null);
   const { language, setLanguage, isTelugu, t } = useLanguage();
+  const location = useLocation();
 
   useEffect(() => {
+    let mounted = true;
+    if (!propSettings) {
+      api.getSettings()
+        .then((res) => {
+          if (mounted && res?.data) setLocalSettings(res.data);
+        })
+        .catch((err) => console.error('Failed to load site settings for header:', err));
+    }
+
     const handleScroll = () => {
-      if (window.scrollY > 20) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
-      }
+      setScrolled(window.scrollY > 20);
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll();
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+    return () => {
+      mounted = false;
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [propSettings]);
 
-  useEffect(() => {
-    setMenuOpen(false);
-    document.body.classList.remove('menu-open');
-  }, [location.pathname, location.hash]);
-
-  const closeMenu = () => {
-    setMenuOpen(false);
-    document.body.classList.remove('menu-open');
-  };
+  const settings = propSettings || localSettings;
 
   const toggleMenu = () => {
     const nextState = !menuOpen;
@@ -42,20 +44,26 @@ export default function Header({ settings }) {
     }
   };
 
+  const closeMenu = () => {
+    setMenuOpen(false);
+    setQuickNavOpen(false);
+    document.body.classList.remove('menu-open');
+  };
+
+  const toggleQuickNav = () => {
+    setQuickNavOpen(!quickNavOpen);
+  };
+
+  // Close menus on route change
   useEffect(() => {
-    const handleKeyDown = (e) => {
-      if (e.key === 'Escape' && menuOpen) {
-        closeMenu();
-      }
-    };
-    document.addEventListener('keydown', handleKeyDown);
-    return () => document.removeEventListener('keydown', handleKeyDown);
-  }, [menuOpen]);
+    closeMenu();
+  }, [location.pathname, location.hash]);
 
   const emblem = settings?.emblemUrl || '/images/party-symbol.png';
+
   const constituencyMeta = isTelugu
-    ? `ఎమ్మెల్యే · భూపాలపల్లి (108) · తెలంగాణ`
-    : `MLA · ${settings?.constituencyName || 'Bhupalpalle'} (${settings?.constituencyNo || 108}) · ${settings?.state || 'Telangana'}`;
+    ? `${settings?.constituencyNo || 108} - భూపాలపల్లి నియోజకవర్గం`
+    : `${settings?.constituencyNo || 108} - ${settings?.constituencyName || 'Bhupalpalle'} Constituency`;
 
   const displayName = isTelugu
     ? (settings?.teluguTitle || 'గండ్ర సత్యనారాయణ రావు (సత్తెన్న)')
@@ -154,30 +162,38 @@ export default function Header({ settings }) {
             </div>
           </div>
 
-          <button
-            className="mobile-toggle"
-            aria-label={menuOpen ? 'Close Navigation Menu' : 'Open Navigation Menu'}
-            aria-expanded={menuOpen}
-            onClick={toggleMenu}
-          >
-            {menuOpen ? (
-              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            ) : (
-              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
-              </svg>
-            )}
-          </button>
+          {/* Mobile 3-Dots Quick Navigation & Menu Trigger Button */}
+          <div className="mobile-header-triggers">
+            <button
+              className="mobile-dots-nav-btn"
+              aria-label={menuOpen ? 'Close Navigation Menu' : 'Open Quick Navigation Menu'}
+              aria-expanded={menuOpen}
+              onClick={toggleMenu}
+              title="Quick Navigation (3 Dots)"
+            >
+              {menuOpen ? (
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="22" height="22">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              ) : (
+                <div className="dots-icon-composite" aria-hidden="true">
+                  <span className="dot-circle"></span>
+                  <span className="dot-circle"></span>
+                  <span className="dot-circle"></span>
+                </div>
+              )}
+              <span className="dots-btn-label">{menuOpen ? (isTelugu ? 'ముయ్యి' : 'Close') : (isTelugu ? 'విభాగాలు' : 'Quick Nav')}</span>
+            </button>
+          </div>
         </div>
       </header>
 
-      {/* Mobile Drawer */}
+      {/* Mobile Drawer with Quick Navigation Grid */}
       <div
         className={`mobile-nav-drawer ${menuOpen ? 'active' : ''}`}
         role="dialog"
         aria-modal="true"
+        aria-label="Mobile Navigation Menu"
         onClick={(e) => {
           if (e.target.classList.contains('mobile-nav-drawer')) {
             closeMenu();
@@ -185,7 +201,23 @@ export default function Header({ settings }) {
         }}
       >
         <div className="mobile-nav-content">
-          {/* Mobile Language Switcher */}
+          {/* Mobile Header in Drawer */}
+          <div className="mobile-drawer-header">
+            <div className="mobile-drawer-brand">
+              <span className="drawer-title">{displayName}</span>
+              <span className="drawer-subtitle">{constituencyMeta}</span>
+            </div>
+            <button
+              type="button"
+              className="drawer-close-btn"
+              onClick={closeMenu}
+              aria-label="Close menu"
+            >
+              &times;
+            </button>
+          </div>
+
+          {/* Quick Language Switcher */}
           <div className="mobile-lang-row">
             <span className="text-secondary text-sm">భాష / Language:</span>
             <div className="lang-switcher-pill">
@@ -206,6 +238,33 @@ export default function Header({ settings }) {
             </div>
           </div>
 
+          {/* Quick Jump 3-Dots Grid */}
+          <div className="drawer-quick-jump-section">
+            <div className="drawer-section-heading">
+              <span className="dots-mini" aria-hidden="true">• • •</span>
+              <span>{isTelugu ? 'త్వరిత నావిగేషన్' : 'Quick Navigation'}</span>
+            </div>
+            <div className="quick-jump-grid">
+              <Link to="/#activities" className="quick-jump-item" onClick={closeMenu}>
+                <span className="quick-jump-icon">📅</span>
+                <span className="quick-jump-text">{isTelugu ? 'కార్యక్రమాలు' : 'Activities'}</span>
+              </Link>
+              <Link to="/constituency" className="quick-jump-item" onClick={closeMenu}>
+                <span className="quick-jump-icon">🏛️</span>
+                <span className="quick-jump-text">{isTelugu ? 'మండలాలు' : 'Mandals'}</span>
+              </Link>
+              <Link to="/gallery" className="quick-jump-item" onClick={closeMenu}>
+                <span className="quick-jump-icon">📸</span>
+                <span className="quick-jump-text">{isTelugu ? 'గ్యాలరీ' : 'Gallery'}</span>
+              </Link>
+              <Link to="/work" className="quick-jump-item" onClick={closeMenu}>
+                <span className="quick-jump-icon">🏛️</span>
+                <span className="quick-jump-text">{isTelugu ? 'శాసనసభ' : 'Legislative'}</span>
+              </Link>
+            </div>
+          </div>
+
+          {/* Standard Navigation Links */}
           <div className="mobile-nav-links">
             <Link
               to="/"
@@ -253,7 +312,7 @@ export default function Header({ settings }) {
             <Link
               to="/contact"
               className="btn-pill btn-primary"
-              style={{ width: '100%', marginTop: '1rem', justifyContent: 'center' }}
+              style={{ width: '100%', marginTop: '0.75rem', justifyContent: 'center' }}
               onClick={closeMenu}
             >
               {isTelugu ? 'క్యాంపు ఆఫీస్ వినతులు' : 'Camp Office & Praja Darbar'}
@@ -281,6 +340,53 @@ export default function Header({ settings }) {
           </div>
         </div>
       </div>
+
+      {/* Floating 3-Dots Quick Navigation Pill Dock on Mobile Devices */}
+      <aside className="mobile-floating-quick-dock" aria-label="Quick Actions Dock">
+        {quickNavOpen ? (
+          <div className="floating-quick-panel">
+            <div className="floating-quick-header">
+              <span>{isTelugu ? 'త్వరిత విభాగాలు' : 'Quick Navigation'}</span>
+              <button
+                type="button"
+                className="floating-quick-close"
+                onClick={() => setQuickNavOpen(false)}
+                aria-label="Close"
+              >
+                &times;
+              </button>
+            </div>
+            <div className="floating-quick-links">
+              <Link to="/#activities" onClick={() => setQuickNavOpen(false)}>
+                📅 {isTelugu ? 'కార్యక్రమాలు' : 'Activities'}
+              </Link>
+              <Link to="/constituency" onClick={() => setQuickNavOpen(false)}>
+                🏛️ {isTelugu ? 'మండలాలు' : 'Mandals'}
+              </Link>
+              <Link to="/gallery" onClick={() => setQuickNavOpen(false)}>
+                📸 {isTelugu ? 'గ్యాలరీ' : 'Gallery'}
+              </Link>
+              <Link to="/work" onClick={() => setQuickNavOpen(false)}>
+                🏛️ {isTelugu ? 'శాసనసభ' : 'Legislative'}
+              </Link>
+              <Link to="/contact" onClick={() => setQuickNavOpen(false)}>
+                📞 {isTelugu ? 'క్యాంపు ఆఫీస్' : 'Camp Office'}
+              </Link>
+            </div>
+          </div>
+        ) : null}
+
+        <button
+          type="button"
+          className="floating-dots-fab"
+          onClick={toggleQuickNav}
+          aria-label={quickNavOpen ? 'Close Quick Navigation' : 'Open Quick Navigation (3 Dots)'}
+          title="Quick Navigation"
+        >
+          <span className="fab-dots">•••</span>
+          <span className="fab-label">{isTelugu ? 'త్వరిత నావ్' : 'Quick Nav'}</span>
+        </button>
+      </aside>
     </>
   );
 }

@@ -148,8 +148,8 @@ export default function VideoReelShowcase() {
             <span>📹 {isTelugu ? 'అన్ని వీడియోలు ఒరిజినల్ ఫీల్డ్ రికార్డుల నుండి స్వీకరించబడ్డాయి.' : 'All video records documented directly from constituency service events.'}</span>
           </div>
           <div>
-            <Link to="/gallery?type=video" className="btn-pill btn-secondary" style={{ borderColor: 'rgba(255, 255, 255, 0.2)', color: '#FFFFFF' }}>
-              {isTelugu ? 'వీడియో ఆర్కైవ్ మొత్తం చూడండి' : 'View Full Video Archive'}
+            <Link to="/gallery?type=video" className="btn-pill btn-theatre-archive">
+              <span>{isTelugu ? 'వీడియో ఆర్కైవ్ మొత్తం చూడండి' : 'View Full Video Archive'}</span>
               <svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16">
                 <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
               </svg>

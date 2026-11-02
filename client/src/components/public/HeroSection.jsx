@@ -23,56 +23,13 @@ export default function HeroSection({ profile, settings }) {
         <div className="hero-editorial-canvas">
           {/* Architectural Watermark */}
           <div className="hero-bg-watermark" aria-hidden="true">
-            {isTelugu ? 'ప్రజా నాయకుడు' : 'PROFILE'}
-          </div>
-
-          {/* Top Metadata Navigation Row */}
-          <div className="hero-top-bar">
-            <div className="hero-meta-nav">
-              <div className="hero-meta-item">
-                <span className="hero-meta-num">01</span>
-                <span className="hero-meta-text">{isTelugu ? 'ప్రజా నాయకత్వం' : 'Public Profile'}</span>
-              </div>
-              <span className="hero-meta-sep" aria-hidden="true">—</span>
-              <div className="hero-meta-item">
-                <span className="hero-meta-num">02</span>
-                <span className="hero-meta-text">{isTelugu ? 'శాసనసభ రికార్డు' : 'Legislative Record'}</span>
-              </div>
-              <span className="hero-meta-sep" aria-hidden="true">—</span>
-              <div className="hero-meta-item">
-                <span className="hero-meta-num">03</span>
-                <span className="hero-meta-text">
-                  {isTelugu ? `భూపాలపల్లి (${constituencyNo})` : `${constituencyName} (${constituencyNo})`}
-                </span>
-              </div>
-            </div>
-
-            <div className="hero-top-badge">
-              <span className="hero-badge-dot" aria-hidden="true"></span>
-              <span>{isTelugu ? 'తెలంగాణ శాసనసభ' : 'Telangana Legislative Assembly'}</span>
-            </div>
+            {isTelugu ? 'ప్రజా నాయకుడు' : 'LEADERSHIP'}
           </div>
 
           {/* Asymmetrical Two-Column Main Stage */}
           <div className="hero-main-grid">
             {/* Left Content Column */}
             <div className="hero-content-col">
-              <div className="hero-name-pill-wrapper">
-                <span className="hero-telugu-pill">
-                  {teluguName}
-                </span>
-                <span className="hero-verified-badge">
-                  <svg viewBox="0 0 20 20" fill="currentColor" style={{ width: '14px', height: '14px' }}>
-                    <path
-                      fillRule="evenodd"
-                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                  {isTelugu ? 'అధికారిక ప్రజా రికార్డు' : 'Verified Public Representative'}
-                </span>
-              </div>
-
               {/* Responsive Controlled Display Name */}
               {isTelugu ? (
                 <h1 className="hero-display-heading hero-telugu-heading">
@@ -110,8 +67,8 @@ export default function HeroSection({ profile, settings }) {
 
               {/* Action Buttons: Working Internal Routes */}
               <div className="hero-cta-group">
-                <Link to="/work" className="btn-pill btn-primary">
-                  {t('hero.viewWorks', isTelugu ? 'అభివృద్ధి పనుల రికార్డు' : 'Explore Development Works')}
+                <Link to="/constituency" className="btn-pill btn-primary">
+                  {isTelugu ? 'నియోజకవర్గ మండలాలు' : 'Constituency Mandals'}
                   <svg viewBox="0 0 20 20" fill="currentColor">
                     <path
                       fillRule="evenodd"
@@ -125,9 +82,9 @@ export default function HeroSection({ profile, settings }) {
                   {isTelugu ? 'జీవిత ప్రస్థానం & చరిత్ర' : 'Biography & Journey'}
                 </Link>
 
-                <a href="#contact" className="btn-pill btn-outline">
+                <Link to="/contact" className="btn-pill btn-outline">
                   {isTelugu ? 'క్యాంపు ఆఫీస్ / వినతులు' : 'Camp Office / Contact'}
-                </a>
+                </Link>
               </div>
 
               {/* Compact Electoral Credentials Strip */}

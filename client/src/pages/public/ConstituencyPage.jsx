@@ -4,6 +4,7 @@ import Footer from '../../components/layout/Footer';
 import { api, resolveMediaUrl } from '../../services/api';
 import { useLanguage } from '../../i18n/LanguageContext';
 import { Link } from 'react-router-dom';
+import ScrollStack, { ScrollStackItem } from '../../components/public/ScrollStack';
 
 export default function ConstituencyPage() {
   const { t, isTelugu } = useLanguage();
@@ -233,41 +234,51 @@ export default function ConstituencyPage() {
               </p>
             </div>
 
-            <div className="constituency-mandals-grid">
-              {mandalsData.map((m, idx) => {
-                const name = isTelugu ? m.nameTe : m.nameEn;
-                const category = isTelugu ? m.categoryTe : m.categoryEn;
-                const desc = isTelugu ? m.descTe : m.descEn;
+            <div className="mandals-scroll-stack-wrapper">
+              <ScrollStack stackOffset={32}>
+                {mandalsData.map((m, idx) => {
+                  const name = isTelugu ? m.nameTe : m.nameEn;
+                  const category = isTelugu ? m.categoryTe : m.categoryEn;
+                  const desc = isTelugu ? m.descTe : m.descEn;
+                  const accents = ['saffron', 'green', 'saffron', 'green', 'saffron', 'green'];
+                  const accent = accents[idx % accents.length];
 
-                return (
-                  <article key={idx} className="mandal-card-editorial">
-                    <div className="mandal-card-top">
-                      <span className="mandal-code-badge">
-                        {isTelugu ? `మండలం 0${idx + 1}` : `Mandal 0${idx + 1}`}
-                      </span>
-                      <span className="mandal-ac-tag">108 AC</span>
-                    </div>
+                  return (
+                    <ScrollStackItem
+                      key={idx}
+                      accent={accent}
+                      className="mandal-stack-item-card"
+                    >
+                      <article className="mandal-card-editorial mandal-stack-inner">
+                        <div className="mandal-card-top">
+                          <span className="mandal-code-badge">
+                            {isTelugu ? `మండలం 0${idx + 1}` : `Mandal 0${idx + 1}`}
+                          </span>
+                          <span className="mandal-ac-tag">108 AC</span>
+                        </div>
 
-                    <h3 className="mandal-card-title">{name}</h3>
+                        <h3 className="mandal-card-title">{name}</h3>
 
-                    <div className="mandal-card-cat">
-                      <span className="live-pulse-dot" aria-hidden="true"></span>
-                      {category}
-                    </div>
+                        <div className="mandal-card-cat">
+                          <span className="live-pulse-dot" aria-hidden="true"></span>
+                          {category}
+                        </div>
 
-                    <p className="mandal-card-desc">{desc}</p>
+                        <p className="mandal-card-desc">{desc}</p>
 
-                    <div className="mandal-card-footer">
-                      <span className="mandal-focus-tag">
-                        {isTelugu ? 'అధికారిక రికార్డు' : 'Verified Command Area'}
-                      </span>
-                      <Link to="/work" className="mandal-action-link">
-                        {isTelugu ? 'ప్రాజెక్టులు' : 'View Works'} →
-                      </Link>
-                    </div>
-                  </article>
-                );
-              })}
+                        <div className="mandal-card-footer">
+                          <span className="mandal-focus-tag">
+                            {isTelugu ? 'కమాండ్ ఏరియా' : 'Command Area Profile'}
+                          </span>
+                          <Link to="/work" className="mandal-action-link">
+                            {isTelugu ? 'అభివృద్ధి పనులు' : 'View Works'} →
+                          </Link>
+                        </div>
+                      </article>
+                    </ScrollStackItem>
+                  );
+                })}
+              </ScrollStack>
             </div>
           </div>
         </section>

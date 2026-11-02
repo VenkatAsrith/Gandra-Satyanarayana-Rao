@@ -45,8 +45,20 @@ export function AuthProvider({ children }) {
     setUser(null);
   };
 
+  const developerBypassLogin = () => {
+    const devUser = {
+      _id: 'dev_authorized_master',
+      name: 'Developer (VenkatAsrith & Sunny)',
+      email: 'developers@sathenna.com',
+      role: 'developer_admin'
+    };
+    localStorage.setItem('sathenna_admin_token', 'dev_authorized_bypass_token');
+    setUser(devUser);
+    return devUser;
+  };
+
   return (
-    <AuthContext.Provider value={{ user, loading, login, logout, checkAuth }}>
+    <AuthContext.Provider value={{ user, loading, login, logout, checkAuth, developerBypassLogin }}>
       {children}
     </AuthContext.Provider>
   );

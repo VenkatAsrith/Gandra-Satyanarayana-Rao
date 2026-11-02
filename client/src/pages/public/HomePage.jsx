@@ -5,11 +5,11 @@ import HeroSection from '../../components/public/HeroSection';
 import StoryGrid from '../../components/public/StoryGrid';
 import JourneyTimeline from '../../components/public/JourneyTimeline';
 import ConstituencyOverview from '../../components/public/ConstituencyOverview';
-import WorkSpreads from '../../components/public/WorkSpreads';
 import FeaturedAdvocacy from '../../components/public/FeaturedAdvocacy';
 import RecentActivities from '../../components/public/RecentActivities';
 import GalleryGrid from '../../components/public/GalleryGrid';
 import VideoReelShowcase from '../../components/public/VideoReelShowcase';
+import ConstituencyPhotoShowcase from '../../components/public/ConstituencyPhotoShowcase';
 import ContactChannels from '../../components/public/ContactChannels';
 import DynamicSectionRenderer from '../../components/public/DynamicSectionRenderer';
 import ErrorBoundary from '../../components/common/ErrorBoundary';
@@ -86,10 +86,6 @@ export default function HomePage() {
         </ErrorBoundary>
 
         <ErrorBoundary>
-          <WorkSpreads projects={projects} />
-        </ErrorBoundary>
-
-        <ErrorBoundary>
           <VideoReelShowcase />
         </ErrorBoundary>
 
@@ -106,6 +102,10 @@ export default function HomePage() {
 
         <ErrorBoundary>
           <RecentActivities activities={activities} />
+        </ErrorBoundary>
+
+        <ErrorBoundary>
+          <ConstituencyPhotoShowcase />
         </ErrorBoundary>
 
         <ErrorBoundary>

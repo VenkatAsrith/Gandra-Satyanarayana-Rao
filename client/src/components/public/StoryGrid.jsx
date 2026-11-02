@@ -20,11 +20,6 @@ export default function StoryGrid({ profile }) {
       <div className="container">
         <div className="intro-grid">
           <div>
-            <div className="tag-label">
-              {isTelugu ? 'నాయకత్వ విశేషాలు' : 'About the Person'}
-            </div>
-          </div>
-          <div>
             <h2 className="intro-lead-title">{leadTitle}</h2>
           </div>
           <div>
