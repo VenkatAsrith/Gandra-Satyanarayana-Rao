@@ -2,30 +2,6 @@
 export const MEDIA_CATALOG = {
   "videos": [
     {
-      "id": "vid-sathenna-special-feature",
-      "orig": "satyamaryanaedited.mp4",
-      "slug": "sathenna-development-special-feature",
-      "title": "Bhupalpalle Constituency Development & Public Service Milestone Feature",
-      "titleTe": "భూపాలపల్లి నియోజకవర్గ ప్రజాసేవ & అభివృద్ధి ప్రస్థానం — సమగ్ర వీడియో డాక్యుమెంటరీ",
-      "category": "governance",
-      "categoryLabel": "Development & Leadership",
-      "categoryLabelTe": "అభివృద్ధి & ప్రజా నాయకత్వం",
-      "caption": "Comprehensive documentary showcasing MLA Gandra Satyanarayana Rao's constituency projects, grassroots farmer support, and public outreach.",
-      "captionTe": "భూపాలపల్లి నియోజకవర్గంలో శాసనసభ్యులు గండ్ర సత్యనారాయణ రావు గారి అభివృద్ధి పనులు, ప్రజా దర్బార్లు మరియు సంక్షేమ కార్యక్రమాల సమగ్ర డాక్యుమెంటరీ దృశ్యాలు.",
-      "featured": true,
-      "order": 0,
-      "duration": "Feature",
-      "durationSec": 180,
-      "width": 1920,
-      "height": 1080,
-      "mediaType": "video",
-      "format": "mp4",
-      "videoUrl": "/media/videos/sathenna-development-highlight.mp4",
-      "secureUrl": "/media/videos/sathenna-development-highlight.mp4",
-      "thumbnailUrl": "/media/images/constituency-event-1.jpg",
-      "altText": "Bhupalpalle Constituency Development & Public Service Milestone Feature"
-    },
-    {
       "id": "vid-agri-drone-launch",
       "orig": "WhatsApp Video 2026-10-29 at 8.18.30 PM.mp4",
       "slug": "agricultural-drone-launch",
