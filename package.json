@@ -18,8 +18,13 @@
     "seed": "npm --prefix server run seed",
     "admin:setup": "npm --prefix server run admin:setup"
   },
+  "workspaces": [
+    "client",
+    "server"
+  ],
   "devDependencies": {
-    "concurrently": "^9.2.5"
+    "concurrently": "^9.2.5",
+    "vite": "^6.0.7"
   },
   "author": "Antigravity Engineering",
   "license": "ISC"
