@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { useLanguage } from '../../i18n/LanguageContext';
-import ScrollStack, { ScrollStackItem } from './ScrollStack';
 
 export default function JourneyTimeline({ timeline }) {
   const { isTelugu } = useLanguage();
+  const [activeMilestone, setActiveMilestone] = useState(0);
+  const trackRef = useRef(null);
+  const cardRefs = useRef([]);
 
   const teluguMilestoneOverrides = [
     {
@@ -105,8 +107,65 @@ export default function JourneyTimeline({ timeline }) {
 
   const rawItems = timeline && timeline.length ? timeline : defaultTimeline;
 
+  const scrollToMilestone = (index) => {
+    const target = cardRefs.current[index];
+    if (target && trackRef.current) {
+      target.scrollIntoView({
+        behavior: 'smooth',
+        block: 'nearest',
+        inline: 'center'
+      });
+      setActiveMilestone(index);
+    }
+  };
+
+  const handlePrev = () => {
+    const prev = Math.max(0, activeMilestone - 1);
+    scrollToMilestone(prev);
+  };
+
+  const handleNext = () => {
+    const next = Math.min(rawItems.length - 1, activeMilestone + 1);
+    scrollToMilestone(next);
+  };
+
+  // Track active milestone on scroll
+  useEffect(() => {
+    const track = trackRef.current;
+    if (!track) return;
+
+    let timeoutId = null;
+    const handleScroll = () => {
+      if (timeoutId) clearTimeout(timeoutId);
+      timeoutId = setTimeout(() => {
+        const trackCenter = track.getBoundingClientRect().left + track.clientWidth / 2;
+        let closestIndex = 0;
+        let minDiff = Infinity;
+
+        cardRefs.current.forEach((card, idx) => {
+          if (!card) return;
+          const rect = card.getBoundingClientRect();
+          const cardCenter = rect.left + rect.width / 2;
+          const diff = Math.abs(trackCenter - cardCenter);
+          if (diff < minDiff) {
+            minDiff = diff;
+            closestIndex = idx;
+          }
+        });
+
+        setActiveMilestone(closestIndex);
+      }, 50);
+    };
+
+    track.addEventListener('scroll', handleScroll, { passive: true });
+    return () => {
+      track.removeEventListener('scroll', handleScroll);
+      if (timeoutId) clearTimeout(timeoutId);
+    };
+  }, [rawItems.length]);
+
   return (
-    <section id="journey" className="journey-section">
+    <section id="journey" className="journey-section" aria-label="Political Journey Timeline">
       <div className="container">
         {/* Section Header */}
         <div className="journey-header">
@@ -124,9 +183,86 @@ export default function JourneyTimeline({ timeline }) {
           </p>
         </div>
 
-        {/* ScrollStack Interactive Journey Timeline */}
-        <div className="political-timeline">
-          <ScrollStack stackOffset={32}>
+        {/* Premium Horizontal Scroll Trigger Deck Controls */}
+        <div className="timeline-horizontal-deck">
+          {/* Milestone Step Indicator Nodes with Progress Connecting Line */}
+          <div className="timeline-milestones-nav" role="tablist" aria-label="Timeline Milestones">
+            <div className="milestones-line-track" aria-hidden="true">
+              <div
+                className="milestones-line-fill"
+                style={{ width: `${(activeMilestone / Math.max(1, rawItems.length - 1)) * 100}%` }}
+              ></div>
+            </div>
+
+            {rawItems.map((item, idx) => {
+              const te = teluguMilestoneOverrides[idx] || {};
+              const year = isTelugu
+                ? (item.translations?.te?.yearOrPeriod || te.yearOrPeriod || item.yearOrPeriod)
+                : (item.yearOrPeriod || te.yearOrPeriod);
+              const chapterNum = te.chapterNum || String(idx + 1).padStart(2, '0');
+              const isActive = idx === activeMilestone;
+
+              return (
+                <button
+                  key={idx}
+                  type="button"
+                  role="tab"
+                  aria-selected={isActive}
+                  aria-label={`Milestone ${chapterNum}: ${year}`}
+                  className={`milestone-node-btn ${isActive ? 'active' : ''}`}
+                  onClick={() => scrollToMilestone(idx)}
+                >
+                  <span className="milestone-node-dot">
+                    <span className="node-num">{chapterNum}</span>
+                  </span>
+                  <span className="milestone-node-label">{year}</span>
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Stepper Navigation Triggers (Prev / Next & Milestone Counter) */}
+          <div className="timeline-nav-controls">
+            <div className="timeline-stepper-counter">
+              <span className="stepper-current">0{activeMilestone + 1}</span>
+              <span className="stepper-divider">/</span>
+              <span className="stepper-total">0{rawItems.length}</span>
+              <span className="stepper-pill-label">
+                {isTelugu ? 'మైలురాయి' : 'Milestone'}
+              </span>
+            </div>
+
+            <div className="timeline-nav-btns-group">
+              <button
+                type="button"
+                className="timeline-nav-arrow-btn"
+                onClick={handlePrev}
+                disabled={activeMilestone === 0}
+                aria-label={isTelugu ? 'మునుపటి మైలురాయి' : 'Previous Milestone'}
+                title="Previous Milestone"
+              >
+                &#10094;
+              </button>
+              <button
+                type="button"
+                className="timeline-nav-arrow-btn"
+                onClick={handleNext}
+                disabled={activeMilestone >= rawItems.length - 1}
+                aria-label={isTelugu ? 'తదుపరి మైలురాయి' : 'Next Milestone'}
+                title="Next Milestone"
+              >
+                &#10095;
+              </button>
+            </div>
+          </div>
+
+          {/* Horizontal Snapping Scroll Stage */}
+          <div
+            className="timeline-horizontal-stage"
+            ref={trackRef}
+            role="region"
+            aria-label="Horizontal Political Journey Timeline Track"
+          >
             {rawItems.map((item, index) => {
               const te = teluguMilestoneOverrides[index] || {};
               const title = isTelugu
@@ -147,12 +283,22 @@ export default function JourneyTimeline({ timeline }) {
               const chapterNum = te.chapterNum || String(index + 1).padStart(2, '0');
               const accent = te.accent || (index % 2 === 0 ? 'saffron' : 'green');
               const isLatest = te.isLatest || index === rawItems.length - 1;
+              const isActive = index === activeMilestone;
 
               return (
-                <ScrollStackItem
+                <article
                   key={index}
-                  accent={accent}
-                  className={isLatest ? 'is-incumbent-card' : ''}
+                  ref={(el) => (cardRefs.current[index] = el)}
+                  className={`timeline-h-card accent-${accent} ${isActive ? 'is-active-milestone' : ''} ${isLatest ? 'is-incumbent-card' : ''}`}
+                  onClick={() => scrollToMilestone(index)}
+                  tabIndex={0}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      e.preventDefault();
+                      scrollToMilestone(index);
+                    }
+                  }}
+                  aria-label={`Milestone ${chapterNum}: ${title}`}
                 >
                   <div className="timeline-card-header">
                     <div className="timeline-chapter-badge">
@@ -190,10 +336,17 @@ export default function JourneyTimeline({ timeline }) {
                       </div>
                     )}
                   </div>
-                </ScrollStackItem>
+                </article>
               );
             })}
-          </ScrollStack>
+          </div>
+
+          {/* Swipe / Scroll Gesture Hint for Mobile */}
+          <div className="timeline-swipe-hint" aria-hidden="true">
+            <span className="swipe-arrow">←</span>
+            <span>{isTelugu ? 'మైలురాళ్లను చూడటానికి స్వైప్ చేయండి' : 'Swipe / Scroll to Explore Journey'}</span>
+            <span className="swipe-arrow">→</span>
+          </div>
         </div>
       </div>
     </section>

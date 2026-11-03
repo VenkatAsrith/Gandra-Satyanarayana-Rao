@@ -162,27 +162,42 @@ export default function Header({ settings: propSettings }) {
             </div>
           </div>
 
-          {/* Mobile 3-Dots Quick Navigation & Menu Trigger Button */}
+          {/* Mobile Actions: Correctly Aligned 3-Lines Hamburger & 3-Dots Quick Nav */}
           <div className="mobile-header-triggers">
+            {/* Quick 3-Dots Jump Pill */}
             <button
-              className="mobile-dots-nav-btn"
-              aria-label={menuOpen ? 'Close Navigation Menu' : 'Open Quick Navigation Menu'}
+              type="button"
+              className="mobile-quick-pill"
+              onClick={() => {
+                const el = document.getElementById('activities') || document.getElementById('journey');
+                if (el) el.scrollIntoView({ behavior: 'smooth' });
+                else window.location.href = '/#activities';
+              }}
+              aria-label={isTelugu ? 'త్వరిత విభాగాలు' : 'Quick Jump'}
+              title={isTelugu ? 'త్వరిత విభాగాలు' : 'Quick Jump'}
+            >
+              <div className="dots-icon-composite" aria-hidden="true">
+                <span className="dot-circle"></span>
+                <span className="dot-circle"></span>
+                <span className="dot-circle"></span>
+              </div>
+              <span className="dots-btn-label">{isTelugu ? 'విభాగాలు' : 'Quick'}</span>
+            </button>
+
+            {/* Premium Aligned 3-Lines Hamburger Menu Button */}
+            <button
+              type="button"
+              className={`mobile-hamburger-btn ${menuOpen ? 'active' : ''}`}
+              aria-label={menuOpen ? 'Close Navigation Menu' : 'Open Navigation Menu (3 Lines)'}
               aria-expanded={menuOpen}
               onClick={toggleMenu}
-              title="Quick Navigation (3 Dots)"
+              title={menuOpen ? 'Close Menu' : 'Open Menu (3 Lines)'}
             >
-              {menuOpen ? (
-                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="22" height="22">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              ) : (
-                <div className="dots-icon-composite" aria-hidden="true">
-                  <span className="dot-circle"></span>
-                  <span className="dot-circle"></span>
-                  <span className="dot-circle"></span>
-                </div>
-              )}
-              <span className="dots-btn-label">{menuOpen ? (isTelugu ? 'ముయ్యి' : 'Close') : (isTelugu ? 'విభాగాలు' : 'Quick Nav')}</span>
+              <div className="hamburger-box" aria-hidden="true">
+                <span className="hamburger-line line-1"></span>
+                <span className="hamburger-line line-2"></span>
+                <span className="hamburger-line line-3"></span>
+              </div>
             </button>
           </div>
         </div>
