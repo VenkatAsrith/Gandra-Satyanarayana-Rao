@@ -1,0 +1,23 @@
+# robots.txt for https://gandrasatyanarayanarao.in/
+# Official Public Profile of Gandra Satyanarayana Rao (MLA Bhupalpalle 108)
+
+User-agent: *
+Allow: /
+Allow: /about
+Allow: /work
+Allow: /constituency
+Allow: /gallery
+Allow: /contact
+Allow: /copyright
+Allow: /developers
+Allow: /images/
+Allow: /media/
+
+# Disallow private administrative and authentication endpoints
+Disallow: /admin/
+Disallow: /admin
+Disallow: /logindeveloper
+Disallow: /api/
+
+# Sitemap location for search engines
+Sitemap: https://gandrasatyanarayanarao.in/sitemap.xml

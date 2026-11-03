@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+
+  <!-- 1. Homepage: Primary Profile & Live Public Interventions -->
+  <url>
+    <loc>https://gandrasatyanarayanarao.in/</loc>
+    <lastmod>2026-11-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- 2. Documented Biography & 40-Year Political Journey -->
+  <url>
+    <loc>https://gandrasatyanarayanarao.in/about</loc>
+    <lastmod>2026-11-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- 3. Legislative Assembly Record, Questions & Hansard Interventions -->
+  <url>
+    <loc>https://gandrasatyanarayanarao.in/work</loc>
+    <lastmod>2026-11-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- 4. Bhupalpalle 108 Constituency & 6 Mandals Profile -->
+  <url>
+    <loc>https://gandrasatyanarayanarao.in/constituency</loc>
+    <lastmod>2026-11-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- 5. Official Media Archive, Field Photographs & Videos -->
+  <url>
+    <loc>https://gandrasatyanarayanarao.in/gallery</loc>
+    <lastmod>2026-11-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- 6. Praja Darbar & Buddharam Camp Office Contact Channels -->
+  <url>
+    <loc>https://gandrasatyanarayanarao.in/contact</loc>
+    <lastmod>2026-11-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- 7. Verified Public Records & Intellectual Property Policy -->
+  <url>
+    <loc>https://gandrasatyanarayanarao.in/copyright</loc>
+    <lastmod>2026-11-03</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <!-- 8. Technical Architecture & Verification Portal -->
+  <url>
+    <loc>https://gandrasatyanarayanarao.in/developers</loc>
+    <lastmod>2026-11-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+</urlset>
