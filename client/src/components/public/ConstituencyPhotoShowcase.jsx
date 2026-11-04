@@ -66,7 +66,72 @@ const EVENT_PHOTOS = [
     captionTe: 'మంజూరైన రోడ్లు, డ్రైనేజీలు మరియు సాగునీటి పనుల నాణ్యతను క్షేత్రస్థాయిలో పరిశీలించిన ఎమ్మెల్యే.',
     studyNotes: 'Civil engineering quality check of canal revetments and BT road works to verify adherence to sanctioned PWD standards.',
     studyNotesTe: 'సాగునీటి కాలువల పూడికతీత, బీటీ రోడ్ల నాణ్యతను స్వయంగా పర్యవేక్షిస్తూ ప్రభుత్వ నిధుల సద్వినియోగానికి భరోసా.'
+  },
+  {
+    id: 'img-chityal-foundation-1',
+    secureUrl: '/media/images/chityal-development-foundation-1.jpg',
+    thumbnailUrl: '/media/images/chityal-development-foundation-1.jpg',
+    title: '₹2.14 Cr Development Works Foundation Laying in Chityal',
+    titleTe: 'రూ. 2.14 కోట్ల అభివృద్ధి పనుల శంకుస్థాపన - చిట్యాల మండలం',
+    part: '05',
+    category: 'Public Works',
+    categoryTe: 'అభివృద్ధి పనులు',
+    location: 'Chityal Mandal · Chainpaka & Anduku Thanda',
+    locationTe: 'చిట్యాల మండలం · చైన్పాక & అందుకు తండా',
+    caption: 'MLA Gandra Satyanarayana Rao laying foundation stones for multiple developmental works worth ₹2.14 Cr across Chityal Mandal.',
+    captionTe: 'చిట్యాల మండలంలో సుమారు రూ. 2.14 కోట్ల వ్యయంతో చేపట్టనున్న పలు అభివృద్ధి పనులకు శంకుస్థాపనలు చేసిన ఎమ్మెల్యే గండ్ర సత్యనారాయణ రావు గారు.',
+    studyNotes: 'Initiating construction of Mahila Sangha Bhavans across Chainpaka, Anduku Thanda, Giddemutharam, and Kalvapalli villages with ₹2.14 Cr state allocation.',
+    studyNotesTe: 'చైన్పాక, అందుకు తండా, గిద్దెముత్తారం, కాల్వపల్లి గ్రామాల్లో మహిళా సంఘ భవనాల నిర్మాణానికి శంకుస్థాపన చేసి పనులను వేగవంతం చేయాలని అధికారులను ఆదేశించారు.'
+  },
+  {
+    id: 'img-chityal-foundation-2',
+    secureUrl: '/media/images/chityal-development-foundation-2.jpg',
+    thumbnailUrl: '/media/images/chityal-development-foundation-2.jpg',
+    title: 'Pooja & Foundation Ceremony for Women Community Halls',
+    titleTe: 'మహిళా సంఘ భవనాల నిర్మాణానికి భూమి పూజ & శంకుస్థాపన',
+    part: '06',
+    category: 'Women Empowerment',
+    categoryTe: 'మహిళా సాధికారత',
+    location: 'Chainpaka & Giddemutharam',
+    locationTe: 'చైన్పాక & గిద్దెముత్తారం',
+    caption: 'Ceremonial foundation laying for Mahila Sangha Bhavans to empower local self-help groups.',
+    captionTe: 'మహిళా సంఘాలకు సొంత భవనాలు నిర్మించి గ్రామీణ మహిళల సాధికారతకు తోడ్పాటు అందించడంపై శంకుస్థాపన.',
+    studyNotes: 'Dedicated meeting spaces and training centers for rural Self-Help Groups (SHGs) under the welfare priority of CM A. Revanth Reddy.',
+    studyNotesTe: 'ముఖ్యమంత్రి రేవంత్ రెడ్డి గారి ప్రజా ప్రభుత్వం మహిళా సాధికారతకు పెద్దపీట వేస్తోందని, సంఘాలకు శాశ్వత భవనాలు సమకూరుస్తున్నామని ఎమ్మెల్యే వెల్లడించారు.'
+  },
+  {
+    id: 'img-chityal-foundation-3',
+    secureUrl: '/media/images/chityal-development-foundation-3.jpg',
+    thumbnailUrl: '/media/images/chityal-development-foundation-3.jpg',
+    title: 'Foundation Stone for Anganwadi & Samakhya Bhavans',
+    titleTe: 'అంగన్వాడీ & మహిళా సమైక్య భవనాల శిలాఫలకం ఆవిష్కరణ',
+    part: '07',
+    category: 'Child Care Infrastructure',
+    categoryTe: 'శిశు సంక్షేమ వసతులు',
+    location: 'Bawoosinghpalli & Pashigadda Thanda',
+    locationTe: 'బావుసింగ్ పల్లి & పాశిగడ్డ తండా',
+    caption: 'Unveiling foundation plaques for modern Anganwadi centres and Mahila Samakhya Bhavans.',
+    captionTe: 'బావుసింగ్ పల్లి, పాశిగడ్డ తండా గ్రామాల్లో మహిళా సమైక్య భవనాలు, అంగన్వాడీ భవనాల నిర్మాణానికి శిలాఫలకావిష్కరణ.',
+    studyNotes: 'Modernized nutrition and early learning facilities for rural children alongside administrative centres for village women collectives.',
+    studyNotesTe: 'చిన్నారులకు మెరుగైన అంగన్వాడీ వసతులు, పౌష్టికాహార పంపిణీకి అవసరమైన నూతన భవనాల నిర్మాణం.'
+  },
+  {
+    id: 'img-chityal-foundation-5',
+    secureUrl: '/media/images/chityal-development-foundation-5.jpg',
+    thumbnailUrl: '/media/images/chityal-development-foundation-5.jpg',
+    title: 'Ramachandrapuram Gram Panchayat & Anganwadi Complex',
+    titleTe: 'రామచంద్రాపురం గ్రామ పంచాయతీ & అంగన్వాడీ భవన శంకుస్థాపన',
+    part: '08',
+    category: 'Village Governance',
+    categoryTe: 'గ్రామ పాలన',
+    location: 'Ramachandrapuram Village',
+    locationTe: 'రామచంద్రాపురం గ్రామం',
+    caption: 'Foundation stone laying for Anganwadi building, Mahila Samakhya Bhavan, and Gram Panchayat office in Ramachandrapuram.',
+    captionTe: 'రామచంద్రాపురం గ్రామంలో అంగన్వాడీ భవనం, మహిళా సమైక్య భవనం, గ్రామ పంచాయతీ భవన నిర్మాణ పనులకు శంకుస్థాపన నిర్వహించారు.',
+    studyNotes: 'Integrated civic complex consolidating local democratic governance, child welfare, and women collective empowerment under one roof.',
+    studyNotesTe: 'గ్రామ పాలనకు అవసరమైన గ్రామ పంచాయతీ భవనం, అంగన్వాడీ మరియు సమైక్య భవనాల సమగ్ర సముదాయ నిర్మాణానికి శ్రీకారం.'
   }
+
 ];
 
 export default function ConstituencyPhotoShowcase() {
@@ -210,7 +275,7 @@ export default function ConstituencyPhotoShowcase() {
                   <svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16">
                     <path fillRule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clipRule="evenodd" />
                   </svg>
-                  {isTelugu ? 'ప్రత్యేక ఆల్బమ్ (4 ఫోటోలు)' : 'Special Album (4 Photos)'}
+                  {isTelugu ? `ప్రత్యేక ఆల్బమ్ (${EVENT_PHOTOS.length} ఫోటోలు)` : `Special Album (${EVENT_PHOTOS.length} Photos)`}
                 </span>
                 <span className="photo-ac-chip">108 AC</span>
               </div>
@@ -222,7 +287,7 @@ export default function ConstituencyPhotoShowcase() {
                     <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/>
                   </svg>
                 </div>
-                <span>{isTelugu ? '4 ఫోటోల ఆల్బమ్ చూడటానికి క్లిక్ చేయండి' : 'Click to Open & Scroll 4-Photo Album'}</span>
+                <span>{isTelugu ? `${EVENT_PHOTOS.length} ఫోటోల ఆల్బమ్ చూడటానికి క్లిక్ చేయండి` : `Click to Open & Scroll ${EVENT_PHOTOS.length}-Photo Album`}</span>
               </div>
 
               {/* Bottom Thumbnails Peek Strip */}
@@ -243,7 +308,7 @@ export default function ConstituencyPhotoShowcase() {
                   {isTelugu ? 'క్షేత్రస్థాయి ప్రజా పర్యటనల రికార్డు' : 'Field Inspection & Grassroots Record'}
                 </span>
                 <h3 className="photo-master-title">
-                  {isTelugu ? 'భూపాలపల్లి నియోజకవర్గ ప్రజా పర్యటన — 4 చిత్రాల ప్రత్యేక ప్రదర్శన' : 'Bhupalpalle Mass Outreach & Development Field Inspections (4-Part Series)'}
+                  {isTelugu ? `భూపాలపల్లి నియోజకవర్గ ప్రజా పర్యటన & అభివృద్ధి పనులు — ${EVENT_PHOTOS.length} చిత్రాల ప్రత్యేక ప్రదర్శన` : `Bhupalpalle Field Outreach & Development Works (${EVENT_PHOTOS.length}-Part Series)`}
                 </h3>
                 <p className="photo-master-desc">
                   {isTelugu
@@ -258,7 +323,7 @@ export default function ConstituencyPhotoShowcase() {
                   className="btn-pill btn-theatre-archive"
                   onClick={() => openLightbox(0)}
                 >
-                  <span>{isTelugu ? 'ఆల్బమ్ తెరవండి (4 ఫోటోలు)' : 'Open 4-Photo Album'}</span>
+                  <span>{isTelugu ? `ఆల్బమ్ తెరవండి (${EVENT_PHOTOS.length} ఫోటోలు)` : `Open ${EVENT_PHOTOS.length}-Photo Album`}</span>
                   <svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16">
                     <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
                   </svg>
@@ -275,7 +340,7 @@ export default function ConstituencyPhotoShowcase() {
           className="lightbox-modal active clean-photo-lightbox"
           role="dialog"
           aria-modal="true"
-          aria-label="4-Photo Field Album Horizontal Viewer"
+          aria-label="Field Album Horizontal Viewer"
         >
           {/* Top Control Bar */}
           <div className="clean-lightbox-top-bar">

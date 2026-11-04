@@ -57,7 +57,7 @@ export default function GalleryPage() {
             >
               <div style={{ background: '#FFFFFF', padding: '1.25rem', borderRadius: 'var(--radius-md)', border: '1px solid var(--border)' }}>
                 <div style={{ fontSize: '1.8rem', fontWeight: 800, color: 'var(--orange-dark)', lineHeight: 1 }}>
-                  18
+                  26
                 </div>
                 <div style={{ fontSize: '0.85rem', fontWeight: 700, color: 'var(--charcoal)', marginTop: '6px' }}>
                   {isTelugu ? 'అధికారిక వీడియో రికార్డులు' : 'Field Video Records'}
@@ -69,7 +69,7 @@ export default function GalleryPage() {
 
               <div style={{ background: '#FFFFFF', padding: '1.25rem', borderRadius: 'var(--radius-md)', border: '1px solid var(--border)' }}>
                 <div style={{ fontSize: '1.8rem', fontWeight: 800, color: 'var(--green-dark)', lineHeight: 1 }}>
-                  10+
+                  20+
                 </div>
                 <div style={{ fontSize: '0.85rem', fontWeight: 700, color: 'var(--charcoal)', marginTop: '6px' }}>
                   {isTelugu ? 'ఛాయాచిత్ర రికార్డులు' : 'Photographic Stills'}

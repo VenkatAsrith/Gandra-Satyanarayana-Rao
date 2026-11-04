@@ -11,7 +11,7 @@
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "build:client": "npm --prefix client run build",
     "build:server": "node -e \"console.log('Server is native Node.js; no build step required')\"",
-    "build": "npm --prefix client install && npm --prefix client run build && node -e \"const fs = require('fs'); fs.cpSync('client/dist', 'dist', { recursive: true }); console.log('Mirrored client/dist to root dist');\"",
+    "build": "npm --prefix client run build && node -e \"const fs = require('fs'); fs.cpSync('client/dist', 'dist', { recursive: true }); console.log('Mirrored client/dist to root dist');\"",
     "test:server": "npm --prefix server test",
     "test:client": "npm --prefix client test",
     "test": "npm run test:server && npm run test:client",

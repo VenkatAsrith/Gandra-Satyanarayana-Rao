@@ -12,6 +12,21 @@ export default function RecentActivities({ activities }) {
 
   const defaultActivities = [
     {
+      _id: 'act-chityal-2026',
+      formattedDate: isTelugu ? '03 నవంబర్, 2026' : 'Nov 03, 2026',
+      activityDate: '2026-11-03',
+      category: 'infrastructure',
+      categoryLabel: isTelugu ? 'అభివృద్ధి పనుల శంకుస్థాపన' : 'Development Groundbreaking',
+      title: isTelugu
+        ? 'రూ. 2.14 కోట్లతో చిట్యాల మండలంలో పలు అభివృద్ధి పనులకు శంకుస్థాపనలు'
+        : 'Foundation Laid for ₹2.14 Cr Comprehensive Development Works in Chityal Mandal',
+      location: isTelugu ? 'చిట్యాల మండలం · చైన్పాక, అందుకు తండా, రామచంద్రాపురం' : 'Chityal Mandal · Chainpaka, Anduku Thanda, Ramachandrapuram',
+      summary: isTelugu
+        ? 'చిట్యాల మండలంలో రూ. 2.14 కోట్ల వ్యయంతో మహిళా సంఘ భవనాలు, మహిళా సమైక్య భవనాలు, అంగన్వాడీ కేంద్రాలు మరియు గ్రామ పంచాయతీ భవనాల నిర్మాణానికి ఎమ్మెల్యే గండ్ర సత్యనారాయణ రావు గారు శంకుస్థాపనలు చేశారు. మహిళా సాధికారత, గ్రామీణ మౌలిక వసతుల కల్పనే లక్ష్యంగా ప్రభుత్వం నిధులు మంజూరు చేస్తోందని తెలిపారు.'
+        : 'MLA Sri Gandra Satyanarayana Rao laid the foundation stones for public works worth ₹2.14 Crores in Chityal Mandal, including Mahila Sangha Bhavans, modern Anganwadi Centres, and a Gram Panchayat building across Chainpaka, Giddemutharam, Bawoosinghpalli, and Ramachandrapuram villages, reaffirming top priority to women empowerment and rural progress under CM A. Revanth Reddy.',
+      sourceLabel: isTelugu ? 'ఎమ్మెల్యే మీడియా విభాగం' : 'Constituency Media Desk'
+    },
+    {
       _id: 'act-1',
       formattedDate: isTelugu ? '21 సెప్టెంబర్, 2026' : 'Sep 21, 2026',
       activityDate: '2026-09-21',
