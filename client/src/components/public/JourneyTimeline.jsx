@@ -4,6 +4,9 @@ import { useLanguage } from '../../i18n/LanguageContext';
 export default function JourneyTimeline({ timeline }) {
   const { isTelugu } = useLanguage();
   const [activeMilestone, setActiveMilestone] = useState(0);
+  const [scrollProgress, setScrollProgress] = useState(0);
+  const [isInView, setIsInView] = useState(false);
+  const sectionRef = useRef(null);
   const trackRef = useRef(null);
   const cardRefs = useRef([]);
 
@@ -129,50 +132,98 @@ export default function JourneyTimeline({ timeline }) {
     scrollToMilestone(next);
   };
 
-  // Track active milestone on scroll
+  // Horizontal Scroll Trigger: Continuous progress, active milestone tracking & wheel-to-horizontal conversion
   useEffect(() => {
     const track = trackRef.current;
     if (!track) return;
 
-    let timeoutId = null;
+    let rafId = null;
+
+    const updateMetrics = () => {
+      const maxScroll = track.scrollWidth - track.clientWidth;
+      const currentScroll = track.scrollLeft;
+      const progress = maxScroll > 0 ? Math.min(1, Math.max(0, currentScroll / maxScroll)) : 0;
+      setScrollProgress(progress);
+
+      const trackCenter = track.getBoundingClientRect().left + track.clientWidth / 2;
+      let closestIndex = 0;
+      let minDiff = Infinity;
+
+      cardRefs.current.forEach((card, idx) => {
+        if (!card) return;
+        const rect = card.getBoundingClientRect();
+        const cardCenter = rect.left + rect.width / 2;
+        const diff = Math.abs(trackCenter - cardCenter);
+        if (diff < minDiff) {
+          minDiff = diff;
+          closestIndex = idx;
+        }
+      });
+
+      setActiveMilestone(closestIndex);
+    };
+
     const handleScroll = () => {
-      if (timeoutId) clearTimeout(timeoutId);
-      timeoutId = setTimeout(() => {
-        const trackCenter = track.getBoundingClientRect().left + track.clientWidth / 2;
-        let closestIndex = 0;
-        let minDiff = Infinity;
+      if (rafId) cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(updateMetrics);
+    };
 
-        cardRefs.current.forEach((card, idx) => {
-          if (!card) return;
-          const rect = card.getBoundingClientRect();
-          const cardCenter = rect.left + rect.width / 2;
-          const diff = Math.abs(trackCenter - cardCenter);
-          if (diff < minDiff) {
-            minDiff = diff;
-            closestIndex = idx;
-          }
-        });
+    // Smooth Wheel-To-Horizontal Scroll Trigger
+    const handleWheel = (e) => {
+      if (Math.abs(e.deltaY) > Math.abs(e.deltaX) * 0.7) {
+        const maxScroll = track.scrollWidth - track.clientWidth;
+        if (maxScroll <= 0) return;
 
-        setActiveMilestone(closestIndex);
-      }, 50);
+        const atStart = track.scrollLeft <= 5 && e.deltaY < 0;
+        const atEnd = track.scrollLeft >= maxScroll - 5 && e.deltaY > 0;
+
+        if (!atStart && !atEnd) {
+          e.preventDefault();
+          track.scrollBy({
+            left: e.deltaY * 1.35,
+            behavior: 'smooth'
+          });
+        }
+      }
     };
 
     track.addEventListener('scroll', handleScroll, { passive: true });
+    track.addEventListener('wheel', handleWheel, { passive: false });
+
+    // Initial calculation
+    updateMetrics();
+
     return () => {
       track.removeEventListener('scroll', handleScroll);
-      if (timeoutId) clearTimeout(timeoutId);
+      track.removeEventListener('wheel', handleWheel);
+      if (rafId) cancelAnimationFrame(rafId);
     };
   }, [rawItems.length]);
 
+  // Viewport Intersection Trigger Animation
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsInView(true);
+        }
+      },
+      { threshold: 0.15 }
+    );
+
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <section id="journey" className="journey-section" aria-label="Political Journey Timeline">
+    <section id="journey" ref={sectionRef} className={`journey-section ${isInView ? 'is-in-view' : ''}`} aria-label="Political Journey Timeline">
       <div className="container">
         {/* Section Header */}
         <div className="journey-header">
-          <div className="tag-label dark">
-            <span className="live-pulse-dot" aria-hidden="true"></span>
-            {isTelugu ? 'మైలురాళ్ళు & ప్రస్థానం' : 'Documented Political Record'}
-          </div>
+
           <h2 className="section-title text-white journey-title" style={{ color: '#FFFFFF' }}>
             {isTelugu ? 'ప్రజాసేవా జీవన ప్రస్థానం' : 'The Political Journey & Legislative Record'}
           </h2>
@@ -190,7 +241,7 @@ export default function JourneyTimeline({ timeline }) {
             <div className="milestones-line-track" aria-hidden="true">
               <div
                 className="milestones-line-fill"
-                style={{ width: `${(activeMilestone / Math.max(1, rawItems.length - 1)) * 100}%` }}
+                style={{ width: `${Math.min(100, Math.max(0, (scrollProgress * 100)))}%` }}
               ></div>
             </div>
 

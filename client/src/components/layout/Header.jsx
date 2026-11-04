@@ -356,8 +356,9 @@ export default function Header({ settings: propSettings }) {
         </div>
       </div>
 
-      {/* Floating 3-Dots Quick Navigation Pill Dock on Mobile Devices */}
-      <aside className="mobile-floating-quick-dock" aria-label="Quick Actions Dock">
+      {/* Floating 3-Dots Quick Navigation Pill Dock on Mobile Devices (Visible after scrolling past hero) */}
+      {scrolled && (
+        <aside className="mobile-floating-quick-dock" aria-label="Quick Actions Dock">
         {quickNavOpen ? (
           <div className="floating-quick-panel">
             <div className="floating-quick-header">
@@ -402,6 +403,7 @@ export default function Header({ settings: propSettings }) {
           <span className="fab-label">{isTelugu ? 'త్వరిత నావ్' : 'Quick Nav'}</span>
         </button>
       </aside>
+      )}
     </>
   );
 }
