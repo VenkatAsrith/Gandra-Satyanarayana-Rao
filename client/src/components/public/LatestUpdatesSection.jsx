@@ -163,13 +163,13 @@ export default function LatestUpdatesSection() {
         });
         return;
       } catch (err) {
-        // Fall back to copy if dismissed or unsupported
+        // Fall back to clipboard copy if cancelled or unsupported
       }
     }
 
     try {
       await navigator.clipboard.writeText(`${shareTitle}\n${shareUrl}`);
-      setCopyFeedback(isTelugu ? 'లింక్ కాపీ చేయబడింది! ఇన్‌స్టాగ్రామ్ / వాట్సాప్ స్టేటస్‌లో షేర్ చేయండి.' : 'Link copied! Ready to paste in Instagram Story / WhatsApp Status.');
+      setCopyFeedback(isTelugu ? 'లింక్ కాపీ చేయబడింది!' : 'Link copied! Ready to paste in Instagram Story / WhatsApp Status.');
       setTimeout(() => setCopyFeedback(''), 4000);
     } catch (err) {
       setCopyFeedback('URL: ' + shareUrl);
@@ -179,41 +179,124 @@ export default function LatestUpdatesSection() {
   const currentPhoto = update.photos[activePhotoIdx] || update.photos[0];
 
   return (
-    <section className="latest-updates-section" id="latest-updates" aria-label="Latest Constituency News and Dispatches">
+    <section className="latest-updates-section" id="latest-updates" aria-label="New Updates and Field Dispatches">
       <div className="container">
         <div className="latest-updates-canvas">
-          {/* Header Strip with Clean Tag & Date */}
-          <div className="latest-updates-top-bar">
-            <div className="latest-pulse-badge">
-              <span className="live-pulse-dot" aria-hidden="true"></span>
-              <span className="latest-badge-tag">
-                {isTelugu ? 'నియోజకవర్గ సమాచారం' : 'Field Dispatch'}
-              </span>
-              <span className="latest-badge-sep">•</span>
-              <span className="latest-badge-date">
-                {isTelugu ? update.dateFormattedTe : update.dateFormattedEn}
-              </span>
+          {/* Section Heading: "New Updates" */}
+          <div className="new-updates-section-header">
+            <div className="tag-label green">
+              {isTelugu ? 'తాజా సమాచారం · NEW UPDATES' : 'NEW UPDATES'}
             </div>
-
-            <div className="latest-press-chip">
-              {isTelugu ? update.pressNoteLabelTe : update.pressNoteLabelEn}
-            </div>
+            <h2 className="section-title" style={{ marginTop: '0.65rem' }}>
+              {isTelugu ? 'నియోజకవర్గ తాజా సమాచారం' : 'New Updates & Field Dispatches'}
+            </h2>
           </div>
 
-          {/* Main Content Grid */}
-          <div className="latest-updates-grid">
-            {/* Left: Press Matter & Narrative */}
-            <div className="latest-matter-col">
-              <h2 className="latest-headline-title">
+          {/* Grid Layout: In Mobile, Photos are on TOP (Order -1), Headline & News on BOTTOM */}
+          <div className="latest-updates-grid-reordered">
+            {/* Pictures Deck Column (Appears FIRST on mobile) */}
+            <div className="latest-photos-column">
+              <div className="latest-deck-container">
+                {/* Main Featured Photo Box */}
+                <div
+                  className="latest-deck-main-card"
+                  onClick={() => openLightbox(carouselIdx)}
+                  role="button"
+                  tabIndex={0}
+                  aria-label={`View photo ${carouselIdx + 1}: Click to open horizontal scroll gallery`}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      e.preventDefault();
+                      openLightbox(carouselIdx);
+                    }
+                  }}
+                >
+                  <img
+                    src={resolveMediaUrl(update.photos[carouselIdx].url)}
+                    alt={isTelugu ? update.photos[carouselIdx].titleTe : update.photos[carouselIdx].titleEn}
+                    className="latest-deck-img"
+                    loading="lazy"
+                  />
+                  <div className="latest-deck-overlay"></div>
+
+                  {/* Top Overlay Badge */}
+                  <div className="latest-deck-badge-bar">
+                    <span className="latest-deck-photo-count">
+                      0{carouselIdx + 1} / 0{update.photos.length}
+                    </span>
+                    <span className="latest-deck-hint">
+                      {isTelugu ? 'గ్యాలరీని చూడండి' : 'Click to View Full Gallery'}
+                    </span>
+                  </div>
+
+                  {/* Bottom Caption Pill */}
+                  <div className="latest-deck-bottom-caption">
+                    <p className="latest-deck-caption-text">
+                      {isTelugu ? update.photos[carouselIdx].titleTe : update.photos[carouselIdx].titleEn}
+                    </p>
+                  </div>
+                </div>
+
+                {/* Thumbnail Preview Strip */}
+                <div className="latest-thumbnails-row">
+                  {update.photos.slice(0, 3).map((ph, idx) => (
+                    <div
+                      key={ph.id}
+                      className={`latest-thumb-chip ${carouselIdx === idx ? 'active' : ''}`}
+                      onClick={() => setCarouselIdx(idx)}
+                      role="button"
+                      tabIndex={0}
+                      aria-label={`Select photo ${idx + 1}`}
+                    >
+                      <img src={resolveMediaUrl(ph.url)} alt="" />
+                      <span className="latest-thumb-chip-idx">0{idx + 1}</span>
+                    </div>
+                  ))}
+
+                  {/* View All Button */}
+                  <button
+                    type="button"
+                    className="latest-all-photos-btn"
+                    onClick={() => openLightbox(0)}
+                  >
+                    <span>+{update.photos.length - 3}</span>
+                    <span className="view-more-txt">{isTelugu ? 'అన్ని ఫోటోలు' : 'More'}</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            {/* Matter & News Column (Appears below photos on mobile) */}
+            <div className="latest-matter-column">
+              {/* Meta Date & Press Label Bar */}
+              <div className="latest-meta-header-bar">
+                <div className="latest-pulse-badge">
+                  <span className="live-pulse-dot" aria-hidden="true"></span>
+                  <span className="latest-badge-tag">
+                    {isTelugu ? 'ఫీల్డ్ సమాచారం' : 'Field Dispatch'}
+                  </span>
+                  <span className="latest-badge-sep">•</span>
+                  <span className="latest-badge-date">
+                    {isTelugu ? update.dateFormattedTe : update.dateFormattedEn}
+                  </span>
+                </div>
+
+                <div className="latest-press-chip">
+                  {isTelugu ? update.pressNoteLabelTe : update.pressNoteLabelEn}
+                </div>
+              </div>
+
+              {/* Headline */}
+              <h3 className="latest-headline-title">
                 {isTelugu ? update.titleTe : update.titleEn}
-              </h2>
+              </h3>
 
               {/* Lead Paragraph */}
               <p className="latest-lead-paragraph">
                 {isTelugu ? update.leadTe : update.leadEn}
               </p>
 
-              {/* Detailed Body Paragraphs */}
+              {/* Detailed News Paragraphs */}
               <div className="latest-body-paragraphs">
                 {(isTelugu ? update.bodyTe : update.bodyEn).map((para, i) => (
                   <p key={i} className="latest-paragraph">
@@ -222,7 +305,7 @@ export default function LatestUpdatesSection() {
                 ))}
               </div>
 
-              {/* Dedicated Share Bar for this Update */}
+              {/* Dedicated Share Bar */}
               <div className="latest-share-container">
                 <div className="latest-share-label">
                   <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -285,78 +368,6 @@ export default function LatestUpdatesSection() {
                 )}
               </div>
             </div>
-
-            {/* Right: Interactive Pictures Deck (Horizontal Click-to-Scroll Viewer) */}
-            <div className="latest-photos-col">
-              <div className="latest-deck-container">
-                {/* Main Featured Photo Box */}
-                <div
-                  className="latest-deck-main-card"
-                  onClick={() => openLightbox(carouselIdx)}
-                  role="button"
-                  tabIndex={0}
-                  aria-label={`View photo ${carouselIdx + 1}: Click to open horizontal scroll gallery`}
-                  onKeyDown={(e) => {
-                    if (e.key === 'Enter' || e.key === ' ') {
-                      e.preventDefault();
-                      openLightbox(carouselIdx);
-                    }
-                  }}
-                >
-                  <img
-                    src={resolveMediaUrl(update.photos[carouselIdx].url)}
-                    alt={isTelugu ? update.photos[carouselIdx].titleTe : update.photos[carouselIdx].titleEn}
-                    className="latest-deck-img"
-                    loading="lazy"
-                  />
-                  <div className="latest-deck-overlay"></div>
-
-                  {/* Top Overlay Badge */}
-                  <div className="latest-deck-badge-bar">
-                    <span className="latest-deck-photo-count">
-                      0{carouselIdx + 1} / 0{update.photos.length}
-                    </span>
-                    <span className="latest-deck-hint">
-                      {isTelugu ? 'గ్యాలరీని వీక్షించండి' : 'Click to View Full Gallery'}
-                    </span>
-                  </div>
-
-                  {/* Bottom Caption Pill */}
-                  <div className="latest-deck-bottom-caption">
-                    <p className="latest-deck-caption-text">
-                      {isTelugu ? update.photos[carouselIdx].titleTe : update.photos[carouselIdx].titleEn}
-                    </p>
-                  </div>
-                </div>
-
-                {/* 2-3 Thumbnail Preview Row */}
-                <div className="latest-thumbnails-row">
-                  {update.photos.slice(0, 3).map((ph, idx) => (
-                    <div
-                      key={ph.id}
-                      className={`latest-thumb-chip ${carouselIdx === idx ? 'active' : ''}`}
-                      onClick={() => setCarouselIdx(idx)}
-                      role="button"
-                      tabIndex={0}
-                      aria-label={`Select photo ${idx + 1}`}
-                    >
-                      <img src={resolveMediaUrl(ph.url)} alt="" />
-                      <span className="latest-thumb-chip-idx">0{idx + 1}</span>
-                    </div>
-                  ))}
-
-                  {/* View All Button */}
-                  <button
-                    type="button"
-                    className="latest-all-photos-btn"
-                    onClick={() => openLightbox(0)}
-                  >
-                    <span>+{update.photos.length - 3}</span>
-                    <span className="view-more-txt">{isTelugu ? 'అన్ని ఫోటోలు' : 'More'}</span>
-                  </button>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </div>
@@ -397,7 +408,6 @@ export default function LatestUpdatesSection() {
 
           {/* Main Slide Stage with Horizontal Arrow Triggers */}
           <div className="latest-modal-stage" onClick={(e) => e.stopPropagation()}>
-            {/* Left Prev Arrow */}
             <button
               type="button"
               className="latest-modal-arrow-btn prev"
@@ -408,7 +418,6 @@ export default function LatestUpdatesSection() {
               &#10094;
             </button>
 
-            {/* Centered Large High-Res Picture */}
             <div className="latest-modal-viewport">
               <div className="latest-modal-slide">
                 <img
@@ -418,7 +427,6 @@ export default function LatestUpdatesSection() {
                 />
               </div>
 
-              {/* Caption Card */}
               <div className="latest-modal-caption-card">
                 <h3 className="modal-caption-heading">
                   {isTelugu ? currentPhoto.titleTe : currentPhoto.titleEn}
@@ -429,7 +437,6 @@ export default function LatestUpdatesSection() {
               </div>
             </div>
 
-            {/* Right Next Arrow */}
             <button
               type="button"
               className="latest-modal-arrow-btn next"

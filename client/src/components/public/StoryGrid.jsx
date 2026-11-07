@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../../i18n/LanguageContext';
-import ScrollStack, { ScrollStackItem } from './ScrollStack';
 
 export default function StoryGrid({ profile }) {
   const { isTelugu } = useLanguage();
+  const trackRef = useRef(null);
+  const [activeStoryIdx, setActiveStoryIdx] = useState(0);
 
   const journeyCards = [
     {
+      no: '01',
       categoryEn: 'Public Address & Representation',
       categoryTe: 'ప్రజా గళం & శాసనసభ ప్రాతినిధ్యం',
       titleEn: "Articulating People's Voice on Stage & in State Assembly",
@@ -22,6 +24,7 @@ export default function StoryGrid({ profile }) {
       pos: 'center 20%'
     },
     {
+      no: '02',
       categoryEn: 'Academic & Technical Background',
       categoryTe: 'విద్యా నేపథ్యం & సాంకేతిక పరిజ్ఞానం',
       titleEn: 'Kakatiya University BA & Civil ITI Qualifications',
@@ -36,6 +39,7 @@ export default function StoryGrid({ profile }) {
       pos: 'center 10%'
     },
     {
+      no: '03',
       categoryEn: 'Grassroots Accessibility',
       categoryTe: 'నిరంతరం ప్రజా సేవ',
       titleEn: 'Weekly Praja Darbar',
@@ -50,6 +54,7 @@ export default function StoryGrid({ profile }) {
       pos: 'center 15%'
     },
     {
+      no: '04',
       categoryEn: 'Civic Partnership & State Alignment',
       categoryTe: 'ప్రభుత్వంతో సమన్వయం',
       titleEn: 'Coordination with State Executive',
@@ -64,6 +69,7 @@ export default function StoryGrid({ profile }) {
       pos: 'center 20%'
     },
     {
+      no: '05',
       categoryEn: 'Decisive Electoral Mandate',
       categoryTe: 'చారిత్రాత్మక ప్రజా తీర్పు',
       titleEn: '123,116 Votes & 52,699 Margin',
@@ -79,128 +85,152 @@ export default function StoryGrid({ profile }) {
     }
   ];
 
+  // Horizontal Trigger Animation & Smooth Scroll Handlers
+  const scrollToStory = (index) => {
+    setActiveStoryIdx(index);
+    if (!trackRef.current) return;
+    const cards = trackRef.current.children;
+    if (cards[index]) {
+      cards[index].scrollIntoView({
+        behavior: 'smooth',
+        block: 'nearest',
+        inline: 'center'
+      });
+    }
+  };
+
+  const handlePrev = () => {
+    const nextIdx = activeStoryIdx > 0 ? activeStoryIdx - 1 : journeyCards.length - 1;
+    scrollToStory(nextIdx);
+  };
+
+  const handleNext = () => {
+    const nextIdx = activeStoryIdx < journeyCards.length - 1 ? activeStoryIdx + 1 : 0;
+    scrollToStory(nextIdx);
+  };
+
+  const handleTrackScroll = () => {
+    if (!trackRef.current) return;
+    const scrollLeft = trackRef.current.scrollLeft;
+    const cardWidth = trackRef.current.children[0]?.offsetWidth || 340;
+    const index = Math.round(scrollLeft / cardWidth);
+    if (index >= 0 && index < journeyCards.length && index !== activeStoryIdx) {
+      setActiveStoryIdx(index);
+    }
+  };
+
   return (
-    <section className="section story-section" id="journey-stories">
+    <section className="section story-section" id="journey-stories" aria-label="Public Service and Leadership Journey">
       <div className="container">
         {/* Editorial Section Header */}
-        <div className="section-head-editorial">
-          <div className="tag-label">
-            {isTelugu ? 'ప్రజా సేవ, నాయకత్వం & శాసనసభ ప్రస్థానం' : 'Public Service, Leadership & Legislative Journey'}
+        <div className="story-header-split">
+          <div>
+            <div className="tag-label">
+              {isTelugu ? 'ప్రజా సేవ, నాయకత్వం & శాసనసభ ప్రస్థానం' : 'Public Service, Leadership & Legislative Journey'}
+            </div>
+            <h2 className="section-title" style={{ marginTop: '0.65rem' }}>
+              {isTelugu
+                ? 'ప్రజాస్వామ్య విలువలు, వ్యవసాయం & నిరంతర ప్రజాసేవకే అంకితం'
+                : 'A Lifetime Dedicated to Grassroots Democracy & People’s Mandate'}
+            </h2>
           </div>
-          <h2 className="section-title">
-            {isTelugu
-              ? 'ప్రజాస్వామ్య విలువలు, వ్యవసాయం & నిరంతర ప్రజాసేవకే అంకితం'
-              : 'A Lifetime Dedicated to Grassroots Democracy & People’s Mandate'}
-          </h2>
-          <p className="section-subtitle">
-            {isTelugu
-              ? 'నాలుగు దశాబ్దాల ప్రజా జీవితం — బుద్ధారం గ్రామ సర్పంచ్‌గా మొదలై, జెడ్పీటీసీగా ఎదిగి, నేడు భూపాలపల్లి ఎమ్మెల్యేగా ప్రజా సమస్యల పరిష్కారానికై నిరంతర పోరాటం.'
-              : 'Over nearly four decades of dedicated public service—starting as Village Sarpanch in Buddharam, then ZPTC Member, and ultimately winning the Bhupalpalle Assembly seat in 2023 with a historic 52,699-vote victory margin.'}
-          </p>
+
+          {/* Interactive Trigger Navigation Controls */}
+          <div className="story-nav-controls">
+            <button
+              type="button"
+              className="story-arrow-btn prev"
+              onClick={handlePrev}
+              aria-label="Previous Milestone"
+              title="Previous Milestone"
+            >
+              &#10094;
+            </button>
+            <span className="story-counter-pill">
+              0{activeStoryIdx + 1} / 0{journeyCards.length}
+            </span>
+            <button
+              type="button"
+              className="story-arrow-btn next"
+              onClick={handleNext}
+              aria-label="Next Milestone"
+              title="Next Milestone"
+            >
+              &#10095;
+            </button>
+          </div>
         </div>
 
-        {/* Desktop Presentation: Asymmetric Documentary Image Grid (Hidden on Mobile) */}
-        <div className="story-desktop-grid">
-          {/* Featured Large Card */}
-          <article className="story-card story-card-featured">
-            <div className="story-img-wrap">
-              <img
-                src={journeyCards[0].image}
-                alt={journeyCards[0].alt}
-                loading="lazy"
-                style={{ objectPosition: journeyCards[0].pos }}
-              />
-              <div className="story-img-badge">
-                {isTelugu ? journeyCards[0].categoryTe : journeyCards[0].categoryEn}
-              </div>
-            </div>
-            <div className="story-body">
-              <h3 className="story-title">
-                {isTelugu ? journeyCards[0].titleTe : journeyCards[0].titleEn}
-              </h3>
-              <p className="story-text">
-                {isTelugu ? journeyCards[0].descTe : journeyCards[0].descEn}
-              </p>
-            </div>
-          </article>
-
-          {/* 4 Supporting Documentary Cards */}
-          <div className="story-sub-grid">
-            {journeyCards.slice(1).map((c, idx) => (
-              <article key={idx} className="story-card story-card-sub">
-                <div className="story-img-wrap">
-                  <img
-                    src={c.image}
-                    alt={c.alt}
-                    loading="lazy"
-                    style={{ objectPosition: c.pos }}
-                  />
-                  <div className="story-img-badge">
-                    {isTelugu ? c.categoryTe : c.categoryEn}
-                  </div>
-                </div>
-                <div className="story-body">
-                  <h3 className="story-title">
-                    {isTelugu ? c.titleTe : c.titleEn}
-                  </h3>
-                  <p className="story-text">
-                    {isTelugu ? c.descTe : c.descEn}
-                  </p>
-                </div>
-              </article>
-            ))}
-          </div>
-
-          <div className="story-read-more-wrap">
-            <Link to="/about" className="link-arrow">
-              {isTelugu ? 'సంపూర్ణ జీవిత విశేషాలు చదవండి' : 'Read full documented biography'}
-              <svg viewBox="0 0 20 20" fill="currentColor">
-                <path
-                  fillRule="evenodd"
-                  d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
-                  clipRule="evenodd"
+        {/* Side Scroll / Horizontal Snapping Track Across Desktop & Mobile */}
+        <div
+          className="story-horizontal-track"
+          ref={trackRef}
+          onScroll={handleTrackScroll}
+          role="region"
+          aria-label="Leadership Journey Horizontal Track"
+        >
+          {journeyCards.map((c, idx) => (
+            <article
+              key={idx}
+              className={`story-h-card accent-${c.accent} ${idx === activeStoryIdx ? 'is-active-story' : ''}`}
+              onClick={() => scrollToStory(idx)}
+            >
+              <div className="story-h-img-wrap">
+                <img
+                  src={c.image}
+                  alt={c.alt}
+                  className="story-h-img"
+                  loading="lazy"
+                  style={{ objectPosition: c.pos }}
                 />
-              </svg>
-            </Link>
-          </div>
+                <span className="story-h-badge">
+                  {isTelugu ? c.categoryTe : c.categoryEn}
+                </span>
+                <span className="story-h-chapter">0{idx + 1}</span>
+              </div>
+
+              <div className="story-h-body">
+                <h3 className="story-h-title">
+                  {isTelugu ? c.titleTe : c.titleEn}
+                </h3>
+                <p className="story-h-desc">
+                  {isTelugu ? c.descTe : c.descEn}
+                </p>
+              </div>
+
+              <div className="story-h-footer">
+                <Link to="/about" className="link-arrow story-h-link">
+                  <span>{isTelugu ? 'పూర్తి వివరాలు చదవండి' : 'Read Full History'}</span>
+                  <svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16">
+                    <path
+                      fillRule="evenodd"
+                      d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                </Link>
+              </div>
+            </article>
+          ))}
         </div>
 
-        {/* Mobile Presentation: Dedicated ScrollStack (Hidden on Desktop) */}
-        <div className="story-mobile-scrollstack">
-          <ScrollStack className="journey-stack">
-            {journeyCards.map((c, idx) => (
-              <ScrollStackItem key={idx} accent={c.accent}>
-                <div className="stack-journey-card">
-                  <div className="stack-journey-img-frame">
-                    <img
-                      src={c.image}
-                      alt={c.alt}
-                      className="stack-journey-img"
-                      loading="lazy"
-                      style={{ objectPosition: c.pos }}
-                    />
-                    <span className="stack-journey-badge">
-                      {isTelugu ? c.categoryTe : c.categoryEn}
-                    </span>
-                  </div>
-                  <div className="stack-journey-content">
-                    <h3 className="stack-journey-title">
-                      {isTelugu ? c.titleTe : c.titleEn}
-                    </h3>
-                    <p className="stack-journey-desc">
-                      {isTelugu ? c.descTe : c.descEn}
-                    </p>
-                  </div>
-                </div>
-              </ScrollStackItem>
-            ))}
-          </ScrollStack>
+        {/* Dot Progress Row */}
+        <div className="story-dots-row">
+          {journeyCards.map((_, idx) => (
+            <button
+              key={idx}
+              type="button"
+              className={`story-dot-btn ${idx === activeStoryIdx ? 'active' : ''}`}
+              onClick={() => scrollToStory(idx)}
+              aria-label={`Jump to Story 0${idx + 1}`}
+            />
+          ))}
+        </div>
 
-          <div className="mobile-story-cta-wrap">
-            <Link to="/about" className="btn-pill btn-secondary full-width">
-              {isTelugu ? 'సంపూర్ణ జీవిత ప్రస్థానం చదవండి' : 'Read Full Documented Biography'} →
-            </Link>
-          </div>
+        <div className="story-read-more-wrap" style={{ marginTop: '2.5rem' }}>
+          <Link to="/about" className="btn-pill btn-secondary">
+            {isTelugu ? 'సంపూర్ణ జీవిత చరిత్ర చదవండి' : 'Read Full Documented Biography'} →
+          </Link>
         </div>
       </div>
     </section>
