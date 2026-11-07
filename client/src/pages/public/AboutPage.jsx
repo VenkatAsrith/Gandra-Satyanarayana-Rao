@@ -74,7 +74,7 @@ export default function AboutPage() {
                 <p className="intro-desc">
                   {isTelugu
                     ? '1965లో జయశంకర్ భూపాలపల్లి జిల్లా ఘనపురం మండలం బుద్ధారం గ్రామంలో వ్యవసాయ కుటుంబంలో జన్మించిన గండ్ర సత్యనారాయణ రావు—ప్రజలందరూ అభిమానంతో "సత్తెన్న" అని పిలుచుకునే నేత—తండ్రి స్వర్గీయ గండ్ర సమ్మారావు గారి మార్గదర్శకంలో పెరిగారు. గ్రామీణ వాతావరణంలో పెరగడం వల్లనే సాగునీటి ప్రాముఖ్యత, రైతు కష్టం మరియు గ్రామీణ కార్మికుల ఆత్మగౌరవంపై ఆయనకు అపారమైన గౌరవం ఉంది.'
-                    : 'Born in 1965 in Buddharam (Bhudharam) village, Ghanapuram mandal, Gandra Satyanarayana Rao—affectionately known across the constituency as "Sathenna"—was raised in an agrarian family under the guidance of his father, Late Sri Gandra Samma Rao. His formative years in rural Warangal shaped his enduring perspective on the primacy of irrigation water, dependable agricultural electricity, and the dignity of rural labor.'}
+                    : 'Born in 1965 in Buddharam (Bhudharam) village, Ghanapuram mandal, Gandra Satyanarayana Rao—affectionately known across the constituency as "Sathanna"—was raised in an agrarian family under the guidance of his father, Late Sri Gandra Samma Rao. His formative years in rural Warangal shaped his enduring perspective on the primacy of irrigation water, dependable agricultural electricity, and the dignity of rural labor.'}
                 </p>
                 <p className="intro-desc" style={{ marginTop: '1rem' }}>
                   {isTelugu
@@ -104,7 +104,7 @@ export default function AboutPage() {
                   <p className="story-text">
                     {isTelugu
                       ? 'బుద్ధారం ఎమ్మెల్యే క్యాంపు కార్యాలయంలో ప్రతి సోమవారం, బుధవారం జరిగే ప్రజా దర్బార్‌లో రాజకీయాలకు అతీతంగా ప్రతి పౌరుడి సమస్యను నేరుగా విని, సంబంధిత ప్రభుత్వ అధికారులకు తక్షణ ఆదేశాలు జారీ చేస్తారు.'
-                      : "A cornerstone of Sathenna's public representation is the weekly open court held at the MLA Camp Office. Every constituent—regardless of political background—receives direct personal hearing, with representations endorsed immediately to relevant department officials."}
+                      : "A cornerstone of Sathanna's public representation is the weekly open court held at the MLA Camp Office. Every constituent—regardless of political background—receives direct personal hearing, with representations endorsed immediately to relevant department officials."}
                   </p>
                 </div>
               </article>

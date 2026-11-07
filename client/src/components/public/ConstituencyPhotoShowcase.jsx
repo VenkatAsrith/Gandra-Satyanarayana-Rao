@@ -30,7 +30,7 @@ const EVENT_PHOTOS = [
     categoryTe: 'గ్రామ సంక్షేమం',
     location: 'Regonda & Ghanapuram Mandals',
     locationTe: 'రేగొండ & ఘనపురం మండలాలు',
-    caption: 'Constituents according a warm reception to MLA Sathenna during village developmental inspections.',
+    caption: 'Constituents according a warm reception to MLA Sathanna during village developmental inspections.',
     captionTe: 'గ్రామ పర్యటన సందర్భంగా స్థానిక ప్రజలు, వృద్ధులు మరియు మహిళలతో ఆత్మీయంగా ముచ్చటిస్తున్న శాసనసభ్యులు.',
     studyNotes: 'Reviewing Indiramma housing allocation lists and pension disbursements across grassroots panchayats to eliminate delays.',
     studyNotesTe: 'ఇందిరమ్మ ఇండ్ల మంజూరు జాబితాలు, పింఛన్ల పంపిణీని పరిశీలిస్తూ అర్హులైన ప్రతి ఒక్కరికీ లబ్ధి చేకూరేలా పర్యవేక్షణ.'
@@ -245,7 +245,7 @@ export default function ConstituencyPhotoShowcase() {
             <p className="section-subtitle" style={{ maxWidth: '680px' }}>
               {isTelugu
                 ? 'భూపాలపల్లి నియోజకవర్గంలోని వివిధ గ్రామాలలో పర్యటిస్తూ ప్రజా సమస్యలను తెలుసుకుంటూ పనులను పర్యవేక్షిస్తున్న దృశ్యాలు (4 ప్రత్యేక చిత్రాల ఆల్బమ్).'
-                : 'Direct photographic chronicle of MLA Sathenna inspecting developmental works and meeting citizens across the mandals (4-part visual series).'}
+                : 'Direct photographic chronicle of MLA Sathanna inspecting developmental works and meeting citizens across the mandals (4-part visual series).'}
             </p>
           </div>
         </div>
@@ -313,7 +313,7 @@ export default function ConstituencyPhotoShowcase() {
                 <p className="photo-master-desc">
                   {isTelugu
                     ? 'నియోజకవర్గంలోని వివిధ గ్రామాలలో పర్యటిస్తూ పనుల నాణ్యతను పరిశీలించి ప్రజలతో ముచ్చటించిన 4 ప్రత్యేక చిత్రాల ఆల్బమ్.'
-                    : 'A verified photographic chronicle of MLA Sathenna inspecting developmental works and listening to citizens across the mandals.'}
+                    : 'A verified photographic chronicle of MLA Sathanna inspecting developmental works and listening to citizens across the mandals.'}
                 </p>
               </div>
 

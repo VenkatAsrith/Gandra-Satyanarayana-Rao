@@ -66,7 +66,7 @@ export default function VideoReelShowcase() {
           <p style={{ color: '#CBD5E1', maxWidth: '780px', marginTop: '0.5rem', fontSize: '1.05rem', lineHeight: '1.6' }}>
             {t('videoReel.sectionSubtitle', isTelugu
               ? 'భూపాలపల్లి నియోజకవర్గంలో వ్యవసాయ డ్రోన్ ప్రారంభోత్సవం, మెగా ఉద్యోగ మేళా, సంక్షేమ వాహనాల పంపిణీ మరియు విద్యార్థుల సహపంక్తి భోజనం వంటి ప్రత్యక్ష క్షేత్రస్థాయి వీడియో రికార్డులు.'
-              : 'Watch verified on-the-ground video records documenting MLA Sathenna’s developmental interventions, smart agricultural drone initiatives, and welfare drives across Bhupalpalle.')}
+              : 'Watch verified on-the-ground video records documenting MLA Sathanna’s developmental interventions, smart agricultural drone initiatives, and welfare drives across Bhupalpalle.')}
           </p>
         </div>
 

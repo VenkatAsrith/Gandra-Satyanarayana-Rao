@@ -55,7 +55,7 @@ export default function CopyrightPage({ settings }) {
               <p>
                 {isTelugu
                   ? 'ఈ వెబ్‌సైట్ భూపాలపల్లి శాసనసభ్యులు శ్రీ గండ్ర సత్యనారాయణ రావు (సత్తెన్న) గారి ఆధ్వర్యంలో నియోజకవర్గ ప్రజలకు అభివృద్ధి పనులు, ప్రజా సంక్షేమ పథకాలు, శాసనసభ చర్చలు మరియు అధికారిక ప్రకటనలను అందించడానికి మాత్రమే రూపొందించబడింది. ఇది లాభాపేక్షలేని, ప్రజా సంబంధాల మరియు పౌర అవగాహన వేదిక.'
-                  : 'This platform is maintained under the office of Sri Gandra Satyanarayana Rao (Sathenna), Member of the Legislative Assembly for Bhupalpalle (No. 108), Telangana. It is established solely for civic informational awareness, public accountability, and constituent engagement.'}
+                  : 'This platform is maintained under the office of Sri Gandra Satyanarayana Rao (Sathanna), Member of the Legislative Assembly for Bhupalpalle (No. 108), Telangana. It is established solely for civic informational awareness, public accountability, and constituent engagement.'}
               </p>
             </section>
 

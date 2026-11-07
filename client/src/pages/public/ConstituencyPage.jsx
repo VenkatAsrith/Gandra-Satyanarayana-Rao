@@ -209,7 +209,7 @@ export default function ConstituencyPage() {
                   <p>
                     {isTelugu
                       ? 'బుద్ధారం క్యాంపు కార్యాలయంలో జరిగే ప్రజా దర్బార్ ద్వారా ప్రతి మండల ప్రజలకు అందుబాటులో ఉంటూ ప్రజా సమస్యలను ఎప్పటికప్పుడు పరిష్కరిస్తున్నారు.'
-                      : 'Through the weekly Praja Darbar at Buddharam Camp Office, MLA Sathenna maintains direct accessibility with rural families across all six mandals.'}
+                      : 'Through the weekly Praja Darbar at Buddharam Camp Office, MLA Sathanna maintains direct accessibility with rural families across all six mandals.'}
                   </p>
                 </div>
               </div>

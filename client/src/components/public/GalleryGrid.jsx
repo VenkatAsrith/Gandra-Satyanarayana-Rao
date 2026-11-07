@@ -66,7 +66,7 @@ export default function GalleryGrid({ mediaItems, showFilter = true, isTeaser = 
       secureUrl: '/images/about/family-revanth.png',
       thumbnailUrl: '/images/about/family-revanth.png',
       mediaType: 'image',
-      title: 'Smt. Gandra Padma & Sathenna with CM Revanth Reddy',
+      title: 'Smt. Gandra Padma & Sathanna with CM Revanth Reddy',
       titleTe: 'ముఖ్యమంత్రితో శ్రీమతి గండ్ర పద్మ మరియు సత్తెన్న సంప్రదింపులు',
       category: 'constituency',
       categoryLabel: 'Governance · State Coordination',

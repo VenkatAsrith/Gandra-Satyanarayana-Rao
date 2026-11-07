@@ -164,26 +164,6 @@ export default function Header({ settings: propSettings }) {
 
           {/* Mobile Actions: Correctly Aligned 3-Lines Hamburger & 3-Dots Quick Nav */}
           <div className="mobile-header-triggers">
-            {/* Quick 3-Dots Jump Pill */}
-            <button
-              type="button"
-              className="mobile-quick-pill"
-              onClick={() => {
-                const el = document.getElementById('activities') || document.getElementById('journey');
-                if (el) el.scrollIntoView({ behavior: 'smooth' });
-                else window.location.href = '/#activities';
-              }}
-              aria-label={isTelugu ? 'త్వరిత విభాగాలు' : 'Quick Jump'}
-              title={isTelugu ? 'త్వరిత విభాగాలు' : 'Quick Jump'}
-            >
-              <div className="dots-icon-composite" aria-hidden="true">
-                <span className="dot-circle"></span>
-                <span className="dot-circle"></span>
-                <span className="dot-circle"></span>
-              </div>
-              <span className="dots-btn-label">{isTelugu ? 'విభాగాలు' : 'Quick'}</span>
-            </button>
-
             {/* Premium Aligned 3-Lines Hamburger Menu Button */}
             <button
               type="button"
@@ -357,53 +337,7 @@ export default function Header({ settings: propSettings }) {
       </div>
 
       {/* Floating 3-Dots Quick Navigation Pill Dock on Mobile Devices (Visible after scrolling past hero) */}
-      {scrolled && (
-        <aside className="mobile-floating-quick-dock" aria-label="Quick Actions Dock">
-        {quickNavOpen ? (
-          <div className="floating-quick-panel">
-            <div className="floating-quick-header">
-              <span>{isTelugu ? 'త్వరిత విభాగాలు' : 'Quick Navigation'}</span>
-              <button
-                type="button"
-                className="floating-quick-close"
-                onClick={() => setQuickNavOpen(false)}
-                aria-label="Close"
-              >
-                &times;
-              </button>
-            </div>
-            <div className="floating-quick-links">
-              <Link to="/#activities" onClick={() => setQuickNavOpen(false)}>
-                📅 {isTelugu ? 'కార్యక్రమాలు' : 'Activities'}
-              </Link>
-              <Link to="/constituency" onClick={() => setQuickNavOpen(false)}>
-                🏛️ {isTelugu ? 'మండలాలు' : 'Mandals'}
-              </Link>
-              <Link to="/gallery" onClick={() => setQuickNavOpen(false)}>
-                📸 {isTelugu ? 'గ్యాలరీ' : 'Gallery'}
-              </Link>
-              <Link to="/work" onClick={() => setQuickNavOpen(false)}>
-                🏛️ {isTelugu ? 'శాసనసభ' : 'Legislative'}
-              </Link>
-              <Link to="/contact" onClick={() => setQuickNavOpen(false)}>
-                📞 {isTelugu ? 'క్యాంపు ఆఫీస్' : 'Camp Office'}
-              </Link>
-            </div>
-          </div>
-        ) : null}
-
-        <button
-          type="button"
-          className="floating-dots-fab"
-          onClick={toggleQuickNav}
-          aria-label={quickNavOpen ? 'Close Quick Navigation' : 'Open Quick Navigation (3 Dots)'}
-          title="Quick Navigation"
-        >
-          <span className="fab-dots">•••</span>
-          <span className="fab-label">{isTelugu ? 'త్వరిత నావ్' : 'Quick Nav'}</span>
-        </button>
-      </aside>
-      )}
+      
     </>
   );
 }

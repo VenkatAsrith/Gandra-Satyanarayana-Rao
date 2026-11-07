@@ -7,7 +7,7 @@ export default function Footer({ settings }) {
   const { isTelugu, t } = useLanguage();
 
   const brandName = isTelugu
-    ? (settings?.teluguTitle || 'గండ్ర సత్యనారాయణ రావు (సత్తెన్న)')
+    ? (settings?.teluguTitle || 'గండ్ర సత్యనారాయణ రావు (సత్తన్న)')
     : (settings?.siteTitle ? settings.siteTitle.split('|')[0].trim() : 'Gandra Satyanarayana Rao');
 
   return (

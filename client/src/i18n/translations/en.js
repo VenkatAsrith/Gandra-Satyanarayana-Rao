@@ -138,7 +138,7 @@ export const en = {
   videoReel: {
     tagLabel: 'Field Video Records',
     sectionTitle: 'Constituency Service in Action: Official Video Documentation',
-    sectionSubtitle: 'Watch verified on-the-ground video records documenting MLA Sathenna’s developmental interventions, smart agricultural drone initiatives, and welfare drives across Bhupalpalle.',
+    sectionSubtitle: 'Watch verified on-the-ground video records documenting MLA Sathanna’s developmental interventions, smart agricultural drone initiatives, and welfare drives across Bhupalpalle.',
     exploreAll: 'Explore All 18 Field Videos & Archives',
     playingNow: 'Now Playing',
     duration: 'Duration',

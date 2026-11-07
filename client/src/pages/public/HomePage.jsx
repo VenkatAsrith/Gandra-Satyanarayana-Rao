@@ -12,6 +12,7 @@ import GalleryGrid from '../../components/public/GalleryGrid';
 import VideoReelShowcase from '../../components/public/VideoReelShowcase';
 import ConstituencyPhotoShowcase from '../../components/public/ConstituencyPhotoShowcase';
 import ContactChannels from '../../components/public/ContactChannels';
+import SocialMediaSection from '../../components/public/SocialMediaSection';
 import DynamicSectionRenderer from '../../components/public/DynamicSectionRenderer';
 import ErrorBoundary from '../../components/common/ErrorBoundary';
 import { api } from '../../services/api';
@@ -102,7 +103,7 @@ export default function HomePage() {
         ))}
 
         <ErrorBoundary>
-          <FeaturedAdvocacy activity={activities?.find((a) => a.isHighlighted)} />
+          <FeaturedAdvocacy />
         </ErrorBoundary>
 
         <ErrorBoundary>
@@ -119,6 +120,10 @@ export default function HomePage() {
 
         <ErrorBoundary>
           <ContactChannels settings={settings} />
+        </ErrorBoundary>
+
+        <ErrorBoundary>
+          <SocialMediaSection settings={settings} />
         </ErrorBoundary>
       </main>
       <Footer settings={settings} />

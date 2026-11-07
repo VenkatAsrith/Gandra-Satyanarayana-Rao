@@ -71,7 +71,7 @@ export const LATEST_UPDATE_RECORD = {
       url: '/media/images/gorukothapalli-kalyanalakshmi-cheques-5.jpg',
       titleEn: 'Community Participation & Warm Civic Gathering',
       titleTe: 'గ్రామ ప్రజల పెద్ద ఎత్తున భాగస్వామ్యం & ప్రజా స్వాగతం',
-      captionEn: 'Beneficiaries and village elders expressing heartfelt gratitude to MLA Sathenna.',
+      captionEn: 'Beneficiaries and village elders expressing heartfelt gratitude to MLA Sathanna.',
       captionTe: 'సకాలంలో ఆర్థిక సహాయం అందించినందుకు ఎమ్మెల్యే సత్తెన్నకు ధన్యవాదాలు తెలిపిన గ్రామస్తులు.'
     },
     {
