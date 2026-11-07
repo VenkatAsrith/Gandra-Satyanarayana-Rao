@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Header from '../../components/layout/Header';
 import Footer from '../../components/layout/Footer';
 import HeroSection from '../../components/public/HeroSection';
+import LatestUpdatesSection from '../../components/public/LatestUpdatesSection';
 import StoryGrid from '../../components/public/StoryGrid';
 import JourneyTimeline from '../../components/public/JourneyTimeline';
 import ConstituencyOverview from '../../components/public/ConstituencyOverview';
@@ -64,6 +65,10 @@ export default function HomePage() {
       <main id="main-content">
         <ErrorBoundary>
           <HeroSection profile={profile} settings={settings} />
+        </ErrorBoundary>
+
+        <ErrorBoundary>
+          <LatestUpdatesSection />
         </ErrorBoundary>
 
         <ErrorBoundary>

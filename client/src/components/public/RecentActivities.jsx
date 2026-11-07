@@ -12,6 +12,21 @@ export default function RecentActivities({ activities }) {
 
   const defaultActivities = [
     {
+      _id: 'act-gorukothapalli-2026',
+      formattedDate: isTelugu ? '06 నవంబర్, 2026' : 'Nov 06, 2026',
+      activityDate: '2026-11-06',
+      category: 'welfare',
+      categoryLabel: isTelugu ? 'కళ్యాణలక్ష్మి చెక్కుల పంపిణీ' : 'Welfare Cheques Distribution',
+      title: isTelugu
+        ? 'గోరుకొత్తపల్లి మండలంలో 21 మందికి కళ్యాణలక్ష్మి, షాదీ ముబారక్ చెక్కుల పంపిణీ'
+        : 'Distribution of Kalyana Lakshmi & Shaadi Mubarak Cheques to 21 Beneficiaries in Gorukothapalli',
+      location: isTelugu ? 'గోరుకొత్తపల్లి మండలం · ప్రజా సమక్షం' : 'Gorukothapalli Mandal · Public Meeting',
+      summary: isTelugu
+        ? 'గోరుకొత్తపల్లి మండలంలో నిర్వహించిన కార్యక్రమంలో 21 మంది లబ్ధిదారులకు కళ్యాణలక్ష్మి, షాదీ ముబారక్ చెక్కులను ఎమ్మెల్యే శ్రీ గండ్ర సత్యనారాయణ రావు గారు పంపిణీ చేశారు. పేద కుటుంబాల్లోని ఆడపిల్లల వివాహాలకు ఆర్థిక భరోసా కల్పించడమే ప్రజా ప్రభుత్వ లక్ష్యమని తెలిపారు.'
+        : 'MLA Sri Gandra Satyanarayana Rao attended as Chief Guest in Gorukothapalli Mandal distributing Kalyana Lakshmi and Shaadi Mubarak cheques to 21 beneficiaries, reiterating the government\'s commitment to financial security for underprivileged daughters.',
+      sourceLabel: isTelugu ? 'ఎమ్మెల్యే మీడియా విభాగం & ప్రెస్ నోట్' : 'MLA Media Desk & Press Note'
+    },
+    {
       _id: 'act-chityal-2026',
       formattedDate: isTelugu ? '03 నవంబర్, 2026' : 'Nov 03, 2026',
       activityDate: '2026-11-03',
