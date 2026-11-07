@@ -56,9 +56,14 @@ export default function HomePage() {
     loadData();
   }, []);
 
-  // Split dynamic sections into early and late placements if desired
-  const earlySections = dynamicSections.filter((s) => (s.order || 0) <= 2);
-  const laterSections = dynamicSections.filter((s) => (s.order || 0) > 2);
+  // Filter out duplicate mock sections (which are already rendered by dedicated showcase components)
+  const excludedKeys = ['farmers-water-security', 'buddharam-praja-darbar'];
+  const filteredDynamicSections = dynamicSections.filter(
+    (s) => s.isEnabled && !excludedKeys.includes(s.key)
+  );
+
+  const earlySections = filteredDynamicSections.filter((s) => (s.order || 0) <= 2);
+  const laterSections = filteredDynamicSections.filter((s) => (s.order || 0) > 2);
 
   return (
     <>
@@ -76,7 +81,7 @@ export default function HomePage() {
           <StoryGrid profile={profile} />
         </ErrorBoundary>
 
-        {/* Dynamic Sections (Priority Order 1 & 2) */}
+        {/* Dynamic Custom Sections (Priority Order <= 2) */}
         {earlySections.map((sec) => (
           <ErrorBoundary key={sec._id || sec.key}>
             <DynamicSectionRenderer section={sec} />
@@ -95,7 +100,7 @@ export default function HomePage() {
           <VideoReelShowcase />
         </ErrorBoundary>
 
-        {/* Dynamic Sections (Order > 2) */}
+        {/* Dynamic Custom Sections (Order > 2) */}
         {laterSections.map((sec) => (
           <ErrorBoundary key={sec._id || sec.key}>
             <DynamicSectionRenderer section={sec} />

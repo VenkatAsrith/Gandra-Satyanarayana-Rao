@@ -27,8 +27,8 @@ export default function DynamicSectionRenderer({ section }) {
   switch (section.type) {
     case 'quote_callout':
       return (
-        <section className="section-wrap dynamic-section-wrap dynamic-quote-wrap" id={section.key}>
-          <div className="site-container">
+        <section className="section dynamic-section-wrap dynamic-quote-wrap" id={section.key}>
+          <div className="container">
             <div className="dynamic-quote-card">
               <div className="dynamic-quote-grid">
                 {mediaUrl && (
@@ -44,8 +44,8 @@ export default function DynamicSectionRenderer({ section }) {
                   </div>
                 )}
                 <div className="dynamic-quote-body">
-                  {badge && <span className="category-pill">{badge}</span>}
-                  <h2 className="dynamic-quote-title">{title}</h2>
+                  {badge && <span className="tag-label">{badge}</span>}
+                  <h2 className="dynamic-quote-title" style={{ marginTop: '0.65rem' }}>{title}</h2>
                   {subtitle && <p className="dynamic-quote-lead">{subtitle}</p>}
                   {content && (
                     <blockquote className="dynamic-blockquote">
@@ -54,7 +54,7 @@ export default function DynamicSectionRenderer({ section }) {
                   )}
                   {ctaText && section.ctaLink && (
                     <div className="dynamic-quote-action">
-                      <Link to={section.ctaLink} className="btn btn-primary">
+                      <Link to={section.ctaLink} className="btn-pill btn-primary">
                         {ctaText} →
                       </Link>
                     </div>
@@ -68,11 +68,11 @@ export default function DynamicSectionRenderer({ section }) {
 
     case 'statistics':
       return (
-        <section className="section-wrap dynamic-section-wrap dynamic-stats-wrap" id={section.key}>
-          <div className="site-container">
+        <section className="section dynamic-section-wrap dynamic-stats-wrap" id={section.key}>
+          <div className="container">
             <div className="section-header-centered">
-              {badge && <span className="category-pill">{badge}</span>}
-              <h2 className="section-heading">{title}</h2>
+              {badge && <span className="tag-label">{badge}</span>}
+              <h2 className="section-heading" style={{ marginTop: '0.65rem' }}>{title}</h2>
               {subtitle && <p className="section-lead">{subtitle}</p>}
             </div>
 
@@ -97,11 +97,11 @@ export default function DynamicSectionRenderer({ section }) {
 
     case 'faq':
       return (
-        <section className="section-wrap dynamic-section-wrap dynamic-faq-wrap" id={section.key}>
-          <div className="site-container">
+        <section className="section dynamic-section-wrap dynamic-faq-wrap" id={section.key}>
+          <div className="container">
             <div className="section-header-centered">
-              {badge && <span className="category-pill">{badge}</span>}
-              <h2 className="section-heading">{title}</h2>
+              {badge && <span className="tag-label">{badge}</span>}
+              <h2 className="section-heading" style={{ marginTop: '0.65rem' }}>{title}</h2>
               {subtitle && <p className="section-lead">{subtitle}</p>}
             </div>
 
@@ -138,11 +138,11 @@ export default function DynamicSectionRenderer({ section }) {
 
     case 'announcements':
       return (
-        <section className="section-wrap dynamic-section-wrap dynamic-announcement-wrap" id={section.key}>
-          <div className="site-container">
+        <section className="section dynamic-section-wrap dynamic-announcement-wrap" id={section.key}>
+          <div className="container">
             <div className="announcement-banner">
               <div className="announcement-badge-col">
-                <span className="badge badge-accent">
+                <span className="tag-label">
                   {badge || (isTelugu ? 'ముఖ్య గమనిక' : 'Public Announcement')}
                 </span>
               </div>
@@ -157,7 +157,7 @@ export default function DynamicSectionRenderer({ section }) {
               </div>
               {ctaText && section.ctaLink && (
                 <div className="announcement-btn-col">
-                  <Link to={section.ctaLink} className="btn btn-secondary btn-sm">
+                  <Link to={section.ctaLink} className="btn-pill btn-secondary btn-sm">
                     {ctaText}
                   </Link>
                 </div>
@@ -170,13 +170,13 @@ export default function DynamicSectionRenderer({ section }) {
     case 'feature':
     default:
       return (
-        <section className="section-wrap dynamic-section-wrap" id={section.key}>
-          <div className="site-container">
+        <section className="section dynamic-section-wrap" id={section.key}>
+          <div className="container">
             <div className={`dynamic-feature-grid layout-${section.layout || 'split_media'}`}>
               <div className="dynamic-feature-content">
-                {badge && <span className="category-pill">{badge}</span>}
-                <h2 className="section-heading dynamic-heading">{title}</h2>
-                {subtitle && <p className="section-lead dynamic-lead">{subtitle}</p>}
+                {badge && <span className="tag-label">{badge}</span>}
+                <h2 className="section-title dynamic-heading" style={{ marginTop: '0.65rem' }}>{title}</h2>
+                {subtitle && <p className="section-subtitle dynamic-lead">{subtitle}</p>}
                 {content && (
                   <div className="dynamic-body-text">
                     {typeof content === 'string' ? (
@@ -194,7 +194,7 @@ export default function DynamicSectionRenderer({ section }) {
                 )}
                 {ctaText && section.ctaLink && (
                   <div className="dynamic-action-row">
-                    <Link to={section.ctaLink} className="btn btn-primary">
+                    <Link to={section.ctaLink} className="btn-pill btn-primary">
                       {ctaText} →
                     </Link>
                   </div>

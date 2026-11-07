@@ -10752,3 +10752,519 @@ html, body {
     justify-content: center !important;
   }
 }
+
+
+/* ==========================================================================
+   ENHANCED EDITORIAL STYLES: FIELD UPDATES SHARE BAR, IRRIGATION SHOWCASE & TIMELINE SCROLLSTACK
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. FIELD UPDATES SHARE BAR
+   -------------------------------------------------------------------------- */
+.latest-share-container {
+  margin-top: 1.75rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.latest-share-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--gray-dark);
+}
+
+.latest-share-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+}
+
+.share-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 16px;
+  border-radius: var(--radius-pill);
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: all 0.2s ease;
+  font-family: inherit;
+  text-decoration: none;
+}
+
+.share-btn.share-whatsapp {
+  background: #25D366;
+  color: #FFFFFF;
+}
+
+.share-btn.share-whatsapp:hover {
+  background: #20BD5A;
+  box-shadow: 0 4px 12px rgba(37, 211, 102, 0.28);
+}
+
+.share-btn.share-facebook {
+  background: #1877F2;
+  color: #FFFFFF;
+}
+
+.share-btn.share-facebook:hover {
+  background: #1466D2;
+  box-shadow: 0 4px 12px rgba(24, 119, 242, 0.28);
+}
+
+.share-btn.share-story {
+  background: #FFFFFF;
+  color: var(--charcoal);
+  border: 1px solid var(--border);
+}
+
+.share-btn.share-story:hover {
+  background: var(--off-white);
+  border-color: var(--charcoal);
+}
+
+.share-feedback-toast {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--green-dark);
+  background: var(--green-soft);
+  padding: 8px 14px;
+  border-radius: 8px;
+  display: inline-block;
+  animation: fadeIn 0.3s ease;
+}
+
+/* --------------------------------------------------------------------------
+   2. UNIFIED IRRIGATION PRIORITY SHOWCASE (.irrigation-showcase-card)
+   -------------------------------------------------------------------------- */
+.irrigation-section-header {
+  margin-bottom: 2rem;
+}
+
+.irrigation-showcase-card {
+  background: #FFFFFF;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+}
+
+.irrigation-showcase-grid {
+  display: grid;
+  grid-template-columns: 1.05fr 1.2fr;
+  align-items: stretch;
+}
+
+.irrigation-showcase-visual {
+  position: relative;
+  min-height: 380px;
+  background: #000;
+}
+
+.irrigation-showcase-frame {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.irrigation-showcase-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+.irrigation-frame-badge {
+  position: absolute;
+  bottom: 14px;
+  left: 14px;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(8px);
+  color: #FFFFFF;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  padding: 6px 14px;
+  border-radius: var(--radius-pill);
+}
+
+.irrigation-showcase-content {
+  padding: clamp(1.75rem, 3.5vw, 3rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.irrigation-content-heading {
+  font-family: var(--font-display);
+  font-size: clamp(1.45rem, 2.2vw, 1.85rem);
+  font-weight: 800;
+  color: var(--charcoal);
+  margin-bottom: 0.85rem;
+  line-height: 1.25;
+}
+
+.irrigation-content-desc {
+  font-size: 0.94rem;
+  color: var(--gray-dark);
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+}
+
+.irrigation-pills-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.irrigation-stat-pill {
+  flex: 1 1 calc(50% - 0.5rem);
+  min-width: 160px;
+  background: var(--saffron-soft);
+  border: 1px solid rgba(243, 107, 33, 0.3);
+  border-radius: var(--radius-md);
+  padding: 0.85rem 1.15rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.irrigation-stat-pill.green {
+  background: var(--green-soft);
+  border-color: rgba(8, 116, 67, 0.3);
+}
+
+.stat-pill-num {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 900;
+  line-height: 1.1;
+  color: var(--saffron-dark);
+}
+
+.irrigation-stat-pill.green .stat-pill-num {
+  color: var(--green-dark);
+}
+
+.stat-pill-label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--charcoal);
+  margin-top: 2px;
+}
+
+.irrigation-mandals-info {
+  font-size: 0.84rem;
+  color: var(--gray);
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: baseline;
+}
+
+.mandals-info-label {
+  font-weight: 700;
+  color: var(--charcoal);
+}
+
+.mandals-info-list {
+  font-weight: 600;
+  color: var(--green-dark);
+}
+
+.irrigation-action-wrap {
+  display: flex;
+}
+
+@media (max-width: 900px) {
+  .irrigation-showcase-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .irrigation-showcase-visual {
+    min-height: 240px;
+    max-height: 320px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   3. POLITICAL JOURNEY SCROLLSTACK (.journey-timeline-section)
+   -------------------------------------------------------------------------- */
+.journey-timeline-section {
+  background: var(--off-white);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.timeline-head-block {
+  margin-bottom: 2.5rem;
+}
+
+.timeline-scrollstack-wrapper {
+  margin-top: 1rem;
+}
+
+.timeline-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.timeline-stack-card {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 0.5rem 0;
+}
+
+.timeline-stack-card .timeline-card-header {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.timeline-stack-card .timeline-chapter-badge {
+  font-family: var(--font-display);
+  font-size: 0.78rem;
+  font-weight: 900;
+  color: var(--saffron);
+  background: #FFFFFF;
+  border: 1px solid var(--border);
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+}
+
+.timeline-stack-card .timeline-year-pill {
+  font-family: var(--font-display);
+  font-size: 0.82rem;
+  font-weight: 800;
+  background: var(--charcoal);
+  color: #FFFFFF;
+  padding: 4px 12px;
+  border-radius: var(--radius-pill);
+}
+
+.timeline-stack-card .timeline-role-pill {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--gray-dark);
+}
+
+.timeline-stack-card .timeline-card-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.2rem, 2vw, 1.45rem);
+  font-weight: 800;
+  color: var(--charcoal);
+  line-height: 1.3;
+}
+
+.timeline-stack-card .timeline-card-desc {
+  font-size: 0.94rem;
+  color: var(--gray-dark);
+  line-height: 1.7;
+}
+
+.timeline-stack-card .timeline-card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  padding-top: 0.85rem;
+  border-top: 1px solid var(--border);
+}
+
+.timeline-stack-card .timeline-citation {
+  font-size: 0.78rem;
+  color: var(--gray);
+}
+
+.timeline-stack-card .timeline-incumbent-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--green-soft);
+  color: var(--green-dark);
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: var(--radius-pill);
+}
+
+.incumbent-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--green);
+}
+
+
+/* ==========================================================================
+   RESPONSIVE FIXES: DYNAMIC GRID COLLAPSE, TAG-LABEL CLIPPING & STORY CARD POLISH
+   ========================================================================== */
+
+/* 1. Tag Label Mobile Safety (No Text Clipping) */
+.tag-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em !important;
+  text-transform: uppercase;
+  color: var(--orange-dark);
+  background: var(--orange-light);
+  padding: 5px 12px !important;
+  border-radius: var(--radius-pill);
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+  white-space: normal !important;
+  word-break: break-word !important;
+  line-height: 1.35 !important;
+}
+
+/* 2. Dynamic Feature Grid Full Mobile Collapse */
+@media (max-width: 900px) {
+  .dynamic-section-wrap {
+    padding-block: 2.5rem !important;
+  }
+
+  .dynamic-feature-grid {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1.5rem !important;
+    width: 100% !important;
+  }
+
+  .dynamic-feature-content {
+    width: 100% !important;
+  }
+
+  .dynamic-feature-media {
+    width: 100% !important;
+    order: -1 !important; /* Image on top of text on mobile */
+  }
+
+  .dynamic-img-frame {
+    width: 100% !important;
+    max-height: 280px !important;
+    border-radius: 16px !important;
+  }
+
+  .dynamic-img-frame img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+  }
+
+  .dynamic-heading {
+    font-size: clamp(1.4rem, 5vw, 1.85rem) !important;
+    line-height: 1.25 !important;
+    margin-top: 0.5rem !important;
+  }
+
+  .dynamic-lead {
+    font-size: 0.95rem !important;
+    line-height: 1.55 !important;
+  }
+
+  .dynamic-quote-grid {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1.25rem !important;
+  }
+
+  .dynamic-quote-media {
+    width: 100% !important;
+    max-height: 260px !important;
+  }
+}
+
+/* 3. Story Grid Mobile ScrollStack Polish (Screenshot 1 Correction) */
+@media (max-width: 768px) {
+  .section-head-editorial {
+    margin-bottom: 1.75rem !important;
+  }
+
+  .section-head-editorial .section-title {
+    font-size: clamp(1.35rem, 5vw, 1.75rem) !important;
+    line-height: 1.25 !important;
+    margin-top: 0.5rem !important;
+    margin-bottom: 0.5rem !important;
+  }
+
+  .section-head-editorial .section-subtitle {
+    font-size: 0.88rem !important;
+    line-height: 1.55 !important;
+  }
+
+  /* Polished card interior */
+  .stack-journey-card {
+    background: #FFFFFF !important;
+    border-radius: 18px !important;
+    overflow: hidden !important;
+  }
+
+  .stack-journey-img-frame {
+    width: 100% !important;
+    aspect-ratio: 16 / 10 !important;
+    max-height: 240px !important;
+    border-radius: 14px !important;
+    position: relative !important;
+    overflow: hidden !important;
+  }
+
+  .stack-journey-img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    object-position: center 20% !important;
+  }
+
+  .stack-journey-badge {
+    position: absolute !important;
+    top: 10px !important;
+    left: 10px !important;
+    background: rgba(17, 17, 17, 0.88) !important;
+    backdrop-filter: blur(8px) !important;
+    color: #FFFFFF !important;
+    font-size: 0.7rem !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.04em !important;
+    padding: 4px 10px !important;
+    border-radius: var(--radius-pill) !important;
+  }
+
+  .stack-journey-content {
+    padding-top: 0.85rem !important;
+  }
+
+  .stack-journey-title {
+    font-size: 1.15rem !important;
+    font-weight: 800 !important;
+    line-height: 1.3 !important;
+    color: var(--charcoal) !important;
+    margin-bottom: 0.45rem !important;
+  }
+
+  .stack-journey-desc {
+    font-size: 0.88rem !important;
+    line-height: 1.6 !important;
+    color: var(--gray-dark) !important;
+  }
+}
