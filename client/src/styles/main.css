@@ -11605,45 +11605,20 @@ html, body {
 .updates-timer-badge {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  justify-content: center;
   background: #FFFFFF;
-  border: 1.5px solid rgba(16, 185, 129, 0.28);
+  border: 1.5px solid rgba(243, 107, 33, 0.35);
   border-radius: 9999px;
-  padding: 6px 14px;
-  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.08);
-}
-
-.timer-pulse-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: #94A3B8;
-  display: inline-block;
-  transition: all 0.25s ease;
-}
-
-.timer-pulse-dot.active {
-  background: #10B981;
-  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.25);
-  animation: pulse-live 1.8s infinite;
+  padding: 5px 14px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 }
 
 .timer-badge-text {
-  font-size: 0.82rem;
+  font-size: 0.84rem;
   font-weight: 800;
-  color: #0F172A;
+  color: #F36B21;
   font-family: var(--font-display);
-}
-
-.timer-sub-txt {
-  font-size: 0.72rem;
-  font-weight: 700;
-  color: #059669;
-  letter-spacing: 0.03em;
-  text-transform: uppercase;
-  background: rgba(16, 185, 129, 0.1);
-  padding: 2px 6px;
-  border-radius: 6px;
+  letter-spacing: 0.05em;
 }
 
 .updates-nav-btn-group {
@@ -11861,29 +11836,88 @@ html, body {
 }
 
 @media (max-width: 640px) {
+  .latest-updates-canvas {
+    padding: 1.15rem 0.95rem !important;
+    border-radius: 18px !important;
+  }
+
   .new-updates-section-header-row {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: stretch;
     gap: 0.85rem;
   }
 
   .updates-loop-controls {
     width: 100%;
+    display: flex;
     justify-content: space-between;
+    align-items: center;
+  }
+
+  .updates-horizontal-track-wrap {
+    margin-bottom: 1.25rem !important;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 4px;
   }
 
   .updates-track-card {
-    flex: 0 0 260px;
-    padding: 8px 10px;
+    flex: 0 0 min(250px, 76vw) !important;
+    scroll-snap-align: start;
+    padding: 8px 10px !important;
+    border-radius: 12px !important;
   }
 
   .track-card-thumb {
-    width: 60px;
-    height: 48px;
+    width: 56px !important;
+    height: 46px !important;
   }
 
   .track-card-title {
-    font-size: 0.82rem;
+    font-size: 0.8rem !important;
+    line-height: 1.25 !important;
+  }
+
+  .latest-deck-main-card {
+    aspect-ratio: 16 / 10.5 !important;
+    max-height: 280px !important;
+    border-radius: 14px !important;
+  }
+
+  .latest-headline-title {
+    font-size: clamp(1.15rem, 4.2vw, 1.45rem) !important;
+    line-height: 1.35 !important;
+  }
+
+  .latest-lead-paragraph {
+    font-size: 0.92rem !important;
+    line-height: 1.55 !important;
+  }
+
+  .latest-paragraph {
+    font-size: 0.88rem !important;
+    line-height: 1.6 !important;
+  }
+
+  .latest-share-actions {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 8px !important;
+  }
+
+  .share-btn {
+    flex: 1 1 calc(50% - 6px) !important;
+    justify-content: center !important;
+    font-size: 0.8rem !important;
+    padding: 8px 10px !important;
+  }
+}
+
+@media (max-width: 400px) {
+  .share-btn {
+    flex: 1 1 100% !important;
+  }
+  .updates-track-card {
+    flex: 0 0 85vw !important;
   }
 }
 

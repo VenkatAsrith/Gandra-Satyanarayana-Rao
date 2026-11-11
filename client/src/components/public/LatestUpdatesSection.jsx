@@ -5,10 +5,10 @@ import { resolveMediaUrl } from '../../services/api';
 // Verified Field Dispatches & Official Constituency Updates
 export const LATEST_UPDATE_RECORDS = [
   {
-    id: 'update-oditela-substation-2026-11-10',
-    date: '2026-11-10',
-    dateFormattedEn: '10 November 2026',
-    dateFormattedTe: '10 నవంబర్ 2026',
+    id: 'update-oditela-substation-2026-10-31',
+    date: '2026-10-31',
+    dateFormattedEn: '31 October 2026',
+    dateFormattedTe: '31 అక్టోబర్ 2026',
     pressNoteLabelEn: 'Power Infrastructure Inauguration',
     pressNoteLabelTe: 'విద్యుత్ మౌలిక సదుపాయాల ప్రారంభోత్సవం',
     locationEn: 'Oditela Village, Chityal / Bhupalpalle',
@@ -295,15 +295,11 @@ export default function LatestUpdatesSection() {
               </h2>
             </div>
 
-            {/* Horizontal Carousel Controls */}
+            {/* Horizontal Carousel Step Controls */}
             <div className="updates-loop-controls">
-              <div className="updates-timer-badge" title="Auto-advances every 3 seconds">
-                <span className={`timer-pulse-dot ${isAutoPlaying ? 'active' : ''}`} aria-hidden="true"></span>
+              <div className="updates-timer-badge">
                 <span className="timer-badge-text">
                   0{activeUpdateIdx + 1} / 0{updates.length}
-                </span>
-                <span className="timer-sub-txt">
-                  {isAutoPlaying ? (isTelugu ? '3సె ఆటో లూప్' : '3s Loop') : (isTelugu ? 'ఆగింది' : 'Paused')}
                 </span>
               </div>
 
@@ -312,7 +308,7 @@ export default function LatestUpdatesSection() {
                   type="button"
                   className="updates-nav-arrow-btn"
                   onClick={handlePrevUpdate}
-                  aria-label="Previous Update (3s loop)"
+                  aria-label="Previous Update"
                   title="Previous Update"
                 >
                   &#10094;
@@ -321,7 +317,7 @@ export default function LatestUpdatesSection() {
                   type="button"
                   className="updates-nav-arrow-btn"
                   onClick={handleNextUpdate}
-                  aria-label="Next Update (3s loop)"
+                  aria-label="Next Update"
                   title="Next Update"
                 >
                   &#10095;
