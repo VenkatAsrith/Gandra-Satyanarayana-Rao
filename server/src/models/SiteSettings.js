@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+﻿const mongoose = require('mongoose');
 
 const siteSettingsSchema = new mongoose.Schema(
   {
@@ -9,7 +9,7 @@ const siteSettingsSchema = new mongoose.Schema(
     },
     teluguTitle: {
       type: String,
-      default: 'గండ్ర సత్యనారాయణ రావు (సత్తెన్న)',
+      default: 'గండ్ర సత్యనారాయణ రావు (సాతన్న)',
       trim: true
     },
     tagline: {
@@ -70,7 +70,7 @@ const siteSettingsSchema = new mongoose.Schema(
     },
     metaDescription: {
       type: String,
-      default: 'Official public profile documenting the public service, legislative work, and constituency engagement of Gandra Satyanarayana Rao (Sathenna), MLA for Bhupalpalle, Telangana.'
+      default: 'Official public profile documenting the public service, legislative work, and constituency engagement of Gandra Satyanarayana Rao (Sathanna), MLA for Bhupalpalle, Telangana.'
     },
     verificationNotice: {
       type: String,
@@ -89,3 +89,4 @@ const siteSettingsSchema = new mongoose.Schema(
 );
 
 module.exports = mongoose.model('SiteSettings', siteSettingsSchema);
+

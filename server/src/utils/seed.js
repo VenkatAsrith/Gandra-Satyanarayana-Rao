@@ -1,4 +1,4 @@
-const path = require('path');
+﻿const path = require('path');
 require('dotenv').config({ path: path.join(__dirname, '../.env') });
 require('dotenv').config({ path: path.join(__dirname, '../../.env') });
 require('dotenv').config({ path: path.join(__dirname, '../../server/.env') });
@@ -42,7 +42,7 @@ const seedDatabase = async () => {
     await SiteSettings.deleteMany({});
     await SiteSettings.create({
       siteTitle: 'Gandra Satyanarayana Rao | Member of Legislative Assembly, Bhupalpalle',
-      teluguTitle: 'గండ్ర సత్యనారాయణ రావు (సత్తెన్న)',
+      teluguTitle: 'గండ్ర సత్యనారాయణ రావు (సాతన్న)',
       tagline: 'Official Public Profile & Legislative Dossier',
       emblemUrl: '/images/party-symbol.png',
       partyAffiliation: 'Indian National Congress',
@@ -61,7 +61,7 @@ const seedDatabase = async () => {
         state: 'Telangana',
         notes: 'Weekly Praja Darbar open public court for representations'
       },
-      metaDescription: 'Official public profile documenting the public service, legislative work, and constituency engagement of Gandra Satyanarayana Rao (Sathenna), MLA for Bhupalpalle, Telangana.',
+      metaDescription: 'Official public profile documenting the public service, legislative work, and constituency engagement of Gandra Satyanarayana Rao (Sathanna), MLA for Bhupalpalle, Telangana.',
       verificationNotice: 'Official public portal of Sri Gandra Satyanarayana Rao, MLA Bhupalpalle (No. 108), Telangana.'
     });
     console.log('[Seed] SiteSettings seeded successfully.');
@@ -70,21 +70,21 @@ const seedDatabase = async () => {
     await ProfileContent.deleteMany({});
     await ProfileContent.create({
       fullName: 'Gandra Satyanarayana Rao',
-      commonName: 'Sathenna',
-      teluguName: 'గండ్ర సత్యనారాయణ రావు (సత్తెన్న)',
+      commonName: 'Sathanna',
+      teluguName: 'గండ్ర సత్యనారాయణ రావు (సాతన్న)',
       birthYear: 1965,
       parentName: 'Late Sri Gandra Samma Rao',
       spouseName: 'Smt. Gandra Padma',
       nativeVillage: 'Buddharam Village, Ghanapuram Mandal',
       education: 'BA (Kakatiya University, Warangal, 1983) & ITI Civil Diploma',
       leadTitle: 'A lifetime dedicated to agriculture, grassroots democracy, and direct constituent representation.',
-      biographySummary: 'Born in 1965 to agrarian elder Late Sri Gandra Samma Rao in Buddharam village, Ghanapuram mandal, Gandra Satyanarayana Rao (Sathenna) completed his Bachelor of Arts from Kakatiya University and an ITI Civil diploma. Over nearly four decades of dedicated public service—starting as Village Sarpanch in Buddharam, then ZPTC Member, and ultimately winning the Bhupalpalle Assembly seat in December 2023 with 123,116 votes and a historic 52,699-vote victory margin—he has stood as an unwavering champion for farmers\' canal waters, Singareni coal miners, and rural infrastructure.',
-      biographyExtended: 'Sathenna\'s public life began at the fundamental unit of Indian democracy: the gram panchayat. Serving as Buddharam\'s Sarpanch, he oversaw tank maintenance, community roads, and agricultural credit accessibility. His technical qualification as a civil draughtsman equipped him with direct literacy in engineering blueprints, canal gradient flows, and irrigation bund stability. In 1996, he was elected as ZPTC member representing Ghanapuram mandal. In the 2023 Telangana Legislative Assembly elections, contesting as the Indian National Congress candidate, he secured a decisive mandate with 54.55% of all valid votes.',
+      biographySummary: 'Born in 1965 to agrarian elder Late Sri Gandra Samma Rao in Buddharam village, Ghanapuram mandal, Gandra Satyanarayana Rao (Sathanna) completed his Bachelor of Arts from Kakatiya University and an ITI Civil diploma. Over nearly four decades of dedicated public service—starting as Village Sarpanch in Buddharam, then ZPTC Member, and ultimately winning the Bhupalpalle Assembly seat in December 2023 with 123,116 votes and a historic 52,699-vote victory margin—he has stood as an unwavering champion for farmers\' canal waters, Singareni coal miners, and rural infrastructure.',
+      biographyExtended: 'Sathanna\'s public life began at the fundamental unit of Indian democracy: the gram panchayat. Serving as Buddharam\'s Sarpanch, he oversaw tank maintenance, community roads, and agricultural credit accessibility. His technical qualification as a civil draughtsman equipped him with direct literacy in engineering blueprints, canal gradient flows, and irrigation bund stability. In 1996, he was elected as ZPTC member representing Ghanapuram mandal. In the 2023 Telangana Legislative Assembly elections, contesting as the Indian National Congress candidate, he secured a decisive mandate with 54.55% of all valid votes.',
       translations: {
         te: {
           leadTitle: 'ప్రజాస్వామ్య విలువలు, వ్యవసాయం & నిరంతర ప్రజాసేవకే అంకితమైన జీవన ప్రస్థానం.',
-          biographySummary: '1965లో జయశంకర్ భూపాలపల్లి జిల్లా ఘనపురం మండలం బుద్ధారం గ్రామంలో వ్యవసాయ కుటుంబంలో జన్మించిన గండ్ర సత్యనారాయణ రావు (సత్తెన్న), కాకతీయ విశ్వవిద్యాలయం నుండి బి.ఎ. మరియు సివిల్ ఐటీఐ డిప్లొమా పూర్తి చేశారు. నాలుగు దశాబ్దాలుగా బుద్ధారం గ్రామ సర్పంచ్‌గా, జెడ్పీటీసీగా ప్రజాసేవలో కొనసాగుతూ, 2023 డిసెంబర్ శాసనసభ ఎన్నికల్లో 1,23,116 ఓట్లతో 52,699 ఓట్ల భారీ మెజారిటీతో విజయం సాధించి భూపాలపల్లి ఎమ్మెల్యేగా నిరంతరం ప్రజాసేవలో నిమగ్నమై ఉన్నారు.',
-          biographyExtended: 'సత్తెన్న ప్రజా జీవితం భారత ప్రజాస్వామ్య పునాది అయిన గ్రామ పంచాయతీ నుండి ప్రారంభమైంది. బుద్ధారం గ్రామ సర్పంచ్‌గా చెరువుల నిర్వహణ, గ్రామీణ రహదారులు, సాగునీటి పారుదల మరియు రైతుల సంక్షేమంలో కీలక పాత్ర పోషించారు. సివిల్ ఇంజనీరింగ్ పరిజ్ఞానం ఉండటం వల్ల ప్రాజెక్టుల నాణ్యత, కాల్వల లెవల్స్‌పై సాంకేతిక పట్టు సాధించారు. 1996లో ఘనపురం జెడ్పీటీసీగా, 2023లో భూపాలపల్లి ఎమ్మెల్యేగా చారిత్రాత్మక ఘనవిజయం సాధించారు.'
+          biographySummary: '1965లో జయశంకర్ భూపాలపల్లి జిల్లా ఘనపురం మండలం బుద్ధారం గ్రామంలో వ్యవసాయ కుటుంబంలో జన్మించిన గండ్ర సత్యనారాయణ రావు (సాతన్న), కాకతీయ విశ్వవిద్యాలయం నుండి బి.ఎ. మరియు సివిల్ ఐటీఐ డిప్లొమా పూర్తి చేశారు. నాలుగు దశాబ్దాలుగా బుద్ధారం గ్రామ సర్పంచ్‌గా, జెడ్పీటీసీగా ప్రజాసేవలో కొనసాగుతూ, 2023 డిసెంబర్ శాసనసభ ఎన్నికల్లో 1,23,116 ఓట్లతో 52,699 ఓట్ల భారీ మెజారిటీతో విజయం సాధించి భూపాలపల్లి ఎమ్మెల్యేగా నిరంతరం ప్రజాసేవలో నిమగ్నమై ఉన్నారు.',
+          biographyExtended: 'సాతన్న ప్రజా జీవితం భారత ప్రజాస్వామ్య పునాది అయిన గ్రామ పంచాయతీ నుండి ప్రారంభమైంది. బుద్ధారం గ్రామ సర్పంచ్‌గా చెరువుల నిర్వహణ, గ్రామీణ రహదారులు, సాగునీటి పారుదల మరియు రైతుల సంక్షేమంలో కీలక పాత్ర పోషించారు. సివిల్ ఇంజనీరింగ్ పరిజ్ఞానం ఉండటం వల్ల ప్రాజెక్టుల నాణ్యత, కాల్వల లెవల్స్‌పై సాంకేతిక పట్టు సాధించారు. 1996లో ఘనపురం జెడ్పీటీసీగా, 2023లో భూపాలపల్లి ఎమ్మెల్యేగా చారిత్రాత్మక ఘనవిజయం సాధించారు.'
         }
       },
       heroPortraitUrl: '/images/hero/hero-portrait.png',
@@ -511,7 +511,7 @@ const seedDatabase = async () => {
       {
         publicId: 'local_family-revanth',
         secureUrl: '/images/about/family-revanth.png',
-        title: 'Smt. Gandra Padma & Sathenna with CM Revanth Reddy',
+        title: 'Smt. Gandra Padma & Sathanna with CM Revanth Reddy',
         caption: 'Coordination with State Executive on key constituency priorities',
         altText: 'Gandra Satyanarayana Rao and Smt. Gandra Padma meeting Chief Minister Revanth Reddy',
         category: 'constituency',
@@ -522,7 +522,7 @@ const seedDatabase = async () => {
         displayOrder: 4,
         translations: {
           te: {
-            title: 'ముఖ్యమంత్రి రేవంత్ రెడ్డి గారితో సతీమణి గండ్ర పద్మ & సత్తెన్న',
+            title: 'ముఖ్యమంత్రి రేవంత్ రెడ్డి గారితో సతీమణి గండ్ర పద్మ & సాతన్న',
             caption: 'నియోజకవర్గ ప్రధాన సాగునీటి ప్రాజెక్టులు, ఆలయ నిధుల మంజూరుపై ముఖ్యమంత్రితో చర్చలు',
             categoryLabel: 'పాలనా సమన్వయం'
           }
@@ -592,9 +592,9 @@ const seedDatabase = async () => {
             "secureUrl": "/media/images/agri-drone-inauguration.jpg",
             "thumbnailUrl": "/media/images/agri-drone-inauguration.jpg",
             "mediaType": "image",
-            "title": "Ribbon Cutting & Blessing: Agricultural Drone Launch by MLA Sathenna",
+            "title": "Ribbon Cutting & Blessing: Agricultural Drone Launch by MLA Sathanna",
             "caption": "Gandra Satyanarayana Rao cutting ribbon with progressive farmers and women leaders to deploy agricultural drones across the constituency.",
-            "altText": "Ribbon Cutting & Blessing: Agricultural Drone Launch by MLA Sathenna",
+            "altText": "Ribbon Cutting & Blessing: Agricultural Drone Launch by MLA Sathanna",
             "category": "agriculture",
             "categoryLabel": "Agriculture & Innovation",
             "credit": "Constituency Field Record",
@@ -603,7 +603,7 @@ const seedDatabase = async () => {
             "displayOrder": 19,
             "translations": {
                   "te": {
-                        "title": "రైతాంగం సమక్షంలో వ్యవసాయ డ్రోన్ ప్రారంభోత్సవం - ఎమ్మెల్యే సత్తెన్న",
+                        "title": "రైతాంగం సమక్షంలో వ్యవసాయ డ్రోన్ ప్రారంభోత్సవం - ఎమ్మెల్యే సాతన్న",
                         "caption": "రైతులకు శ్రమ తగ్గించి దిగుబడులు పెంచేందుకు అధునాతన అగ్రికల్చర్ డ్రోన్ల వినియోగాన్ని లాంఛనంగా ప్రారంభించిన శాసనసభ్యులు గండ్ర సత్యనారాయణ రావు.",
                         "categoryLabel": "వ్యవసాయం & సాంకేతికత"
                   }
@@ -650,7 +650,7 @@ const seedDatabase = async () => {
             "translations": {
                   "te": {
                         "title": "రైతులకు అత్యాధునిక వ్యవసాయ డ్రోన్ సాంకేతికత ప్రారంభోత్సవం",
-                        "caption": "భూపాలపల్లి నియోజకవర్గ రైతాంగం కోసం పంటలపై మందుల పిచికారీ చేసే అత్యాధునిక డ్రోన్ సేవలను రిబ్బన్ కట్ చేసి ప్రారంభించిన శాసనసభ్యులు సత్తెన్న.",
+                        "caption": "భూపాలపల్లి నియోజకవర్గ రైతాంగం కోసం పంటలపై మందుల పిచికారీ చేసే అత్యాధునిక డ్రోన్ సేవలను రిబ్బన్ కట్ చేసి ప్రారంభించిన శాసనసభ్యులు సాతన్న.",
                         "categoryLabel": "వ్యవసాయం & సాంకేతికత"
                   }
             }
@@ -722,7 +722,7 @@ const seedDatabase = async () => {
             "translations": {
                   "te": {
                         "title": "ప్రభుత్వ గురుకుల పాఠశాల విద్యార్థులతో కలిసి సహపంక్తి భోజనం",
-                        "caption": "ప్రభుత్వ పాఠశాలల్లో నాణ్యమైన పోషకాహారం అందుతున్నదా లేదా అని తెలుసుకునేందుకు విద్యార్థులతో నేలపై కూర్చొని స్వయంగా భోజనం చేసిన సత్తెన్న.",
+                        "caption": "ప్రభుత్వ పాఠశాలల్లో నాణ్యమైన పోషకాహారం అందుతున్నదా లేదా అని తెలుసుకునేందుకు విద్యార్థులతో నేలపై కూర్చొని స్వయంగా భోజనం చేసిన సాతన్న.",
                         "categoryLabel": "విద్య & విద్యార్థుల సంక్షేమం"
                   }
             }
@@ -889,8 +889,8 @@ const seedDatabase = async () => {
             "displayOrder": 13,
             "translations": {
                   "te": {
-                        "title": "పల్లె నిద్ర & పాదయాత్ర: ప్రతి గడపకూ ఎమ్మెల్యే సత్తెన్న పలకరింపు",
-                        "caption": "గ్రామ పర్యటనలో భాగంగా వీధుల్లో కాలినడకన పర్యటిస్తూ ప్రతి ఇంటి సమస్యను స్వయంగా అడిగి తెలుసుకుంటున్న సత్తెన్న.",
+                        "title": "పల్లె నిద్ర & పాదయాత్ర: ప్రతి గడపకూ ఎమ్మెల్యే సాతన్న పలకరింపు",
+                        "caption": "గ్రామ పర్యటనలో భాగంగా వీధుల్లో కాలినడకన పర్యటిస్తూ ప్రతి ఇంటి సమస్యను స్వయంగా అడిగి తెలుసుకుంటున్న సాతన్న.",
                         "categoryLabel": "నియోజకవర్గం & ప్రజా దర్బార్"
                   }
             }
@@ -914,7 +914,7 @@ const seedDatabase = async () => {
             "translations": {
                   "te": {
                         "title": "సాంస్కృతిక వేడుక: ప్రజలతో కలిసి సంప్రదాయ కోలాటం & దాండియా",
-                        "caption": "పండుగ వేడుకల్లో భాగంగా గ్రామీణ సంస్కృతిని ప్రోత్సహిస్తూ యువత, పెద్దలతో కలిసి కోలాటం ఆడిన ఎమ్మెల్యే సత్తెన్న.",
+                        "caption": "పండుగ వేడుకల్లో భాగంగా గ్రామీణ సంస్కృతిని ప్రోత్సహిస్తూ యువత, పెద్దలతో కలిసి కోలాటం ఆడిన ఎమ్మెల్యే సాతన్న.",
                         "categoryLabel": "సంస్కృతి & పండుగలు"
                   }
             }
@@ -986,7 +986,7 @@ const seedDatabase = async () => {
             "translations": {
                   "te": {
                         "title": "సంప్రదాయ బంజారా తీజ్ ఉత్సవం - గోధుమ మొలకల బుట్టలతో పూజలు",
-                        "caption": "గిరిజన తండాల సంస్కృతిని గౌరవిస్తూ సంప్రదాయ తలపాగా ధరించి, తీజ్ గోధుమ బుట్టను నెత్తిన పెట్టుకుని వేడుకల్లో పాల్గొన్న సత్తెన్న.",
+                        "caption": "గిరిజన తండాల సంస్కృతిని గౌరవిస్తూ సంప్రదాయ తలపాగా ధరించి, తీజ్ గోధుమ బుట్టను నెత్తిన పెట్టుకుని వేడుకల్లో పాల్గొన్న సాతన్న.",
                         "categoryLabel": "సంస్కృతి & గిరిజన వారసత్వం"
                   }
             }
@@ -1156,7 +1156,7 @@ const seedDatabase = async () => {
         title: 'Direct Citizen Accessibility: Weekly Praja Darbar at Buddharam',
         subtitle: 'A transparent platform for constituents to present village issues, individual grievances, and development needs.',
         badge: 'Camp Office Open Court · ప్రజా దర్బార్',
-        content: 'Every Monday and Wednesday morning, the MLA Camp Office at Buddharam Village opens for public representations. Farmers, students, elders, and women delegations interact directly with Sathenna, with petitions immediately recorded and forwarded with official endorsement slips to district authorities.',
+        content: 'Every Monday and Wednesday morning, the MLA Camp Office at Buddharam Village opens for public representations. Farmers, students, elders, and women delegations interact directly with Sathanna, with petitions immediately recorded and forwarded with official endorsement slips to district authorities.',
         mediaUrl: '/images/about/portrait-namaste.png',
         mediaAlt: 'Gandra Satyanarayana Rao greeting citizens at Praja Darbar',
         ctaText: 'Submit Grievance Online',
@@ -1169,9 +1169,9 @@ const seedDatabase = async () => {
             title: 'ప్రజల వద్దకే నాయకుడు: బుద్ధారంలో వారపు ప్రజా దర్బార్',
             subtitle: 'గ్రామ సమస్యలు, వ్యక్తిగత వినతులను నేరుగా నాయకునికి నివేదించే ప్రత్యక్ష వేదిక.',
             badge: 'క్యాంపు కార్యాలయం · ప్రజా దర్బార్',
-            content: 'ప్రతి సోమవారం, బుధవారం ఉదయం బుద్ధారం క్యాంపు కార్యాలయంలో ప్రజా దర్బార్ నిర్వహించబడుతుంది. రైతులు, మహిళలు, యువత తమ సమస్యలను నేరుగా సత్తెన్నకు విన్నవించవచ్చు. ప్రతి అర్జీని నమోదు చేసి సంబంధిత జిల్లా అధికారులకు సిఫార్సు చేయబడుతుంది.',
+            content: 'ప్రతి సోమవారం, బుధవారం ఉదయం బుద్ధారం క్యాంపు కార్యాలయంలో ప్రజా దర్బార్ నిర్వహించబడుతుంది. రైతులు, మహిళలు, యువత తమ సమస్యలను నేరుగా సాతన్నకు విన్నవించవచ్చు. ప్రతి అర్జీని నమోదు చేసి సంబంధిత జిల్లా అధికారులకు సిఫార్సు చేయబడుతుంది.',
             ctaText: 'ఆన్‌లైన్‌లో వినతి సమర్పించండి',
-            mediaAlt: 'ప్రజా దర్బార్‌లో ప్రజలను ఆహ్వానిస్తున్న సత్తెన్న'
+            mediaAlt: 'ప్రజా దర్బార్‌లో ప్రజలను ఆహ్వానిస్తున్న సాతన్న'
           }
         }
       }
@@ -1189,3 +1189,4 @@ const seedDatabase = async () => {
 };
 
 seedDatabase();
+

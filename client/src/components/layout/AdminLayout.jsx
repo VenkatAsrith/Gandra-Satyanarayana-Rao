@@ -34,7 +34,7 @@ export default function AdminLayout() {
             <img src="/images/party-symbol.png" alt="Emblem" />
           </div>
           <div>
-            <div className="admin-brand-title">Sathenna CMS</div>
+            <div className="admin-brand-title">Sathanna CMS</div>
             <div className="admin-brand-sub">MLA Office Bhupalpalle</div>
           </div>
         </div>

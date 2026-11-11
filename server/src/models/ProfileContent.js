@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+﻿const mongoose = require('mongoose');
 
 const timelineItemSchema = new mongoose.Schema({
   yearOrPeriod: { type: String, required: true },
@@ -23,12 +23,12 @@ const profileContentSchema = new mongoose.Schema(
     },
     commonName: {
       type: String,
-      default: 'Sathenna',
+      default: 'Sathanna',
       trim: true
     },
     teluguName: {
       type: String,
-      default: 'గండ్ర సత్యనారాయణ రావు (సత్తెన్న)',
+      default: 'గండ్ర సత్యనారాయణ రావు (సాతన్న)',
       trim: true
     },
     birthYear: {
@@ -60,11 +60,11 @@ const profileContentSchema = new mongoose.Schema(
     },
     biographySummary: {
       type: String,
-      default: 'Born in 1965 to agrarian elder Late Sri Gandra Samma Rao in Buddharam village, Ghanapuram mandal, Gandra Satyanarayana Rao (Sathenna) completed his Bachelor of Arts from Kakatiya University and an ITI Civil diploma. Over nearly four decades of dedicated public service—starting as Village Sarpanch in Buddharam, then ZPTC Member, and ultimately winning the Bhupalpalle Assembly seat in December 2023 with 123,116 votes and a historic 52,699-vote victory margin—he has stood as an unwavering champion for farmers\' canal waters, Singareni coal miners, and rural infrastructure.'
+      default: 'Born in 1965 to agrarian elder Late Sri Gandra Samma Rao in Buddharam village, Ghanapuram mandal, Gandra Satyanarayana Rao (Sathanna) completed his Bachelor of Arts from Kakatiya University and an ITI Civil diploma. Over nearly four decades of dedicated public service—starting as Village Sarpanch in Buddharam, then ZPTC Member, and ultimately winning the Bhupalpalle Assembly seat in December 2023 with 123,116 votes and a historic 52,699-vote victory margin—he has stood as an unwavering champion for farmers\' canal waters, Singareni coal miners, and rural infrastructure.'
     },
     biographyExtended: {
       type: String,
-      default: 'Sathenna\'s public life began at the fundamental unit of Indian democracy: the gram panchayat. Serving as Buddharam\'s Sarpanch, he oversaw tank maintenance, community roads, and agricultural credit accessibility. His technical qualification as a civil draughtsman equipped him with direct literacy in engineering blueprints, canal gradient flows, and irrigation bund stability. In 1996, he was elected as ZPTC member representing Ghanapuram mandal. In the 2023 Telangana Legislative Assembly elections, contesting as the Indian National Congress candidate, he secured a decisive mandate with 54.55% of all valid votes.'
+      default: 'Sathanna\'s public life began at the fundamental unit of Indian democracy: the gram panchayat. Serving as Buddharam\'s Sarpanch, he oversaw tank maintenance, community roads, and agricultural credit accessibility. His technical qualification as a civil draughtsman equipped him with direct literacy in engineering blueprints, canal gradient flows, and irrigation bund stability. In 1996, he was elected as ZPTC member representing Ghanapuram mandal. In the 2023 Telangana Legislative Assembly elections, contesting as the Indian National Congress candidate, he secured a decisive mandate with 54.55% of all valid votes.'
     },
     heroPortraitUrl: {
       type: String,
@@ -90,3 +90,4 @@ const profileContentSchema = new mongoose.Schema(
 );
 
 module.exports = mongoose.model('ProfileContent', profileContentSchema);
+

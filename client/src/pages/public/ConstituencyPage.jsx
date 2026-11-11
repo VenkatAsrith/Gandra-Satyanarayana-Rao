@@ -197,7 +197,7 @@ export default function ConstituencyPage() {
                 </h2>
                 <p className="section-subtitle">
                   {isTelugu
-                    ? 'జయశంకర్ భూపాలపల్లి జిల్లా తెలంగాణ రాష్ట్రానికి అన్నపూర్ణగా, విద్యుత్ కేంద్రంగా నిలుస్తోంది. నాలుగు దశాబ్దాలుగా ఈ గడ్డతో మమేకమైన ఎమ్మెల్యే సత్తెన్న ప్రజా సంక్షేమానికి అగ్రతాంబూలం ఇస్తున్నారు.'
+                    ? 'జయశంకర్ భూపాలపల్లి జిల్లా తెలంగాణ రాష్ట్రానికి అన్నపూర్ణగా, విద్యుత్ కేంద్రంగా నిలుస్తోంది. నాలుగు దశాబ్దాలుగా ఈ గడ్డతో మమేకమైన ఎమ్మెల్యే సాతన్న ప్రజా సంక్షేమానికి అగ్రతాంబూలం ఇస్తున్నారు.'
                     : 'Jayashankar Bhupalpally stands as both an agricultural breadbasket and an industrial powerplant for Telangana, requiring balanced legislative leadership across rural command areas and mining colonies.'}
                 </p>
                 <div className="narrative-paragraphs">

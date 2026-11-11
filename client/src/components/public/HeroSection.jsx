@@ -13,7 +13,7 @@ export default function HeroSection({ profile, settings }) {
   };
 
   const portrait = profile?.heroPortraitUrl || '/images/hero/hero-portrait.png';
-  const teluguName = profile?.teluguName || 'గండ్ర సత్యనారాయణ రావు (సత్తెన్న)';
+  const teluguName = profile?.teluguName || 'గండ్ర సత్యనారాయణ రావు (సాతన్న)';
   const constituencyName = settings?.constituencyName || 'Bhupalpalle';
   const constituencyNo = settings?.constituencyNo || 108;
 

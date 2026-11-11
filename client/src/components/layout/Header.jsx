@@ -66,7 +66,7 @@ export default function Header({ settings: propSettings }) {
     : `${settings?.constituencyNo || 108} - ${settings?.constituencyName || 'Bhupalpalle'} Constituency`;
 
   const displayName = isTelugu
-    ? (settings?.teluguTitle || 'గండ్ర సత్యనారాయణ రావు (సత్తెన్న)')
+    ? (settings?.teluguTitle || 'గండ్ర సత్యనారాయణ రావు (సాతన్న)')
     : (settings?.siteTitle?.split('|')[0]?.trim() || 'Gandra Satyanarayana Rao');
 
   return (
