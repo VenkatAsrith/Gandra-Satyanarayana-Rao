@@ -75,6 +75,19 @@ export default function GalleryGrid({ mediaItems, showFilter = true, isTeaser = 
       spanClass: 'span-4'
     },
     {
+      publicId: 'local_oditela-substation',
+      secureUrl: '/images/gallery/oditela-substation.jpg',
+      thumbnailUrl: '/images/gallery/oditela-substation.jpg',
+      mediaType: 'image',
+      title: 'Inauguration of 33/11 KV Substation at Oditela with Minister Sridhar Babu (31 Oct 2026)',
+      titleTe: 'ఓదెలలో మంత్రి శ్రీధర్ బాబు గారితో కలిసి 33/11 కేవీ విద్యుత్ సబ్‌స్టేషన్ ప్రారంభోత్సవం (31 అక్టోబర్ 2026)',
+      category: 'constituency',
+      categoryLabel: 'Infrastructure · Power Development',
+      categoryLabelTe: 'మౌలిక సదుపాయాలు · విద్యుత్ ప్రగతి',
+      altText: 'Hon\'ble Minister Sri Duddilla Sridhar Babu and MLA Sri Gandra Satyanarayana Rao inaugurating 33/11 KV Substation at Oditela',
+      spanClass: 'span-4'
+    },
+    {
       publicId: 'local_hero-portrait',
       secureUrl: '/images/hero/hero-portrait.png',
       thumbnailUrl: '/images/hero/hero-portrait.png',

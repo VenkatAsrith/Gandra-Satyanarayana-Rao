@@ -2,46 +2,148 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useLanguage } from '../../i18n/LanguageContext';
 import { resolveMediaUrl } from '../../services/api';
 
-// Verified Field Dispatches & Official Constituency Updates
+// Verified Field Dispatches & Official Constituency Updates (Latest Active Dispatches)
 export const LATEST_UPDATE_RECORDS = [
   {
-    id: 'update-oditela-substation-2026-10-31',
-    date: '2026-10-31',
-    dateFormattedEn: '31 October 2026',
-    dateFormattedTe: '31 అక్టోబర్ 2026',
-    pressNoteLabelEn: 'Power Infrastructure Inauguration',
-    pressNoteLabelTe: 'విద్యుత్ మౌలిక సదుపాయాల ప్రారంభోత్సవం',
-    locationEn: 'Oditela Village, Chityal / Bhupalpalle',
-    locationTe: 'ఓదెల గ్రామం, చిట్యాల మండలం',
-    categoryEn: 'Power Infrastructure & Rural Energy',
-    categoryTe: 'విద్యుత్ మౌలిక వసతులు & గ్రామీణ శక్తి',
-    titleEn: '33/11 KV Electricity Substation Inaugurated at Oditela',
-    titleTe: 'ఓదెల గ్రామంలో 33/11 కెవి విద్యుత్ సబ్‌స్టేషన్‌ ప్రారంభం – మంత్రి శ్రీ దుద్దిళ్ల శ్రీధర్ బాబు, ఎమ్మెల్యే శ్రీ గండ్ర సత్యనారాయణ రావు',
+    id: 'update-mogullapalle-paddy-2026-11-11',
+    date: '2026-11-11',
+    dateFormattedEn: '11 November 2026',
+    dateFormattedTe: '11 నవంబర్ 2026',
+    pressNoteLabelEn: 'Paddy Procurement Inauguration',
+    pressNoteLabelTe: 'ధాన్యం కొనుగోలు కేంద్రాల ప్రారంభం',
+    locationEn: 'Mogullapalle Mandal (Motlapalli, Issipeta)',
+    locationTe: 'మొగుళ్లపల్లి మండలం (మోట్లపల్లి, ఇస్సిపేట)',
+    categoryEn: 'Agriculture & Farmer Welfare',
+    categoryTe: 'వ్యవసాయం & రైతు సంక్షేమం',
+    titleEn: 'Inauguration of Paddy Procurement Centers across Mogullapalle Mandal – MLA Sri Gandra Satyanarayana Rao',
+    titleTe: 'మొగుళ్లపల్లి మండలంలో పలు గ్రామాల్లో వరి కొనుగోలు కేంద్రాలను ప్రారంభించిన ఎమ్మెల్యే గండ్ర సత్యనారాయణ రావు గారు',
     leadEn:
-      'The newly constructed 33/11 KV Electricity Substation at Oditela village was inaugurated by Hon\'ble Bhupalpally MLA Sri Gandra Satyanarayana Rao Garu and Hon\'ble Minister for IT and Industries Sri Duddilla Sridhar Babu Garu.',
+      'Bhupalpalle MLA Sri Gandra Satyanarayana Rao inaugurated the newly established paddy procurement centers across Motlapalli, Mogullapalle, Issipeta, and adjoining villages in Mogullapalle Mandal.',
     leadTe:
-      'ఓదెల గ్రామంలో నూతనంగా నిర్మించిన 33/11 కెవి విద్యుత్ సబ్‌స్టేషన్‌ను గౌరవ ఐటీ, పరిశ్రమల శాఖ మంత్రి శ్రీ దుద్దిళ్ల శ్రీధర్ బాబు గారు మరియు భూపాలపల్లి ఎమ్మెల్యే శ్రీ గండ్ర సత్యనారాయణ రావు గారు ఘనంగా ప్రారంభించారు.',
+      'భూపాలపల్లి నియోజకవర్గంలోని మొగుళ్లపల్లి మండలంలో మోట్లపల్లి, మొగుళ్లపల్లి, ఇస్సిపేట, తదితర గ్రామాల్లో ఏర్పాటు చేసిన వరి కొనుగోలు కేంద్రాలను భూపాలపల్లి ఎమ్మెల్యే శ్రీ గండ్ర సత్యనారాయణ రావు గారు ప్రారంభించారు.',
     bodyEn: [
-      'Speaking on the occasion, the dignitaries stated that the new electricity substation would strengthen the power infrastructure in the region and ensure a reliable and quality power supply to farmers, households, and local industries.',
-      'With the inauguration of this substation, Oditela village and the surrounding areas are expected to benefit from improved voltage levels, reduced power interruptions, and better electricity supply.',
-      'They emphasized that the government is committed to strengthening rural infrastructure and providing uninterrupted quality electricity to the people.'
+      'Speaking on the occasion, the MLA stated that the people\'s government operates with farmer welfare as its cornerstone, ensuring robust institutional arrangements so that every single grain produced by cultivators is procured at the Minimum Support Price (MSP).',
+      'He advised farmers to sell their yield directly at government procurement centers rather than turning to middlemen, ensuring fair remuneration. The MLA directed concerned officials to provide all necessary amenities at the centers to prevent any inconvenience to farmers. He emphasized maintaining strict transparency in grain procurement, weighing, and transportation, while ensuring prompt payments directly to farmers.',
+      'Affirming that this administration is a pro-farmer government, the MLA highlighted that farmer welfare, agricultural modernization, and rural economic empowerment remain its foremost missions. Local public representatives, Congress party leaders, administrative officials, farmers, and villagers attended the programme.'
     ],
     bodyTe: [
-      'ఈ సందర్భంగా నాయకులు మాట్లాడుతూ ఈ నూతన విద్యుత్ సబ్‌స్టేషన్ ప్రాంతీయ విద్యుత్ వ్యవస్థను మరింత బలోపేతం చేయడంతో పాటు, రైతులకు, గృహాలకు మరియు స్థానిక పరిశ్రమలకు నాణ్యమైన, నిరంతర విద్యుత్ సరఫరాను అందిస్తుందని పేర్కొన్నారు.',
-      'ఈ సబ్‌స్టేషన్ ప్రారంభంతో ఓదెల మరియు పరిసర గ్రామాల ప్రజలకు లో-వోల్టేజ్ సమస్యలు తొలగిపోయి, విద్యుత్ అంతరాయాలు తగ్గడం ద్వారా మెరుగైన విద్యుత్ సదుపాయం లభిస్తుందన్నారు.',
-      'గ్రామీణ మౌలిక సదుపాయాల కల్పన మరియు ప్రజలకు నిరంతర నాణ్యమైన విద్యుత్ సరఫరా అందించడమే ప్రజా ప్రభుత్వ దృఢ సంకల్పమని వారు స్పష్టం చేశారు.'
+      'ఈ సందర్భంగా ఎమ్మెల్యే గారు మాట్లాడుతూ.. ప్రజా ప్రభుత్వం రైతు సంక్షేమమే లక్ష్యంగా పనిచేస్తోందని, రైతులు పండించిన ప్రతి ధాన్యపు గింజను ప్రభుత్వం కొనుగోలు చేసేందుకు అవసరమైన ఏర్పాట్లు చేస్తోందని తెలిపారు. రైతులు దళారులను ఆశ్రయించకుండా, మద్దతు ధరకు తమ ధాన్యాన్ని కొనుగోలు కేంద్రాల్లో విక్రయించి గిట్టుబాటు ధర పొందాలని సూచించారు.',
+      'రైతులకు ఎలాంటి ఇబ్బందులు కలగకుండా కొనుగోలు కేంద్రాల్లో అవసరమైన సౌకర్యాలు కల్పించాలని సంబంధిత అధికారులను ఆదేశించారు. ధాన్యం కొనుగోలు, తూకం, రవాణా తదితర అంశాల్లో పారదర్శకత పాటిస్తూ రైతులకు త్వరితగతిన చెల్లింపులు జరిగేలా చర్యలు తీసుకోవాలని సూచించారు.',
+      'ప్రజా ప్రభుత్వం రైతు పక్షపాత ప్రభుత్వమని, రైతుల సంక్షేమం, వ్యవసాయ అభివృద్ధి, గ్రామీణ ఆర్థిక వ్యవస్థ బలోపేతమే ప్రభుత్వ ప్రధాన లక్ష్యాలని ఎమ్మెల్యే గారు పేర్కొన్నారు. రైతుల కష్టానికి తగిన ప్రతిఫలం అందించేందుకు ప్రభుత్వం నిరంతరం కృషి చేస్తుందని స్పష్టం చేశారు. ఈ కార్యక్రమంలో స్థానిక ప్రజాప్రతినిధులు, కాంగ్రెస్ పార్టీ అధ్యక్షుడు, మండల కాంగ్రెస్ పార్టీ నాయకులు, అధికారులు, రైతులు, గ్రామస్తులు తదితరులు పాల్గొన్నారు.'
     ],
-    mainImage: '/images/updates/oditela-substation.jpg',
+    mainImage: '/images/updates/mogullapalle-paddy-motlapalli.jpg',
     photos: [
       {
-        id: 'od-1',
-        url: '/images/updates/oditela-substation.jpg',
-        titleEn: 'Hon\'ble Minister Sri Sridhar Babu & MLA Sri Gandra Satyanarayana Rao Inaugurating Oditela Substation',
-        titleTe: 'ఓదెలలో 33/11 కేవీ విద్యుత్ సబ్‌స్టేషన్‌ను ప్రారంభిస్తున్న మంత్రి శ్రీధర్ బాబు, ఎమ్మెల్యే గండ్ర సత్యనారాయణ రావు',
-        captionEn:
-          'Dignitaries switching on the 33/11 KV substation control unit at Oditela to ensure uninterrupted quality power for farmers and rural households.',
-        captionTe:
-          'రైతులకు, గృహాలకు నాణ్యమైన విద్యుత్ సరఫరా కోసం ఓదెల సబ్‌స్టేషన్ కంట్రోల్ యూనిట్‌ను ప్రారంభిస్తున్న ప్రజాప్రతినిధులు.'
+        id: 'mog-1',
+        url: '/images/updates/mogullapalle-paddy-motlapalli.jpg',
+        titleEn: 'MLA Sathanna Inaugurating Motlapalli Paddy Procurement Center',
+        titleTe: 'మోట్లపల్లి వరి ధాన్యం కొనుగోలు కేంద్రాన్ని ప్రారంభిస్తున్న ఎమ్మెల్యే సాతన్న',
+        captionEn: 'MLA Sri Gandra Satyanarayana Rao initiating digital weighing at Motlapalli procurement center.',
+        captionTe: 'మోట్లపల్లి కొనుగోలు కేంద్రంలో డిజిటల్ తూకం వేసి కేంద్రాన్ని ప్రారంభిస్తున్న ఎమ్మెల్యే గండ్ర సత్యనారాయణ రావు గారు.'
+      },
+      {
+        id: 'mog-2',
+        url: '/images/updates/mogullapalle-paddy-issipeta.jpg',
+        titleEn: 'Inauguration of Issipeta Procurement Center',
+        titleTe: 'ఇస్సిపేట గ్రామంలో వరి కొనుగోలు కేంద్రం ప్రారంభం',
+        captionEn: 'Dignitaries and farmers gathered for the commencement of procurement at Issipeta center.',
+        captionTe: 'రైతులు మరియు అధికారుల సమక్షంలో ఇస్సిపేట కేంద్రంలో కొనుగోళ్లు ప్రారంభం.'
+      },
+      {
+        id: 'mog-3',
+        url: '/images/updates/mogullapalle-paddy-address.jpg',
+        titleEn: 'Direct Interaction with Farmers and Procurement Officials',
+        titleTe: 'రైతులు, అధికారులతో ఎమ్మెల్యే సాతన్న ముఖాముఖి',
+        captionEn: 'Instructing officials to maintain zero discrepancies in moisture and weighing.',
+        captionTe: 'తూకం, తేమ శాతంలో రైతులకు ఎలాంటి నష్టం రాకుండా చూడాలని అధికారులను ఆదేశించిన ఎమ్మెల్యే.'
+      }
+    ]
+  },
+  {
+    id: 'update-tekumatla-development-2026-11-11',
+    date: '2026-11-11',
+    dateFormattedEn: '11 November 2026',
+    dateFormattedTe: '11 నవంబర్ 2026',
+    pressNoteLabelEn: 'Infrastructure Foundation & Paddy Centers',
+    pressNoteLabelTe: 'అభివృద్ధి పనుల శంకుస్థాపన & ధాన్యం కేంద్రాలు',
+    locationEn: 'Tekumatla Mandal (Vellampalli, Bornapalli, Peddampalli)',
+    locationTe: 'టేకుమట్ల మండలం (వేల్లంపల్లి, బోర్నపల్లి, పెద్దంపల్లి)',
+    categoryEn: 'Rural Development & Agriculture',
+    categoryTe: 'గ్రామీణాభివృద్ధి & వ్యవసాయం',
+    titleEn: 'Special Priority for Tekumatla Mandal Development – Farmer Welfare is Government\'s Goal: MLA Gandra Satyanarayana Rao',
+    titleTe: 'టేకుమట్ల మండల అభివృద్ధికి ప్రత్యేక ప్రాధాన్యత – రైతుల సంక్షేమమే ప్రజా ప్రభుత్వ ధ్యేయం: ఎమ్మెల్యే గండ్ర సత్యనారాయణ రావు',
+    leadEn:
+      'In Tekumatla Mandal of Bhupalpalle constituency, MLA Sri Gandra Satyanarayana Rao laid the foundation stones for civic infrastructure works alongside inaugurating multiple paddy procurement centers across rural habitations.',
+    leadTe:
+      'భూపాలపల్లి నియోజకవర్గంలోని టేకుమట్ల మండలంలో ఈరోజు భూపాలపల్లి ఎమ్మెల్యే శ్రీ గండ్ర సత్యనారాయణ రావు గారు పలు గ్రామాల్లో అభివృద్ధి పనులకు శంకుస్థాపనలు చేయడంతో పాటు వరి కొనుగోలు కేంద్రాలను ప్రారంభించారు.',
+    bodyEn: [
+      'Foundation stones were ceremonially laid for Anganwadi centers, Gram Panchayat secretariats, and Gram Samakhya women\'s federation buildings across Vellampalli, Bornapalli, and Peddampalli villages.',
+      'Concurrently, government paddy procurement centers were inaugurated across Garimillapalli, Raghavareddypet, Pangidipalli, Tekumatla, Gummadavelli, Vellampalli, Velishala, and Venkatraopalli (b).',
+      'Speaking on the occasion, the MLA emphasized that rural development and quality infrastructure remain the mission of the people\'s government. Modern Anganwadi centers ensure proper nutrition and amenities for children, while Gram Panchayat and Samakhya buildings provide structural support for grassroots governance and women groups.',
+      'Reiterating that farmer welfare is the core goal, the MLA affirmed that centers are operationalized to ensure farmers obtain remunerative MSP without falling victim to intermediaries. Local officials, public representatives, former leaders, party mandal presidents, and farmers attended in large numbers.'
+    ],
+    bodyTe: [
+      'వేల్లంపల్లి, బోర్నపల్లి, పెద్దoపల్లి గ్రామాల్లో అంగన్వాడీ కేంద్రాలు, గ్రామపంచాయతీ భవనాలు, గ్రామ సమైక్య భవనాల నిర్మాణ పనులకు శంకుస్థాపనలు చేశారు. అలాగే గరిమిల్ల పల్లి, రాఘవరెడ్డిపేట, పంగిడిపల్లి, టేకుమట్ల, గుమ్మడవెల్లి, వేల్ల్లంపల్లి, వెలిశాల, వెంకట్రావుపల్లి(b) గ్రామాల్లో వరి కొనుగోలు కేంద్రాలను ప్రారంభించారు.',
+      'ఈ సందర్భంగా ఎమ్మెల్యే గారు మాట్లాడుతూ... గ్రామాల అభివృద్ధి, ప్రజలకు మెరుగైన మౌలిక సదుపాయాల కల్పనే ప్రజా ప్రభుత్వ లక్ష్యమని తెలిపారు. అంగన్వాడీ కేంద్రాల ద్వారా చిన్నారులకు మెరుగైన పోషకాహారం, సౌకర్యాలు అందించడంతో పాటు గ్రామపంచాయతీ, గ్రామ సమైక్య భవనాల నిర్మాణంతో గ్రామీణ పాలనకు, మహిళా సంఘాల కార్యకలాపాలకు మరింత బలం చేకూరుతుందని పేర్కొన్నారు.',
+      'రైతుల సంక్షేమమే ప్రభుత్వ ప్రధాన ధ్యేయమని, రైతులు ఆరుగాలం కష్టపడి పండించిన ధాన్యాన్ని మద్దతు ధరకు కొనుగోలు చేసేందుకు వరి కొనుగోలు కేంద్రాలను ప్రారంభిస్తున్నామని తెలిపారు. రైతులు దళారులను ఆశ్రయించకుండా, ఎలాంటి ఇబ్బందులు ఎదుర్కోకుండా ధాన్యాన్ని కొనుగోలు కేంద్రాల్లో విక్రయించుకోవాలని సూచించారు. ధాన్యం కొనుగోలు ప్రక్రియలో రైతులకు ఎలాంటి ఇబ్బందులు కలగకుండా అధికారులు సమన్వయంతో పనిచేయాలని సూచించారు.',
+      'ఈ కార్యక్రమంలో ఎమ్మెల్యే గారి వెంట సంబంధిత అధికారులు, స్థానిక ప్రజాప్రతినిధులు, మాజీ ప్రజా ప్రతినిధులు మండల పార్టీ అధ్యక్షుడు, మండల నాయకులు, కాంగ్రెస్ పార్టీ నాయకులు, రైతులు తదితరులు పాల్గొన్నారు.'
+    ],
+    mainImage: '/images/updates/tekumatla-paddy-inauguration.jpg',
+    photos: [
+      {
+        id: 'tek-1',
+        url: '/images/updates/tekumatla-paddy-inauguration.jpg',
+        titleEn: 'Inaugurating Paddy Weighing at Tekumatla Mandal Center',
+        titleTe: 'టేకుమట్ల మండలంలో వరి కొనుగోలు కేంద్రాన్ని ప్రారంభిస్తున్న ఎమ్మెల్యే గండ్ర సత్యనారాయణ రావు',
+        captionEn: 'MLA Sathanna inaugurating electronic weighing scale with traditional agrarian honors.',
+        captionTe: 'రైతు కండువాతో ఎలక్ట్రానిక్ తూకం వేసి ధాన్యం కొనుగోలు కేంద్రాన్ని ప్రారంభిస్తున్న ఎమ్మెల్యే సాతన్న.'
+      },
+      {
+        id: 'tek-2',
+        url: '/images/updates/tekumatla-paddy-weighing.jpg',
+        titleEn: 'Pouring First Harvest Grains at Procurement Center',
+        titleTe: 'కొనుగోలు కేంద్రంలో మొదటి ధాన్యం బస్తా తూకం వేస్తున్న దృశ్యం',
+        captionEn: 'Commencing transparent procurement for agricultural families in Tekumatla.',
+        captionTe: 'టేకుమట్ల మండల రైతులకు మద్దతు ధర అందించేందుకు ధాన్యం తూకం వేస్తున్న ప్రజాప్రతినిధులు.'
+      }
+    ]
+  },
+  {
+    id: 'update-gorukothapalli-2026-11-06',
+    date: '2026-11-06',
+    dateFormattedEn: '06 November 2026',
+    dateFormattedTe: '06 నవంబర్ 2026',
+    pressNoteLabelEn: 'Welfare Cheque Handover',
+    pressNoteLabelTe: 'సంక్షేమ చెక్కుల పంపిణీ',
+    locationEn: 'Gorukothapalli Mandal',
+    locationTe: 'గోరుకొత్తపల్లి మండలం',
+    categoryEn: 'Public Welfare & Social Security',
+    categoryTe: 'ప్రజా సంక్షేమం & సామాజిక భద్రత',
+    titleEn: 'Distribution of Kalyana Lakshmi & Shaadi Mubarak Cheques in Gorukothapalli Mandal – MLA Sri Gandra Satyanarayana Rao',
+    titleTe: 'గోరుకొత్తపల్లి మండలంలో కళ్యాణలక్ష్మి, షాదీ ముబారక్ చెక్కుల పంపిణీ చేసిన - ఎమ్మెల్యే శ్రీ గండ్ర సత్యనారాయణ రావు',
+    leadEn:
+      'Bhupalpalle MLA Sri Gandra Satyanarayana Rao attended as the Chief Guest at the Kalyana Lakshmi and Shaadi Mubarak cheque distribution ceremony held in Gorukothapalli Mandal.',
+    leadTe:
+      'భూపాలపల్లి ఎమ్మెల్యే శ్రీ గండ్ర సత్యనారాయణ రావు గారు గోరుకొత్తపల్లి మండలంలో నిర్వహించిన కళ్యాణలక్ష్మి, షాదీ ముబారక్ చెక్కుల పంపిణీ కార్యక్రమానికి ముఖ్య అతిథిగా హాజరయ్యారు.',
+    bodyEn: [
+      'On this occasion, financial aid cheques were distributed to 21 beneficiaries across the mandal.',
+      'Speaking at the gathering, the MLA emphasized that providing financial security for the marriage of young women from underprivileged families is the paramount objective of the people\'s government led by Chief Minister Sri A. Revanth Reddy, and tireless efforts are being made to ensure that all welfare schemes reach every eligible household directly without hurdles.',
+      'Local public representatives, Congress party leaders, former civic leaders, and beneficiaries participated in the event in large numbers.'
+    ],
+    bodyTe: [
+      'ఈ సందర్భంగా 21 మంది లబ్ధిదారులకు కళ్యాణలక్ష్మి, షాదీ ముబారక్ చెక్కులను స్వయంగా పంపిణీ చేశారు.',
+      'ఈ సందర్భంగా ఎమ్మెల్యే గారు మాట్లాడుతూ పేద కుటుంబాల్లోని ఆడపిల్లల వివాహాలకు ఆర్థిక భరోసా కల్పించడమే ప్రజా ప్రభుత్వ లక్ష్యమని, అర్హులైన ప్రతి ఒక్కరికీ ప్రభుత్వ సంక్షేమ పథకాలు అందేలా కృషి చేస్తున్నామని తెలిపారు.',
+      'ఈ కార్యక్రమంలో స్థానిక ప్రజాప్రతినిధులు, కాంగ్రెస్ పార్టీ నాయకులు, మాజీ ప్రజా ప్రతినిధులు, లబ్ధిదారులు పాల్గొనడం జరిగింది.'
+    ],
+    mainImage: '/images/updates/gorukothapalli-cheques.jpg',
+    photos: [
+      {
+        id: 'gk-1',
+        url: '/images/updates/gorukothapalli-cheques.jpg',
+        titleEn: 'Kalyana Lakshmi & Shaadi Mubarak Cheque Handover to Beneficiaries',
+        titleTe: 'లబ్ధిదారులకు కళ్యాణలక్ష్మి & షాదీ ముబారక్ చెక్కుల పంపిణీ',
+        captionEn: 'MLA Sri Gandra Satyanarayana Rao handing over financial assistance cheques to 21 beneficiary families in Gorukothapalli Mandal.',
+        captionTe: 'గోరుకొత్తపల్లి మండలంలో 21 మంది లబ్ధిదారుల కుటుంబాలకు చెక్కులను స్వయంగా అందజేస్తున్న ఎమ్మెల్యే గండ్ర సత్యనారాయణ రావు గారు.'
       }
     ]
   },
@@ -83,51 +185,13 @@ export const LATEST_UPDATE_RECORDS = [
         captionTe: 'మహిళా ప్రజాప్రతినిధులు, స్థానిక నాయకుల సమక్షంలో శిలాఫలకం ఆవిష్కరిస్తున్న ఎమ్మెల్యే గండ్ర సత్యనారాయణ రావు గారు.'
       }
     ]
-  },
-  {
-    id: 'update-gorukothapalli-2026-11-06',
-    date: '2026-11-06',
-    dateFormattedEn: '06 November 2026',
-    dateFormattedTe: '06 నవంబర్ 2026',
-    pressNoteLabelEn: 'Official Press Note',
-    pressNoteLabelTe: 'అధికారిక పత్రికా ప్రకటన',
-    locationEn: 'Gorukothapalli Mandal',
-    locationTe: 'గోరుకొత్తపల్లి మండలం',
-    categoryEn: 'Public Welfare & Social Security',
-    categoryTe: 'ప్రజా సంక్షేమం & సామాజిక భద్రత',
-    titleEn: 'Distribution of Kalyana Lakshmi & Shaadi Mubarak Cheques in Gorukothapalli Mandal – MLA Sri Gandra Satyanarayana Rao',
-    titleTe: 'గోరుకొత్తపల్లి మండలంలో కళ్యాణలక్ష్మి, షాదీ ముబారక్ చెక్కుల పంపిణీ చేసిన - ఎమ్మెల్యే శ్రీ గండ్ర సత్యనారాయణ రావు',
-    leadEn:
-      'Bhupalpalle MLA Sri Gandra Satyanarayana Rao attended as the Chief Guest at the Kalyana Lakshmi and Shaadi Mubarak cheque distribution ceremony held in Gorukothapalli Mandal.',
-    leadTe:
-      'భూపాలపల్లి ఎమ్మెల్యే శ్రీ గండ్ర సత్యనారాయణ రావు గారు గోరుకొత్తపల్లి మండలంలో నిర్వహించిన కళ్యాణలక్ష్మి, షాదీ ముబారక్ చెక్కుల పంపిణీ కార్యక్రమానికి ముఖ్య అతిథిగా హాజరయ్యారు.',
-    bodyEn: [
-      'On this occasion, financial aid cheques were distributed to 21 beneficiaries across the mandal.',
-      'Speaking at the gathering, the MLA emphasized that providing financial security for the marriage of young women from underprivileged families is the paramount objective of the people\'s government led by Chief Minister Sri A. Revanth Reddy, and tireless efforts are being made to ensure that all welfare schemes reach every eligible household directly without hurdles.',
-      'Local public representatives, Congress party leaders, former civic leaders, and beneficiaries participated in the event in large numbers.'
-    ],
-    bodyTe: [
-      'ఈ సందర్భంగా 21 మంది లబ్ధిదారులకు కళ్యాణలక్ష్మి, షాదీ ముబారక్ చెక్కులను స్వయంగా పంపిణీ చేశారు.',
-      'ఈ సందర్భంగా ఎమ్మెల్యే గారు మాట్లాడుతూ పేద కుటుంబాల్లోని ఆడపిల్లల వివాహాలకు ఆర్థిక భరోసా కల్పించడమే ప్రజా ప్రభుత్వ లక్ష్యమని, అర్హులైన ప్రతి ఒక్కరికీ ప్రభుత్వ సంక్షేమ పథకాలు అందేలా కృషి చేస్తున్నామని తెలిపారు.',
-      'ఈ కార్యక్రమంలో స్థానిక ప్రజాప్రతినిధులు కాంగ్రెస్ పార్టీ నాయకులు మాజీ ప్రజా ప్రతినిధులు, లబ్ధిదారులు పాల్గొనడం జరిగింది.'
-    ],
-    mainImage: '/images/updates/gorukothapalli-cheques.jpg',
-    photos: [
-      {
-        id: 'gk-1',
-        url: '/images/updates/gorukothapalli-cheques.jpg',
-        titleEn: 'Kalyana Lakshmi & Shaadi Mubarak Cheque Handover to Beneficiaries',
-        titleTe: 'లబ్ధిదారులకు కళ్యాణలక్ష్మి & షాదీ ముబారక్ చెక్కుల పంపిణీ',
-        captionEn: 'MLA Sri Gandra Satyanarayana Rao handing over financial assistance cheques to 21 beneficiary families in Gorukothapalli Mandal.',
-        captionTe: 'గోరుకొత్తపల్లి మండలంలో 21 మంది లబ్ధిదారుల కుటుంబాలకు చెక్కులను స్వయంగా అందజేస్తున్న ఎమ్మెల్యే గండ్ర సత్యనారాయణ రావు గారు.'
-      }
-    ]
   }
 ];
 
 export default function LatestUpdatesSection() {
   const { isTelugu } = useLanguage();
   const [activeUpdateIdx, setActiveUpdateIdx] = useState(0);
+  const [activePhotoSubIdx, setActivePhotoSubIdx] = useState(0);
   const [modalOpen, setModalOpen] = useState(false);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
   const [copyFeedback, setCopyFeedback] = useState('');
@@ -139,13 +203,22 @@ export default function LatestUpdatesSection() {
 
   const updates = LATEST_UPDATE_RECORDS;
   const currentUpdate = updates[activeUpdateIdx] || updates[0];
+  const photosList = currentUpdate.photos && currentUpdate.photos.length > 0
+    ? currentUpdate.photos
+    : [{ id: 'single-1', url: currentUpdate.mainImage, titleEn: currentUpdate.titleEn, titleTe: currentUpdate.titleTe, captionEn: currentUpdate.leadEn, captionTe: currentUpdate.leadTe }];
+
+  const currentPhoto = photosList[activePhotoSubIdx] || photosList[0];
 
   // Auto-rotation loop with 3-second delay
   useEffect(() => {
     if (!isAutoPlaying || modalOpen) return;
 
     const timer = setInterval(() => {
-      setActiveUpdateIdx((prev) => (prev + 1) % updates.length);
+      setActiveUpdateIdx((prev) => {
+        const next = (prev + 1) % updates.length;
+        setActivePhotoSubIdx(0);
+        return next;
+      });
     }, 3000);
 
     return () => clearInterval(timer);
@@ -167,17 +240,21 @@ export default function LatestUpdatesSection() {
 
   const handlePrevUpdate = () => {
     setActiveUpdateIdx((prev) => (prev > 0 ? prev - 1 : updates.length - 1));
+    setActivePhotoSubIdx(0);
   };
 
   const handleNextUpdate = () => {
     setActiveUpdateIdx((prev) => (prev + 1) % updates.length);
+    setActivePhotoSubIdx(0);
   };
 
   const handleSelectUpdate = (idx) => {
     setActiveUpdateIdx(idx);
+    setActivePhotoSubIdx(0);
   };
 
-  const openLightbox = () => {
+  const openLightbox = (subIdx = 0) => {
+    setActivePhotoSubIdx(subIdx);
     setModalOpen(true);
     document.body.classList.add('menu-open');
   };
@@ -187,17 +264,27 @@ export default function LatestUpdatesSection() {
     document.body.classList.remove('menu-open');
   };
 
+  const handlePrevPhoto = (e) => {
+    if (e) e.stopPropagation();
+    setActivePhotoSubIdx((prev) => (prev > 0 ? prev - 1 : photosList.length - 1));
+  };
+
+  const handleNextPhoto = (e) => {
+    if (e) e.stopPropagation();
+    setActivePhotoSubIdx((prev) => (prev < photosList.length - 1 ? prev + 1 : 0));
+  };
+
   // Keyboard navigation for Lightbox
   useEffect(() => {
     if (!modalOpen) return;
     const onKey = (e) => {
       if (e.key === 'Escape') closeLightbox();
-      if (e.key === 'ArrowLeft') handlePrevUpdate();
-      if (e.key === 'ArrowRight') handleNextUpdate();
+      if (e.key === 'ArrowLeft') handlePrevPhoto();
+      if (e.key === 'ArrowRight') handleNextPhoto();
     };
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
-  }, [modalOpen]);
+  }, [modalOpen, photosList.length]);
 
   // Touch swipe support
   const handleTouchStart = (e) => {
@@ -266,14 +353,6 @@ export default function LatestUpdatesSection() {
     }
   };
 
-  const currentPhoto = currentUpdate.photos[0] || {
-    url: currentUpdate.mainImage,
-    titleEn: currentUpdate.titleEn,
-    titleTe: currentUpdate.titleTe,
-    captionEn: currentUpdate.leadEn,
-    captionTe: currentUpdate.leadTe
-  };
-
   return (
     <section
       className="latest-updates-section"
@@ -284,7 +363,7 @@ export default function LatestUpdatesSection() {
     >
       <div className="container">
         <div className="latest-updates-canvas">
-          {/* Header Row with 3-Second Loop Indicator and Step Controls */}
+          {/* Header Row with Minimal Counter and Step Controls (No 3s loop badge text) */}
           <div className="new-updates-section-header-row">
             <div>
               <div className="tag-label green">
@@ -295,7 +374,7 @@ export default function LatestUpdatesSection() {
               </h2>
             </div>
 
-            {/* Horizontal Carousel Step Controls */}
+            {/* Horizontal Step Controls */}
             <div className="updates-loop-controls">
               <div className="updates-timer-badge">
                 <span className="timer-badge-text">
@@ -326,7 +405,7 @@ export default function LatestUpdatesSection() {
             </div>
           </div>
 
-          {/* Interactive Horizontal Selection Strip with 3s Delay Progress Indicator */}
+          {/* Interactive Horizontal Selection Strip with Loop Progress Line */}
           <div className="updates-horizontal-track-wrap">
             <div className="updates-horizontal-track" ref={trackRef}>
               {updates.map((item, idx) => {
@@ -353,7 +432,7 @@ export default function LatestUpdatesSection() {
                       </h4>
                     </div>
 
-                    {/* 3-Second Delay Loop Progress Bar */}
+                    {/* Progress Bar (Visual indicator of active update) */}
                     {isActive && isAutoPlaying && (
                       <div className="track-card-progress-bar" aria-hidden="true">
                         <div className="progress-fill" key={`progress-${activeUpdateIdx}`}></div>
@@ -372,19 +451,19 @@ export default function LatestUpdatesSection() {
               <div className="latest-deck-container">
                 <div
                   className="latest-deck-main-card"
-                  onClick={openLightbox}
+                  onClick={() => openLightbox(activePhotoSubIdx)}
                   role="button"
                   tabIndex={0}
                   aria-label="Click to view full photo in lightbox"
                   onKeyDown={(e) => {
                     if (e.key === 'Enter' || e.key === ' ') {
                       e.preventDefault();
-                      openLightbox();
+                      openLightbox(activePhotoSubIdx);
                     }
                   }}
                 >
                   <img
-                    src={resolveMediaUrl(currentUpdate.mainImage)}
+                    src={resolveMediaUrl(currentPhoto.url)}
                     alt={isTelugu ? currentPhoto.titleTe : currentPhoto.titleEn}
                     className="latest-deck-img"
                     loading="lazy"
@@ -408,6 +487,24 @@ export default function LatestUpdatesSection() {
                     </p>
                   </div>
                 </div>
+
+                {/* Multiple Photo Thumbnails if current dispatch has > 1 photo */}
+                {photosList.length > 1 && (
+                  <div className="latest-sub-thumbnails-row">
+                    {photosList.map((ph, pIdx) => (
+                      <button
+                        key={ph.id || pIdx}
+                        type="button"
+                        className={`sub-thumb-chip ${activePhotoSubIdx === pIdx ? 'active' : ''}`}
+                        onClick={() => setActivePhotoSubIdx(pIdx)}
+                        aria-label={`Photo 0${pIdx + 1}`}
+                      >
+                        <img src={resolveMediaUrl(ph.url)} alt="" />
+                        <span className="sub-thumb-idx">0{pIdx + 1}</span>
+                      </button>
+                    ))}
+                  </div>
+                )}
               </div>
             </div>
 
@@ -541,9 +638,9 @@ export default function LatestUpdatesSection() {
           {/* Top Control Bar */}
           <div className="latest-modal-top-bar" onClick={(e) => e.stopPropagation()}>
             <div className="latest-modal-counter">
-              <span className="modal-num-active">0{activeUpdateIdx + 1}</span>
+              <span className="modal-num-active">0{activePhotoSubIdx + 1}</span>
               <span className="modal-sep">/</span>
-              <span className="modal-num-total">0{updates.length}</span>
+              <span className="modal-num-total">0{photosList.length}</span>
               <span className="modal-sep">•</span>
               <span className="modal-photo-headline">
                 {isTelugu ? currentPhoto.titleTe : currentPhoto.titleEn}
@@ -563,15 +660,17 @@ export default function LatestUpdatesSection() {
 
           {/* Main Slide Stage with Horizontal Arrow Triggers */}
           <div className="latest-modal-stage" onClick={(e) => e.stopPropagation()}>
-            <button
-              type="button"
-              className="latest-modal-arrow-btn prev"
-              onClick={handlePrevUpdate}
-              aria-label="Previous Update"
-              title="Previous Update"
-            >
-              &#10094;
-            </button>
+            {photosList.length > 1 && (
+              <button
+                type="button"
+                className="latest-modal-arrow-btn prev"
+                onClick={handlePrevPhoto}
+                aria-label="Previous Photo"
+                title="Previous Photo"
+              >
+                &#10094;
+              </button>
+            )}
 
             <div className="latest-modal-viewport">
               <div className="latest-modal-slide">
@@ -592,33 +691,37 @@ export default function LatestUpdatesSection() {
               </div>
             </div>
 
-            <button
-              type="button"
-              className="latest-modal-arrow-btn next"
-              onClick={handleNextUpdate}
-              aria-label="Next Update"
-              title="Next Update"
-            >
-              &#10095;
-            </button>
+            {photosList.length > 1 && (
+              <button
+                type="button"
+                className="latest-modal-arrow-btn next"
+                onClick={handleNextPhoto}
+                aria-label="Next Photo"
+                title="Next Photo"
+              >
+                &#10095;
+              </button>
+            )}
           </div>
 
           {/* Bottom Thumbnails Navigation Strip */}
-          <div className="latest-modal-bottom-strip" onClick={(e) => e.stopPropagation()}>
-            {updates.map((upd, idx) => (
-              <div
-                key={upd.id}
-                className={`latest-modal-thumb ${activeUpdateIdx === idx ? 'active' : ''}`}
-                onClick={() => setActiveUpdateIdx(idx)}
-                role="button"
-                tabIndex={0}
-                aria-label={`Jump to update ${idx + 1}`}
-              >
-                <img src={resolveMediaUrl(upd.mainImage)} alt="" />
-                <span className="modal-thumb-num">0{idx + 1}</span>
-              </div>
-            ))}
-          </div>
+          {photosList.length > 1 && (
+            <div className="latest-modal-bottom-strip" onClick={(e) => e.stopPropagation()}>
+              {photosList.map((ph, idx) => (
+                <div
+                  key={ph.id || idx}
+                  className={`latest-modal-thumb ${activePhotoSubIdx === idx ? 'active' : ''}`}
+                  onClick={() => setActivePhotoSubIdx(idx)}
+                  role="button"
+                  tabIndex={0}
+                  aria-label={`Jump to photo ${idx + 1}`}
+                >
+                  <img src={resolveMediaUrl(ph.url)} alt="" />
+                  <span className="modal-thumb-num">0{idx + 1}</span>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       )}
     </section>
