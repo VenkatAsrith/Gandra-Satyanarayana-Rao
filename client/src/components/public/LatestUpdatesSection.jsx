@@ -2,8 +2,79 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useLanguage } from '../../i18n/LanguageContext';
 import { resolveMediaUrl } from '../../services/api';
 
-// Verified Field Dispatches & Official Constituency Updates (Latest Active Dispatches)
+// Verified Field Dispatches & Official Constituency Updates (Active Dispatches)
 export const LATEST_UPDATE_RECORDS = [
+  {
+    id: 'update-chityal-cheyutha-2026-11-14',
+    date: '2026-11-14',
+    dateFormattedEn: '14 November 2026',
+    dateFormattedTe: '14 నవంబర్ 2026',
+    pressNoteLabelEn: 'Cheyutha Pensions & CMRF Relief',
+    pressNoteLabelTe: 'చేయూత పింఛన్లు & సీఎంఆర్ఎఫ్ సహాయం',
+    locationEn: 'Chityal Mandal',
+    locationTe: 'చిట్యాల మండలం',
+    categoryEn: 'Public Welfare & Social Security',
+    categoryTe: 'ప్రజా సంక్షేమం & సామాజిక భద్రత',
+    titleEn: 'Delivering Welfare Schemes to Every Eligible Household is the Mission of People\'s Government: MLA Sri Gandra Satyanarayana Rao',
+    titleTe: 'అర్హులైన ప్రతి ఒక్కరికీ సంక్షేమ పథకాలు అందించడమే ప్రజా ప్రభుత్వ లక్ష్యం: ఎమ్మెల్యే గండ్ర సత్యనారాయణ రావు',
+    leadEn:
+      'A grand distribution ceremony for newly sanctioned Cheyutha pensions and Chief Minister\'s Relief Fund (CMRF) cheques was organized in Chityal Mandal of Bhupalpalle constituency. Hon\'ble MLA Sri Gandra Satyanarayana Rao handed over new Cheyutha pension sanction orders to 533 eligible beneficiaries, alongside distributing financial assistance cheques worth ₹14,33,450 to 47 beneficiaries through CMRF.',
+    leadTe:
+      'భూపాలపల్లి నియోజకవర్గంలోని చిట్యాల మండలంలో నూతన చేయూత పింఛన్ ఉత్తర్వుల పంపిణీ కార్యక్రమాన్ని నిర్వహించారు. ఈ కార్యక్రమంలో 533 మంది లబ్ధిదారులకు నూతన చేయూత పింఛన్ ఉత్తర్వులను భూపాలపల్లి ఎమ్మెల్యే శ్రీ గండ్ర సత్యనారాయణ రావు గారు అందజేశారు. అదేవిధంగా ముఖ్యమంత్రి సహాయనిధి (CMRF) ద్వారా 47 మంది లబ్ధిదారులకు రూ.14,33,450 విలువైన చెక్కులను పంపిణీ చేశారు.',
+    bodyEn: [
+      'Speaking on the occasion, the MLA emphasized that the people\'s government under the leadership of Chief Minister Sri A. Revanth Reddy places utmost priority on the welfare of underprivileged families, senior citizens, the differently abled, and economically vulnerable households. He noted that the government has been fulfilling its commitments by delivering direct welfare entitlements to every genuine claimant.',
+      'He expressed deep gratification in providing dependable financial security to 533 beneficiaries through the newly sanctioned Cheyutha pensions, noting that the pension support serves as an invaluable lifeline for disabled individuals and vulnerable citizens.',
+      'Furthermore, the MLA highlighted that the Chief Minister\'s Relief Fund (CMRF) is a vital solace for distressed families grappling with unexpected, severe medical expenses. Extending ₹14.33 Lakh to 47 beneficiary families provides tangible emergency relief. Standing by constituents in times of hardship remains the government\'s foremost duty. Mandal public representatives, administrative officers, Congress party leadership, workers, and beneficiary families participated in strength.'
+    ],
+    bodyTe: [
+      'ఈ సందర్భంగా ఎమ్మెల్యే గారు మాట్లాడుతూ ముఖ్యమంత్రి శ్రీ ఎనుముల రేవంత్ రెడ్డి గారి నాయకత్వంలోని ప్రజా ప్రభుత్వం పేదలు, వృద్ధులు, దివ్యాంగులు, నిరుపేద కుటుంబాల సంక్షేమానికి పెద్దపీట వేస్తోందని తెలిపారు. ప్రజా ప్రభుత్వం అధికారంలోకి వచ్చినప్పటి నుంచి ప్రజలకు ఇచ్చిన హామీలను అమలు చేస్తూ, అర్హులైన ప్రతి ఒక్కరికీ సంక్షేమ పథకాలు అందించేందుకు కృషి చేస్తోందని పేర్కొన్నారు.',
+      'నూతన చేయూత పింఛన్ ఉత్తర్వుల ద్వారా 533 మంది లబ్ధిదారులకు ఆర్థిక భరోసా కల్పించడం సంతోషకరమని, దివ్యాంగులు మరియు ఇతర అర్హులైన వారికి పింఛన్లు ఎంతగానో ఉపయోగపడతాయని అన్నారు.',
+      'అలాగే అనారోగ్య సమస్యలతో బాధపడుతూ వైద్య ఖర్చులు భరించలేని పేద కుటుంబాలకు ముఖ్యమంత్రి సహాయనిధి ఒక గొప్ప వరమని, 47 మంది లబ్ధిదారులకు రూ.14.33 లక్షల ఆర్థిక సహాయం అందించడం ద్వారా వారి కుటుంబాలకు కొంత ఊరట లభిస్తుందని తెలిపారు. ప్రజల కష్టసుఖాల్లో తోడుగా ఉంటూ, ప్రతి నిరుపేద కుటుంబానికి అండగా నిలవడమే ప్రజా ప్రభుత్వ ప్రధాన ఉద్దేశమని, ముఖ్యమంత్రి రేవంత్ రెడ్డి గారి నాయకత్వంలో ప్రజా సంక్షేమం, అభివృద్ధి దిశగా ప్రభుత్వం నిరంతరం పనిచేస్తుందని ఎమ్మెల్యే గారు పేర్కొన్నారు. ఈ కార్యక్రమంలో మండల ప్రజాప్రతినిధులు, అధికారులు, కాంగ్రెస్ పార్టీ నాయకులు, కార్యకర్తలు, లబ్ధిదారులు తదితరులు పాల్గొన్నారు.'
+    ],
+    mainImage: '/images/updates/chityal-cheyutha-pension-1.jpg',
+    photos: [
+      {
+        id: 'chit-chey-1',
+        url: '/images/updates/chityal-cheyutha-pension-1.jpg',
+        titleEn: 'Handing Over New Cheyutha Pension Sanction Orders to Disabled Child & Family',
+        titleTe: 'దివ్యాంగుల కుటుంబానికి నూతన చేయూత పింఛను ఉత్తర్వు అందజేస్తున్న ఎమ్మెల్యే సాతన్న',
+        captionEn: 'MLA Sri Gandra Satyanarayana Rao handing over Cheyutha order to beneficiary family in Chityal.',
+        captionTe: 'చిట్యాల మండలంలో దివ్యాంగ బాలుడి కుటుంబానికి చేయూత పింఛన్ మంజూరు పత్రం అందజేస్తున్న ఎమ్మెల్యే.'
+      },
+      {
+        id: 'chit-chey-2',
+        url: '/images/updates/chityal-cheyutha-cmrf-cheque.jpg',
+        titleEn: 'Distribution of CMRF Relief Cheques Worth ₹14.33 Lakh to 47 Beneficiaries',
+        titleTe: '47 మందికి రూ.14.33 లక్షల సీఎం సహాయనిధి (CMRF) చెక్కుల పంపిణీ',
+        captionEn: 'Handing over medical assistance cheques under Chief Minister\'s Relief Fund.',
+        captionTe: 'వైద్య ఖర్చుల నిమిత్తం మంజూరైన ముఖ్యమంత్రి సహాయనిధి చెక్కులను లబ్ధిదారులకు అందజేస్తున్న దృశ్యం.'
+      },
+      {
+        id: 'chit-chey-3',
+        url: '/images/updates/chityal-cheyutha-gathering.jpg',
+        titleEn: 'Addressing the Massive Beneficiary Gathering in Chityal Mandal',
+        titleTe: 'చిట్యాల మండలంలో 533 మంది లబ్ధిదారుల భారీ సభను ఉద్దేశించి ప్రసంగం',
+        captionEn: 'Affirming uncompromising commitment to rural welfare and grassroots governance.',
+        captionTe: 'నిరుపేదలు, వృద్ధులు, దివ్యాంగులకు భరోసా కల్పించడమే ప్రజా ప్రభుత్వ లక్ష్యమని పేర్కొన్న ఎమ్మెల్యే.'
+      },
+      {
+        id: 'chit-chey-4',
+        url: '/images/updates/chityal-cheyutha-beneficiaries.jpg',
+        titleEn: 'Felicitation and Group Photograph with Women Beneficiaries',
+        titleTe: 'మహిళా లబ్ధిదారులతో సామూహిక ఛాయాచిత్రం',
+        captionEn: 'Women beneficiaries expressing appreciation for timely welfare delivery.',
+        captionTe: 'చేయూత పింఛన్లు పొందిన మహిళలతో కలిసి ఎమ్మెల్యే గండ్ర సత్యనారాయణ రావు గారు.'
+      },
+      {
+        id: 'chit-chey-5',
+        url: '/images/updates/chityal-cheyutha-orders.jpg',
+        titleEn: 'Direct Handover of Sanction Orders to Rural Beneficiaries',
+        titleTe: 'లబ్ధిదారులకు నేరుగా పింఛన్ మంజూరు పత్రాల అందజేత',
+        captionEn: 'Ensuring transparent, doorstep reach of social security entitlements.',
+        captionTe: 'అర్హులైన ప్రతి ఒక్కరికీ సంక్షేమ పథకాలు పారదర్శకంగా అందజేస్తున్న ప్రజాప్రతినిధులు.'
+      }
+    ]
+  },
   {
     id: 'update-mogullapalle-paddy-2026-11-11',
     date: '2026-11-11',
@@ -194,9 +265,11 @@ export default function LatestUpdatesSection() {
   const [activePhotoSubIdx, setActivePhotoSubIdx] = useState(0);
   const [modalOpen, setModalOpen] = useState(false);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+  const [isVisible, setIsVisible] = useState(true);
   const [copyFeedback, setCopyFeedback] = useState('');
   const [instagramNotice, setInstagramNotice] = useState(false);
 
+  const sectionRef = useRef(null);
   const trackRef = useRef(null);
   const touchStartXRef = useRef(0);
   const touchEndXRef = useRef(0);
@@ -209,9 +282,23 @@ export default function LatestUpdatesSection() {
 
   const currentPhoto = photosList[activePhotoSubIdx] || photosList[0];
 
-  // Auto-rotation loop with 3-second delay
+  // Pause auto-rotation when the section is not visible in the viewport
+  // This prevents any background timer execution and completely stops mobile/iOS scroll jumping!
   useEffect(() => {
-    if (!isAutoPlaying || modalOpen) return;
+    if (!sectionRef.current || typeof IntersectionObserver === 'undefined') return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsVisible(entry.isIntersecting);
+      },
+      { threshold: 0.15 }
+    );
+    observer.observe(sectionRef.current);
+    return () => observer.disconnect();
+  }, []);
+
+  // Auto-rotation loop (Only runs when section is visible in viewport and not paused by user)
+  useEffect(() => {
+    if (!isAutoPlaying || modalOpen || !isVisible) return;
 
     const timer = setInterval(() => {
       setActiveUpdateIdx((prev) => {
@@ -219,20 +306,22 @@ export default function LatestUpdatesSection() {
         setActivePhotoSubIdx(0);
         return next;
       });
-    }, 3000);
+    }, 4000);
 
     return () => clearInterval(timer);
-  }, [isAutoPlaying, modalOpen, updates.length, activeUpdateIdx]);
+  }, [isAutoPlaying, modalOpen, isVisible, updates.length, activeUpdateIdx]);
 
-  // Keep active update in horizontal track view
+  // Keep active update in horizontal track view purely via container scroll
+  // NEVER calls scrollIntoView to ensure the page vertical scroll remains 100% stable
   useEffect(() => {
     if (trackRef.current) {
       const activeEl = trackRef.current.children[activeUpdateIdx];
       if (activeEl) {
-        activeEl.scrollIntoView({
-          behavior: 'smooth',
-          inline: 'center',
-          block: 'nearest'
+        const container = trackRef.current;
+        const targetLeft = activeEl.offsetLeft - (container.clientWidth - activeEl.clientWidth) / 2;
+        container.scrollTo({
+          left: Math.max(0, targetLeft),
+          behavior: 'smooth'
         });
       }
     }
@@ -286,7 +375,7 @@ export default function LatestUpdatesSection() {
     return () => window.removeEventListener('keydown', onKey);
   }, [modalOpen, photosList.length]);
 
-  // Touch swipe support
+  // Touch swipe support for main card
   const handleTouchStart = (e) => {
     touchStartXRef.current = e.changedTouches[0].screenX;
   };
@@ -321,7 +410,6 @@ export default function LatestUpdatesSection() {
   const handleInstagramShare = async () => {
     const shareText = `${shareTitle}\n\nMLA Sri Gandra Satyanarayana Rao (Sathanna)\nOfficial Portal: ${shareUrl}`;
 
-    // Native Web Share API if supported
     if (navigator.share) {
       try {
         await navigator.share({
@@ -355,6 +443,7 @@ export default function LatestUpdatesSection() {
 
   return (
     <section
+      ref={sectionRef}
       className="latest-updates-section"
       id="latest-updates"
       aria-label="New Updates and Field Dispatches"
@@ -363,7 +452,7 @@ export default function LatestUpdatesSection() {
     >
       <div className="container">
         <div className="latest-updates-canvas">
-          {/* Header Row with Minimal Counter and Step Controls (No 3s loop badge text) */}
+          {/* Header Row with Minimal Clean Counter and Step Controls */}
           <div className="new-updates-section-header-row">
             <div>
               <div className="tag-label green">
@@ -433,7 +522,7 @@ export default function LatestUpdatesSection() {
                     </div>
 
                     {/* Progress Bar (Visual indicator of active update) */}
-                    {isActive && isAutoPlaying && (
+                    {isActive && isAutoPlaying && isVisible && (
                       <div className="track-card-progress-bar" aria-hidden="true">
                         <div className="progress-fill" key={`progress-${activeUpdateIdx}`}></div>
                       </div>

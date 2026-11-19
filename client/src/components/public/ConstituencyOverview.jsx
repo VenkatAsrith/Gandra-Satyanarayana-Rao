@@ -88,16 +88,18 @@ export default function ConstituencyOverview({ constituency }) {
     }
   ];
 
-  // Horizontal Trigger Animation & Smooth Scroll Handlers
+  // Horizontal Trigger Animation & Smooth Scroll Handlers (Pure Container Horizontal Scroll)
   const scrollToMandal = (index) => {
     setActiveMandalIdx(index);
     if (!trackRef.current) return;
     const cards = trackRef.current.children;
-    if (cards[index]) {
-      cards[index].scrollIntoView({
-        behavior: 'smooth',
-        block: 'nearest',
-        inline: 'center'
+    const card = cards[index];
+    if (card) {
+      const container = trackRef.current;
+      const targetLeft = card.offsetLeft - (container.clientWidth - card.clientWidth) / 2;
+      container.scrollTo({
+        left: Math.max(0, targetLeft),
+        behavior: 'smooth'
       });
     }
   };
