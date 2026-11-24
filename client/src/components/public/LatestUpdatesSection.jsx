@@ -385,13 +385,21 @@ export default function LatestUpdatesSection() {
 
   const currentPhoto = storyPhotos[activePhotoSubIdx] || storyPhotos[0];
 
+  const scrollToFeaturedTop = () => {
+    if (featuredArticleRef.current) {
+      const rect = featuredArticleRef.current.getBoundingClientRect();
+      const topPos = rect.top + window.scrollY - 82;
+      window.scrollTo({ top: Math.max(0, topPos), behavior: 'smooth' });
+    }
+  };
+
   // Story selection handler with smooth transition and mobile auto-scroll to top
   const handleSelectStory = (storyId, cardElement) => {
     const isMobileOrTablet = typeof window !== 'undefined' && window.innerWidth <= 1024;
 
     if (storyId === activeStoryId) {
-      if (isMobileOrTablet && featuredArticleRef.current) {
-        featuredArticleRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      if (isMobileOrTablet) {
+        scrollToFeaturedTop();
       }
       return;
     }
@@ -403,9 +411,9 @@ export default function LatestUpdatesSection() {
     setTimeout(() => setIsAnimatingText(false), 380);
 
     // On mobile / tablet screens, smoothly scroll directly to the top stage
-    if (isMobileOrTablet && featuredArticleRef.current) {
+    if (isMobileOrTablet) {
       setTimeout(() => {
-        featuredArticleRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        scrollToFeaturedTop();
       }, 50);
     }
 

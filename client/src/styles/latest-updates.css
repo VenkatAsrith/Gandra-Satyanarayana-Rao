@@ -1103,22 +1103,42 @@
    07. RESPONSIVE BREAKPOINTS (TABLET & MOBILE)
    ========================================================================== */
 
+/* ==========================================================================
+   07. RESPONSIVE BREAKPOINTS (TABLET & MOBILE) — RIGOROUS AUDIT
+   ========================================================================== */
+
+/* Tablet & Mobile Container Safety */
+.latest-updates {
+  max-width: 100vw !important;
+  overflow-x: clip !important;
+}
+
 /* Tablet (1024px and down) */
 @media (max-width: 1024px) {
   .latest-updates .updates-editorial-grid {
-    grid-template-columns: 1fr;
-    gap: 1.75rem;
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    gap: 1.75rem !important;
+  }
+
+  .latest-updates .featured-story-card {
+    width: 100% !important;
+    max-width: 100% !important;
+    scroll-margin-top: 85px !important;
   }
 
   .latest-updates .featured-media-canvas {
-    aspect-ratio: 16 / 10;
+    aspect-ratio: 16 / 10 !important;
+    width: 100% !important;
   }
 
   .latest-updates .featured-article-body {
-    padding: 1.75rem;
+    padding: 1.5rem !important;
   }
 
-  /* Transform supporting stories to a mobile horizontal swipeable rail */
+  /* Transform supporting stories to a bounded horizontal swipeable track */
   .latest-updates .supporting-stories-column {
     display: flex !important;
     flex-direction: column !important;
@@ -1126,6 +1146,8 @@
     overflow-y: visible !important;
     padding-right: 0 !important;
     width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
   }
 
   .latest-updates .supporting-stories-mobile-header {
@@ -1135,6 +1157,7 @@
     padding: 1rem 0.25rem 0.5rem 0.25rem !important;
     margin-top: 0.5rem !important;
     border-top: 1px dashed var(--updates-border) !important;
+    width: 100% !important;
   }
 
   .latest-updates .mobile-rail-label {
@@ -1160,13 +1183,15 @@
     overflow-x: auto !important;
     scroll-snap-type: x mandatory !important;
     gap: 0.85rem !important;
-    padding: 0.35rem 0.25rem 1.15rem 0.25rem !important;
+    padding: 0.5rem 0.25rem 1.25rem 0.25rem !important;
     -webkit-overflow-scrolling: touch !important;
     scrollbar-width: thin !important;
+    width: 100% !important;
+    max-width: 100% !important;
   }
 
   .latest-updates .supporting-stories-track::-webkit-scrollbar {
-    height: 4px;
+    height: 5px;
   }
 
   .latest-updates .supporting-stories-track::-webkit-scrollbar-thumb {
@@ -1174,22 +1199,27 @@
     border-radius: 4px;
   }
 
+  /* Stacked Vertical Card for Clean Typography & No Squishing */
   .latest-updates .supporting-story-card {
-    flex: 0 0 285px !important;
-    min-width: 285px !important;
-    width: 285px !important;
+    flex: 0 0 280px !important;
+    min-width: 280px !important;
+    width: 280px !important;
     scroll-snap-align: start !important;
     display: flex !important;
-    flex-direction: row !important;
-    align-items: flex-start !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
     padding: 0.85rem !important;
-    gap: 0.85rem !important;
-    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05) !important;
+    gap: 0.75rem !important;
+    background: var(--updates-surface) !important;
+    border-radius: var(--updates-radius) !important;
+    border: 1px solid var(--updates-border) !important;
+    box-shadow: 0 4px 14px rgba(28, 23, 20, 0.05) !important;
     transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.25s ease, box-shadow 0.25s ease !important;
+    text-align: left !important;
   }
 
   .latest-updates .supporting-story-card:active {
-    transform: scale(0.97) !important;
+    transform: scale(0.98) !important;
   }
 
   .latest-updates .supporting-story-card.is-active {
@@ -1199,21 +1229,75 @@
     transform: translateY(-2px) scale(1.02) !important;
   }
 
+  .latest-updates .supporting-story-card.is-active::before {
+    display: none !important;
+  }
+
   .latest-updates .story-thumb-wrap {
-    width: 82px !important;
-    height: 74px !important;
+    width: 100% !important;
+    height: 140px !important;
+    border-radius: var(--updates-radius-sm) !important;
+    overflow: hidden !important;
     flex-shrink: 0 !important;
+    position: relative !important;
+  }
+
+  .latest-updates .story-thumb-img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    display: block !important;
+  }
+
+  .latest-updates .story-details-col {
+    width: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0.35rem !important;
+  }
+
+  .latest-updates .story-badge-row {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    width: 100% !important;
+    gap: 0.5rem !important;
+    margin-bottom: 0.15rem !important;
+  }
+
+  .latest-updates .story-mini-badge {
+    font-size: 0.68rem !important;
+    white-space: nowrap !important;
+    letter-spacing: 0.08em !important;
+  }
+
+  .latest-updates .story-meta-date {
+    font-size: 0.72rem !important;
+    white-space: nowrap !important;
+    color: var(--updates-muted) !important;
   }
 
   .latest-updates .story-row-title {
-    font-size: 0.92rem !important;
+    font-size: 0.96rem !important;
     line-height: 1.35 !important;
-    margin-bottom: 0.35rem !important;
+    margin: 0 !important;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 2 !important;
+    -webkit-box-orient: vertical !important;
+    overflow: hidden !important;
+    color: var(--updates-primary) !important;
+  }
+
+  .latest-updates .story-location-tag {
+    font-size: 0.74rem !important;
+    color: var(--updates-muted) !important;
   }
 
   .latest-updates .story-mobile-tap-hint {
-    display: block !important;
-    font-size: 0.7rem !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 0.3rem !important;
+    font-size: 0.72rem !important;
     font-weight: 700 !important;
     color: var(--updates-accent) !important;
     margin-top: 0.35rem !important;
@@ -1251,11 +1335,11 @@
   }
 
   .latest-updates .featured-media-canvas {
-    aspect-ratio: 4 / 3;
+    aspect-ratio: 16 / 10 !important;
   }
 
   .latest-updates .featured-article-body {
-    padding: 1.25rem;
+    padding: 1.25rem !important;
   }
 
   .latest-updates .featured-headline {
@@ -1290,26 +1374,10 @@
     font-size: 0.75rem;
   }
 
-  .latest-updates .supporting-story-card {
-    flex: 0 0 270px !important;
-    min-width: 270px !important;
-    width: 270px !important;
-    padding: 0.8rem !important;
-  }
-
-  .latest-updates .story-thumb-wrap {
-    width: 85px;
-    height: 72px;
-  }
-
-  .latest-updates .story-row-title {
-    font-size: 0.95rem;
-  }
-
   .latest-updates .filmstrip-item-tile,
   .latest-updates .filmstrip-gallery-link-tile {
-    flex: 0 0 135px;
-    height: 90px;
+    flex: 0 0 140px !important;
+    height: 95px !important;
   }
 
   .updates-lightbox-container {
@@ -1357,11 +1425,11 @@
   }
 
   .latest-updates .featured-media-canvas {
-    aspect-ratio: 1 / 1;
+    aspect-ratio: 16 / 10 !important; /* Preserves natural image framing on phones */
   }
 
   .latest-updates .featured-article-body {
-    padding: 1rem;
+    padding: 1rem !important;
   }
 
   .latest-updates .featured-meta-row {
@@ -1369,10 +1437,16 @@
     gap: 0.5rem;
   }
 
+  .latest-updates .supporting-story-card {
+    flex: 0 0 260px !important;
+    min-width: 260px !important;
+    width: 260px !important;
+  }
+
   .latest-updates .filmstrip-item-tile,
   .latest-updates .filmstrip-gallery-link-tile {
-    flex: 0 0 115px;
-    height: 78px;
+    flex: 0 0 130px !important;
+    height: 88px !important;
   }
 }
 
