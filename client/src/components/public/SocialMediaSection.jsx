@@ -45,7 +45,7 @@ export default function SocialMediaSection({ settings }) {
       descTe: 'బుద్ధారం ప్రజా దర్బార్ మరియు గ్రామీణ పర్యటనల క్షేత్రస్థాయి చిత్రాలు, ప్రజా సంభాషణలు.',
       icon: 'IG',
       color: '#E4405F',
-      url: socialLinks.instagram || 'https://www.instagram.com/gandra_satyanarayana_rao',
+      url: socialLinks.instagram || 'https://www.instagram.com/gandrasatyanarayanarao',
       ctaText: 'Follow on Instagram',
       ctaTextTe: 'ఇన్‌స్టాగ్రామ్‌లో చూడండి'
     },

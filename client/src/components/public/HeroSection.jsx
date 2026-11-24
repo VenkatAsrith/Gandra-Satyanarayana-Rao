@@ -45,13 +45,16 @@ export default function HeroSection({ profile, settings }) {
                 </h1>
               )}
 
+              {/* Italic Editorial Introduction */}
+              <p className="hero-bio-lead">
+                {isTelugu
+                  ? 'ప్రజా సేవ, నియోజకవర్గ సమగ్ర అభివృద్ధి మరియు భూపాలపల్లి ప్రజల సంక్షేమమే పరమావధి.'
+                  : 'A commitment to public service, constituency development and the welfare of the people of Bhupalpalle.'}
+              </p>
+
               {/* Role Title & Factual Summary */}
               <div className="hero-role-group">
-                <div className="hero-role-decor-line" aria-hidden="true"></div>
                 <div className="hero-role-text-wrap">
-                  <h2 className="hero-role-title">
-                    {isTelugu ? 'శాసనసభ్యులు (MLA) — భూపాలపల్లి నియోజకవర్గం' : 'Member of Legislative Assembly (MLA)'}
-                  </h2>
                   <div className="hero-role-subline">
                     {isTelugu
                       ? 'భూపాలపల్లి అసెంబ్లీ నియోజకవర్గం నెం. 108 · తెలంగాణ శాసనసభ'
@@ -59,31 +62,24 @@ export default function HeroSection({ profile, settings }) {
                   </div>
                   <p className="hero-role-summary">
                     {isTelugu
-                      ? `డిసెంబర్ 2023లో కాంగ్రెస్ పార్టీ తరఫున ${stats.votesSecured ? stats.votesSecured.toLocaleString('en-IN') : '1,23,116'} ఓట్లతో (${stats.voteSharePercentage || 54.55}% ఓట్ల శాతం) మరియు ${stats.voteMargin ? stats.voteMargin.toLocaleString('en-IN') : '52,699'} ఓట్ల భారీ మెజారిటీతో ఎన్నికై, నియోజకవర్గ రైతాంగం, విద్యార్థులు, యువత మరియు సింగరేణి కార్మికుల సంక్షేమానికి కట్టుబడి పనిచేస్తున్న ప్రజా నాయకుడు.`
-                      : `Grassroots public representative elected in December 2023 on an Indian National Congress mandate, securing ${stats.votesSecured ? stats.votesSecured.toLocaleString() : '123,116'} votes (${stats.voteSharePercentage || 54.55}% vote share) with a historic ${stats.voteMargin ? stats.voteMargin.toLocaleString() : '52,699'} victory margin. Committed to farmers' water rights, student welfare, rural infrastructure, and Singareni workers.`}
+                      ? `రైతాంగ సాగునీటి భద్రత, గ్రామీణ మౌలిక వసతులు, విద్యాభివృద్ధి మరియు సింగరేణి కార్మికుల సంక్షేమానికి కట్టుబడిన ప్రజాప్రతినిధి. 2023 ఎన్నికల్లో ${stats.voteMargin ? stats.voteMargin.toLocaleString('en-IN') : '52,699'} ఓట్ల చారిత్రాత్మక మెజారిటీతో ప్రజాతీర్పు పొందిన నాయకుడు.`
+                      : `A public representative focused on agricultural water access, rural infrastructure, education, welfare and constituency development. Elected in 2023 on an Indian National Congress mandate with a historic ${stats.voteMargin ? stats.voteMargin.toLocaleString() : '52,699'} victory margin.`}
                   </p>
                 </div>
               </div>
 
-              {/* Action Buttons: Working Internal Routes */}
+              {/* Action Buttons: Working Editorial Routes */}
               <div className="hero-cta-group">
-                <Link to="/constituency" className="btn-pill btn-primary">
-                  {isTelugu ? 'నియోజకవర్గ మండలాలు' : 'Constituency Mandals'}
-                  <svg viewBox="0 0 20 20" fill="currentColor">
-                    <path
-                      fillRule="evenodd"
-                      d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
+                <Link to="/about" className="btn-pill btn-primary">
+                  {isTelugu ? 'జీవిత ప్రస్థానం' : 'Read Biography'} →
                 </Link>
 
-                <Link to="/about" className="btn-pill btn-secondary">
-                  {isTelugu ? 'జీవిత ప్రస్థానం & చరిత్ర' : 'Biography & Journey'}
+                <Link to="/work" className="btn-pill btn-secondary">
+                  {isTelugu ? 'అభివృద్ధి పనులు' : 'Development Works'}
                 </Link>
 
-                <Link to="/contact" className="btn-pill btn-outline">
-                  {isTelugu ? 'క్యాంపు ఆఫీస్ / వినతులు' : 'Camp Office / Contact'}
+                <Link to="/constituency" className="btn-pill btn-outline">
+                  {isTelugu ? 'నియోజకవర్గ మండలాలు' : 'Constituency (108)'}
                 </Link>
               </div>
 
@@ -93,14 +89,14 @@ export default function HeroSection({ profile, settings }) {
                   <span className="hero-cred-val">
                     {stats.voteMargin ? stats.voteMargin.toLocaleString('en-IN') : '52,699'}
                   </span>
-                  <span className="hero-cred-lbl">{t('hero.voteMarginLabel', isTelugu ? 'మెజారిటీ ఓట్లు' : 'Vote Margin')}</span>
+                  <span className="hero-cred-lbl">{t('hero.voteMarginLabel', isTelugu ? 'మెజారిటీ ఓట్లు' : 'Victory Margin')}</span>
                 </div>
 
                 <div className="hero-cred-divider" aria-hidden="true"></div>
 
                 <div className="hero-cred-card">
                   <span className="hero-cred-val">{stats.tenureYears || '2023–28'}</span>
-                  <span className="hero-cred-lbl">{isTelugu ? 'శాసనసభ కాలపరిమితి' : 'Tenure (3rd Assembly)'}</span>
+                  <span className="hero-cred-lbl">{isTelugu ? 'శాసనసభ కాలపరిమితి' : 'Legislative Tenure'}</span>
                 </div>
 
                 <div className="hero-cred-divider" aria-hidden="true"></div>
@@ -125,20 +121,19 @@ export default function HeroSection({ profile, settings }) {
                       e.target.src = '/images/hero/hero-portrait.png';
                     }}
                   />
-                  <div className="hero-portrait-gradient-overlay" aria-hidden="true"></div>
                 </div>
 
-                {/* Floating Glassmorphism Credentials Tag */}
+                {/* Natural Editorial Caption Tag */}
                 <div className="hero-portrait-tag">
                   <div className="hero-tag-icon-circle">
-                    <img src="/images/party-symbol.png" alt="Emblem" style={{ width: '22px', height: '22px' }} />
+                    <img src="/images/party-symbol.png" alt="INC Emblem" style={{ width: '20px', height: '20px', objectFit: 'contain' }} />
                   </div>
                   <div className="hero-tag-text-block">
                     <span className="hero-tag-primary">
-                      {isTelugu ? `ఎమ్మెల్యే · భూపాలపల్లి (${constituencyNo})` : `MLA · ${constituencyName} (${constituencyNo})`}
+                      {isTelugu ? 'శ్రీ గండ్ర సత్యనారాయణ రావు (సత్తన్న)' : 'Sri Gandra Satyanarayana Rao (Sathanna)'}
                     </span>
                     <span className="hero-tag-meta">
-                      {isTelugu ? '3వ తెలంగాణ శాసనసభ · INC' : '3rd Telangana Assembly · INC'}
+                      {isTelugu ? `ఎమ్మెల్యే · భూపాలపల్లి (${constituencyNo}) · 3వ తెలంగాణ శాసనసభ` : `MLA · ${constituencyName} (${constituencyNo}) · 3rd Assembly`}
                     </span>
                   </div>
                 </div>

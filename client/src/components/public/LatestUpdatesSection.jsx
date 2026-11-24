@@ -1,11 +1,121 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useMemo } from 'react';
+import { Link } from 'react-router-dom';
 import { useLanguage } from '../../i18n/LanguageContext';
-import { resolveMediaUrl } from '../../services/api';
+import '../../styles/latest-updates.css';
 
-// Verified Field Dispatches & Official Constituency Updates (Active Dispatches)
+// Verified Field Dispatches & Official Constituency Updates with Multi-Photo Records
 export const LATEST_UPDATE_RECORDS = [
   {
+    id: 'update-buguloni-jatara-2026-11-24',
+    categoryKey: 'field_visits',
+    date: '2026-11-24',
+    dateFormattedEn: '24 November 2026',
+    dateFormattedTe: '24 నవంబర్ 2026',
+    pressNoteLabelEn: 'Buguloni Venkateswara Swamy Jatara',
+    pressNoteLabelTe: 'బుగులోని వేంకటేశ్వర స్వామి జాతర',
+    locationEn: 'Buguloni Hill Shrine, Bhupalpalle',
+    locationTe: 'బుగులోని గుట్ట, భూపాలపల్లి',
+    categoryEn: 'Cultural & Field Visits',
+    categoryTe: 'క్షేత్ర పర్యటన & ఆధ్యాత్మిక దర్శనం',
+    titleEn: 'MLA Sri Gandra Satyanarayana Rao and Spouse Offer Prayers to Sri Venkateswara Swamy at Buguloni Jatara',
+    titleTe: 'బుగులోని జాతరలో శ్రీ వేంకటేశ్వర స్వామివారిని దర్శించుకున్న ఎమ్మెల్యే గండ్ర సత్యనారాయణ రావు దంపతులు',
+    leadEn:
+      'Hon’ble Bhupalpalle MLA Sri Gandra Satyanarayana Rao along with his wife visited the revered hilltop shrine of Sri Sri Venkateswara Swamy during the auspicious Buguloni Jatara. Performing special pujas and receiving theertha prasadam, they prayed for the eternal prosperity, peace, happiness, good health, and bountiful agricultural harvest for every family across Bhupalpalle constituency.',
+    leadTe:
+      'బుగులోని జాతరలో కొండపై కొలువుదీరిన శ్రీ శ్రీ వేంకటేశ్వర స్వామివారిని భూపాలపల్లి శాసనసభ్యులు శ్రీ గండ్ర సత్యనారాయణ రావు గారు తన సతీమణితో కలిసి దర్శించుకున్నారు. ఈ సందర్భంగా స్వామివారికి ప్రత్యేక పూజలు నిర్వహించి, తీర్థప్రసాదాలు స్వీకరించారు. భూపాలపల్లి నియోజకవర్గ ప్రజలందరూ సుఖసంతోషాలతో, ఆయురారోగ్యాలతో, పాడిపంటలతో సుభిక్షంగా ఉండాలని స్వామివారిని ప్రార్థించారు.',
+    mainImage: '/images/updates/buguloni-venkateswara-jatara-1.jpg',
+    photos: [
+      {
+        id: 'bug-1',
+        url: '/images/updates/buguloni-venkateswara-jatara-1.jpg',
+        titleEn: 'MLA Sri Gandra Satyanarayana Rao & Spouse Performing Special Pujas at Buguloni Jatara',
+        titleTe: 'బుగులోని జాతరలో శ్రీ వేంకటేశ్వర స్వామివారికి ప్రత్యేక పూజలు నిర్వహిస్తున్న ఎమ్మెల్యే దంపతులు',
+        captionEn: 'MLA Sri Gandra Satyanarayana Rao and his wife offering prayers at the sanctum sanctorum on the Buguloni hill.',
+        captionTe: 'కొండపై కొలువుదీరిన స్వామివారికి భక్తిశ్రద్ధలతో ప్రత్యేక పూజలు నిర్వహిస్తున్న ఎమ్మెల్యే గండ్ర సత్యనారాయణ రావు దంపతులు.'
+      },
+      {
+        id: 'bug-2',
+        url: '/images/updates/buguloni-venkateswara-jatara-2.jpg',
+        titleEn: 'Receiving Sacred Theertha Prasadam from Temple Priests',
+        titleTe: 'వేద పండితుల ఆశీర్వచనాలు, తీర్థప్రసాదాల స్వీకరణ',
+        captionEn: 'Temple archakas blessing the MLA couple with Vedic hymns and sacred prasadam.',
+        captionTe: 'పూజా కార్యక్రమాల అనంతరం ఆలయ పూజారుల నుంచి ఆశీర్వచనాలు, తీర్థప్రసాదాలు స్వీకరిస్తున్న దృశ్యం.'
+      },
+      {
+        id: 'bug-3',
+        url: '/images/updates/buguloni-venkateswara-jatara-3.jpg',
+        titleEn: 'Blessings for Agricultural Bounty, Peace & Welfare of Bhupalpalle',
+        titleTe: 'నియోజకవర్గ ప్రజల ఆయురారోగ్యాలు, పాడిపంటల సుభిక్షం కోసం ప్రార్థన',
+        captionEn: 'Praying for good rains, flourishing crops, and health & happiness for all constituents.',
+        captionTe: 'భూపాలపల్లి నియోజకవర్గ ప్రజలందరూ సుఖసంతోషాలతో, ఆయురారోగ్యాలతో, పాడిపంటలతో సుభిక్షంగా ఉండాలని ప్రార్థన.'
+      }
+    ]
+  },
+  {
+    id: 'update-chelpur-indiramma-insurance-2026-11-20',
+    categoryKey: 'welfare',
+    date: '2026-11-20',
+    dateFormattedEn: '20 November 2026',
+    dateFormattedTe: '20 నవంబర్ 2026',
+    pressNoteLabelEn: 'Indiramma Family Life Insurance',
+    pressNoteLabelTe: 'ఇందిరమ్మ కుటుంబ జీవిత బీమా',
+    locationEn: 'Chelpur Gram Panchayat, Ghanapur (M) Mandal',
+    locationTe: 'చెల్పూర్ గ్రామపంచాయతీ, ఘనపురం మండలం',
+    categoryEn: 'Public Welfare',
+    categoryTe: 'ప్రజా సంక్షేమం',
+    titleEn: '₹5 Lakh Financial Security for Every Underprivileged Family Through Indiramma Life Insurance – MLA Sri Gandra Satyanarayana Rao',
+    titleTe: 'ఇందిరమ్మ కుటుంబ జీవిత బీమాతో ప్రతి పేద కుటుంబానికి ₹5 లక్షల ఆర్థిక భరోసా – ఎమ్మెల్యే శ్రీ గండ్ర సత్యనారాయణ రావు',
+    leadEn:
+      'In Chelpur Gram Panchayat of Ghanapur (M) Mandal, Bhupalpalle MLA Sri Gandra Satyanarayana Rao alongside District Collector Sri Rahul Sharma inspected the online registration process for Indiramma Family Life Insurance applications.',
+    leadTe:
+      'భూపాలపల్లి నియోజకవర్గంలోని ఘనపూర్ మండలం చెల్పూర్ గ్రామపంచాయతీ ఆవరణలో నిర్వహించిన ఇందిరమ్మ కుటుంబ జీవిత బీమా పథకం దరఖాస్తుల ఆన్‌లైన్ నమోదు ప్రక్రియను భూపాలపల్లి ఎమ్మెల్యే శ్రీ గండ్ర సత్యనారాయణ రావు గారు, జిల్లా కలెక్టర్ శ్రీ రాహుల్ శర్మ గారితో కలిసి పరిశీలించారు.',
+    mainImage: '/images/updates/chelpur-indiramma-insurance-1.jpg',
+    photos: [
+      {
+        id: 'chel-1',
+        url: '/images/updates/chelpur-indiramma-insurance-1.jpg',
+        titleEn: 'MLA Sathanna & Collector Rahul Sharma Inspecting Registration Counter',
+        titleTe: 'కలెక్టర్ రాహుల్ శర్మతో కలిసి ఆన్‌లైన్ నమోదు ప్రక్రియను పరిశీలిస్తున్న ఎమ్మెల్యే సాతన్న',
+        captionEn: 'Reviewing application forms, eligibility requirements, and portal entry steps with mandal officials.',
+        captionTe: 'అధికారులను అడిగి ఆన్‌లైన్ దరఖాస్తు నమోదు విధానం, అర్హతలు, అవసరమైన పత్రాల ప్రక్రియను తెలుసుకున్న ఎమ్మెల్యే గారు.'
+      },
+      {
+        id: 'chel-2',
+        url: '/images/updates/chelpur-indiramma-insurance-2.jpg',
+        titleEn: 'Assessing Online Enrolment Progress at Chelpur Gram Panchayat',
+        titleTe: 'చెల్పూర్ గ్రామపంచాయతీలో దరఖాస్తు నమోదు సరళి పరిశీలన',
+        captionEn: 'Verifying that every eligible family receives immediate registration support.',
+        captionTe: 'లబ్ధిదారుల వివరాల నమోదులో ఎలాంటి లోటుపాట్లు లేకుండా సజావుగా పూర్తి చేయాలని అధికారులకు సూచన.'
+      },
+      {
+        id: 'chel-3',
+        url: '/images/updates/chelpur-indiramma-insurance-3.jpg',
+        titleEn: 'Interacting with Rural Women and Scheme Applicants',
+        titleTe: 'మహిళలు, గ్రామస్తులతో ముఖాముఖి సంభాషిస్తున్న ఎమ్మెల్యే సాతన్న',
+        captionEn: 'Explaining how ₹5 lakh life cover shields families from financial ruin if breadwinner passes away.',
+        captionTe: 'కుటుంబ పెద్ద లేదా సంపాదించే వ్యక్తి మరణిస్తే కుటుంబం రోడ్డున పడకుండా ₹5 లక్షల ఆర్థిక భరోసా కల్పిస్తుందని వివరణ.'
+      },
+      {
+        id: 'chel-4',
+        url: '/images/updates/chelpur-indiramma-insurance-4.jpg',
+        titleEn: 'Guiding Citizens on Document Submission and Free Enrollment',
+        titleTe: 'లబ్ధిదారులకు పథకం ప్రయోజనాలు వివరిస్తున్న ప్రజాప్రతినిధులు',
+        captionEn: 'Stressing that the Indiramma scheme serves as a protective armor for poor and vulnerable classes.',
+        captionTe: 'ఈ పథకం నిరుపేద, బడుగు, బలహీన వర్గాల కుటుంబాలకు ఒక రక్షణ కవచంలా పనిచేస్తుందని ఎమ్మెల్యే పేర్కొన్నారు.'
+      },
+      {
+        id: 'chel-5',
+        url: '/images/updates/chelpur-indiramma-insurance-5.jpg',
+        titleEn: 'Addressing the Gathering at Chelpur Gram Panchayat',
+        titleTe: 'చెల్పూర్‌లో ప్రజాప్రతినిధులు, ప్రజలను ఉద్దేశించి ప్రసంగం',
+        captionEn: 'Calling upon every eligible household across Ghanapur Mandal to complete online registration.',
+        captionTe: 'ప్రభుత్వం ప్రవేశపెట్టిన ఈ గొప్ప సంక్షేమ పథకాన్ని ప్రజలందరూ సద్వినియోగం చేసుకోవాలని ఎమ్మెల్యే గారి పిలుపు.'
+      }
+    ]
+  },
+  {
     id: 'update-chityal-cheyutha-2026-11-14',
+    categoryKey: 'welfare',
     date: '2026-11-14',
     dateFormattedEn: '14 November 2026',
     dateFormattedTe: '14 నవంబర్ 2026',
@@ -13,24 +123,14 @@ export const LATEST_UPDATE_RECORDS = [
     pressNoteLabelTe: 'చేయూత పింఛన్లు & సీఎంఆర్ఎఫ్ సహాయం',
     locationEn: 'Chityal Mandal',
     locationTe: 'చిట్యాల మండలం',
-    categoryEn: 'Public Welfare & Social Security',
-    categoryTe: 'ప్రజా సంక్షేమం & సామాజిక భద్రత',
-    titleEn: 'Delivering Welfare Schemes to Every Eligible Household is the Mission of People\'s Government: MLA Sri Gandra Satyanarayana Rao',
+    categoryEn: 'Public Welfare',
+    categoryTe: 'ప్రజా సంక్షేమం',
+    titleEn: "Delivering Welfare Schemes to Every Eligible Household is the Mission of People's Government: MLA Sri Gandra Satyanarayana Rao",
     titleTe: 'అర్హులైన ప్రతి ఒక్కరికీ సంక్షేమ పథకాలు అందించడమే ప్రజా ప్రభుత్వ లక్ష్యం: ఎమ్మెల్యే గండ్ర సత్యనారాయణ రావు',
     leadEn:
-      'A grand distribution ceremony for newly sanctioned Cheyutha pensions and Chief Minister\'s Relief Fund (CMRF) cheques was organized in Chityal Mandal of Bhupalpalle constituency. Hon\'ble MLA Sri Gandra Satyanarayana Rao handed over new Cheyutha pension sanction orders to 533 eligible beneficiaries, alongside distributing financial assistance cheques worth ₹14,33,450 to 47 beneficiaries through CMRF.',
+      "A grand distribution ceremony for newly sanctioned Cheyutha pensions and Chief Minister's Relief Fund (CMRF) cheques was organized in Chityal Mandal of Bhupalpalle constituency. Hon'ble MLA Sri Gandra Satyanarayana Rao handed over new Cheyutha pension sanction orders to 533 eligible beneficiaries, alongside distributing financial assistance cheques worth ₹14,33,450 to 47 beneficiaries through CMRF.",
     leadTe:
       'భూపాలపల్లి నియోజకవర్గంలోని చిట్యాల మండలంలో నూతన చేయూత పింఛన్ ఉత్తర్వుల పంపిణీ కార్యక్రమాన్ని నిర్వహించారు. ఈ కార్యక్రమంలో 533 మంది లబ్ధిదారులకు నూతన చేయూత పింఛన్ ఉత్తర్వులను భూపాలపల్లి ఎమ్మెల్యే శ్రీ గండ్ర సత్యనారాయణ రావు గారు అందజేశారు. అదేవిధంగా ముఖ్యమంత్రి సహాయనిధి (CMRF) ద్వారా 47 మంది లబ్ధిదారులకు రూ.14,33,450 విలువైన చెక్కులను పంపిణీ చేశారు.',
-    bodyEn: [
-      'Speaking on the occasion, the MLA emphasized that the people\'s government under the leadership of Chief Minister Sri A. Revanth Reddy places utmost priority on the welfare of underprivileged families, senior citizens, the differently abled, and economically vulnerable households. He noted that the government has been fulfilling its commitments by delivering direct welfare entitlements to every genuine claimant.',
-      'He expressed deep gratification in providing dependable financial security to 533 beneficiaries through the newly sanctioned Cheyutha pensions, noting that the pension support serves as an invaluable lifeline for disabled individuals and vulnerable citizens.',
-      'Furthermore, the MLA highlighted that the Chief Minister\'s Relief Fund (CMRF) is a vital solace for distressed families grappling with unexpected, severe medical expenses. Extending ₹14.33 Lakh to 47 beneficiary families provides tangible emergency relief. Standing by constituents in times of hardship remains the government\'s foremost duty. Mandal public representatives, administrative officers, Congress party leadership, workers, and beneficiary families participated in strength.'
-    ],
-    bodyTe: [
-      'ఈ సందర్భంగా ఎమ్మెల్యే గారు మాట్లాడుతూ ముఖ్యమంత్రి శ్రీ ఎనుముల రేవంత్ రెడ్డి గారి నాయకత్వంలోని ప్రజా ప్రభుత్వం పేదలు, వృద్ధులు, దివ్యాంగులు, నిరుపేద కుటుంబాల సంక్షేమానికి పెద్దపీట వేస్తోందని తెలిపారు. ప్రజా ప్రభుత్వం అధికారంలోకి వచ్చినప్పటి నుంచి ప్రజలకు ఇచ్చిన హామీలను అమలు చేస్తూ, అర్హులైన ప్రతి ఒక్కరికీ సంక్షేమ పథకాలు అందించేందుకు కృషి చేస్తోందని పేర్కొన్నారు.',
-      'నూతన చేయూత పింఛన్ ఉత్తర్వుల ద్వారా 533 మంది లబ్ధిదారులకు ఆర్థిక భరోసా కల్పించడం సంతోషకరమని, దివ్యాంగులు మరియు ఇతర అర్హులైన వారికి పింఛన్లు ఎంతగానో ఉపయోగపడతాయని అన్నారు.',
-      'అలాగే అనారోగ్య సమస్యలతో బాధపడుతూ వైద్య ఖర్చులు భరించలేని పేద కుటుంబాలకు ముఖ్యమంత్రి సహాయనిధి ఒక గొప్ప వరమని, 47 మంది లబ్ధిదారులకు రూ.14.33 లక్షల ఆర్థిక సహాయం అందించడం ద్వారా వారి కుటుంబాలకు కొంత ఊరట లభిస్తుందని తెలిపారు. ప్రజల కష్టసుఖాల్లో తోడుగా ఉంటూ, ప్రతి నిరుపేద కుటుంబానికి అండగా నిలవడమే ప్రజా ప్రభుత్వ ప్రధాన ఉద్దేశమని, ముఖ్యమంత్రి రేవంత్ రెడ్డి గారి నాయకత్వంలో ప్రజా సంక్షేమం, అభివృద్ధి దిశగా ప్రభుత్వం నిరంతరం పనిచేస్తుందని ఎమ్మెల్యే గారు పేర్కొన్నారు. ఈ కార్యక్రమంలో మండల ప్రజాప్రతినిధులు, అధికారులు, కాంగ్రెస్ పార్టీ నాయకులు, కార్యకర్తలు, లబ్ధిదారులు తదితరులు పాల్గొన్నారు.'
-    ],
     mainImage: '/images/updates/chityal-cheyutha-pension-1.jpg',
     photos: [
       {
@@ -77,6 +177,7 @@ export const LATEST_UPDATE_RECORDS = [
   },
   {
     id: 'update-mogullapalle-paddy-2026-11-11',
+    categoryKey: 'irrigation',
     date: '2026-11-11',
     dateFormattedEn: '11 November 2026',
     dateFormattedTe: '11 నవంబర్ 2026',
@@ -84,24 +185,14 @@ export const LATEST_UPDATE_RECORDS = [
     pressNoteLabelTe: 'ధాన్యం కొనుగోలు కేంద్రాల ప్రారంభం',
     locationEn: 'Mogullapalle Mandal (Motlapalli, Issipeta)',
     locationTe: 'మొగుళ్లపల్లి మండలం (మోట్లపల్లి, ఇస్సిపేట)',
-    categoryEn: 'Agriculture & Farmer Welfare',
-    categoryTe: 'వ్యవసాయం & రైతు సంక్షేమం',
+    categoryEn: 'Irrigation & Agriculture',
+    categoryTe: 'సాగునీరు & వ్యవసాయం',
     titleEn: 'Inauguration of Paddy Procurement Centers across Mogullapalle Mandal – MLA Sri Gandra Satyanarayana Rao',
     titleTe: 'మొగుళ్లపల్లి మండలంలో పలు గ్రామాల్లో వరి కొనుగోలు కేంద్రాలను ప్రారంభించిన ఎమ్మెల్యే గండ్ర సత్యనారాయణ రావు గారు',
     leadEn:
-      'Bhupalpalle MLA Sri Gandra Satyanarayana Rao inaugurated the newly established paddy procurement centers across Motlapalli, Mogullapalle, Issipeta, and adjoining villages in Mogullapalle Mandal.',
+      'Bhupalpalle MLA Sri Gandra Satyanarayana Rao inaugurated newly established paddy procurement centers across Motlapalli, Mogullapalle, Issipeta, and adjoining villages in Mogullapalle Mandal.',
     leadTe:
       'భూపాలపల్లి నియోజకవర్గంలోని మొగుళ్లపల్లి మండలంలో మోట్లపల్లి, మొగుళ్లపల్లి, ఇస్సిపేట, తదితర గ్రామాల్లో ఏర్పాటు చేసిన వరి కొనుగోలు కేంద్రాలను భూపాలపల్లి ఎమ్మెల్యే శ్రీ గండ్ర సత్యనారాయణ రావు గారు ప్రారంభించారు.',
-    bodyEn: [
-      'Speaking on the occasion, the MLA stated that the people\'s government operates with farmer welfare as its cornerstone, ensuring robust institutional arrangements so that every single grain produced by cultivators is procured at the Minimum Support Price (MSP).',
-      'He advised farmers to sell their yield directly at government procurement centers rather than turning to middlemen, ensuring fair remuneration. The MLA directed concerned officials to provide all necessary amenities at the centers to prevent any inconvenience to farmers. He emphasized maintaining strict transparency in grain procurement, weighing, and transportation, while ensuring prompt payments directly to farmers.',
-      'Affirming that this administration is a pro-farmer government, the MLA highlighted that farmer welfare, agricultural modernization, and rural economic empowerment remain its foremost missions. Local public representatives, Congress party leaders, administrative officials, farmers, and villagers attended the programme.'
-    ],
-    bodyTe: [
-      'ఈ సందర్భంగా ఎమ్మెల్యే గారు మాట్లాడుతూ.. ప్రజా ప్రభుత్వం రైతు సంక్షేమమే లక్ష్యంగా పనిచేస్తోందని, రైతులు పండించిన ప్రతి ధాన్యపు గింజను ప్రభుత్వం కొనుగోలు చేసేందుకు అవసరమైన ఏర్పాట్లు చేస్తోందని తెలిపారు. రైతులు దళారులను ఆశ్రయించకుండా, మద్దతు ధరకు తమ ధాన్యాన్ని కొనుగోలు కేంద్రాల్లో విక్రయించి గిట్టుబాటు ధర పొందాలని సూచించారు.',
-      'రైతులకు ఎలాంటి ఇబ్బందులు కలగకుండా కొనుగోలు కేంద్రాల్లో అవసరమైన సౌకర్యాలు కల్పించాలని సంబంధిత అధికారులను ఆదేశించారు. ధాన్యం కొనుగోలు, తూకం, రవాణా తదితర అంశాల్లో పారదర్శకత పాటిస్తూ రైతులకు త్వరితగతిన చెల్లింపులు జరిగేలా చర్యలు తీసుకోవాలని సూచించారు.',
-      'ప్రజా ప్రభుత్వం రైతు పక్షపాత ప్రభుత్వమని, రైతుల సంక్షేమం, వ్యవసాయ అభివృద్ధి, గ్రామీణ ఆర్థిక వ్యవస్థ బలోపేతమే ప్రభుత్వ ప్రధాన లక్ష్యాలని ఎమ్మెల్యే గారు పేర్కొన్నారు. రైతుల కష్టానికి తగిన ప్రతిఫలం అందించేందుకు ప్రభుత్వం నిరంతరం కృషి చేస్తుందని స్పష్టం చేశారు. ఈ కార్యక్రమంలో స్థానిక ప్రజాప్రతినిధులు, కాంగ్రెస్ పార్టీ అధ్యక్షుడు, మండల కాంగ్రెస్ పార్టీ నాయకులు, అధికారులు, రైతులు, గ్రామస్తులు తదితరులు పాల్గొన్నారు.'
-    ],
     mainImage: '/images/updates/mogullapalle-paddy-motlapalli.jpg',
     photos: [
       {
@@ -132,33 +223,22 @@ export const LATEST_UPDATE_RECORDS = [
   },
   {
     id: 'update-tekumatla-development-2026-11-11',
+    categoryKey: 'field_visits',
     date: '2026-11-11',
     dateFormattedEn: '11 November 2026',
     dateFormattedTe: '11 నవంబర్ 2026',
     pressNoteLabelEn: 'Infrastructure Foundation & Paddy Centers',
     pressNoteLabelTe: 'అభివృద్ధి పనుల శంకుస్థాపన & ధాన్యం కేంద్రాలు',
-    locationEn: 'Tekumatla Mandal (Vellampalli, Bornapalli, Peddampalli)',
-    locationTe: 'టేకుమట్ల మండలం (వేల్లంపల్లి, బోర్నపల్లి, పెద్దంపల్లి)',
-    categoryEn: 'Rural Development & Agriculture',
-    categoryTe: 'గ్రామీణాభివృద్ధి & వ్యవసాయం',
-    titleEn: 'Special Priority for Tekumatla Mandal Development – Farmer Welfare is Government\'s Goal: MLA Gandra Satyanarayana Rao',
+    locationEn: 'Tekumatla Mandal',
+    locationTe: 'టేకుమట్ల మండలం',
+    categoryEn: 'Field Visits & Civic Works',
+    categoryTe: 'క్షేత్ర పర్యటన & అభివృద్ధి',
+    titleEn: "Special Priority for Tekumatla Mandal Development – Farmer Welfare is Government's Goal: MLA Gandra Satyanarayana Rao",
     titleTe: 'టేకుమట్ల మండల అభివృద్ధికి ప్రత్యేక ప్రాధాన్యత – రైతుల సంక్షేమమే ప్రజా ప్రభుత్వ ధ్యేయం: ఎమ్మెల్యే గండ్ర సత్యనారాయణ రావు',
     leadEn:
-      'In Tekumatla Mandal of Bhupalpalle constituency, MLA Sri Gandra Satyanarayana Rao laid the foundation stones for civic infrastructure works alongside inaugurating multiple paddy procurement centers across rural habitations.',
+      'In Tekumatla Mandal of Bhupalpalle constituency, MLA Sri Gandra Satyanarayana Rao laid foundation stones for civic infrastructure works alongside inaugurating multiple paddy procurement centers across rural habitations.',
     leadTe:
       'భూపాలపల్లి నియోజకవర్గంలోని టేకుమట్ల మండలంలో ఈరోజు భూపాలపల్లి ఎమ్మెల్యే శ్రీ గండ్ర సత్యనారాయణ రావు గారు పలు గ్రామాల్లో అభివృద్ధి పనులకు శంకుస్థాపనలు చేయడంతో పాటు వరి కొనుగోలు కేంద్రాలను ప్రారంభించారు.',
-    bodyEn: [
-      'Foundation stones were ceremonially laid for Anganwadi centers, Gram Panchayat secretariats, and Gram Samakhya women\'s federation buildings across Vellampalli, Bornapalli, and Peddampalli villages.',
-      'Concurrently, government paddy procurement centers were inaugurated across Garimillapalli, Raghavareddypet, Pangidipalli, Tekumatla, Gummadavelli, Vellampalli, Velishala, and Venkatraopalli (b).',
-      'Speaking on the occasion, the MLA emphasized that rural development and quality infrastructure remain the mission of the people\'s government. Modern Anganwadi centers ensure proper nutrition and amenities for children, while Gram Panchayat and Samakhya buildings provide structural support for grassroots governance and women groups.',
-      'Reiterating that farmer welfare is the core goal, the MLA affirmed that centers are operationalized to ensure farmers obtain remunerative MSP without falling victim to intermediaries. Local officials, public representatives, former leaders, party mandal presidents, and farmers attended in large numbers.'
-    ],
-    bodyTe: [
-      'వేల్లంపల్లి, బోర్నపల్లి, పెద్దoపల్లి గ్రామాల్లో అంగన్వాడీ కేంద్రాలు, గ్రామపంచాయతీ భవనాలు, గ్రామ సమైక్య భవనాల నిర్మాణ పనులకు శంకుస్థాపనలు చేశారు. అలాగే గరిమిల్ల పల్లి, రాఘవరెడ్డిపేట, పంగిడిపల్లి, టేకుమట్ల, గుమ్మడవెల్లి, వేల్ల్లంపల్లి, వెలిశాల, వెంకట్రావుపల్లి(b) గ్రామాల్లో వరి కొనుగోలు కేంద్రాలను ప్రారంభించారు.',
-      'ఈ సందర్భంగా ఎమ్మెల్యే గారు మాట్లాడుతూ... గ్రామాల అభివృద్ధి, ప్రజలకు మెరుగైన మౌలిక సదుపాయాల కల్పనే ప్రజా ప్రభుత్వ లక్ష్యమని తెలిపారు. అంగన్వాడీ కేంద్రాల ద్వారా చిన్నారులకు మెరుగైన పోషకాహారం, సౌకర్యాలు అందించడంతో పాటు గ్రామపంచాయతీ, గ్రామ సమైక్య భవనాల నిర్మాణంతో గ్రామీణ పాలనకు, మహిళా సంఘాల కార్యకలాపాలకు మరింత బలం చేకూరుతుందని పేర్కొన్నారు.',
-      'రైతుల సంక్షేమమే ప్రభుత్వ ప్రధాన ధ్యేయమని, రైతులు ఆరుగాలం కష్టపడి పండించిన ధాన్యాన్ని మద్దతు ధరకు కొనుగోలు చేసేందుకు వరి కొనుగోలు కేంద్రాలను ప్రారంభిస్తున్నామని తెలిపారు. రైతులు దళారులను ఆశ్రయించకుండా, ఎలాంటి ఇబ్బందులు ఎదుర్కోకుండా ధాన్యాన్ని కొనుగోలు కేంద్రాల్లో విక్రయించుకోవాలని సూచించారు. ధాన్యం కొనుగోలు ప్రక్రియలో రైతులకు ఎలాంటి ఇబ్బందులు కలగకుండా అధికారులు సమన్వయంతో పనిచేయాలని సూచించారు.',
-      'ఈ కార్యక్రమంలో ఎమ్మెల్యే గారి వెంట సంబంధిత అధికారులు, స్థానిక ప్రజాప్రతినిధులు, మాజీ ప్రజా ప్రతినిధులు మండల పార్టీ అధ్యక్షుడు, మండల నాయకులు, కాంగ్రెస్ పార్టీ నాయకులు, రైతులు తదితరులు పాల్గొన్నారు.'
-    ],
     mainImage: '/images/updates/tekumatla-paddy-inauguration.jpg',
     photos: [
       {
@@ -181,6 +261,7 @@ export const LATEST_UPDATE_RECORDS = [
   },
   {
     id: 'update-gorukothapalli-2026-11-06',
+    categoryKey: 'public_meetings',
     date: '2026-11-06',
     dateFormattedEn: '06 November 2026',
     dateFormattedTe: '06 నవంబర్ 2026',
@@ -188,24 +269,14 @@ export const LATEST_UPDATE_RECORDS = [
     pressNoteLabelTe: 'సంక్షేమ చెక్కుల పంపిణీ',
     locationEn: 'Gorukothapalli Mandal',
     locationTe: 'గోరుకొత్తపల్లి మండలం',
-    categoryEn: 'Public Welfare & Social Security',
-    categoryTe: 'ప్రజా సంక్షేమం & సామాజిక భద్రత',
+    categoryEn: 'Public Meetings & Welfare',
+    categoryTe: 'ప్రజా సభ & సంక్షేమం',
     titleEn: 'Distribution of Kalyana Lakshmi & Shaadi Mubarak Cheques in Gorukothapalli Mandal – MLA Sri Gandra Satyanarayana Rao',
     titleTe: 'గోరుకొత్తపల్లి మండలంలో కళ్యాణలక్ష్మి, షాదీ ముబారక్ చెక్కుల పంపిణీ చేసిన - ఎమ్మెల్యే శ్రీ గండ్ర సత్యనారాయణ రావు',
     leadEn:
-      'Bhupalpalle MLA Sri Gandra Satyanarayana Rao attended as the Chief Guest at the Kalyana Lakshmi and Shaadi Mubarak cheque distribution ceremony held in Gorukothapalli Mandal.',
+      'Bhupalpalle MLA Sri Gandra Satyanarayana Rao attended as Chief Guest at the Kalyana Lakshmi and Shaadi Mubarak cheque distribution ceremony held in Gorukothapalli Mandal, handing financial relief to 21 families.',
     leadTe:
-      'భూపాలపల్లి ఎమ్మెల్యే శ్రీ గండ్ర సత్యనారాయణ రావు గారు గోరుకొత్తపల్లి మండలంలో నిర్వహించిన కళ్యాణలక్ష్మి, షాదీ ముబారక్ చెక్కుల పంపిణీ కార్యక్రమానికి ముఖ్య అతిథిగా హాజరయ్యారు.',
-    bodyEn: [
-      'On this occasion, financial aid cheques were distributed to 21 beneficiaries across the mandal.',
-      'Speaking at the gathering, the MLA emphasized that providing financial security for the marriage of young women from underprivileged families is the paramount objective of the people\'s government led by Chief Minister Sri A. Revanth Reddy, and tireless efforts are being made to ensure that all welfare schemes reach every eligible household directly without hurdles.',
-      'Local public representatives, Congress party leaders, former civic leaders, and beneficiaries participated in the event in large numbers.'
-    ],
-    bodyTe: [
-      'ఈ సందర్భంగా 21 మంది లబ్ధిదారులకు కళ్యాణలక్ష్మి, షాదీ ముబారక్ చెక్కులను స్వయంగా పంపిణీ చేశారు.',
-      'ఈ సందర్భంగా ఎమ్మెల్యే గారు మాట్లాడుతూ పేద కుటుంబాల్లోని ఆడపిల్లల వివాహాలకు ఆర్థిక భరోసా కల్పించడమే ప్రజా ప్రభుత్వ లక్ష్యమని, అర్హులైన ప్రతి ఒక్కరికీ ప్రభుత్వ సంక్షేమ పథకాలు అందేలా కృషి చేస్తున్నామని తెలిపారు.',
-      'ఈ కార్యక్రమంలో స్థానిక ప్రజాప్రతినిధులు, కాంగ్రెస్ పార్టీ నాయకులు, మాజీ ప్రజా ప్రతినిధులు, లబ్ధిదారులు పాల్గొనడం జరిగింది.'
-    ],
+      'భూపాలపల్లి ఎమ్మెల్యే శ్రీ గండ్ర సత్యనారాయణ రావు గారు గోరుకొత్తపల్లి మండలంలో నిర్వహించిన కళ్యాణలక్ష్మి, షాదీ ముబారక్ చెక్కుల పంపిణీ కార్యక్రమానికి ముఖ్య అతిథిగా హాజరై 21 మంది లబ్ధిదారులకు చెక్కులను స్వయంగా పంపిణీ చేశారు.',
     mainImage: '/images/updates/gorukothapalli-cheques.jpg',
     photos: [
       {
@@ -220,6 +291,7 @@ export const LATEST_UPDATE_RECORDS = [
   },
   {
     id: 'update-chityal-development-2026-11-03',
+    categoryKey: 'development',
     date: '2026-11-03',
     dateFormattedEn: '03 November 2026',
     dateFormattedTe: '03 నవంబర్ 2026',
@@ -227,24 +299,14 @@ export const LATEST_UPDATE_RECORDS = [
     pressNoteLabelTe: 'అభివృద్ధి పనుల శంకుస్థాపన',
     locationEn: 'Chityal Mandal',
     locationTe: 'చిట్యాల మండలం',
-    categoryEn: 'Rural Infrastructure & Women Empowerment',
-    categoryTe: 'గ్రామీణ మౌలిక వసతులు & మహిళా సాధికారత',
+    categoryEn: 'Development Works',
+    categoryTe: 'గ్రామీణాభివృద్ధి',
     titleEn: 'Foundation Stone Laid for ₹2.14 Crore Development Works in Chityal Mandal – MLA Gandra Satyanarayana Rao',
     titleTe: 'రూ.2.14 కోట్లతో చిట్యాల మండలంలో అభివృద్ధి పనులకు శంకుస్థాపనలు చేసిన – ఎమ్మెల్యే గండ్ర సత్యనారాయణ రావు',
     leadEn:
-      'Bhupalpalle MLA Sri Gandra Satyanarayana Rao laid the foundation stones for multiple developmental works sanctioned at an estimated cost of approximately ₹2.14 Crore across Chityal Mandal.',
+      'Bhupalpalle MLA Sri Gandra Satyanarayana Rao laid foundation stones for multiple developmental works sanctioned at an estimated cost of ₹2.14 Crore across Chityal Mandal, including women self-help buildings and Anganwadi centers.',
     leadTe:
-      'భూపాలపల్లి నియోజకవర్గంలోని చిట్యాల మండలంలో సుమారు రూ.2.14 కోట్ల వ్యయంతో చేపట్టనున్న పలు అభివృద్ధి పనులకు భూపాలపల్లి ఎమ్మెల్యే శ్రీ గండ్ర సత్యనారాయణ రావు గారు శంకుస్థాపనలు చేశారు.',
-    bodyEn: [
-      'On this occasion, foundation stones were laid for women\'s self-help group buildings in Chainpaka, Anduku Thanda, Giddemutharam, and Kalvapalli villages, as well as Mahila Samakhya buildings and Anganwadi centers in Bawsingh Palli and Pashigadda Thanda. Furthermore, in Ramachandrapuram village, foundation stones were laid for an Anganwadi building, Mahila Samakhya center, and the Gram Panchayat building.',
-      'Speaking on the occasion, the MLA emphasized that the people\'s government led by Chief Minister Sri A. Revanth Reddy is giving top priority to women\'s empowerment and rural development. Funds are sanctioned for self-help group buildings, improved Anganwadi amenities for children, and administrative Gram Panchayat secretariats.',
-      'The government is progressing with the clear goal of comprehensive rural development and superior infrastructure. The MLA affirmed that he will work tirelessly to bring necessary state funding for the development of Bhupalpalle constituency. Local public representatives, sarpanches, Congress party leaders, women group members, Anganwadi staff, and villagers participated in large numbers.'
-    ],
-    bodyTe: [
-      'ఈ సందర్భంగా చైన్పాక, అందుకు తండా, గిద్దెముత్తారం, కాల్వపల్లి గ్రామాల్లో మహిళా సంఘ భవనాల నిర్మాణానికి, బావుసింగ్ పల్లి, పాశిగడ్డ తండా గ్రామాల్లో మహిళా సమైక్య భవనాలు, అంగన్వాడీ భవనాల నిర్మాణానికి శంకుస్థాపన చేశారు. అదేవిధంగా రామచంద్రాపురం గ్రామంలో అంగన్వాడీ భవనం, మహిళా సమైక్య భవనం, గ్రామ పంచాయతీ భవన నిర్మాణ పనులకు శంకుస్థాపన నిర్వహించారు.',
-      'ఈ సందర్భంగా ఎమ్మెల్యే గారు మాట్లాడుతూ ముఖ్యమంత్రి శ్రీ రేవంత్ రెడ్డి గారి నాయకత్వంలోని ప్రజా ప్రభుత్వం మహిళా సాధికారతకు, గ్రామీణ ప్రాంతాల అభివృద్ధికి పెద్దపీట వేస్తోందని తెలిపారు. మహిళా సంఘాలకు సొంత భవనాలు, చిన్నారులకు మెరుగైన అంగన్వాడీ వసతులు, గ్రామ పాలనకు అవసరమైన గ్రామ పంచాయతీ భవనాలను నిర్మించేందుకు ప్రభుత్వం నిధులు మంజూరు చేస్తోందన్నారు.',
-      'గ్రామాల సమగ్ర అభివృద్ధి, ప్రజలకు మెరుగైన మౌలిక సదుపాయాల కల్పనే లక్ష్యంగా ప్రభుత్వం ముందుకు సాగుతోందని, భూపాలపల్లి నియోజకవర్గ అభివృద్ధికి అవసరమైన నిధులు తీసుకురావడంలో నిరంతరం కృషి చేస్తానని ఎమ్మెల్యే గారు తెలిపారు. ఈ కార్యక్రమాల్లో స్థానిక ప్రజాప్రతినిధులు, సర్పంచులు, కాంగ్రెస్ పార్టీ నాయకులు, మహిళా సంఘాల ప్రతినిధులు, అంగన్వాడీ సిబ్బంది, గ్రామ పంచాయతీ అధికారులు, స్థానిక నాయకులు, గ్రామ ప్రజలు పాల్గొన్నారు.'
-    ],
+      'భూపాలపల్లి నియోజకవర్గంలోని చిట్యాల మండలంలో సుమారు రూ.2.14 కోట్ల వ్యయంతో చేపట్టనున్న పలు అభివృద్ధి పనులకు (మహిళా సంఘ భవనాలు, అంగన్వాడీ కేంద్రాలు, జీపీ భవనాలు) భూపాలపల్లి ఎమ్మెల్యే శ్రీ గండ్ర సత్యనారాయణ రావు గారు శంకుస్థాపనలు చేశారు.',
     mainImage: '/images/updates/chityal-development.jpg',
     photos: [
       {
@@ -261,155 +323,192 @@ export const LATEST_UPDATE_RECORDS = [
 
 export default function LatestUpdatesSection() {
   const { isTelugu } = useLanguage();
-  const [activeUpdateIdx, setActiveUpdateIdx] = useState(0);
+
+  // Category filter state
+  const [selectedCategory, setSelectedCategory] = useState('all');
+
+  // Active story and photo selection
+  const [activeStoryId, setActiveStoryId] = useState(LATEST_UPDATE_RECORDS[0].id);
   const [activePhotoSubIdx, setActivePhotoSubIdx] = useState(0);
-  const [modalOpen, setModalOpen] = useState(false);
-  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
-  const [isVisible, setIsVisible] = useState(true);
-  const [copyFeedback, setCopyFeedback] = useState('');
-  const [instagramNotice, setInstagramNotice] = useState(false);
 
-  const sectionRef = useRef(null);
-  const trackRef = useRef(null);
-  const touchStartXRef = useRef(0);
-  const touchEndXRef = useRef(0);
+  // Fullscreen photo viewer state
+  const [isLightboxOpen, setIsLightboxOpen] = useState(false);
 
-  const updates = LATEST_UPDATE_RECORDS;
-  const currentUpdate = updates[activeUpdateIdx] || updates[0];
-  const photosList = currentUpdate.photos && currentUpdate.photos.length > 0
-    ? currentUpdate.photos
-    : [{ id: 'single-1', url: currentUpdate.mainImage, titleEn: currentUpdate.titleEn, titleTe: currentUpdate.titleTe, captionEn: currentUpdate.leadEn, captionTe: currentUpdate.leadTe }];
+  // Loading / animation states
+  const [isImageLoaded, setIsImageLoaded] = useState(false);
+  const [isAnimatingText, setIsAnimatingText] = useState(false);
 
-  const currentPhoto = photosList[activePhotoSubIdx] || photosList[0];
+  // Touch tracking for mobile swipe
+  const touchStartX = useRef(0);
+  const filmstripRef = useRef(null);
+  const featuredArticleRef = useRef(null);
+  const horizontalRailRef = useRef(null);
 
-  // Pause auto-rotation when the section is not visible in the viewport
-  // This prevents any background timer execution and completely stops mobile/iOS scroll jumping!
-  useEffect(() => {
-    if (!sectionRef.current || typeof IntersectionObserver === 'undefined') return;
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        setIsVisible(entry.isIntersecting);
-      },
-      { threshold: 0.15 }
-    );
-    observer.observe(sectionRef.current);
-    return () => observer.disconnect();
-  }, []);
+  // Categories configuration with localized titles
+  const categories = useMemo(() => [
+    { key: 'all', labelEn: 'All Updates', labelTe: 'అన్నీ (All)' },
+    { key: 'field_visits', labelEn: 'Field Visits', labelTe: 'క్షేత్ర పర్యటనలు' },
+    { key: 'development', labelEn: 'Development', labelTe: 'అభివృద్ధి పనులు' },
+    { key: 'public_meetings', labelEn: 'Public Meetings', labelTe: 'ప్రజా సభలు' },
+    { key: 'welfare', labelEn: 'Welfare', labelTe: 'ప్రజా సంక్షేమం' },
+    { key: 'irrigation', labelEn: 'Irrigation', labelTe: 'సాగునీరు' }
+  ], []);
 
-  // Auto-rotation loop (Only runs when section is visible in viewport and not paused by user)
-  useEffect(() => {
-    if (!isAutoPlaying || modalOpen || !isVisible) return;
+  // Filtered stories based on current category
+  const filteredStories = useMemo(() => {
+    if (selectedCategory === 'all') return LATEST_UPDATE_RECORDS;
+    return LATEST_UPDATE_RECORDS.filter((item) => item.categoryKey === selectedCategory);
+  }, [selectedCategory]);
 
-    const timer = setInterval(() => {
-      setActiveUpdateIdx((prev) => {
-        const next = (prev + 1) % updates.length;
-        setActivePhotoSubIdx(0);
-        return next;
-      });
-    }, 4000);
+  // Resolve current active story with fallback
+  const currentStory = useMemo(() => {
+    const found = filteredStories.find((s) => s.id === activeStoryId);
+    return found || filteredStories[0] || LATEST_UPDATE_RECORDS[0];
+  }, [filteredStories, activeStoryId]);
 
-    return () => clearInterval(timer);
-  }, [isAutoPlaying, modalOpen, isVisible, updates.length, activeUpdateIdx]);
-
-  // Keep active update in horizontal track view purely via container scroll
-  // NEVER calls scrollIntoView to ensure the page vertical scroll remains 100% stable
-  useEffect(() => {
-    if (trackRef.current) {
-      const activeEl = trackRef.current.children[activeUpdateIdx];
-      if (activeEl) {
-        const container = trackRef.current;
-        const targetLeft = activeEl.offsetLeft - (container.clientWidth - activeEl.clientWidth) / 2;
-        container.scrollTo({
-          left: Math.max(0, targetLeft),
-          behavior: 'smooth'
-        });
-      }
+  // All photos for current active story
+  const storyPhotos = useMemo(() => {
+    if (currentStory?.photos && currentStory.photos.length > 0) {
+      return currentStory.photos;
     }
-  }, [activeUpdateIdx]);
+    return [
+      {
+        id: `${currentStory.id}-main`,
+        url: currentStory.mainImage,
+        titleEn: currentStory.titleEn,
+        titleTe: currentStory.titleTe,
+        captionEn: currentStory.leadEn,
+        captionTe: currentStory.leadTe
+      }
+    ];
+  }, [currentStory]);
 
-  const handlePrevUpdate = () => {
-    setActiveUpdateIdx((prev) => (prev > 0 ? prev - 1 : updates.length - 1));
+  const currentPhoto = storyPhotos[activePhotoSubIdx] || storyPhotos[0];
+
+  // Story selection handler with smooth transition and mobile auto-scroll to top
+  const handleSelectStory = (storyId, cardElement) => {
+    const isMobileOrTablet = typeof window !== 'undefined' && window.innerWidth <= 1024;
+
+    if (storyId === activeStoryId) {
+      if (isMobileOrTablet && featuredArticleRef.current) {
+        featuredArticleRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+      return;
+    }
+
+    setIsAnimatingText(true);
+    setIsImageLoaded(false);
+    setActiveStoryId(storyId);
     setActivePhotoSubIdx(0);
+    setTimeout(() => setIsAnimatingText(false), 380);
+
+    // On mobile / tablet screens, smoothly scroll directly to the top stage
+    if (isMobileOrTablet && featuredArticleRef.current) {
+      setTimeout(() => {
+        featuredArticleRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 50);
+    }
+
+    // Also smoothly center the clicked card in the horizontal rail
+    if (cardElement && typeof cardElement.scrollIntoView === 'function') {
+      try {
+        cardElement.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+      } catch (err) {}
+    }
   };
 
-  const handleNextUpdate = () => {
-    setActiveUpdateIdx((prev) => (prev + 1) % updates.length);
-    setActivePhotoSubIdx(0);
-  };
-
-  const handleSelectUpdate = (idx) => {
-    setActiveUpdateIdx(idx);
-    setActivePhotoSubIdx(0);
-  };
-
-  const openLightbox = (subIdx = 0) => {
-    setActivePhotoSubIdx(subIdx);
-    setModalOpen(true);
-    document.body.classList.add('menu-open');
-  };
-
-  const closeLightbox = () => {
-    setModalOpen(false);
-    document.body.classList.remove('menu-open');
-  };
-
+  // Photo navigation within active story
   const handlePrevPhoto = (e) => {
     if (e) e.stopPropagation();
-    setActivePhotoSubIdx((prev) => (prev > 0 ? prev - 1 : photosList.length - 1));
+    setIsImageLoaded(false);
+    setActivePhotoSubIdx((prev) => (prev > 0 ? prev - 1 : storyPhotos.length - 1));
   };
 
   const handleNextPhoto = (e) => {
     if (e) e.stopPropagation();
-    setActivePhotoSubIdx((prev) => (prev < photosList.length - 1 ? prev + 1 : 0));
+    setIsImageLoaded(false);
+    setActivePhotoSubIdx((prev) => (prev < storyPhotos.length - 1 ? prev + 1 : 0));
   };
 
-  // Keyboard navigation for Lightbox
+  // Open & Close full-screen lightbox
+  const openLightbox = (photoIdx = 0) => {
+    setActivePhotoSubIdx(photoIdx);
+    setIsLightboxOpen(true);
+    document.body.classList.add('menu-open');
+  };
+
+  const closeLightbox = () => {
+    setIsLightboxOpen(false);
+    document.body.classList.remove('menu-open');
+  };
+
+  // Lightbox keyboard navigation (Esc, ArrowLeft, ArrowRight)
   useEffect(() => {
-    if (!modalOpen) return;
-    const onKey = (e) => {
+    const handleKeyDown = (e) => {
+      if (!isLightboxOpen) return;
       if (e.key === 'Escape') closeLightbox();
       if (e.key === 'ArrowLeft') handlePrevPhoto();
       if (e.key === 'ArrowRight') handleNextPhoto();
     };
-    window.addEventListener('keydown', onKey);
-    return () => window.removeEventListener('keydown', onKey);
-  }, [modalOpen, photosList.length]);
 
-  // Touch swipe support for main card
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isLightboxOpen, storyPhotos.length]);
+
+  // Touch swipe handlers for featured media
   const handleTouchStart = (e) => {
-    touchStartXRef.current = e.changedTouches[0].screenX;
+    touchStartX.current = e.touches[0].clientX;
   };
 
   const handleTouchEnd = (e) => {
-    touchEndXRef.current = e.changedTouches[0].screenX;
-    const diff = touchStartXRef.current - touchEndXRef.current;
-    if (Math.abs(diff) > 45) {
-      if (diff > 0) handleNextUpdate();
-      else handlePrevUpdate();
+    const touchEndX = e.changedTouches[0].clientX;
+    const diff = touchStartX.current - touchEndX;
+    if (Math.abs(diff) > 40) {
+      if (diff > 0) handleNextPhoto();
+      else handlePrevPhoto();
     }
   };
 
-  // Sharing Handlers
-  const shareTitle = isTelugu ? currentUpdate.titleTe : currentUpdate.titleEn;
+  // Scroll filmstrip left/right
+  const scrollFilmstrip = (direction) => {
+    if (!filmstripRef.current) return;
+    const scrollAmount = direction === 'left' ? -220 : 220;
+    filmstripRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+  };
+
+  // Social Sharing State & Handlers
+  const [copyFeedback, setCopyFeedback] = useState('');
+  const [instagramNotice, setInstagramNotice] = useState(false);
+
+  const shareTitle = isTelugu ? currentStory.titleTe : currentStory.titleEn;
   const shareUrl = typeof window !== 'undefined'
     ? `${window.location.origin}/#latest-updates`
     : 'https://gandrasatyanarayanarao.in/#latest-updates';
 
-  const handleWhatsAppShare = () => {
-    const text = `*${shareTitle}*\n\n${isTelugu ? currentUpdate.leadTe : currentUpdate.leadEn}\n\n🏛️ MLA Sri Gandra Satyanarayana Rao (Sathanna)\n${shareUrl}`;
-    const url = `https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`;
-    window.open(url, '_blank', 'noopener,noreferrer');
+  const handleCopyLink = async () => {
+    try {
+      await navigator.clipboard.writeText(shareUrl);
+      setCopyFeedback(isTelugu ? 'లింక్ కాపీ చేయబడింది!' : 'Link copied to clipboard!');
+      setInstagramNotice(false);
+      setTimeout(() => setCopyFeedback(''), 3500);
+    } catch {
+      setCopyFeedback(shareUrl);
+      setTimeout(() => setCopyFeedback(''), 4000);
+    }
   };
 
   const handleFacebookShare = () => {
-    const url = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`;
-    window.open(url, '_blank', 'noopener,noreferrer');
+    const fbUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`;
+    window.open(fbUrl, '_blank', 'noopener,noreferrer');
   };
 
-  // Dedicated Instagram Story / Direct Share Handler
+  const handleWhatsAppShare = () => {
+    const text = `*${shareTitle}*\n\n${isTelugu ? currentStory.leadTe : currentStory.leadEn}\n\n🏛️ MLA Sri Gandra Satyanarayana Rao (Sathanna)\n${shareUrl}`;
+    window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`, '_blank', 'noopener,noreferrer');
+  };
+
   const handleInstagramShare = async () => {
     const shareText = `${shareTitle}\n\nMLA Sri Gandra Satyanarayana Rao (Sathanna)\nOfficial Portal: ${shareUrl}`;
-
     if (navigator.share) {
       try {
         await navigator.share({
@@ -419,276 +518,247 @@ export default function LatestUpdatesSection() {
         });
         return;
       } catch (err) {
-        // Fallback to clipboard
+        // user cancelled or share failed, fallback
       }
     }
-
     try {
-      await navigator.clipboard.writeText(shareText);
+      await navigator.clipboard.writeText(`${shareText}\n\nOfficial Instagram: https://www.instagram.com/gandrasatyanarayanarao`);
       setCopyFeedback(
         isTelugu
-          ? 'లింక్ కాపీ చేయబడింది! మీ Instagram Story లో లింక్ స్టిక్కర్‌ను అతికించండి.'
-          : 'Link & headline copied! Paste directly into your Instagram Story link sticker.'
+          ? 'లింక్ & సమాచారం కాపీ చేయబడింది! మీ Instagram Story లేదా పోస్ట్‌లో అతికించండి.'
+          : 'Headline & link copied! Paste directly into your Instagram Story link sticker.'
       );
       setInstagramNotice(true);
       setTimeout(() => {
         setCopyFeedback('');
         setInstagramNotice(false);
       }, 5000);
-    } catch (err) {
-      setCopyFeedback(shareUrl);
-      setTimeout(() => setCopyFeedback(''), 4000);
+    } catch {
+      window.open('https://www.instagram.com/gandrasatyanarayanarao', '_blank', 'noopener,noreferrer');
     }
   };
 
   return (
     <section
-      ref={sectionRef}
-      className="latest-updates-section"
+      className={`latest-updates ${isTelugu ? 'is-telugu' : ''}`}
       id="latest-updates"
-      aria-label="New Updates and Field Dispatches"
-      onMouseEnter={() => setIsAutoPlaying(false)}
-      onMouseLeave={() => setIsAutoPlaying(true)}
+      aria-label="Latest Updates and Field Dispatches"
     >
       <div className="container">
-        <div className="latest-updates-canvas">
-          {/* Header Row with Minimal Clean Counter and Step Controls */}
-          <div className="new-updates-section-header-row">
-            <div>
-              <div className="tag-label green">
-                {isTelugu ? 'తాజా సమాచారం · NEW UPDATES' : 'NEW UPDATES'}
-              </div>
-              <h2 className="section-title" style={{ marginTop: '0.5rem', marginBottom: 0 }}>
-                {isTelugu ? 'నియోజకవర్గ తాజా సమాచారం' : 'New Updates & Field Dispatches'}
-              </h2>
+        {/* ====================================================================
+            01. REFINED EDITORIAL HEADER & CATEGORY NAVIGATION
+            ==================================================================== */}
+        <div className="updates-header-row">
+          <div className="updates-header-content">
+            <div className="updates-section-badge">
+              {isTelugu ? 'తాజా సమాచారం & క్షేత్ర పర్యటనలు' : 'LATEST UPDATES'}
             </div>
-
-            {/* Horizontal Step Controls */}
-            <div className="updates-loop-controls">
-              <div className="updates-timer-badge">
-                <span className="timer-badge-text">
-                  0{activeUpdateIdx + 1} / 0{updates.length}
-                </span>
-              </div>
-
-              <div className="updates-nav-btn-group">
-                <button
-                  type="button"
-                  className="updates-nav-arrow-btn"
-                  onClick={handlePrevUpdate}
-                  aria-label="Previous Update"
-                  title="Previous Update"
-                >
-                  &#10094;
-                </button>
-                <button
-                  type="button"
-                  className="updates-nav-arrow-btn"
-                  onClick={handleNextUpdate}
-                  aria-label="Next Update"
-                  title="Next Update"
-                >
-                  &#10095;
-                </button>
-              </div>
-            </div>
+            <h2 className="updates-main-title">
+              {isTelugu ? 'నూతన అప్‌డేట్‌లు & క్షేత్రస్థాయి నివేదికలు' : 'New Updates & Field Dispatches'}
+            </h2>
+            <p className="updates-subtitle">
+              {isTelugu
+                ? 'భూపాలపల్లి నియోజకవర్గంలో తాజా అభివృద్ధి పనులు, ప్రజా సంక్షేమ కార్యక్రమాలు మరియు పర్యటనలు.'
+                : 'On-ground activities, public engagements and development updates from Bhupalpalle.'}
+            </p>
           </div>
 
-          {/* Interactive Horizontal Selection Strip with Loop Progress Line */}
-          <div className="updates-horizontal-track-wrap">
-            <div className="updates-horizontal-track" ref={trackRef}>
-              {updates.map((item, idx) => {
-                const isActive = activeUpdateIdx === idx;
-                return (
-                  <button
-                    key={item.id}
-                    type="button"
-                    className={`updates-track-card ${isActive ? 'active' : ''}`}
-                    onClick={() => handleSelectUpdate(idx)}
-                    aria-label={`Update 0${idx + 1}: ${isTelugu ? item.titleTe : item.titleEn}`}
-                  >
-                    <div className="track-card-thumb">
-                      <img src={resolveMediaUrl(item.mainImage)} alt="" />
-                      <span className="track-card-idx">0{idx + 1}</span>
-                    </div>
-
-                    <div className="track-card-meta">
-                      <span className="track-card-date">
-                        {isTelugu ? item.dateFormattedTe : item.dateFormattedEn}
-                      </span>
-                      <h4 className="track-card-title">
-                        {isTelugu ? item.titleTe : item.titleEn}
-                      </h4>
-                    </div>
-
-                    {/* Progress Bar (Visual indicator of active update) */}
-                    {isActive && isAutoPlaying && isVisible && (
-                      <div className="track-card-progress-bar" aria-hidden="true">
-                        <div className="progress-fill" key={`progress-${activeUpdateIdx}`}></div>
-                      </div>
-                    )}
-                  </button>
-                );
-              })}
-            </div>
-          </div>
-
-          {/* Main Active Update Stage: Mobile has Photos FIRST (order: -1), Matter SECOND */}
-          <div className="latest-updates-grid-reordered" onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
-            {/* Visual Photo Deck Column (Appears FIRST on Mobile) */}
-            <div className="latest-photos-column">
-              <div className="latest-deck-container">
-                <div
-                  className="latest-deck-main-card"
-                  onClick={() => openLightbox(activePhotoSubIdx)}
-                  role="button"
-                  tabIndex={0}
-                  aria-label="Click to view full photo in lightbox"
-                  onKeyDown={(e) => {
-                    if (e.key === 'Enter' || e.key === ' ') {
-                      e.preventDefault();
-                      openLightbox(activePhotoSubIdx);
+          {/* Category Filter Rail */}
+          <nav className="updates-filters-nav" aria-label="Updates Categories">
+            {categories.map((cat) => {
+              const isActive = selectedCategory === cat.key;
+              return (
+                <button
+                  key={cat.key}
+                  type="button"
+                  className={`filter-btn ${isActive ? 'active' : ''}`}
+                  onClick={() => {
+                    setSelectedCategory(cat.key);
+                    // Reset to first matching story if current not in filtered
+                    const matching = cat.key === 'all'
+                      ? LATEST_UPDATE_RECORDS
+                      : LATEST_UPDATE_RECORDS.filter((s) => s.categoryKey === cat.key);
+                    if (matching.length > 0 && !matching.some((m) => m.id === activeStoryId)) {
+                      handleSelectStory(matching[0].id);
                     }
                   }}
+                  aria-pressed={isActive}
                 >
-                  <img
-                    src={resolveMediaUrl(currentPhoto.url)}
-                    alt={isTelugu ? currentPhoto.titleTe : currentPhoto.titleEn}
-                    className="latest-deck-img"
-                    loading="lazy"
-                  />
-                  <div className="latest-deck-overlay"></div>
+                  {isTelugu ? cat.labelTe : cat.labelEn}
+                </button>
+              );
+            })}
+          </nav>
+        </div>
 
-                  {/* Top Overlay Badge */}
-                  <div className="latest-deck-badge-bar">
-                    <span className="latest-deck-photo-count">
-                      0{activeUpdateIdx + 1} / 0{updates.length} · {isTelugu ? currentUpdate.locationTe : currentUpdate.locationEn}
-                    </span>
-                    <span className="latest-deck-hint">
-                      {isTelugu ? 'ఫోటో చూడండి' : 'Click to View Photo'}
-                    </span>
-                  </div>
+        {/* ====================================================================
+            02. TWO-COLUMN EDITORIAL COMPOSITION (FEATURED STORY + STORY LIST)
+            ==================================================================== */}
+        <div className="updates-editorial-grid">
+          {/* LEFT: Featured Documentary Photograph & Editorial Overview */}
+          <article
+            ref={featuredArticleRef}
+            className={`featured-story-card ${isAnimatingText ? 'story-transitioning' : ''}`}
+            id="featured-story-stage"
+          >
+            <div
+              className={`featured-media-canvas ${!isImageLoaded ? 'updates-skeleton' : ''}`}
+              onClick={() => openLightbox(activePhotoSubIdx)}
+              onTouchStart={handleTouchStart}
+              onTouchEnd={handleTouchEnd}
+              role="button"
+              tabIndex={0}
+              aria-label="Click to enlarge event photograph"
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') openLightbox(activePhotoSubIdx);
+              }}
+            >
+              <img
+                src={currentPhoto.url}
+                alt={isTelugu ? (currentPhoto.titleTe || currentStory.titleTe) : (currentPhoto.titleEn || currentStory.titleEn)}
+                className="featured-image"
+                loading="eager"
+                onLoad={() => setIsImageLoaded(true)}
+                onError={(e) => {
+                  e.target.src = '/images/updates/chityal-development.jpg';
+                  setIsImageLoaded(true);
+                }}
+              />
+              <div className="featured-image-gradient" aria-hidden="true"></div>
 
-                  {/* Bottom Caption Pill */}
-                  <div className="latest-deck-bottom-caption">
-                    <p className="latest-deck-caption-text">
-                      {isTelugu ? currentPhoto.titleTe : currentPhoto.titleEn}
-                    </p>
-                  </div>
+              {/* Top Media Bar */}
+              <div className="featured-media-topbar">
+                <span className="featured-category-pill">
+                  {isTelugu ? currentStory.categoryTe : currentStory.categoryEn}
+                </span>
+
+                {storyPhotos.length > 1 && (
+                  <span className="featured-counter-pill">
+                    {activePhotoSubIdx + 1} / {storyPhotos.length}
+                  </span>
+                )}
+              </div>
+
+              {/* Prev / Next Photo Buttons if Multiple Photos Exist */}
+              {storyPhotos.length > 1 && (
+                <>
+                  <button
+                    type="button"
+                    className="media-nav-btn prev"
+                    onClick={handlePrevPhoto}
+                    aria-label="Previous photograph"
+                    title="Previous Photo"
+                  >
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="15 18 9 12 15 6" /></svg>
+                  </button>
+                  <button
+                    type="button"
+                    className="media-nav-btn next"
+                    onClick={handleNextPhoto}
+                    aria-label="Next photograph"
+                    title="Next Photo"
+                  >
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="9 18 15 12 9 6" /></svg>
+                  </button>
+                </>
+              )}
+
+              {/* Bottom Image Overlay Details */}
+              <div className="featured-media-bottom-meta">
+                <div className="featured-media-caption">
+                  {isTelugu
+                    ? (currentPhoto.captionTe || currentStory.leadTe)
+                    : (currentPhoto.captionEn || currentStory.leadEn)}
                 </div>
 
-                {/* Multiple Photo Thumbnails if current dispatch has > 1 photo */}
-                {photosList.length > 1 && (
-                  <div className="latest-sub-thumbnails-row">
-                    {photosList.map((ph, pIdx) => (
-                      <button
-                        key={ph.id || pIdx}
-                        type="button"
-                        className={`sub-thumb-chip ${activePhotoSubIdx === pIdx ? 'active' : ''}`}
-                        onClick={() => setActivePhotoSubIdx(pIdx)}
-                        aria-label={`Photo 0${pIdx + 1}`}
-                      >
-                        <img src={resolveMediaUrl(ph.url)} alt="" />
-                        <span className="sub-thumb-idx">0{pIdx + 1}</span>
-                      </button>
-                    ))}
-                  </div>
-                )}
+                <button
+                  type="button"
+                  className="view-photos-cta"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    openLightbox(activePhotoSubIdx);
+                  }}
+                  aria-label="Open Full-Screen Photo Gallery"
+                >
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
+                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+                    <circle cx="8.5" cy="8.5" r="1.5" />
+                    <polyline points="21 15 16 10 5 21" />
+                  </svg>
+                  <span>{isTelugu ? 'చిత్రమాలిక చూడండి' : 'View Photos'} ({storyPhotos.length})</span>
+                </button>
               </div>
             </div>
 
-            {/* Matter & News Column (Appears BELOW Photo Deck on Mobile) */}
-            <div className="latest-matter-column">
-              {/* Meta Date & Press Label Bar */}
-              <div className="latest-meta-header-bar">
-                <div className="latest-pulse-badge">
-                  <span className="live-pulse-dot" aria-hidden="true"></span>
-                  <span className="latest-badge-tag">
-                    {isTelugu ? 'నియోజకవర్గ సమాచారం' : 'Field Dispatch'}
-                  </span>
-                  <span className="latest-badge-sep">•</span>
-                  <span className="latest-badge-date">
-                    {isTelugu ? currentUpdate.dateFormattedTe : currentUpdate.dateFormattedEn}
-                  </span>
-                </div>
-
-                <div className="latest-press-chip">
-                  {isTelugu ? currentUpdate.pressNoteLabelTe : currentUpdate.pressNoteLabelEn}
-                </div>
+            {/* Article Body */}
+            <div className="featured-article-body">
+              <div className="featured-meta-row">
+                <span className="featured-location">
+                  {isTelugu ? currentStory.locationTe : currentStory.locationEn}
+                </span>
+                <span className="featured-meta-dot" aria-hidden="true"></span>
+                <time dateTime={currentStory.date}>
+                  {isTelugu ? currentStory.dateFormattedTe : currentStory.dateFormattedEn}
+                </time>
               </div>
 
-              {/* Headline */}
-              <h3 className="latest-headline-title">
-                {isTelugu ? currentUpdate.titleTe : currentUpdate.titleEn}
+              <h3 className={`featured-headline ${isAnimatingText ? 'fade-in-text' : ''}`}>
+                {isTelugu ? currentStory.titleTe : currentStory.titleEn}
               </h3>
 
-              {/* Lead Paragraph */}
-              <p className="latest-lead-paragraph">
-                {isTelugu ? currentUpdate.leadTe : currentUpdate.leadEn}
+              <p className="featured-lead-paragraph">
+                {isTelugu ? currentStory.leadTe : currentStory.leadEn}
               </p>
 
-              {/* Detailed News Paragraphs */}
-              <div className="latest-body-paragraphs">
-                {(isTelugu ? currentUpdate.bodyTe : currentUpdate.bodyEn).map((para, i) => (
-                  <p key={i} className="latest-paragraph">
-                    {para}
-                  </p>
-                ))}
-              </div>
+              {/* Dedicated Social Share Bar */}
+              <div className="updates-share-bar">
+                <span className="share-bar-label">
+                  {isTelugu ? 'ఈ వార్తను షేర్ చేయండి:' : 'Share update:'}
+                </span>
 
-              {/* Dedicated Share Bar with Direct Instagram Copy Option */}
-              <div className="latest-share-container">
-                <div className="latest-share-label">
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <circle cx="18" cy="5" r="3"></circle>
-                    <circle cx="6" cy="12" r="3"></circle>
-                    <circle cx="18" cy="19" r="3"></circle>
-                    <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
-                    <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
-                  </svg>
-                  <span>{isTelugu ? 'ఈ వార్తను పంచుకోండి:' : 'Share this update:'}</span>
-                </div>
-
-                <div className="latest-share-actions">
+                <div className="share-bar-actions">
                   <button
                     type="button"
-                    className="share-btn share-whatsapp"
+                    className="share-btn whatsapp"
                     onClick={handleWhatsAppShare}
-                    aria-label="Share on WhatsApp Status & Chat"
+                    aria-label="Share on WhatsApp"
                     title="Share on WhatsApp"
                   >
-                    <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2zm0 18.06c-1.49 0-2.94-.4-4.21-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.03 8.03 0 0 1-1.23-4.29c0-4.43 3.61-8.05 8.05-8.05 2.15 0 4.17.84 5.69 2.36a8.01 8.01 0 0 1 2.36 5.69c0 4.44-3.62 8.05-8.07 8.05zm4.41-6.03c-.24-.12-1.43-.71-1.65-.79-.22-.08-.39-.12-.55.12-.16.24-.63.79-.77.95-.14.16-.28.18-.52.06-.24-.12-1.02-.38-1.94-1.2-.72-.64-1.2-1.43-1.34-1.67-.14-.24-.01-.37.11-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.55-1.33-.76-1.82-.2-.48-.41-.41-.56-.42h-.48c-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2 0 1.18.86 2.32.98 2.48.12.16 1.7 2.6 4.12 3.64.58.25 1.03.4 1.38.51.58.18 1.11.16 1.53.1.47-.07 1.43-.58 1.63-1.15.2-.56.2-1.04.14-1.15-.06-.1-.22-.16-.46-.28z"/>
-                    </svg>
                     <span>WhatsApp</span>
                   </button>
 
                   <button
                     type="button"
-                    className="share-btn share-facebook"
+                    className="share-btn facebook"
                     onClick={handleFacebookShare}
                     aria-label="Share on Facebook"
                     title="Share on Facebook"
                   >
-                    <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-                    </svg>
                     <span>Facebook</span>
                   </button>
 
                   <button
                     type="button"
-                    className="share-btn share-story"
+                    className="share-btn instagram"
                     onClick={handleInstagramShare}
-                    aria-label="Copy Link for Instagram Story & Direct"
-                    title="Share to Instagram Story / Direct"
+                    aria-label="Share or copy for Instagram Story / Post"
+                    title="Share to Instagram"
                   >
-                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                      <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-                      <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                      <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                    <span>Instagram</span>
+                  </button>
+
+                  <button
+                    type="button"
+                    className="share-btn copylink"
+                    onClick={handleCopyLink}
+                    aria-label="Copy direct link to clipboard"
+                    title="Copy Link"
+                  >
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                      <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
+                      <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
                     </svg>
-                    <span>{isTelugu ? 'ఇన్‌స్టా స్టోరీ / లింక్' : 'Insta Story / Copy'}</span>
+                    <span>{isTelugu ? 'లింక్ కాపీ' : 'Copy Link'}</span>
                   </button>
                 </div>
 
@@ -697,7 +767,7 @@ export default function LatestUpdatesSection() {
                     <span>{copyFeedback}</span>
                     {instagramNotice && (
                       <a
-                        href="https://www.instagram.com"
+                        href="https://www.instagram.com/gandrasatyanarayanarao"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="share-toast-action"
@@ -708,109 +778,327 @@ export default function LatestUpdatesSection() {
                   </div>
                 )}
               </div>
+
+              <div className="featured-footer-actions">
+                <span className="photos-counter-tag">
+                  {isTelugu
+                    ? `${storyPhotos.length} అధికారిక ఛాయాచిత్రాలు`
+                    : `${storyPhotos.length} Official Photographs Documented`}
+                </span>
+
+                <button
+                  type="button"
+                  className="read-dispatch-btn"
+                  onClick={() => openLightbox(0)}
+                  aria-label="Read complete press release and photos"
+                >
+                  {isTelugu ? 'పూర్తి నివేదిక & చిత్రాలు' : 'Read Full Dispatch & Photos'} →
+                </button>
+              </div>
             </div>
+          </article>
+
+          {/* RIGHT (Desktop) / HORIZONTAL SWIPE RAIL (Mobile): Supporting Updates */}
+          <aside
+            className="supporting-stories-column"
+            aria-label="Recent Updates List"
+            ref={horizontalRailRef}
+          >
+            <div className="supporting-stories-mobile-header" aria-hidden="true">
+              <span className="mobile-rail-label">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                  <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+                {isTelugu ? 'ఇతర తాజా సమాచారాలు (పక్కకు జరపండి)' : 'More Dispatches (Swipe Horizontal)'}
+              </span>
+              <span className="mobile-rail-indicator">
+                {filteredStories.length} {isTelugu ? 'అంశాలు' : 'updates'}
+              </span>
+            </div>
+
+            <div className="supporting-stories-track">
+              {filteredStories.map((story) => {
+                const isActive = story.id === currentStory.id;
+                const photoCount = story.photos?.length || 1;
+
+                return (
+                  <div
+                    key={story.id}
+                    className={`supporting-story-card ${isActive ? 'is-active' : ''}`}
+                    onClick={(e) => handleSelectStory(story.id, e.currentTarget)}
+                    role="button"
+                    tabIndex={0}
+                    aria-pressed={isActive}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter' || e.key === ' ') handleSelectStory(story.id, e.currentTarget);
+                    }}
+                  >
+                    <div className="story-thumb-wrap">
+                      <img
+                        src={story.mainImage}
+                        alt={isTelugu ? story.titleTe : story.titleEn}
+                        className="story-thumb-img"
+                        loading="lazy"
+                        onError={(e) => {
+                          e.target.src = '/images/updates/chityal-development.jpg';
+                        }}
+                      />
+                      {isActive && (
+                        <div className="story-active-pill" aria-hidden="true">
+                          {isTelugu ? 'ప్రస్తుత అంశం' : 'Active'}
+                        </div>
+                      )}
+                    </div>
+
+                    <div className="story-details-col">
+                      <div className="story-badge-row">
+                        <span className="story-mini-badge">
+                          {isTelugu ? story.categoryTe : story.categoryEn}
+                        </span>
+                        <span className="story-meta-date">
+                          {isTelugu ? story.dateFormattedTe : story.dateFormattedEn}
+                        </span>
+                      </div>
+
+                      <h4 className="story-row-title">
+                        {isTelugu ? story.titleTe : story.titleEn}
+                      </h4>
+
+                      <div className="story-location-tag">
+                        <span>{isTelugu ? story.locationTe : story.locationEn}</span>
+                        <span>·</span>
+                        <span>{photoCount} {isTelugu ? 'ఫోటోలు' : 'photos'}</span>
+                      </div>
+
+                      <div className="story-mobile-tap-hint" aria-hidden="true">
+                        {isActive
+                          ? (isTelugu ? '● పైభాగంలో ఉంది' : '● In View on Top')
+                          : (isTelugu ? 'పైకి తీసుకురండి ↑' : 'Tap to View on Top ↑')}
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </aside>
+        </div>
+
+        {/* ====================================================================
+            03. BOTTOM: EVENT PHOTO FILMSTRIP
+            ==================================================================== */}
+        <div className="updates-filmstrip-section">
+          <div className="filmstrip-header-row">
+            <span className="filmstrip-title">
+              {isTelugu ? 'డాక్యుమెంటరీ ఛాయాచిత్రాలు' : 'Event Photo Filmstrip'}
+            </span>
+
+            <div className="filmstrip-nav-arrows">
+              <button
+                type="button"
+                className="filmstrip-arrow-btn"
+                onClick={() => scrollFilmstrip('left')}
+                aria-label="Scroll Filmstrip Left"
+              >
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="15 18 9 12 15 6" /></svg>
+              </button>
+              <button
+                type="button"
+                className="filmstrip-arrow-btn"
+                onClick={() => scrollFilmstrip('right')}
+                aria-label="Scroll Filmstrip Right"
+              >
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="9 18 15 12 9 6" /></svg>
+              </button>
+            </div>
+          </div>
+
+          <div className="filmstrip-scroll-track" ref={filmstripRef}>
+            {/* Active Story's Photos First */}
+            {storyPhotos.map((photo, pIdx) => {
+              const isSelected = pIdx === activePhotoSubIdx;
+
+              return (
+                <div
+                  key={photo.id || pIdx}
+                  className={`filmstrip-item-tile ${isSelected ? 'is-active-photo' : ''}`}
+                  onClick={() => openLightbox(pIdx)}
+                  role="button"
+                  tabIndex={0}
+                  aria-label={`View photo ${pIdx + 1} of ${storyPhotos.length}`}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') openLightbox(pIdx);
+                  }}
+                >
+                  <img
+                    src={photo.url}
+                    alt={isTelugu ? (photo.titleTe || 'ఛాయాచిత్రం') : (photo.titleEn || 'Event Photo')}
+                    loading="lazy"
+                  />
+                  <span className="filmstrip-photo-badge">
+                    0{pIdx + 1}
+                  </span>
+                </div>
+              );
+            })}
+
+            {/* Other Story Highlights in Filmstrip */}
+            {filteredStories
+              .filter((s) => s.id !== currentStory.id)
+              .map((otherStory) => (
+                <div
+                  key={otherStory.id}
+                  className="filmstrip-item-tile"
+                  onClick={() => handleSelectStory(otherStory.id)}
+                  role="button"
+                  tabIndex={0}
+                  aria-label={`Switch to story: ${isTelugu ? otherStory.titleTe : otherStory.titleEn}`}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') handleSelectStory(otherStory.id);
+                  }}
+                >
+                  <img
+                    src={otherStory.mainImage}
+                    alt={isTelugu ? otherStory.titleTe : otherStory.titleEn}
+                    loading="lazy"
+                  />
+                  <span className="filmstrip-photo-badge">
+                    {isTelugu ? otherStory.categoryTe : otherStory.categoryEn}
+                  </span>
+                </div>
+              ))}
+
+            {/* End Tile: View Full Gallery */}
+            <Link to="/gallery" className="filmstrip-gallery-link-tile">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+                <line x1="3" y1="9" x2="21" y2="9" />
+                <line x1="9" y1="21" x2="9" y2="9" />
+              </svg>
+              <span>{isTelugu ? 'పూర్తి చిత్రమాలిక' : 'View Full Gallery'} →</span>
+            </Link>
           </div>
         </div>
       </div>
 
-      {/* Interactive Horizontal Scroll Modal / Lightbox */}
-      {modalOpen && (
+      {/* ====================================================================
+          04. ACCESSIBLE FULL-SCREEN EVENT PHOTO VIEWER (LIGHTBOX MODAL)
+          ==================================================================== */}
+      {isLightboxOpen && (
         <div
-          className="latest-lightbox-modal active"
+          className="updates-lightbox-backdrop"
+          onClick={closeLightbox}
           role="dialog"
           aria-modal="true"
-          aria-label="Horizontal Photo Viewer"
-          onClick={closeLightbox}
-          onTouchStart={handleTouchStart}
-          onTouchEnd={handleTouchEnd}
+          aria-label="Full-Screen Event Photo Viewer"
         >
-          {/* Top Control Bar */}
-          <div className="latest-modal-top-bar" onClick={(e) => e.stopPropagation()}>
-            <div className="latest-modal-counter">
-              <span className="modal-num-active">0{activePhotoSubIdx + 1}</span>
-              <span className="modal-sep">/</span>
-              <span className="modal-num-total">0{photosList.length}</span>
-              <span className="modal-sep">•</span>
-              <span className="modal-photo-headline">
-                {isTelugu ? currentPhoto.titleTe : currentPhoto.titleEn}
+          <div
+            className="updates-lightbox-container"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Lightbox Header */}
+            <div className="updates-lightbox-header">
+              <div className="updates-lightbox-headline-wrap">
+                <div className="updates-lightbox-meta">
+                  {isTelugu ? currentStory.categoryTe : currentStory.categoryEn} · {isTelugu ? currentStory.locationTe : currentStory.locationEn} · {isTelugu ? currentStory.dateFormattedTe : currentStory.dateFormattedEn}
+                </div>
+                <h3 className="updates-lightbox-title">
+                  {isTelugu
+                    ? (currentPhoto.titleTe || currentStory.titleTe)
+                    : (currentPhoto.titleEn || currentStory.titleEn)}
+                </h3>
+              </div>
+
+              <button
+                type="button"
+                className="updates-lightbox-close-btn"
+                onClick={closeLightbox}
+                aria-label="Close Lightbox (Esc)"
+              >
+                ✕
+              </button>
+            </div>
+
+            {/* Lightbox Stage */}
+            <div className="updates-lightbox-stage">
+              <img
+                src={currentPhoto.url}
+                alt={isTelugu ? (currentPhoto.titleTe || currentStory.titleTe) : (currentPhoto.titleEn || currentStory.titleEn)}
+                className="updates-lightbox-img"
+              />
+
+              {storyPhotos.length > 1 && (
+                <>
+                  <button
+                    type="button"
+                    className="lightbox-arrow-btn prev"
+                    onClick={handlePrevPhoto}
+                    aria-label="Previous photograph"
+                  >
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="15 18 9 12 15 6" /></svg>
+                  </button>
+                  <button
+                    type="button"
+                    className="lightbox-arrow-btn next"
+                    onClick={handleNextPhoto}
+                    aria-label="Next photograph"
+                  >
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="9 18 15 12 9 6" /></svg>
+                  </button>
+                </>
+              )}
+            </div>
+
+            {/* Lightbox Footer */}
+            <div className="updates-lightbox-footer">
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', maxWidth: '75%' }}>
+                <p className="updates-lightbox-caption">
+                  {isTelugu
+                    ? (currentPhoto.captionTe || currentStory.leadTe)
+                    : (currentPhoto.captionEn || currentStory.leadEn)}
+                </p>
+
+                {/* Quick Share Icons in Modal */}
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', marginTop: '4px' }}>
+                  <button
+                    type="button"
+                    className="share-btn whatsapp"
+                    onClick={handleWhatsAppShare}
+                    style={{ fontSize: '0.72rem', padding: '3px 8px' }}
+                  >
+                    WhatsApp
+                  </button>
+                  <button
+                    type="button"
+                    className="share-btn facebook"
+                    onClick={handleFacebookShare}
+                    style={{ fontSize: '0.72rem', padding: '3px 8px' }}
+                  >
+                    Facebook
+                  </button>
+                  <button
+                    type="button"
+                    className="share-btn instagram"
+                    onClick={handleInstagramShare}
+                    style={{ fontSize: '0.72rem', padding: '3px 8px' }}
+                  >
+                    Instagram
+                  </button>
+                  <button
+                    type="button"
+                    className="share-btn copylink"
+                    onClick={handleCopyLink}
+                    style={{ fontSize: '0.72rem', padding: '3px 8px' }}
+                  >
+                    {isTelugu ? 'లింక్ కాపీ' : 'Copy Link'}
+                  </button>
+                </div>
+              </div>
+
+              <span className="updates-lightbox-counter">
+                {activePhotoSubIdx + 1} / {storyPhotos.length}
               </span>
             </div>
-
-            <button
-              type="button"
-              className="latest-modal-close-btn"
-              onClick={closeLightbox}
-              aria-label="Close Lightbox (Esc)"
-              title="Close"
-            >
-              &times;
-            </button>
           </div>
-
-          {/* Main Slide Stage with Horizontal Arrow Triggers */}
-          <div className="latest-modal-stage" onClick={(e) => e.stopPropagation()}>
-            {photosList.length > 1 && (
-              <button
-                type="button"
-                className="latest-modal-arrow-btn prev"
-                onClick={handlePrevPhoto}
-                aria-label="Previous Photo"
-                title="Previous Photo"
-              >
-                &#10094;
-              </button>
-            )}
-
-            <div className="latest-modal-viewport">
-              <div className="latest-modal-slide">
-                <img
-                  src={resolveMediaUrl(currentPhoto.url)}
-                  alt={isTelugu ? currentPhoto.titleTe : currentPhoto.titleEn}
-                  className="latest-modal-img"
-                />
-              </div>
-
-              <div className="latest-modal-caption-card">
-                <h3 className="modal-caption-heading">
-                  {isTelugu ? currentPhoto.titleTe : currentPhoto.titleEn}
-                </h3>
-                <p className="modal-caption-text">
-                  {isTelugu ? currentPhoto.captionTe : currentPhoto.captionEn}
-                </p>
-              </div>
-            </div>
-
-            {photosList.length > 1 && (
-              <button
-                type="button"
-                className="latest-modal-arrow-btn next"
-                onClick={handleNextPhoto}
-                aria-label="Next Photo"
-                title="Next Photo"
-              >
-                &#10095;
-              </button>
-            )}
-          </div>
-
-          {/* Bottom Thumbnails Navigation Strip */}
-          {photosList.length > 1 && (
-            <div className="latest-modal-bottom-strip" onClick={(e) => e.stopPropagation()}>
-              {photosList.map((ph, idx) => (
-                <div
-                  key={ph.id || idx}
-                  className={`latest-modal-thumb ${activePhotoSubIdx === idx ? 'active' : ''}`}
-                  onClick={() => setActivePhotoSubIdx(idx)}
-                  role="button"
-                  tabIndex={0}
-                  aria-label={`Jump to photo ${idx + 1}`}
-                >
-                  <img src={resolveMediaUrl(ph.url)} alt="" />
-                  <span className="modal-thumb-num">0{idx + 1}</span>
-                </div>
-              ))}
-            </div>
-          )}
         </div>
       )}
     </section>

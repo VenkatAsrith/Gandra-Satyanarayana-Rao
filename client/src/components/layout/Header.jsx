@@ -62,8 +62,8 @@ export default function Header({ settings: propSettings }) {
   const emblem = settings?.emblemUrl || '/images/party-symbol.png';
 
   const constituencyMeta = isTelugu
-    ? `${settings?.constituencyNo || 108} - భూపాలపల్లి నియోజకవర్గం`
-    : `${settings?.constituencyNo || 108} - ${settings?.constituencyName || 'Bhupalpalle'} Constituency`;
+    ? `${settings?.constituencyNo || 108} · భూపాలపల్లి`
+    : `${settings?.constituencyNo || 108} · ${settings?.constituencyName || 'Bhupalpalle'}`;
 
   const displayName = isTelugu
     ? (settings?.teluguTitle || 'గండ్ర సత్యనారాయణ రావు (సాతన్న)')

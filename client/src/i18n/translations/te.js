@@ -2,12 +2,12 @@ export const te = {
   // Navigation
   nav: {
     home: 'ముఖ్యాంశాలు',
-    about: 'ప్రస్థానం & జీవిత విశేషాలు',
+    about: 'జీవిత ప్రస్థానం',
     work: 'అభివృద్ధి పనులు',
-    activities: 'శాసనసభ & ప్రజా కార్యక్రమాలు',
+    activities: 'శాసనసభ & ప్రజా సేవ',
     gallery: 'చిత్రమాలిక',
-    constituency: 'నియోజకవర్గం (108)',
-    contact: 'సంప్రదించండి & ప్రజా దర్బార్',
+    constituency: 'నియోజకవర్గం',
+    contact: 'సంప్రదించండి',
     adminLogin: 'అడ్మిన్ CMS',
     switchLanguage: 'Switch to English'
   },

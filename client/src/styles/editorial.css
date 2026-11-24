@@ -1,0 +1,1744 @@
+/* ==========================================================================
+   GANDRA SATYANARAYANA RAO — OFFICIAL LEGISLATIVE PORTFOLIO
+   Master Editorial Design System (Inspired by Damodar Raja Narasimha portfolio)
+   Visual Language: Warm Architectural Off-White, Refined Serif Typography,
+   Restrained Congress Colors, Natural Portrait Framing, Spacious Layouts.
+   ========================================================================== */
+
+:root {
+  /* Editorial Color Palette */
+  --brand-saffron: #F36B21;
+  --brand-saffron-dark: #D95516;
+  --brand-saffron-light: #FFF5EE;
+  --brand-green: #087443;
+  --brand-green-dark: #045B35;
+  --brand-green-light: #EDF7F2;
+  --brand-maroon: #7D1F2B;
+
+  /* Architectural Surfaces */
+  --surface-page: #FAF9F6;
+  --surface-page-warm: #F4F1EA;
+  --surface-card: #FFFFFF;
+  --surface-subtle: #F1F0EB;
+  --surface-alt: #EFECE4;
+
+  /* Institutional Typography Tokens */
+  --text-primary: #1B1917;
+  --text-secondary: #4A4744;
+  --text-tertiary: #78736E;
+  --text-muted: #8C8780;
+
+  /* Borders & Dividers */
+  --border-subtle: #E8E5DE;
+  --border-medium: #D5D0C6;
+  --border-accent: rgba(243, 107, 33, 0.25);
+
+  /* Gradients */
+  --gradient-saffron: linear-gradient(135deg, #F36B21 0%, #D95516 100%);
+  --gradient-green: linear-gradient(135deg, #087443 0%, #045B35 100%);
+  --gradient-tricolor: linear-gradient(115deg, #F36B21 0%, #E88A53 35%, #FFFFFF 55%, #80AE91 75%, #087443 100%);
+  --gradient-background: linear-gradient(180deg, #FAF9F6 0%, #F4F1EA 100%);
+
+  /* Radii */
+  --radius-xs: 4px;
+  --radius-sm: 6px;
+  --radius-card: 10px;
+  --radius-image: 8px;
+  --radius-pill: 9999px;
+
+  /* Refined Shadows */
+  --shadow-subtle: 0 4px 20px rgba(0, 0, 0, 0.03);
+  --shadow-card: 0 10px 30px rgba(0, 0, 0, 0.05);
+  --shadow-image: 0 20px 55px rgba(0, 0, 0, 0.08);
+  --shadow-portrait: 0 24px 60px rgba(27, 25, 23, 0.12);
+
+  /* Typography Stacks */
+  --font-display: "Cormorant Garamond", "Playfair Display", Georgia, serif;
+  --font-serif: "Cormorant Garamond", "Playfair Display", Georgia, serif;
+  --font-body: "Plus Jakarta Sans", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-telugu: "Noto Sans Telugu", sans-serif;
+
+  /* Fluid Editorial Scale */
+  --text-hero: clamp(2.8rem, 5.6vw, 5.4rem);
+  --text-section: clamp(2rem, 3.8vw, 3.2rem);
+  --text-subheading: clamp(1.2rem, 1.8vw, 1.6rem);
+  --text-body: clamp(0.95rem, 1.05vw, 1.08rem);
+
+  /* Easing */
+  --transition-editorial: 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ==========================================================================
+   GLOBAL EDITORIAL FOUNDATION
+   ========================================================================== */
+body {
+  background-color: var(--surface-page) !important;
+  color: var(--text-primary) !important;
+  font-family: var(--font-body) !important;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Headings inherit refined display serif */
+h1, h2, h3, .section-title, .section-heading, .editorial-heading {
+  font-family: var(--font-display) !important;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  color: var(--text-primary);
+}
+
+/* Disciplined, balanced editorial scale for section titles (resolves oversized text) */
+.section-title,
+.section-heading,
+h2.section-title,
+h2.section-heading {
+  font-family: var(--font-display) !important;
+  font-size: clamp(1.75rem, 2.6vw, 2.45rem) !important;
+  font-weight: 600 !important;
+  line-height: 1.2 !important;
+  letter-spacing: -0.015em !important;
+  color: var(--text-primary) !important;
+  margin-top: 0.5rem !important;
+  margin-bottom: 0.75rem !important;
+  word-break: normal !important;
+  overflow-wrap: break-word !important;
+}
+
+.section-subtitle,
+.section-lead {
+  font-family: var(--font-body) !important;
+  font-size: clamp(0.92rem, 1.05vw, 1.02rem) !important;
+  line-height: 1.65 !important;
+  color: var(--text-secondary) !important;
+  max-width: 760px !important;
+}
+
+/* Scroll margin anchor offset to prevent header overlap */
+section,
+.section,
+section[id],
+div[id] {
+  scroll-margin-top: 96px !important;
+}
+
+.section {
+  padding-block: clamp(3.5rem, 5vw, 5.5rem) !important;
+}
+
+/* Telugu text protection: prevent clipped matras and ascenders */
+[lang="te"], .telugu-text, .hero-telugu-heading {
+  font-family: var(--font-telugu), var(--font-body) !important;
+  line-height: 1.65 !important;
+  padding-top: 0.1em;
+}
+
+/* Institutional Tag Labels */
+.tag-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-family: var(--font-body) !important;
+  font-size: 0.74rem !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.12em !important;
+  color: var(--brand-saffron-dark) !important;
+  background: var(--brand-saffron-light) !important;
+  padding: 0.35rem 0.85rem !important;
+  border-radius: var(--radius-xs) !important;
+  border: 1px solid rgba(243, 107, 33, 0.18) !important;
+  line-height: 1.35 !important;
+}
+
+.tag-label.green {
+  color: var(--brand-green-dark) !important;
+  background: var(--brand-green-light) !important;
+  border-color: rgba(8, 116, 67, 0.18) !important;
+}
+
+.tag-label.maroon {
+  color: var(--brand-maroon) !important;
+  background: #FDF2F4 !important;
+  border-color: rgba(125, 31, 43, 0.18) !important;
+}
+
+/* Refined Editorial Buttons */
+.btn-pill.btn-primary,
+.btn-editorial-primary {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0.5rem !important;
+  background: var(--brand-saffron) !important;
+  color: #FFFFFF !important;
+  font-family: var(--font-body) !important;
+  font-size: 0.92rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.02em !important;
+  padding: 0.75rem 1.65rem !important;
+  border-radius: var(--radius-sm) !important;
+  border: 1px solid var(--brand-saffron-dark) !important;
+  box-shadow: 0 4px 14px rgba(243, 107, 33, 0.22) !important;
+  transition: all var(--transition-editorial) !important;
+  text-decoration: none !important;
+  cursor: pointer;
+}
+
+.btn-pill.btn-primary:hover,
+.btn-editorial-primary:hover {
+  background: var(--brand-saffron-dark) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 20px rgba(243, 107, 33, 0.32) !important;
+}
+
+.btn-pill.btn-secondary,
+.btn-editorial-secondary {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0.5rem !important;
+  background: transparent !important;
+  color: var(--text-primary) !important;
+  font-family: var(--font-body) !important;
+  font-size: 0.92rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.02em !important;
+  padding: 0.75rem 1.65rem !important;
+  border-radius: var(--radius-sm) !important;
+  border: 1px solid var(--border-medium) !important;
+  transition: all var(--transition-editorial) !important;
+  text-decoration: none !important;
+  cursor: pointer;
+}
+
+.btn-pill.btn-secondary:hover,
+.btn-editorial-secondary:hover {
+  background: #FFFFFF !important;
+  border-color: var(--text-primary) !important;
+  color: var(--text-primary) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: var(--shadow-subtle) !important;
+}
+
+.btn-pill.btn-outline,
+.btn-editorial-outline {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0.5rem !important;
+  background: transparent !important;
+  color: var(--brand-green-dark) !important;
+  font-family: var(--font-body) !important;
+  font-size: 0.92rem !important;
+  font-weight: 600 !important;
+  padding: 0.75rem 1.5rem !important;
+  border-radius: var(--radius-sm) !important;
+  border: 1px solid rgba(8, 116, 67, 0.35) !important;
+  transition: all var(--transition-editorial) !important;
+  text-decoration: none !important;
+}
+
+.btn-pill.btn-outline:hover,
+.btn-editorial-outline:hover {
+  background: var(--brand-green-light) !important;
+  border-color: var(--brand-green) !important;
+  transform: translateY(-2px) !important;
+}
+
+/* ==========================================================================
+   HEADER TRANSFORMATION (Minimal Institutional Navigation)
+   ========================================================================== */
+.site-header {
+  position: sticky !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  z-index: 1000 !important;
+  min-height: 78px !important;
+  height: auto !important;
+  background: rgba(250, 249, 246, 0.96) !important;
+  backdrop-filter: blur(14px) !important;
+  -webkit-backdrop-filter: blur(14px) !important;
+  border-bottom: 1px solid var(--border-subtle) !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02) !important;
+  transition: all var(--transition-editorial) !important;
+}
+
+.site-header.scrolled {
+  background: rgba(255, 255, 255, 0.98) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04) !important;
+}
+
+.header-container {
+  min-height: 78px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 1.5rem !important;
+  padding-block: 0.5rem !important;
+}
+
+/* Brand Identity */
+.brand-identity {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.75rem !important;
+  text-decoration: none !important;
+  flex-shrink: 0 !important;
+}
+
+.brand-badge {
+  width: 42px !important;
+  height: 42px !important;
+  border-radius: var(--radius-xs) !important;
+  background: #FFFFFF !important;
+  border: 1px solid var(--border-subtle) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 4px !important;
+  flex-shrink: 0 !important;
+}
+
+.brand-badge img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important;
+}
+
+.brand-info {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  min-width: 0 !important;
+}
+
+.brand-name {
+  font-family: var(--font-display) !important;
+  font-size: 1.15rem !important;
+  font-weight: 700 !important;
+  color: var(--text-primary) !important;
+  letter-spacing: -0.01em !important;
+  line-height: 1.25 !important;
+  white-space: nowrap !important;
+  display: block !important;
+}
+
+.brand-meta {
+  font-family: var(--font-body) !important;
+  font-size: clamp(0.6rem, 2vw, 0.68rem) !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.08em !important;
+  color: var(--brand-saffron-dark) !important;
+  white-space: nowrap !important;
+  display: block !important;
+  margin-top: 2px !important;
+}
+
+/* Refined Nav Links */
+.nav-links {
+  display: flex !important;
+  align-items: center !important;
+  gap: clamp(0.75rem, 1.4vw, 1.75rem) !important;
+  flex-shrink: 1 !important;
+}
+
+.nav-link {
+  font-family: var(--font-body) !important;
+  font-size: 0.85rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.02em !important;
+  color: var(--text-secondary) !important;
+  text-decoration: none !important;
+  position: relative !important;
+  padding: 0.4rem 0 !important;
+  white-space: nowrap !important;
+  flex-shrink: 0 !important;
+  transition: color var(--transition-editorial) !important;
+  background: transparent !important;
+  border-radius: 0 !important;
+}
+
+.nav-link:hover {
+  color: var(--brand-saffron-dark) !important;
+}
+
+.nav-link.active {
+  color: var(--text-primary) !important;
+  font-weight: 700 !important;
+}
+
+.nav-link.active::after {
+  content: '' !important;
+  position: absolute !important;
+  bottom: 0px !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 2px !important;
+  background: var(--brand-saffron) !important;
+  border-radius: 2px !important;
+}
+
+/* Clean compact button in header */
+.header-cta .btn-pill {
+  padding: 0.55rem 1.25rem !important;
+  font-size: 0.84rem !important;
+  box-shadow: none !important;
+  white-space: nowrap !important;
+}
+
+@media (max-width: 1160px) {
+  .nav-links {
+    display: none !important;
+  }
+  .header-cta {
+    display: none !important;
+  }
+  .mobile-header-triggers {
+    display: flex !important;
+  }
+}
+
+/* Language Toggle Pill */
+.lang-switcher-pill {
+  display: inline-flex !important;
+  align-items: center !important;
+  background: #FFFFFF !important;
+  border: 1px solid var(--border-medium) !important;
+  border-radius: var(--radius-xs) !important;
+  padding: 2px !important;
+}
+
+.lang-btn {
+  font-family: var(--font-body) !important;
+  font-size: 0.75rem !important;
+  font-weight: 700 !important;
+  padding: 4px 10px !important;
+  border-radius: var(--radius-xs) !important;
+  border: none !important;
+  background: transparent !important;
+  color: var(--text-tertiary) !important;
+  cursor: pointer !important;
+  transition: all var(--transition-editorial) !important;
+}
+
+.lang-btn.active {
+  background: var(--surface-page-warm) !important;
+  color: var(--text-primary) !important;
+}
+
+/* ==========================================================================
+   HOMEPAGE HERO TRANSFORMATION (Two-Column Asymmetric Editorial)
+   ========================================================================== */
+.hero-wrapper {
+  padding-top: calc(76px + 3.5rem) !important;
+  padding-bottom: 4.5rem !important;
+  background: var(--surface-page) !important;
+  position: relative !important;
+}
+
+.hero-editorial-canvas {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+  position: relative !important;
+}
+
+.hero-bg-watermark {
+  display: none !important; /* Remove oversized distracting watermark */
+}
+
+/* Hero Two-Column Grid */
+.hero-main-grid {
+  display: grid !important;
+  grid-template-columns: 1.22fr 0.9fr !important;
+  gap: clamp(2rem, 3.5vw, 4rem) !important;
+  align-items: center !important;
+}
+
+.hero-content-col {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  text-align: left !important;
+  min-width: 0 !important;
+  width: 100% !important;
+}
+
+/* Large 3-Line Serif Display Name */
+.hero-display-heading {
+  font-family: var(--font-display) !important;
+  font-size: clamp(2.2rem, 4.4vw, 4.2rem) !important;
+  font-weight: 600 !important;
+  line-height: 1.02 !important;
+  letter-spacing: -0.015em !important;
+  text-transform: uppercase !important;
+  color: var(--text-primary) !important;
+  margin: 0 0 1.25rem 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  max-width: 100% !important;
+  word-break: normal !important;
+}
+
+.hero-name-line {
+  display: block !important;
+  white-space: nowrap !important;
+}
+
+/* Specific optical sizing for the 14-character name so the final 'A' in SATYANARAYANA is never cut off */
+.hero-name-line.line-2 {
+  font-size: clamp(1.7rem, 3.35vw, 3.3rem) !important;
+  letter-spacing: -0.02em !important;
+  white-space: nowrap !important;
+  overflow: visible !important;
+}
+
+.hero-telugu-heading {
+  font-family: var(--font-telugu), var(--font-display) !important;
+  line-height: 1.22 !important;
+  letter-spacing: 0 !important;
+}
+
+.hero-telugu-heading .hero-name-line.line-2 {
+  font-size: clamp(1.85rem, 3.5vw, 3.2rem) !important;
+}
+
+/* Italic Bio Lead */
+.hero-bio-lead {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(1.2rem, 1.45vw, 1.45rem);
+  color: var(--text-secondary);
+  line-height: 1.45;
+  margin-bottom: 1rem;
+  max-width: 580px;
+}
+
+/* Clean Role Subline & Factual Summary */
+.hero-role-group {
+  margin: 0 0 1.85rem 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  background: transparent !important;
+}
+
+.hero-role-decor-line {
+  display: none !important;
+}
+
+.hero-role-title {
+  font-family: var(--font-body) !important;
+  font-size: 1.05rem !important;
+  font-weight: 700 !important;
+  color: var(--brand-green-dark) !important;
+  margin-bottom: 0.35rem !important;
+  letter-spacing: 0.01em !important;
+}
+
+.hero-role-subline {
+  font-family: var(--font-body) !important;
+  font-size: 0.85rem !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.06em !important;
+  color: var(--text-tertiary) !important;
+  margin-bottom: 0.75rem !important;
+}
+
+.hero-role-summary {
+  font-family: var(--font-body) !important;
+  font-size: 0.96rem !important;
+  line-height: 1.65 !important;
+  color: var(--text-secondary) !important;
+  max-width: 560px !important;
+  margin: 0 !important;
+}
+
+/* Action Buttons */
+.hero-cta-group {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 1rem !important;
+  margin-bottom: 2.5rem !important;
+}
+
+/* Credentials Strip */
+.hero-credentials-strip {
+  display: flex !important;
+  align-items: center !important;
+  gap: 2rem !important;
+  padding-top: 1.75rem !important;
+  border-top: 1px solid var(--border-subtle) !important;
+  width: 100% !important;
+  max-width: 560px !important;
+}
+
+.hero-cred-card {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: none !important;
+}
+
+.hero-cred-val {
+  font-family: var(--font-display) !important;
+  font-size: 1.85rem !important;
+  font-weight: 700 !important;
+  color: var(--text-primary) !important;
+  line-height: 1 !important;
+}
+
+.hero-cred-lbl {
+  font-family: var(--font-body) !important;
+  font-size: 0.72rem !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.08em !important;
+  color: var(--text-tertiary) !important;
+  margin-top: 0.35rem !important;
+}
+
+.hero-cred-divider {
+  width: 1px !important;
+  height: 38px !important;
+  background: var(--border-subtle) !important;
+}
+
+/* Right Portrait Column */
+.hero-visual-col {
+  position: relative !important;
+  width: 100% !important;
+  display: flex !important;
+  justify-content: center !important;
+}
+
+.hero-portrait-card {
+  position: relative !important;
+  width: 100% !important;
+  max-width: 470px !important;
+  border-radius: var(--radius-image) !important;
+  background: #FFFFFF !important;
+  border: 1px solid var(--border-subtle) !important;
+  box-shadow: var(--shadow-portrait) !important;
+  overflow: hidden !important;
+}
+
+.hero-portrait-frame {
+  position: relative !important;
+  width: 100% !important;
+  aspect-ratio: 4 / 4.9 !important;
+  background: #F4F1EA !important;
+  overflow: hidden !important;
+}
+
+.hero-portrait-image {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center 12% !important;
+  display: block !important;
+  transition: transform 0.6s var(--transition-editorial) !important;
+}
+
+.hero-portrait-card:hover .hero-portrait-image {
+  transform: scale(1.02) !important;
+}
+
+.hero-portrait-gradient-overlay {
+  display: none !important; /* Pure natural photography */
+}
+
+/* Floating Portrait Tag */
+.hero-portrait-tag {
+  background: #FFFFFF !important;
+  border-top: 1px solid var(--border-subtle) !important;
+  padding: 0.9rem 1.25rem !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.85rem !important;
+  position: static !important;
+  transform: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+}
+
+.hero-tag-icon-circle {
+  width: 32px !important;
+  height: 32px !important;
+  background: var(--brand-saffron-light) !important;
+  border: 1px solid rgba(243, 107, 33, 0.2) !important;
+  border-radius: 50% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-shrink: 0 !important;
+}
+
+.hero-tag-primary {
+  font-family: var(--font-display) !important;
+  font-size: 1.05rem !important;
+  font-weight: 700 !important;
+  color: var(--text-primary) !important;
+  line-height: 1.2 !important;
+  display: block !important;
+}
+
+.hero-tag-meta {
+  font-family: var(--font-body) !important;
+  font-size: 0.72rem !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.08em !important;
+  color: var(--brand-green-dark) !important;
+  display: block !important;
+}
+
+/* ==========================================================================
+   IRRIGATION PRIORITY SECTION (Fixing Screenshot 3 Mobile Distortion)
+   ========================================================================== */
+.irrigation-priority-section {
+  padding-block: 5.5rem !important;
+  background: var(--surface-page-warm) !important;
+  border-top: 1px solid var(--border-subtle) !important;
+  border-bottom: 1px solid var(--border-subtle) !important;
+}
+
+.irrigation-section-header {
+  text-align: left !important;
+  max-width: 820px !important;
+  margin-bottom: 3rem !important;
+}
+
+.irrigation-section-header .section-title {
+  font-size: var(--text-section) !important;
+  line-height: 1.15 !important;
+  margin-top: 0.75rem !important;
+  margin-bottom: 0.75rem !important;
+}
+
+.irrigation-section-header .section-subtitle {
+  font-size: 1.05rem !important;
+  color: var(--text-secondary) !important;
+  line-height: 1.6 !important;
+}
+
+.irrigation-showcase-card {
+  background: #FFFFFF !important;
+  border: 1px solid var(--border-subtle) !important;
+  border-radius: var(--radius-card) !important;
+  box-shadow: var(--shadow-card) !important;
+  overflow: hidden !important;
+}
+
+.irrigation-showcase-grid {
+  display: grid !important;
+  grid-template-columns: 1fr 1.1fr !important;
+  align-items: stretch !important;
+}
+
+.irrigation-showcase-visual {
+  position: relative !important;
+  background: #EFECE4 !important;
+  min-height: 380px !important;
+}
+
+.irrigation-showcase-frame {
+  width: 100% !important;
+  height: 100% !important;
+  position: relative !important;
+}
+
+.irrigation-showcase-img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  display: block !important;
+}
+
+.irrigation-frame-badge {
+  position: absolute !important;
+  bottom: 1rem !important;
+  left: 1rem !important;
+  background: rgba(27, 25, 23, 0.85) !important;
+  backdrop-filter: blur(8px) !important;
+  color: #FFFFFF !important;
+  font-family: var(--font-body) !important;
+  font-size: 0.72rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase !important;
+  padding: 0.35rem 0.75rem !important;
+  border-radius: var(--radius-xs) !important;
+}
+
+.irrigation-showcase-content {
+  padding: 3rem !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+}
+
+.irrigation-content-heading {
+  font-family: var(--font-display) !important;
+  font-size: clamp(1.4rem, 2.2vw, 1.95rem) !important;
+  font-weight: 600 !important;
+  color: var(--text-primary) !important;
+  line-height: 1.25 !important;
+  margin-bottom: 1rem !important;
+}
+
+.irrigation-content-desc {
+  font-family: var(--font-body) !important;
+  font-size: 0.96rem !important;
+  color: var(--text-secondary) !important;
+  line-height: 1.7 !important;
+  margin-bottom: 1.75rem !important;
+}
+
+.irrigation-pills-row {
+  display: flex !important;
+  gap: 1.25rem !important;
+  margin-bottom: 1.5rem !important;
+}
+
+.irrigation-stat-pill {
+  flex: 1 !important;
+  background: var(--surface-page) !important;
+  border: 1px solid var(--border-subtle) !important;
+  border-radius: var(--radius-xs) !important;
+  padding: 1rem 1.25rem !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+.stat-pill-num {
+  font-family: var(--font-display) !important;
+  font-size: 1.85rem !important;
+  font-weight: 700 !important;
+  color: var(--brand-saffron-dark) !important;
+  line-height: 1 !important;
+}
+
+.irrigation-stat-pill.green .stat-pill-num {
+  color: var(--brand-green-dark) !important;
+}
+
+.stat-pill-label {
+  font-family: var(--font-body) !important;
+  font-size: 0.74rem !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.06em !important;
+  color: var(--text-tertiary) !important;
+  margin-top: 0.35rem !important;
+}
+
+.irrigation-mandals-info {
+  font-size: 0.88rem !important;
+  color: var(--text-tertiary) !important;
+  margin-bottom: 1.75rem !important;
+}
+
+.mandals-info-label {
+  font-weight: 700 !important;
+  color: var(--text-secondary) !important;
+  margin-right: 0.5rem !important;
+}
+
+/* ==========================================================================
+   DYNAMIC SECTIONS & PRAJA DARBAR (Fixing Screenshot 2 Distortion)
+   ========================================================================== */
+.dynamic-section-wrap {
+  padding-block: 5rem !important;
+  background: var(--surface-page) !important;
+}
+
+.dynamic-feature-grid {
+  display: grid !important;
+  grid-template-columns: 1.15fr 0.85fr !important;
+  gap: 4rem !important;
+  align-items: center !important;
+  background: #FFFFFF !important;
+  border: 1px solid var(--border-subtle) !important;
+  border-radius: var(--radius-card) !important;
+  padding: 3rem !important;
+  box-shadow: var(--shadow-card) !important;
+}
+
+.dynamic-heading {
+  font-family: var(--font-display) !important;
+  font-size: clamp(1.8rem, 2.8vw, 2.5rem) !important;
+  line-height: 1.2 !important;
+  color: var(--text-primary) !important;
+  margin-top: 0.65rem !important;
+  margin-bottom: 0.85rem !important;
+}
+
+.dynamic-lead {
+  font-family: var(--font-serif) !important;
+  font-style: italic !important;
+  font-size: 1.15rem !important;
+  color: var(--text-secondary) !important;
+  line-height: 1.5 !important;
+  margin-bottom: 1.25rem !important;
+}
+
+.dynamic-body-text p {
+  font-family: var(--font-body) !important;
+  font-size: 0.96rem !important;
+  color: var(--text-secondary) !important;
+  line-height: 1.7 !important;
+  margin-bottom: 1rem !important;
+}
+
+.dynamic-feature-media {
+  width: 100% !important;
+  border-radius: var(--radius-image) !important;
+  overflow: hidden !important;
+  box-shadow: var(--shadow-image) !important;
+  border: 1px solid var(--border-subtle) !important;
+  background: #EFECE4 !important;
+}
+
+.dynamic-img-frame {
+  width: 100% !important;
+  aspect-ratio: 4 / 3 !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+.dynamic-img-frame img,
+.dynamic-feature-media img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  display: block !important;
+}
+
+/* ==========================================================================
+   STORY GRID / POLITICAL JOURNEY (Fixing Screenshot 1 Bulky Cards)
+   ========================================================================== */
+.section-story-stack {
+  padding-block: 5.5rem !important;
+  background: var(--surface-page) !important;
+}
+
+.section-head-editorial {
+  text-align: left !important;
+  max-width: 820px !important;
+  margin-bottom: 3.5rem !important;
+}
+
+.section-head-editorial .section-title {
+  font-size: var(--text-section) !important;
+  line-height: 1.15 !important;
+  margin-top: 0.65rem !important;
+  margin-bottom: 0.75rem !important;
+}
+
+.section-head-editorial .section-subtitle {
+  font-size: 1.05rem !important;
+  color: var(--text-secondary) !important;
+  line-height: 1.6 !important;
+}
+
+/* Redesigned Story Card: Clean Editorial Composition */
+.story-h-card {
+  background: #FFFFFF !important;
+  border: 1px solid var(--border-subtle) !important;
+  border-radius: var(--radius-card) !important;
+  box-shadow: var(--shadow-card) !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  transition: all var(--transition-editorial) !important;
+}
+
+.story-h-card:hover {
+  transform: translateY(-3px) !important;
+  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.08) !important;
+  border-color: var(--border-medium) !important;
+}
+
+.story-h-card.accent-saffron {
+  border-top: 3px solid var(--brand-saffron) !important;
+}
+
+.story-h-card.accent-green {
+  border-top: 3px solid var(--brand-green) !important;
+}
+
+.story-h-image-wrap {
+  width: 100% !important;
+  aspect-ratio: 16 / 10 !important;
+  background: #EFECE4 !important;
+  overflow: hidden !important;
+  position: relative !important;
+}
+
+.story-h-image-wrap img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  display: block !important;
+  transition: transform 0.6s var(--transition-editorial) !important;
+}
+
+.story-h-card:hover .story-h-image-wrap img {
+  transform: scale(1.03) !important;
+}
+
+.story-h-body {
+  padding: 1.75rem !important;
+}
+
+.story-h-cat-row {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  margin-bottom: 0.85rem !important;
+}
+
+.story-h-num {
+  font-family: var(--font-display) !important;
+  font-size: 1.35rem !important;
+  font-weight: 700 !important;
+  color: var(--brand-saffron) !important;
+}
+
+.story-h-title {
+  font-family: var(--font-display) !important;
+  font-size: 1.35rem !important;
+  font-weight: 600 !important;
+  color: var(--text-primary) !important;
+  line-height: 1.25 !important;
+  margin-bottom: 0.65rem !important;
+}
+
+.story-h-desc {
+  font-family: var(--font-body) !important;
+  font-size: 0.92rem !important;
+  color: var(--text-secondary) !important;
+  line-height: 1.6 !important;
+}
+
+/* ==========================================================================
+   CONSTITUENCY & CONTACT CHANNELS
+   ========================================================================== */
+.constituency-dossier-section {
+  padding-block: 5.5rem !important;
+  background: var(--surface-page) !important;
+}
+
+.dossier-header-block {
+  text-align: left !important;
+  max-width: 820px !important;
+  margin-bottom: 3rem !important;
+}
+
+.dossier-metrics-showcase {
+  display: grid !important;
+  grid-template-columns: 1fr 1.25fr !important;
+  gap: 2.5rem !important;
+  margin-bottom: 4rem !important;
+}
+
+.dossier-landscape-frame {
+  position: relative !important;
+  border-radius: var(--radius-card) !important;
+  overflow: hidden !important;
+  box-shadow: var(--shadow-card) !important;
+  background: #EFECE4 !important;
+  min-height: 320px !important;
+}
+
+.dossier-landscape-img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  display: block !important;
+}
+
+.dossier-landscape-badge {
+  position: absolute !important;
+  bottom: 1rem !important;
+  left: 1rem !important;
+  background: rgba(27, 25, 23, 0.85) !important;
+  backdrop-filter: blur(8px) !important;
+  color: #FFFFFF !important;
+  font-family: var(--font-body) !important;
+  font-size: 0.72rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase !important;
+  padding: 0.35rem 0.75rem !important;
+  border-radius: var(--radius-xs) !important;
+}
+
+.dossier-metrics-grid {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 1.25rem !important;
+}
+
+.dossier-stat-card {
+  background: #FFFFFF !important;
+  border: 1px solid var(--border-subtle) !important;
+  border-radius: var(--radius-card) !important;
+  padding: 1.5rem !important;
+  box-shadow: var(--shadow-card) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+}
+
+.dossier-stat-card.featured-stat {
+  grid-column: span 2 !important;
+  background: var(--surface-page-warm) !important;
+  border-color: rgba(243, 107, 33, 0.25) !important;
+}
+
+.stat-source-tag {
+  font-family: var(--font-body) !important;
+  font-size: 0.7rem !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.08em !important;
+  color: var(--text-tertiary) !important;
+  margin-bottom: 0.4rem !important;
+}
+
+.stat-num {
+  font-family: var(--font-display) !important;
+  font-size: 2.2rem !important;
+  font-weight: 700 !important;
+  color: var(--text-primary) !important;
+  line-height: 1 !important;
+  margin-bottom: 0.35rem !important;
+}
+
+.stat-num.saffron {
+  color: var(--brand-saffron-dark) !important;
+}
+
+.stat-num.green {
+  color: var(--brand-green-dark) !important;
+}
+
+.stat-name {
+  font-family: var(--font-body) !important;
+  font-size: 0.88rem !important;
+  font-weight: 700 !important;
+  color: var(--text-secondary) !important;
+}
+
+.stat-sub {
+  font-family: var(--font-body) !important;
+  font-size: 0.78rem !important;
+  color: var(--text-tertiary) !important;
+  margin-top: 0.2rem !important;
+}
+
+.dossier-narrative-card {
+  background: #FFFFFF !important;
+  border: 1px solid var(--border-subtle) !important;
+  border-radius: var(--radius-card) !important;
+  padding: 2.5rem !important;
+  margin-bottom: 4.5rem !important;
+  box-shadow: var(--shadow-card) !important;
+}
+
+.narrative-headline {
+  font-family: var(--font-display) !important;
+  font-size: 1.65rem !important;
+  font-weight: 600 !important;
+  color: var(--text-primary) !important;
+  margin-bottom: 1rem !important;
+}
+
+.narrative-text {
+  font-family: var(--font-body) !important;
+  font-size: 0.98rem !important;
+  color: var(--text-secondary) !important;
+  line-height: 1.75 !important;
+}
+
+/* Mandals Track */
+.mandals-section-divider {
+  padding-top: 2rem !important;
+  border-top: 1px solid var(--border-subtle) !important;
+}
+
+.mandals-header-split,
+.channels-header-split,
+.story-header-split {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: flex-end !important;
+  gap: 2rem !important;
+  margin-bottom: 2.5rem !important;
+}
+
+.mandals-nav-controls,
+.channels-nav-controls,
+.story-nav-controls {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.75rem !important;
+}
+
+.mandal-arrow-btn,
+.channel-arrow-btn,
+.story-arrow-btn {
+  width: 42px !important;
+  height: 42px !important;
+  border-radius: var(--radius-xs) !important;
+  background: #FFFFFF !important;
+  border: 1px solid var(--border-medium) !important;
+  color: var(--text-primary) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+  transition: all var(--transition-editorial) !important;
+  font-size: 0.9rem !important;
+}
+
+.mandal-arrow-btn:hover,
+.channel-arrow-btn:hover,
+.story-arrow-btn:hover {
+  background: var(--surface-page-warm) !important;
+  border-color: var(--text-primary) !important;
+  transform: translateY(-1px) !important;
+}
+
+.mandal-counter-pill,
+.channel-counter-pill,
+.story-counter-pill {
+  font-family: var(--font-body) !important;
+  font-size: 0.75rem !important;
+  font-weight: 700 !important;
+  color: var(--text-tertiary) !important;
+  background: #FFFFFF !important;
+  border: 1px solid var(--border-subtle) !important;
+  padding: 6px 14px !important;
+  border-radius: var(--radius-xs) !important;
+  letter-spacing: 0.08em !important;
+}
+
+/* Horizontal Tracks (Desktop & Mobile) */
+.mandals-horizontal-track,
+.channels-horizontal-track,
+.story-horizontal-track {
+  display: flex !important;
+  gap: 1.5rem !important;
+  overflow-x: auto !important;
+  scroll-behavior: smooth !important;
+  -webkit-overflow-scrolling: touch !important;
+  padding-bottom: 1.5rem !important;
+  scroll-snap-type: x mandatory !important;
+}
+
+.mandals-horizontal-track::-webkit-scrollbar,
+.channels-horizontal-track::-webkit-scrollbar,
+.story-horizontal-track::-webkit-scrollbar {
+  height: 6px !important;
+}
+
+.mandals-horizontal-track::-webkit-scrollbar-thumb,
+.channels-horizontal-track::-webkit-scrollbar-thumb,
+.story-horizontal-track::-webkit-scrollbar-thumb {
+  background: var(--border-medium) !important;
+  border-radius: 4px !important;
+}
+
+.mandal-h-card,
+.channel-h-card,
+.story-h-card {
+  flex: 0 0 360px !important;
+  scroll-snap-align: start !important;
+  background: #FFFFFF !important;
+  border: 1px solid var(--border-subtle) !important;
+  border-radius: var(--radius-card) !important;
+  padding: 1.75rem !important;
+  box-shadow: var(--shadow-card) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  transition: all var(--transition-editorial) !important;
+}
+
+.mandal-h-card:hover,
+.channel-h-card:hover,
+.story-h-card:hover {
+  transform: translateY(-3px) !important;
+  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.08) !important;
+  border-color: var(--border-medium) !important;
+}
+
+.mandal-h-card-top,
+.channel-h-card-top {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  margin-bottom: 1rem !important;
+}
+
+.mandal-no-badge {
+  font-family: var(--font-body) !important;
+  font-size: 0.72rem !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.08em !important;
+  color: var(--brand-saffron-dark) !important;
+}
+
+.mandal-cat-badge {
+  font-family: var(--font-body) !important;
+  font-size: 0.72rem !important;
+  font-weight: 600 !important;
+  color: var(--text-tertiary) !important;
+  background: var(--surface-page) !important;
+  padding: 3px 8px !important;
+  border-radius: var(--radius-xs) !important;
+}
+
+.mandal-h-name {
+  font-family: var(--font-display) !important;
+  font-size: 1.6rem !important;
+  font-weight: 600 !important;
+  color: var(--text-primary) !important;
+  line-height: 1.2 !important;
+  margin-bottom: 0.65rem !important;
+}
+
+.mandal-h-desc {
+  font-family: var(--font-body) !important;
+  font-size: 0.92rem !important;
+  color: var(--text-secondary) !important;
+  line-height: 1.6 !important;
+  margin-bottom: 1.5rem !important;
+  flex: 1 !important;
+}
+
+.mandal-h-footer {
+  margin-top: auto !important;
+  padding-top: 1rem !important;
+  border-top: 1px solid var(--border-subtle) !important;
+}
+
+.mandal-h-btn {
+  font-family: var(--font-body) !important;
+  font-size: 0.85rem !important;
+  font-weight: 600 !important;
+  color: var(--brand-saffron-dark) !important;
+  text-decoration: none !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 0.4rem !important;
+  transition: color var(--transition-editorial) !important;
+}
+
+.mandal-h-btn:hover {
+  color: var(--text-primary) !important;
+}
+
+/* Channel Cards */
+.channel-pill {
+  font-family: var(--font-body) !important;
+  font-size: 0.72rem !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.08em !important;
+  padding: 4px 10px !important;
+  border-radius: var(--radius-xs) !important;
+}
+
+.channel-pill.green {
+  background: var(--brand-green-light) !important;
+  color: var(--brand-green-dark) !important;
+}
+
+.channel-pill.saffron {
+  background: var(--brand-saffron-light) !important;
+  color: var(--brand-saffron-dark) !important;
+}
+
+.channel-pill.blue {
+  background: #EFF6FF !important;
+  color: #1D4ED8 !important;
+}
+
+.channel-status {
+  font-family: var(--font-body) !important;
+  font-size: 0.75rem !important;
+  font-weight: 600 !important;
+  color: var(--text-tertiary) !important;
+}
+
+.channel-h-title {
+  font-family: var(--font-display) !important;
+  font-size: 1.45rem !important;
+  font-weight: 600 !important;
+  color: var(--text-primary) !important;
+  line-height: 1.25 !important;
+  margin-bottom: 0.65rem !important;
+}
+
+.channel-h-desc {
+  font-family: var(--font-body) !important;
+  font-size: 0.92rem !important;
+  color: var(--text-secondary) !important;
+  line-height: 1.6 !important;
+  margin-bottom: 1.5rem !important;
+  flex: 1 !important;
+}
+
+/* ==========================================================================
+   LATEST UPDATES SECTION (Editorial Press Release Feed)
+   ========================================================================== */
+.latest-updates-section {
+  padding-block: 5.5rem !important;
+  background: var(--surface-page-warm) !important;
+  border-top: 1px solid var(--border-subtle) !important;
+  border-bottom: 1px solid var(--border-subtle) !important;
+}
+
+.updates-hero-card {
+  background: #FFFFFF !important;
+  border: 1px solid var(--border-subtle) !important;
+  border-radius: var(--radius-card) !important;
+  box-shadow: var(--shadow-card) !important;
+  overflow: hidden !important;
+}
+
+.updates-title {
+  font-family: var(--font-display) !important;
+  font-weight: 600 !important;
+  color: var(--text-primary) !important;
+}
+
+/* ==========================================================================
+   FOOTER (Institutional Minimal Architectural Design)
+   ========================================================================== */
+.site-footer {
+  background: #FFFFFF !important;
+  border-top: 1px solid var(--border-subtle) !important;
+  padding-top: 4.5rem !important;
+  padding-bottom: 2.5rem !important;
+}
+
+.footer-top {
+  display: grid !important;
+  grid-template-columns: 2fr 1fr 1fr !important;
+  gap: 3.5rem !important;
+  padding-bottom: 3.5rem !important;
+  border-bottom: 1px solid var(--border-subtle) !important;
+}
+
+.footer-brand div {
+  font-family: var(--font-display) !important;
+  font-size: 1.35rem !important;
+  font-weight: 700 !important;
+  color: var(--text-primary) !important;
+}
+
+.footer-nav-title {
+  font-family: var(--font-body) !important;
+  font-size: 0.78rem !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.12em !important;
+  color: var(--text-tertiary) !important;
+  margin-bottom: 1.25rem !important;
+  display: block !important;
+}
+
+.footer-nav-link {
+  font-family: var(--font-body) !important;
+  font-size: 0.92rem !important;
+  color: var(--text-secondary) !important;
+  text-decoration: none !important;
+  display: block !important;
+  margin-bottom: 0.65rem !important;
+  transition: color var(--transition-editorial) !important;
+}
+
+.footer-nav-link:hover {
+  color: var(--brand-saffron-dark) !important;
+}
+
+.footer-bottom {
+  padding-top: 2rem !important;
+  font-family: var(--font-body) !important;
+  font-size: 0.82rem !important;
+  color: var(--text-tertiary) !important;
+}
+
+.footer-legal-link {
+  color: var(--text-tertiary) !important;
+  text-decoration: none !important;
+}
+
+.footer-legal-link:hover {
+  color: var(--text-primary) !important;
+}
+
+/* ==========================================================================
+   RESPONSIVE OVERRIDES (MOBILE & TABLET FIXES)
+   ========================================================================== */
+
+/* Tablet (1024px and down) */
+@media (max-width: 1024px) {
+  .hero-main-grid {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 3rem !important;
+  }
+
+  .irrigation-showcase-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .irrigation-showcase-visual {
+    min-height: 300px !important;
+  }
+
+  .irrigation-showcase-content {
+    padding: 2rem !important;
+  }
+
+  .dynamic-feature-grid {
+    grid-template-columns: 1fr !important;
+    gap: 2rem !important;
+    padding: 2rem !important;
+  }
+}
+
+/* Mobile Devices (768px and down - Exact Fix for Screenshots 1, 2, 3) */
+@media (max-width: 768px) {
+  .site-header {
+    height: 68px !important;
+  }
+
+  .hero-wrapper {
+    padding-top: calc(68px + 1.5rem) !important;
+    padding-bottom: 2.5rem !important;
+  }
+
+  /* Re-order Hero in Mobile: Badge -> Portrait -> Display Name -> Lead -> Actions -> Credentials */
+  .hero-main-grid {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1.75rem !important;
+  }
+
+  .hero-content-col {
+    width: 100% !important;
+    order: 2 !important;
+  }
+
+  .hero-visual-col {
+    width: 100% !important;
+    order: 1 !important;
+    margin-bottom: 0.5rem !important;
+  }
+
+  .hero-portrait-card {
+    max-width: 100% !important;
+  }
+
+  .hero-portrait-frame {
+    aspect-ratio: 1 / 1.05 !important;
+  }
+
+  .hero-portrait-image {
+    object-position: center 10% !important;
+  }
+
+  .hero-display-heading {
+    font-size: clamp(2.2rem, 9vw, 3.2rem) !important;
+    line-height: 1.02 !important;
+    margin-bottom: 0.85rem !important;
+  }
+
+  .hero-telugu-heading {
+    font-size: clamp(2rem, 8vw, 2.8rem) !important;
+    line-height: 1.25 !important;
+  }
+
+  .hero-bio-lead {
+    font-size: 1.1rem !important;
+    line-height: 1.45 !important;
+  }
+
+  .hero-cta-group {
+    flex-direction: column !important;
+    width: 100% !important;
+    gap: 0.75rem !important;
+  }
+
+  .hero-cta-group a,
+  .hero-cta-group button {
+    width: 100% !important;
+    text-align: center !important;
+  }
+
+  .hero-credentials-strip {
+    flex-direction: row !important;
+    justify-content: space-between !important;
+    gap: 0.75rem !important;
+    width: 100% !important;
+    padding-top: 1.25rem !important;
+  }
+
+  .hero-cred-val {
+    font-size: 1.45rem !important;
+  }
+
+  .hero-cred-lbl {
+    font-size: 0.65rem !important;
+  }
+
+  /* SCREENSHOT 2 FIX: Dynamic Section (Praja Darbar) Never Squished Side-by-Side */
+  .dynamic-section-wrap {
+    padding-block: 2.5rem !important;
+  }
+
+  .dynamic-feature-grid {
+    display: flex !important;
+    flex-direction: column !important;
+    padding: 1.5rem !important;
+    gap: 1.5rem !important;
+    border-radius: var(--radius-sm) !important;
+  }
+
+  .dynamic-feature-content {
+    width: 100% !important;
+    order: 2 !important;
+  }
+
+  .dynamic-feature-media {
+    width: 100% !important;
+    order: 1 !important;
+    max-height: 260px !important;
+  }
+
+  .dynamic-img-frame {
+    aspect-ratio: 16 / 10 !important;
+    max-height: 260px !important;
+  }
+
+  .dynamic-heading {
+    font-size: 1.65rem !important;
+    line-height: 1.2 !important;
+  }
+
+  .dynamic-lead {
+    font-size: 0.98rem !important;
+    line-height: 1.55 !important;
+  }
+
+  /* SCREENSHOT 3 FIX: Irrigation Priority Never Squished Side-by-Side */
+  .irrigation-priority-section {
+    padding-block: 2.75rem !important;
+  }
+
+  .irrigation-section-header {
+    margin-bottom: 1.5rem !important;
+  }
+
+  .irrigation-section-header .section-title {
+    font-size: 1.75rem !important;
+    line-height: 1.2 !important;
+  }
+
+  .irrigation-showcase-grid {
+    display: flex !important;
+    flex-direction: column !important;
+  }
+
+  .irrigation-showcase-visual {
+    width: 100% !important;
+    min-height: 220px !important;
+    max-height: 260px !important;
+  }
+
+  .irrigation-showcase-content {
+    padding: 1.5rem !important;
+  }
+
+  .irrigation-content-heading {
+    font-size: 1.4rem !important;
+    line-height: 1.25 !important;
+  }
+
+  .irrigation-pills-row {
+    flex-direction: column !important;
+    gap: 0.75rem !important;
+  }
+
+  .stat-pill-num {
+    font-size: 1.55rem !important;
+  }
+
+  /* SCREENSHOT 1 FIX: Clean Editorial Story Cards on Mobile */
+  .section-story-stack {
+    padding-block: 2.75rem !important;
+  }
+
+  .section-head-editorial {
+    margin-bottom: 1.75rem !important;
+  }
+
+  .section-head-editorial .section-title {
+    font-size: 1.75rem !important;
+    line-height: 1.2 !important;
+  }
+
+  .story-h-card {
+    flex: 0 0 85vw !important;
+    border-radius: var(--radius-sm) !important;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.04) !important;
+  }
+
+  .story-h-title {
+    font-size: 1.22rem !important;
+    line-height: 1.25 !important;
+  }
+
+  .story-h-desc {
+    font-size: 0.88rem !important;
+    line-height: 1.55 !important;
+  }
+
+  /* Horizontal Tracks Mobile Width */
+  .mandal-h-card,
+  .channel-h-card {
+    flex: 0 0 85vw !important;
+  }
+
+  .dossier-metrics-showcase {
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem !important;
+  }
+
+  .dossier-metrics-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .dossier-stat-card.featured-stat {
+    grid-column: span 1 !important;
+  }
+
+  .footer-top {
+    grid-template-columns: 1fr !important;
+    gap: 2rem !important;
+  }
+}
+

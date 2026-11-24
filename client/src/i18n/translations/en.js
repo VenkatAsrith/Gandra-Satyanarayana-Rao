@@ -2,12 +2,12 @@ export const en = {
   // Navigation
   nav: {
     home: 'Home',
-    about: 'Biography & Journey',
-    work: 'Developmental Works',
+    about: 'Biography',
+    work: 'Development Works',
     activities: 'Assembly & Civic',
     gallery: 'Photo Archive',
-    constituency: 'Constituency (108)',
-    contact: 'Contact & Grievances',
+    constituency: 'Constituency',
+    contact: 'Contact',
     adminLogin: 'Admin CMS',
     switchLanguage: 'తెలుగులోకి మార్చండి'
   },

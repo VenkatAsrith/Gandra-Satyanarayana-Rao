@@ -2,6 +2,30 @@
 export const MEDIA_CATALOG = {
   "videos": [
     {
+      "id": "vid-buguloni-jatara",
+      "orig": "WhatsApp Video 2026-11-24 at 8.20.58 PM.mp4",
+      "slug": "buguloni-jatara-darshan",
+      "title": "MLA Sri Gandra Satyanarayana Rao Couple at Buguloni Sri Venkateswara Swamy Jatara",
+      "titleTe": "బుగులోని జాతరలో శ్రీ వేంకటేశ్వర స్వామివారిని దర్శించుకున్న ఎమ్మెల్యే గండ్ర సత్యనారాయణ రావు దంపతులు",
+      "category": "field_visits",
+      "categoryLabel": "Cultural & Field Visits",
+      "categoryLabelTe": "క్షేత్ర పర్యటన & ఆధ్యాత్మిక దర్శనం",
+      "caption": "Devotional darshan and special prayers by MLA Sri Gandra Satyanarayana Rao and his wife at the hilltop shrine during Buguloni Jatara.",
+      "captionTe": "బుగులోని జాతరలో కొండపై వెలసిన శ్రీ వేంకటేశ్వర స్వామివారికి సతీసమేతంగా ప్రత్యేక పూజలు నిర్వహించిన ఎమ్మెల్యే.",
+      "featured": true,
+      "order": 0,
+      "duration": "0:30",
+      "durationSec": 30.0,
+      "width": 1080,
+      "height": 1920,
+      "mediaType": "video",
+      "format": "mp4",
+      "videoUrl": "/media/videos/buguloni-jatara-darshan.mp4",
+      "secureUrl": "/media/videos/buguloni-jatara-darshan.mp4",
+      "thumbnailUrl": "/media/thumbnails/buguloni-jatara-darshan.jpg",
+      "altText": "Buguloni Sri Venkateswara Swamy Jatara MLA Darshan"
+    },
+    {
       "id": "vid-gorukothapalli-speech",
       "orig": "WhatsApp Video 2026-11-07 at 12.49.17 PM.mp4",
       "slug": "gorukothapalli-kalyanalakshmi-speech",
